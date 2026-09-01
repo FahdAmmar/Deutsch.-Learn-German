@@ -1,0 +1,193 @@
+/*
+ * Design tokens for LEARN GERMAN.
+ *
+ * Brand identity: a bold, high-contrast black-and-gold palette — near-black
+ * neutrals paired with a warm yellow/amber/bronze accent family. Dark mode
+ * is true black with a vivid yellow primary; light mode inverts the
+ * neutrals (warm off-white background, near-black ink) while keeping the
+ * same gold-family accents, so both themes read as the same brand rather
+ * than two unrelated palettes.
+ *
+ * The three brand accents (primary/accent/plum) form a warm gradient —
+ * gold → amber → bronze — used for the three-way pedagogical colour
+ * coding the app relies on (e.g. Positiv/Komparativ/Superlativ in the
+ * ComparisonLadder), so "more accent" reads as "more intensity" even
+ * before you read the label. This is intentionally kept separate from
+ * der/die/das gender colour-coding (cool blue / rose / green), which
+ * stays untouched here since it's a distinct semantic device, not a
+ * branding one, and mixing it into the gold family would make the two
+ * systems harder to tell apart at a glance.
+ *
+ * Typography is unaffected by this palette change: Reem Kufi (Arabic
+ * headings), IBM Plex Sans Arabic (Arabic body), Fraunces (German serif
+ * display), IBM Plex Mono (data/labels).
+ */
+
+:root {
+  /* Surfaces — warm off-white, not stark white, for long reading sessions */
+  --bg: #faf9f5;
+  --bg-alt: #f0eee5;
+  --surface: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.7);
+  --surface-glass-border: rgba(255, 255, 255, 0.5);
+
+  /* Text — near-black, warm-tinted charcoal rather than pure #000 */
+  --ink: #16140f;
+  --ink-muted: #59564c;
+  --ink-faint: #8c8878;
+
+  /* Structure */
+  --border: #e4e0d2;
+  --border-strong: #cfc9b3;
+
+  /* Brand: gold (primary) → burnt amber (accent) → bronze (tertiary) */
+  --primary: #c99a00;
+  --primary-foreground: #ffffff;
+  --primary-muted: #fbf0d2;
+  --primary-glow: rgba(201, 154, 0, 0.22);
+
+  --accent: #b8560a;
+  --accent-foreground: #ffffff;
+  --accent-muted: #f7e2cf;
+  --accent-glow: rgba(184, 86, 10, 0.2);
+
+  --plum: #6b5b3a;
+  --plum-foreground: #ffffff;
+  --plum-muted: #ece6d6;
+  --plum-glow: rgba(107, 91, 58, 0.18);
+
+  /* Feedback — functional colours, kept distinct from the brand gold family on purpose */
+  --success: #2e7d4f;
+  --success-foreground: #ffffff;
+  --success-muted: #e4f5ea;
+
+  --error: #b23a2e;
+  --error-foreground: #ffffff;
+  --error-muted: #fbeae7;
+
+  /* Grammatical gender — used consistently for der / die / das, independent of the brand palette */
+  --der: #2b5d8a;
+  --der-muted: #e3ecf3;
+  --die: #a03b60;
+  --die-muted: #f5e3ea;
+  --das: #2f7d4f;
+  --das-muted: #e1f0e6;
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(22, 20, 15, 0.06), 0 1px 1px rgba(22, 20, 15, 0.04);
+  --shadow-md: 0 8px 24px -8px rgba(22, 20, 15, 0.16), 0 2px 8px -2px rgba(22, 20, 15, 0.08);
+  --shadow-lg: 0 24px 60px -20px rgba(22, 20, 15, 0.28), 0 8px 20px -8px rgba(22, 20, 15, 0.12);
+}
+
+.dark {
+  /* Surfaces — true black, not navy or charcoal-blue */
+  --bg: #0a0a0a;
+  --bg-alt: #141412;
+  --surface: #1a1a17;
+  --surface-glass: rgba(20, 20, 18, 0.7);
+  --surface-glass-border: rgba(255, 255, 255, 0.08);
+
+  --ink: #f5f3ec;
+  --ink-muted: #a8a59c;
+  --ink-faint: #6e6c64;
+
+  --border: #2a2a26;
+  --border-strong: #3d3d37;
+
+  --primary: #ffd500;
+  --primary-foreground: #0a0a0a;
+  --primary-muted: rgba(255, 213, 0, 0.14);
+  --primary-glow: rgba(255, 213, 0, 0.3);
+
+  --accent: #f2994a;
+  --accent-foreground: #150d05;
+  --accent-muted: rgba(242, 153, 74, 0.14);
+  --accent-glow: rgba(242, 153, 74, 0.26);
+
+  --plum: #c9a66b;
+  --plum-foreground: #150d05;
+  --plum-muted: rgba(201, 166, 107, 0.16);
+  --plum-glow: rgba(201, 166, 107, 0.22);
+
+  --success: #5fcb8c;
+  --success-foreground: #06180f;
+  --success-muted: rgba(95, 203, 140, 0.14);
+
+  --error: #e5534b;
+  --error-foreground: #200604;
+  --error-muted: rgba(229, 83, 75, 0.14);
+
+  --der: #7cb2e0;
+  --der-muted: #1b2a3a;
+  --die: #e08aa3;
+  --die-muted: #33202a;
+  --das: #5cb37e;
+  --das-muted: #16291d;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--bg-alt);
+  --color-surface-glass: var(--surface-glass);
+
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-muted: var(--primary-muted);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-muted: var(--accent-muted);
+
+  --color-plum: var(--plum);
+  --color-plum-foreground: var(--plum-foreground);
+  --color-plum-muted: var(--plum-muted);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-muted: var(--success-muted);
+
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-error-muted: var(--error-muted);
+
+  --color-der: var(--der);
+  --color-der-muted: var(--der-muted);
+  --color-die: var(--die);
+  --color-die-muted: var(--die-muted);
+  --color-das: var(--das);
+  --color-das-muted: var(--das-muted);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --font-heading: 'Reem Kufi', 'Segoe UI', sans-serif;
+  --font-de: 'Fraunces', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}

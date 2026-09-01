@@ -1,0 +1,261 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonKleidung: Lesson = {
+  id: 'a1-m18-l01',
+  slug: 'kleidung',
+  level: 'A1',
+  moduleId: 'a1-m18',
+  title: 'Kleidung und Farben',
+  titleAr: 'الملابس والألوان',
+  estimatedMinutes: 26,
+  objectivesAr: [
+    'حفظ مفردات الملابس الأساسية مع أداة التعريف الصحيحة',
+    'حفظ الألوان الأساسية واستخدامها كخبر بعد الفعل sein',
+    'تصريف الفعل الشاذ tragen (يرتدي) بشكل صحيح',
+    'التمييز بين موضع الصفة كخبر (بعد sein) وموضعها قبل الاسم مباشرة',
+  ],
+  explanation: [
+    {
+      titleAr: 'اللون كخبر: بلا أي نهاية',
+      bodyAr:
+        'عندما يأتي اللون بعد الفعل sein كخبر، يبقى بشكله الأساسي بلا أي نهاية إطلاقاً، بغضّ النظر عن جنس الاسم أو عدده: "Das Hemd ist blau"، "Die Schuhe sind schwarz". هذا أبسط استخدام للصفات في الألمانية، ونقطة انطلاق جيدة قبل التعرّف على الصفة قبل الاسم مباشرة.',
+    },
+    {
+      titleAr: 'اللون قبل الاسم: نهاية إضافية (لمحة سريعة)',
+      bodyAr:
+        'عندما تأتي الصفة قبل الاسم مباشرة (وليس بعد sein)، فإنها تأخذ نهاية إضافية تتوافق مع جنس الاسم وحالته: "ein rotes Hemd" (قميص أحمر) وليس "ein rot Hemd". النظام الكامل لهذه النهايات (Adjektivdeklination) موضوع نحوي أوسع يُدرَّس بالتفصيل في المستوى A2؛ يكفيك هنا حفظ بضع تراكيب شائعة كوحدات جاهزة (ein rotes Hemd، eine blaue Hose) دون الحاجة لإتقان القاعدة كاملة الآن.',
+    },
+    {
+      titleAr: 'الترتيب: الصفة قبل الاسم دائماً',
+      bodyAr:
+        'خلافاً للعربية التي تضع الصفة بعد الاسم، تضع الألمانية الصفة قبل الاسم دائماً عند وصفه مباشرة: "ein rotes Hemd" (حرفياً: أحمر قميص)، وليس "ein Hemd rot". هذا الترتيب المعكوس يستحق انتباهاً خاصاً لأنه يخالف نمط التفكير الطبيعي بالعربية.',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a1-farben-adjektive',
+      slug: 'farben-praedikativ',
+      level: 'A1',
+      titleDe: 'Farben als Prädikativ und vor dem Nomen',
+      titleAr: 'الألوان كخبر وقبل الاسم',
+      conceptAr: 'اللون بعد sein بلا نهاية؛ اللون قبل الاسم مباشرة يأخذ نهاية حسب الجنس (تفصيلها في A2).',
+      ruleAr:
+        'استخدم اللون بشكله الأساسي بلا أي تغيير عندما يأتي بعد sein. عندما يسبق اللون الاسم مباشرة، احفظ التركيب الشائع كوحدة جاهزة (ein rotes Hemd، eine blaue Hose، ein schwarzer Schuh) دون الحاجة لفهم القاعدة الكاملة الآن.',
+      tables: [
+        {
+          caption: 'الألوان الأساسية',
+          headers: ['اللون', 'المعنى'],
+          rows: [
+            { label: 'rot', values: ['أحمر'] },
+            { label: 'blau', values: ['أزرق'] },
+            { label: 'grün', values: ['أخضر'] },
+            { label: 'gelb', values: ['أصفر'] },
+            { label: 'schwarz', values: ['أسود'] },
+            { label: 'weiß', values: ['أبيض'] },
+            { label: 'grau', values: ['رمادي'] },
+            { label: 'braun', values: ['بنّي'] },
+          ],
+        },
+        {
+          caption: 'tragen: فعل شاذّ (a → ä)',
+          headers: ['الضمير', 'tragen'],
+          rows: [
+            { label: 'ich', values: ['trage'] },
+            { label: 'du', values: ['trägst'] },
+            { label: 'er / sie / es', values: ['trägt'] },
+            { label: 'wir', values: ['tragen'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Das Hemd ist blau.',
+          ar: 'القميص أزرق. (خبر، بلا نهاية)',
+          tokens: [
+            { text: 'Das Hemd', role: 'الفاعل' },
+            { text: 'ist', role: 'الفعل' },
+            { text: 'blau.', role: 'الخبر (بلا نهاية)' },
+          ],
+        },
+        {
+          de: 'Sie trägt ein rotes Kleid.',
+          ar: 'ترتدي فستاناً أحمر. (اللون قبل الاسم، نهاية -es)',
+          tokens: [
+            { text: 'Sie', role: 'الفاعل' },
+            { text: 'trägt', role: 'الفعل' },
+            { text: 'ein rotes Kleid.', role: 'المفعول به + اللون قبله' },
+          ],
+        },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Ich trage heute eine blaue Jacke.', ar: 'أرتدي اليوم سترة زرقاء.' },
+    { de: 'Welche Farbe hat deine Mütze?', ar: 'ما لون قبعتك؟' },
+    { de: 'Die Schuhe sind schwarz und weiß.', ar: 'الحذاء أسود وأبيض.' },
+    { de: 'Er trägt einen grauen Pullover.', ar: 'يرتدي كنزة رمادية.' },
+  ],
+  vocabulary: [
+    { id: 'voc-kleidung-hemd', word: 'Hemd', article: 'das', partOfSpeech: 'noun', meaningAr: 'القميص', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-hose', word: 'Hose', article: 'die', partOfSpeech: 'noun', meaningAr: 'البنطال', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-kleid', word: 'Kleid', article: 'das', partOfSpeech: 'noun', meaningAr: 'الفستان', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-rock', word: 'Rock', article: 'der', partOfSpeech: 'noun', meaningAr: 'التنّورة', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-jacke', word: 'Jacke', article: 'die', partOfSpeech: 'noun', meaningAr: 'السترة', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-pullover', word: 'Pullover', article: 'der', partOfSpeech: 'noun', meaningAr: 'الكنزة الصوفية', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-schuhe', word: 'Schuhe', article: 'die', partOfSpeech: 'noun', meaningAr: 'الحذاء', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-muetze', word: 'Mütze', article: 'die', partOfSpeech: 'noun', meaningAr: 'القبعة الصوفية', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-schal', word: 'Schal', article: 'der', partOfSpeech: 'noun', meaningAr: 'الوشاح', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-handschuhe', word: 'Handschuhe', article: 'die', partOfSpeech: 'noun', meaningAr: 'القفازات', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-tragen', word: 'tragen', partOfSpeech: 'verb', meaningAr: 'يرتدي', level: 'A1', category: 'الملابس' },
+    { id: 'voc-kleidung-groesse', word: 'Größe', article: 'die', partOfSpeech: 'noun', meaningAr: 'المقاس', level: 'A1', category: 'التسوّق للملابس' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-kleidung-informell',
+      level: 'A1',
+      moduleId: 'a1-m18',
+      lessonId: 'a1-m18-l01',
+      titleAr: 'اختيار ملابس مع صديقة',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Lena', de: 'Was ziehst du zur Party an?', ar: 'ماذا سترتدين للحفلة؟' },
+        { speaker: 'b', name: 'Amira', de: 'Ich trage vielleicht mein rotes Kleid.', ar: 'ربما سأرتدي فستاني الأحمر.' },
+        { speaker: 'a', name: 'Lena', de: 'Schön! Welche Schuhe passen dazu?', ar: 'جميل! أي حذاء يناسبه؟' },
+        { speaker: 'b', name: 'Amira', de: 'Ich glaube, die schwarzen Schuhe passen gut.', ar: 'أعتقد أن الحذاء الأسود يناسبه جيداً.' },
+      ],
+    },
+    {
+      id: 'dialogue-kleidung-formell',
+      level: 'A1',
+      moduleId: 'a1-m18',
+      lessonId: 'a1-m18-l01',
+      titleAr: 'في متجر الملابس',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Verkäuferin', de: 'Guten Tag! Kann ich Ihnen helfen?', ar: 'نهارك سعيد! هل يمكنني مساعدتكم؟' },
+        { speaker: 'b', name: 'Herr Bakr', de: 'Ja, ich suche eine blaue Jacke, Größe 50.', ar: 'نعم، أبحث عن سترة زرقاء، مقاس ٥٠.' },
+        { speaker: 'a', name: 'Verkäuferin', de: 'Einen Moment, ich schaue nach.', ar: 'لحظة، سأتحقّق.' },
+        { speaker: 'b', name: 'Herr Bakr', de: 'Vielen Dank, das ist sehr freundlich.', ar: 'شكراً جزيلاً، هذا لطف كبير.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'sch في Schuhe وSchal تُنطق [ʃ]', bodyAr: 'حروف sch كتلة صوتية واحدة [ʃ]، تماماً كما تعلّمت في كلمات سابقة.', example: 'Schuhe' },
+    { titleAr: 'ü في Mütze صوت مقرّب أمامي', bodyAr: 'حرف ü القصير [ʏ] — قرّب شفتيك ولفظ "إي" في آن واحد.', example: 'Mütze' },
+  ],
+  exercises: [
+    {
+      id: 'ex-kleidung-1',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر الشكل الصحيح: Das Hemd ist ___. (أزرق، خبر)',
+      questionDe: 'Das Hemd ist ___.',
+      options: ['blau', 'blaue', 'blaues', 'blauer'],
+      correctIndex: 0,
+      explanationAr: 'اللون بعد sein يبقى بلا أي نهاية: blau.',
+    },
+    {
+      id: 'ex-kleidung-2',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر الشكل الصحيح: Sie trägt ein ___ Kleid. (أحمر، قبل اسم محايد)',
+      questionDe: 'Sie trägt ein ___ Kleid.',
+      options: ['rotes', 'rot', 'rote', 'roter'],
+      correctIndex: 0,
+      explanationAr: 'اللون قبل اسم محايد في Akkusativ بعد ein يأخذ النهاية -es: rotes.',
+    },
+    {
+      id: 'ex-kleidung-3',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر تصريف tragen الصحيح لـ du',
+      questionDe: 'Was ___ du heute?',
+      options: ['trägst', 'tragst', 'trägt', 'tragest'],
+      correctIndex: 0,
+      explanationAr: 'tragen شاذّة (a→ä) مع du: trägst.',
+    },
+    {
+      id: 'ex-kleidung-4',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'ما جنس كلمة Rock؟',
+      questionDe: '___ Rock',
+      options: ['der', 'die', 'das'],
+      correctIndex: 0,
+      explanationAr: 'Rock اسم مذكّر: der Rock.',
+    },
+    {
+      id: 'ex-kleidung-5',
+      type: 'fill-blank',
+      level: 'A1',
+      promptAr: 'أكمل: Die Schuhe sind ____. (أسود، خبر)',
+      sentenceDe: 'Die Schuhe sind ____.',
+      acceptedAnswers: ['schwarz'],
+      hint: 'اللون كخبر بلا نهاية',
+      explanationAr: 'اللون بعد sein يبقى بلا نهاية حتى مع الجمع: schwarz.',
+    },
+    {
+      id: 'ex-kleidung-6',
+      type: 'matching',
+      level: 'A1',
+      promptAr: 'صل كل قطعة ملابس بمعناها',
+      pairs: [
+        { de: 'die Hose', ar: 'البنطال' },
+        { de: 'die Jacke', ar: 'السترة' },
+        { de: 'die Mütze', ar: 'القبعة الصوفية' },
+        { de: 'die Handschuhe', ar: 'القفازات' },
+      ],
+      explanationAr: 'كل قطعة ملابس من هذه المجموعة لها مقابل واحد محدد بالعربية.',
+    },
+    {
+      id: 'ex-kleidung-7',
+      type: 'ordering',
+      level: 'A1',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Er', 'trägt', 'einen', 'grauen', 'Pullover.'],
+      correctOrder: [0, 1, 2, 3, 4],
+      explanationAr: 'الترتيب الصحيح: "Er trägt einen grauen Pullover."',
+    },
+    {
+      id: 'ex-kleidung-8',
+      type: 'true-false',
+      level: 'A1',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Im Deutschen steht das Adjektiv immer nach dem Nomen.',
+      isTrue: false,
+      explanationAr: 'خطأ — الصفة تسبق الاسم دائماً في الألمانية عند وصفه مباشرة، بخلاف العربية.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Ich trage ein Hemd rot.',
+      correct: 'Ich trage ein rotes Hemd.',
+      explanationAr: 'الصفة تسبق الاسم دائماً في الألمانية، بخلاف العربية التي تضعها بعد الاسم.',
+    },
+    {
+      wrong: 'Das Hemd ist blaues.',
+      correct: 'Das Hemd ist blau.',
+      explanationAr: 'اللون كخبر بعد sein يبقى بلا أي نهاية، وليس blaues.',
+    },
+    {
+      wrong: 'Du tragst eine Jacke.',
+      correct: 'Du trägst eine Jacke.',
+      explanationAr: 'tragen شاذّة (a→ä) مع du وer، فالصيغة الصحيحة trägst وليس tragst.',
+    },
+    {
+      wrong: 'Ich habe eine Jacke blau.',
+      correct: 'Ich habe eine blaue Jacke.',
+      explanationAr: 'اللون يسبق الاسم دائماً، ويأخذ نهاية توافق جنس الاسم: eine blaue Jacke.',
+    },
+  ],
+}
+
+export const module18Kleidung: Module = {
+  id: 'a1-m18',
+  slug: 'kleidung',
+  level: 'A1',
+  title: 'Kleidung',
+  titleAr: 'الملابس',
+  order: 18,
+  lessons: [lessonKleidung],
+}

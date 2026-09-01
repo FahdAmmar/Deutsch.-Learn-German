@@ -1,0 +1,252 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonWegbeschreibung: Lesson = {
+  id: 'a1-m16-l01',
+  slug: 'wegbeschreibung',
+  level: 'A1',
+  moduleId: 'a1-m16',
+  title: 'Wegbeschreibung',
+  titleAr: 'وصف الطريق',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'السؤال عن الطريق بأدب باستخدام عبارات ثابتة',
+    'إعطاء تعليمات الاتجاه باستخدام صيغة الأمر Sie',
+    'استخدام مفردات الاتجاه (links، rechts، geradeaus) مع أفعال الحركة',
+    'استخدام حرف الجر entlang كأداة تتبع الموضع خلف الاسم',
+  ],
+  explanation: [
+    {
+      titleAr: 'وصف الطريق = أمر Sie + مفردات اتجاه',
+      bodyAr:
+        'إعطاء الاتجاهات في الألمانية يجمع بين مهارتين تعلّمتهما سابقاً: صيغة الأمر الرسمية Sie (Gehen Sie...! Biegen Sie...ab!) ومفردات الاتجاه (links، rechts، geradeaus). الفعل المنفصل abbiegen (ينعطف) يتبع نفس قاعدة الإطار اللفظي: "Biegen Sie an der Ampel links ab!" — الجذع biegen في البداية، والبادئة ab في النهاية.',
+    },
+    {
+      titleAr: 'entlang يأتي بعد الاسم أحياناً',
+      bodyAr:
+        'خلافاً لمعظم حروف الجر التي تسبق الاسم دائماً، يمكن لكلمة entlang (على طول / بمحاذاة) أن تأتي بعد الاسم مباشرة مع حالة Akkusativ: "Gehen Sie die Straße entlang" (امشِ على طول الشارع). هذا الترتيب هو الأكثر شيوعاً في الاستخدام اليومي.',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a1-wegbeschreibung',
+      slug: 'wegbeschreibung-imperativ',
+      level: 'A1',
+      titleDe: 'Wegbeschreibung: Imperativ und Richtungsangaben',
+      titleAr: 'وصف الطريق: الأمر ومفردات الاتجاه',
+      conceptAr: 'دمج صيغة الأمر الرسمية مع مفردات الاتجاه وحروف الجر لإعطاء تعليمات وصول واضحة.',
+      ruleAr:
+        'استخدم صيغة أمر Sie (الفعل + Sie) لكل تعليمة اتجاه، وضع كلمة الاتجاه (links/rechts/geradeaus) بعد الفعل مباشرة. للأفعال المنفصلة مثل abbiegen، ضع البادئة ab في نهاية الجملة كالمعتاد.',
+      tables: [
+        {
+          caption: 'مفردات الاتجاه الأساسية',
+          headers: ['الكلمة', 'المعنى'],
+          rows: [
+            { label: 'links', values: ['يساراً'] },
+            { label: 'rechts', values: ['يميناً'] },
+            { label: 'geradeaus', values: ['مباشرة إلى الأمام'] },
+            { label: 'an der Ecke', values: ['عند الزاوية'] },
+            { label: 'gegenüber von', values: ['مقابل'] },
+          ],
+        },
+        {
+          caption: 'عبارات السؤال عن الطريق',
+          headers: ['العبارة', 'المعنى'],
+          rows: [
+            { label: 'Entschuldigung, wo ist...?', values: ['عفواً، أين...؟'] },
+            { label: 'Wie komme ich zu...?', values: ['كيف أصل إلى...؟'] },
+            { label: 'Ist es weit von hier?', values: ['هل هو بعيد من هنا؟'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Gehen Sie geradeaus und biegen Sie an der Ampel links ab.',
+          ar: 'اذهبوا مباشرة وانعطفوا يساراً عند الإشارة الضوئية.',
+          tokens: [
+            { text: 'Gehen', role: 'فعل الأمر' },
+            { text: 'Sie', role: 'المخاطَب' },
+            { text: 'geradeaus', role: 'الاتجاه' },
+            { text: 'und biegen Sie an der Ampel links ab.', role: 'أمر ثانٍ' },
+          ],
+        },
+        {
+          de: 'Gehen Sie die Straße entlang.',
+          ar: 'امشوا على طول الشارع. (entlang بعد الاسم)',
+          tokens: [
+            { text: 'Gehen', role: 'فعل الأمر' },
+            { text: 'Sie', role: 'المخاطَب' },
+            { text: 'die Straße', role: 'المفعول به' },
+            { text: 'entlang.', role: 'حرف الجر (بعد الاسم)' },
+          ],
+        },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Entschuldigung, wie komme ich zum Bahnhof?', ar: 'عفواً، كيف أصل إلى محطة القطار؟' },
+    { de: 'Der Bahnhof ist gegenüber von der Post.', ar: 'محطة القطار مقابل مكتب البريد.' },
+    { de: 'Nehmen Sie die zweite Straße rechts.', ar: 'خذوا الشارع الثاني يميناً.' },
+    { de: 'Ist es weit von hier?', ar: 'هل هو بعيد من هنا؟' },
+  ],
+  vocabulary: [
+    { id: 'voc-weg-kreuzung', word: 'Kreuzung', article: 'die', partOfSpeech: 'noun', meaningAr: 'التقاطع', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-ampel', word: 'Ampel', article: 'die', partOfSpeech: 'noun', meaningAr: 'الإشارة الضوئية', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-ecke', word: 'Ecke', article: 'die', partOfSpeech: 'noun', meaningAr: 'الزاوية', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-strasse', word: 'Straße', article: 'die', partOfSpeech: 'noun', meaningAr: 'الشارع', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-platz', word: 'Platz', article: 'der', partOfSpeech: 'noun', meaningAr: 'الساحة', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-bruecke', word: 'Brücke', article: 'die', partOfSpeech: 'noun', meaningAr: 'الجسر', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-abbiegen', word: 'abbiegen', partOfSpeech: 'verb', meaningAr: 'ينعطف', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-entlang', word: 'entlang', partOfSpeech: 'preposition', meaningAr: 'على طول / بمحاذاة', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-geradeaus', word: 'geradeaus', partOfSpeech: 'adverb', meaningAr: 'مباشرة إلى الأمام', level: 'A1', category: 'وصف الطريق' },
+    { id: 'voc-weg-gegenueber', word: 'gegenüber', partOfSpeech: 'preposition', meaningAr: 'مقابل', level: 'A1', category: 'وصف الطريق' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-weg-informell',
+      level: 'A1',
+      moduleId: 'a1-m16',
+      lessonId: 'a1-m16-l01',
+      titleAr: 'الطريق إلى المقهى',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Sofia', de: 'Weißt du, wo das neue Café ist?', ar: 'هل تعرف أين المقهى الجديد؟' },
+        { speaker: 'b', name: 'Ben', de: 'Ja klar! Geh einfach diese Straße entlang.', ar: 'نعم بالتأكيد! اذهبي على طول هذا الشارع.' },
+        { speaker: 'a', name: 'Sofia', de: 'Und dann?', ar: 'وبعد ذلك؟' },
+        { speaker: 'b', name: 'Ben', de: 'An der Ecke biegst du rechts ab. Es ist gegenüber von der Bank.', ar: 'عند الزاوية انعطفي يميناً. إنه مقابل البنك.' },
+      ],
+    },
+    {
+      id: 'dialogue-weg-formell',
+      level: 'A1',
+      moduleId: 'a1-m16',
+      lessonId: 'a1-m16-l01',
+      titleAr: 'سائح يسأل عن المحطة',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Tourist', de: 'Entschuldigung, wie komme ich zum Bahnhof?', ar: 'عفواً، كيف أصل إلى محطة القطار؟' },
+        { speaker: 'b', name: 'Passantin', de: 'Gehen Sie hier geradeaus bis zur Kreuzung.', ar: 'اذهبوا من هنا مباشرة حتى التقاطع.' },
+        { speaker: 'a', name: 'Tourist', de: 'Und dann?', ar: 'وبعد ذلك؟' },
+        { speaker: 'b', name: 'Passantin', de: 'Biegen Sie links ab. Der Bahnhof ist neben der Post.', ar: 'انعطفوا يساراً. المحطة بجانب مكتب البريد.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'ü في Brücke صوت مقرّب أمامي', bodyAr: 'حرف ü القصير هنا [ʏ] — قرّب شفتيك ولفظ "إي" في نفس الوقت.', example: 'Brücke' },
+    { titleAr: 'النبرة في geradeaus', bodyAr: 'النبرة الرئيسية تقع على المقطع الأخير: gerade-AUS.', example: 'geradeaus' },
+  ],
+  exercises: [
+    {
+      id: 'ex-weg-1',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر صيغة الأمر الرسمية الصحيحة لإعطاء اتجاه',
+      questionDe: '___ geradeaus!',
+      options: ['Gehen Sie', 'Sie gehen', 'Geh', 'Gehst du'],
+      correctIndex: 0,
+      explanationAr: 'وصف الطريق الرسمي يستخدم صيغة أمر Sie: Gehen Sie...!',
+    },
+    {
+      id: 'ex-weg-2',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'أين تقع البادئة "ab" في الجملة؟',
+      questionDe: 'Biegen Sie an der Ampel links ___.',
+      options: ['ab', '(بلا شيء)', 'abbiegen', 'biegab'],
+      correctIndex: 0,
+      explanationAr: 'abbiegen فعل منفصل: البادئة ab تنتقل إلى نهاية الجملة.',
+    },
+    {
+      id: 'ex-weg-3',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'أين تقع entlang عادة في الجملة؟',
+      questionDe: 'Gehen Sie die Straße ___.',
+      options: ['entlang', 'entlang die Straße', 'die entlang Straße', 'Straße entlang die'],
+      correctIndex: 0,
+      explanationAr: 'entlang تأتي بعد الاسم في حالة Akkusativ عادة: die Straße entlang.',
+    },
+    {
+      id: 'ex-weg-4',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر السؤال الصحيح للاستفسار عن الطريق',
+      questionDe: '___',
+      options: ['Wie komme ich zum Bahnhof?', 'Wie ich komme zum Bahnhof?', 'Wie zum Bahnhof komme ich?', 'Komme ich wie zum Bahnhof?'],
+      correctIndex: 0,
+      explanationAr: 'الترتيب الصحيح للسؤال: أداة الاستفهام، الفعل، الفاعل، بقية الجملة.',
+    },
+    {
+      id: 'ex-weg-5',
+      type: 'fill-blank',
+      level: 'A1',
+      promptAr: 'أكمل: Das Café ist ____ von der Bank. (مقابل)',
+      sentenceDe: 'Das Café ist ____ von der Bank.',
+      acceptedAnswers: ['gegenüber'],
+      hint: 'كلمة تعني "مقابل"',
+      explanationAr: 'gegenüber von تعني "مقابل".',
+    },
+    {
+      id: 'ex-weg-6',
+      type: 'matching',
+      level: 'A1',
+      promptAr: 'صل كل كلمة بمعناها',
+      pairs: [
+        { de: 'links', ar: 'يساراً' },
+        { de: 'rechts', ar: 'يميناً' },
+        { de: 'geradeaus', ar: 'مباشرة' },
+        { de: 'die Kreuzung', ar: 'التقاطع' },
+      ],
+      explanationAr: 'كل كلمة من هذه المجموعة لها مقابل واحد محدد بالعربية.',
+    },
+    {
+      id: 'ex-weg-7',
+      type: 'ordering',
+      level: 'A1',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Nehmen', 'Sie', 'die', 'zweite', 'Straße', 'rechts.'],
+      correctOrder: [0, 1, 2, 3, 4, 5],
+      explanationAr: 'الترتيب الصحيح: "Nehmen Sie die zweite Straße rechts."',
+    },
+    {
+      id: 'ex-weg-8',
+      type: 'true-false',
+      level: 'A1',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Bei Wegbeschreibungen benutzt man normalerweise die "du"-Form.',
+      isTrue: false,
+      explanationAr: 'خطأ — في المواقف الرسمية (مع الغرباء) تُستخدم صيغة Sie عادة، إلا مع الأصدقاء.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Sie gehen geradeaus.',
+      correct: 'Gehen Sie geradeaus!',
+      explanationAr: 'إعطاء التعليمات يتطلّب صيغة الأمر (الفعل أولاً)، وليس جملة خبرية عادية.',
+    },
+    {
+      wrong: 'Biegen Sie ab an der Ampel links.',
+      correct: 'Biegen Sie an der Ampel links ab.',
+      explanationAr: 'البادئة المنفصلة ab يجب أن تبقى في نهاية الجملة تماماً.',
+    },
+    {
+      wrong: 'Gehen Sie entlang die Straße.',
+      correct: 'Gehen Sie die Straße entlang.',
+      explanationAr: 'entlang غالباً ما تأتي بعد الاسم وليس قبله، بخلاف حروف الجر المعتادة.',
+    },
+    {
+      wrong: 'Der Bahnhof ist gegenüber der Post ohne von.',
+      correct: 'Der Bahnhof ist gegenüber von der Post.',
+      explanationAr: 'في الاستخدام اليومي الشائع، تُستخدم gegenüber von متبوعة بـ Dativ، رغم أن gegenüber وحدها ممكنة أيضاً في الألمانية الرسمية.',
+    },
+  ],
+}
+
+export const module16Wegbeschreibung: Module = {
+  id: 'a1-m16',
+  slug: 'wegbeschreibung',
+  level: 'A1',
+  title: 'Wegbeschreibung',
+  titleAr: 'وصف الطريق',
+  order: 16,
+  lessons: [lessonWegbeschreibung],
+}

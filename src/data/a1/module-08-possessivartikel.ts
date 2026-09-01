@@ -1,0 +1,261 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonPossessivartikel: Lesson = {
+  id: 'a1-m08-l01',
+  slug: 'possessivartikel',
+  level: 'A1',
+  moduleId: 'a1-m08',
+  title: 'Possessivartikel',
+  titleAr: 'أدوات الملكية',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'حفظ أداة الملكية المقابلة لكل ضمير فاعل',
+    'تصريف أدوات الملكية حسب جنس الاسم وحالته النحوية (Nominativ وAkkusativ) بنفس نهايات ein',
+    'التمييز بين sein (له/لذلك الشيء) وihr (لها) عند الحديث عن الغير',
+    'تكوين جمل صحيحة تصف ممتلكات الشخص وأفراد عائلته',
+  ],
+  explanation: [
+    {
+      titleAr: 'كل ضمير فاعل له أداة ملكية خاصة به',
+      bodyAr:
+        'لكل ضمير فاعل أداة ملكية مقابلة: ich → mein، du → dein، er → sein، sie → ihr، es → sein، wir → unser، ihr → euer، sie/Sie → ihr/Ihr. لاحظ أن sein تُستخدم لكل من er وes (له/لذلك الشيء)، وihr تُستخدم لكل من sie المفردة (لها) وsie الجمع (لهم) وSie الرسمية (لكم) — والفرق بينها يظهر فقط في الكتابة بحرف كبير Ihr للمخاطبة الرسمية.',
+    },
+    {
+      titleAr: 'تتصرّف مثل ein تماماً',
+      bodyAr:
+        'أدوات الملكية "كلمات-ein" (ein-Wörter) وتأخذ نفس نهايات ein وkein بالضبط: بلا نهاية مع المذكر والمحايد في Nominativ (mein Bruder، mein Kind)، وبإضافة -e مع المؤنث والجمع (meine Schwester، meine Eltern)، وبإضافة -en مع المذكر في Akkusativ فقط (Ich sehe meinen Bruder).',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a1-possessivartikel',
+      slug: 'possessivartikel-deklination',
+      level: 'A1',
+      titleDe: 'Possessivartikel: Formen und Deklination',
+      titleAr: 'أدوات الملكية: الأشكال والتصريف',
+      conceptAr: 'أداة ملكية واحدة لكل ضمير فاعل، تتصرّف بنفس نهايات ein حسب جنس الاسم وحالته.',
+      ruleAr:
+        'اختر الجذع المناسب حسب صاحب الملكية (mein-، dein-، sein-، ihr-، unser-، euer-)، ثم أضف نفس نهاية ein المناسبة لجنس الاسم وحالته النحوية: بلا نهاية للمذكر/المحايد في Nominativ، -e للمؤنث والجمع، -en للمذكر في Akkusativ.',
+      tables: [
+        {
+          caption: 'أداة الملكية المقابلة لكل ضمير',
+          headers: ['الضمير', 'أداة الملكية'],
+          rows: [
+            { label: 'ich', values: ['mein'] },
+            { label: 'du', values: ['dein'] },
+            { label: 'er', values: ['sein'] },
+            { label: 'sie (هي)', values: ['ihr'] },
+            { label: 'es', values: ['sein'] },
+            { label: 'wir', values: ['unser'] },
+            { label: 'ihr (أنتم)', values: ['euer'] },
+            { label: 'sie / Sie (هم / حضرتكم)', values: ['ihr / Ihr'] },
+          ],
+        },
+        {
+          caption: 'تصريف mein حسب الجنس والحالة (نموذج لكل أدوات الملكية)',
+          headers: ['الجنس', 'Nominativ', 'Akkusativ'],
+          rows: [
+            { label: 'مذكّر (Bruder)', values: ['mein', 'meinen'] },
+            { label: 'مؤنث (Schwester)', values: ['meine', 'meine'] },
+            { label: 'محايد (Kind)', values: ['mein', 'mein'] },
+            { label: 'جمع (Eltern)', values: ['meine', 'meine'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Das ist mein Bruder.',
+          ar: 'هذا أخي. (مذكّر، Nominativ، بلا نهاية)',
+          tokens: [
+            { text: 'Das', role: 'الفاعل' },
+            { text: 'ist', role: 'الفعل' },
+            { text: 'mein Bruder.', role: 'الخبر' },
+          ],
+        },
+        {
+          de: 'Ich liebe meine Mutter.',
+          ar: 'أحب أمي. (مؤنث، تأخذ -e)',
+          tokens: [
+            { text: 'Ich', role: 'الفاعل' },
+            { text: 'liebe', role: 'الفعل' },
+            { text: 'meine Mutter.', role: 'المفعول به' },
+          ],
+        },
+        {
+          de: 'Sie liebt ihren Mann.',
+          ar: 'هي تحب زوجها. (Mann مذكّر Akkusativ، فتأخذ ihr النهاية -en)',
+          tokens: [
+            { text: 'Sie', role: 'الفاعل' },
+            { text: 'liebt', role: 'الفعل' },
+            { text: 'ihren Mann.', role: 'المفعول به' },
+          ],
+        },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Wie heißt deine Schwester?', ar: 'ما اسم أختك؟' },
+    { de: 'Unser Haus ist klein, aber schön.', ar: 'بيتنا صغير لكنه جميل.' },
+    { de: 'Kinder, wo sind eure Bücher?', ar: 'يا أطفال، أين كتبكم؟' },
+    { de: 'Er hat sein Auto verkauft.', ar: 'باع سيارته.' },
+  ],
+  vocabulary: [
+    { id: 'voc-possessiv-onkel', word: 'Onkel', article: 'der', partOfSpeech: 'noun', meaningAr: 'العمّ / الخال', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-tante', word: 'Tante', article: 'die', partOfSpeech: 'noun', meaningAr: 'العمّة / الخالة', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-cousin', word: 'Cousin', article: 'der', partOfSpeech: 'noun', meaningAr: 'ابن العم/الخال', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-cousine', word: 'Cousine', article: 'die', partOfSpeech: 'noun', meaningAr: 'بنت العم/الخال', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-grosseltern', word: 'Großeltern', article: 'die', partOfSpeech: 'noun', meaningAr: 'الأجداد', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-enkel', word: 'Enkel', article: 'der', partOfSpeech: 'noun', meaningAr: 'الحفيد', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-freund', word: 'Freund', article: 'der', partOfSpeech: 'noun', meaningAr: 'الصديق', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-freundin', word: 'Freundin', article: 'die', partOfSpeech: 'noun', meaningAr: 'الصديقة', level: 'A1', category: 'العائلة الممتدة' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-possessiv-informell',
+      level: 'A1',
+      moduleId: 'a1-m08',
+      lessonId: 'a1-m08-l01',
+      titleAr: 'عرض صور العائلة',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Lena', de: 'Ist das dein Bruder?', ar: 'هل هذا أخوك؟' },
+        { speaker: 'b', name: 'Omar', de: 'Nein, das ist mein Cousin. Mein Bruder ist hier.', ar: 'لا، هذا ابن عمي. أخي هنا.' },
+        { speaker: 'a', name: 'Lena', de: 'Und wer ist das neben eurem Vater?', ar: 'ومن هذا بجانب والدكم؟' },
+        { speaker: 'b', name: 'Omar', de: 'Das ist unser Onkel. Er wohnt bei unseren Großeltern.', ar: 'هذا عمّنا. يسكن عند أجدادنا.' },
+      ],
+    },
+    {
+      id: 'dialogue-possessiv-formell',
+      level: 'A1',
+      moduleId: 'a1-m08',
+      lessonId: 'a1-m08-l01',
+      titleAr: 'تعارف رسمي في مؤتمر',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Frau Winter', de: 'Ist das Ihre Kollegin?', ar: 'هل هذه زميلتكم؟' },
+        { speaker: 'b', name: 'Herr Salim', de: 'Ja, das ist meine Kollegin, Frau Nasser.', ar: 'نعم، هذه زميلتي، السيدة ناصر.' },
+        { speaker: 'a', name: 'Frau Winter', de: 'Und was ist Ihr Vorname, wenn ich fragen darf?', ar: 'وما اسمكم الأول، إن كان بإمكاني السؤال؟' },
+        { speaker: 'b', name: 'Herr Salim', de: 'Mein Vorname ist Karim.', ar: 'اسمي الأول كريم.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'eu في euer تُنطق [ɔʏ]', bodyAr: 'حروف العلة المزدوجة eu تُنطق دائماً صوتاً واحداً [ɔʏ]، تماماً مثل نطق كلمة neu.', example: 'euer' },
+    { titleAr: 'unser وeuer يفقدان e أحياناً في الكلام', bodyAr: 'في الكلام السريع قد تُنطق unser وeuer بحذف الـe الأولى قليلاً، لكن الكتابة الصحيحة تحتفظ بها دائماً.', example: 'unser' },
+  ],
+  exercises: [
+    {
+      id: 'ex-possessiv-1',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر أداة الملكية الصحيحة: Das ist ___ Bruder. (أنا)',
+      questionDe: 'Das ist ___ Bruder.',
+      options: ['mein', 'meine', 'meinen', 'meiner'],
+      correctIndex: 0,
+      explanationAr: 'Bruder مذكّر في حالة Nominativ، فأداة الملكية بلا أي نهاية: mein.',
+    },
+    {
+      id: 'ex-possessiv-2',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر أداة الملكية الصحيحة: Ich liebe ___ Mutter. (أنا)',
+      questionDe: 'Ich liebe ___ Mutter.',
+      options: ['meine', 'mein', 'meinen', 'meines'],
+      correctIndex: 0,
+      explanationAr: 'Mutter مؤنثة، فتأخذ أداة الملكية النهاية -e: meine.',
+    },
+    {
+      id: 'ex-possessiv-3',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر أداة الملكية الصحيحة: Sie liebt ___ Mann. (هي، Akkusativ)',
+      questionDe: 'Sie liebt ___ Mann.',
+      options: ['ihren', 'ihr', 'ihre', 'sein'],
+      correctIndex: 0,
+      explanationAr: 'Mann مذكّر Akkusativ، وصاحبة الملكية "هي" فالجذع ihr + نهاية -en: ihren.',
+    },
+    {
+      id: 'ex-possessiv-4',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر أداة الملكية الصحيحة: Kinder, wo sind ___ Bücher? (أنتم)',
+      questionDe: 'Kinder, wo sind ___ Bücher?',
+      options: ['eure', 'euer', 'ihre', 'unsere'],
+      correctIndex: 0,
+      explanationAr: 'Bücher جمع، فتأخذ أداة الملكية النهاية -e: eure (من الجذع euer).',
+    },
+    {
+      id: 'ex-possessiv-5',
+      type: 'fill-blank',
+      level: 'A1',
+      promptAr: 'أكمل: Er hat ____ Auto verkauft. (هو، محايد Akkusativ)',
+      sentenceDe: 'Er hat ____ Auto verkauft.',
+      acceptedAnswers: ['sein'],
+      hint: 'Auto محايدة، فلا تأخذ نهاية في Akkusativ',
+      explanationAr: 'Auto محايدة، فلا نهاية إضافية حتى في Akkusativ: sein Auto.',
+    },
+    {
+      id: 'ex-possessiv-6',
+      type: 'matching',
+      level: 'A1',
+      promptAr: 'صل كل ضمير بأداة الملكية الصحيحة',
+      pairs: [
+        { de: 'ich', ar: 'mein' },
+        { de: 'du', ar: 'dein' },
+        { de: 'wir', ar: 'unser' },
+        { de: 'sie (هم)', ar: 'ihr' },
+      ],
+      explanationAr: 'كل ضمير فاعل له أداة ملكية واحدة ثابتة.',
+    },
+    {
+      id: 'ex-possessiv-7',
+      type: 'ordering',
+      level: 'A1',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Wie', 'heißt', 'deine', 'Schwester?'],
+      correctOrder: [0, 1, 2, 3],
+      explanationAr: 'الترتيب الصحيح: "Wie heißt deine Schwester?"',
+    },
+    {
+      id: 'ex-possessiv-8',
+      type: 'true-false',
+      level: 'A1',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Possessivartikel haben die gleichen Endungen wie "ein".',
+      isTrue: true,
+      explanationAr: 'صحيح — أدوات الملكية تتصرّف بنفس نهايات ein تماماً.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Ich liebe mein Mutter.',
+      correct: 'Ich liebe meine Mutter.',
+      explanationAr: 'Mutter اسم مؤنث، فيجب أن تأخذ أداة الملكية النهاية -e: meine.',
+    },
+    {
+      wrong: 'Sie liebt sein Mann.',
+      correct: 'Sie liebt ihren Mann.',
+      explanationAr: 'صاحبة الملكية هنا "هي"، فالجذع الصحيح هو ihr وليس sein (الذي يعني "له").',
+    },
+    {
+      wrong: 'Das ist meine Bruder.',
+      correct: 'Das ist mein Bruder.',
+      explanationAr: 'Bruder اسم مذكّر في حالة Nominativ، فلا تأخذ أداة الملكية أي نهاية: mein.',
+    },
+    {
+      wrong: 'Wo ist meine Auto?',
+      correct: 'Wo ist mein Auto?',
+      explanationAr: 'Auto اسم محايد، فلا تأخذ أداة الملكية أي نهاية في Nominativ: mein.',
+    },
+  ],
+}
+
+export const module08Possessivartikel: Module = {
+  id: 'a1-m08',
+  slug: 'possessivartikel',
+  level: 'A1',
+  title: 'Possessivartikel',
+  titleAr: 'أدوات الملكية',
+  order: 8,
+  lessons: [lessonPossessivartikel],
+}

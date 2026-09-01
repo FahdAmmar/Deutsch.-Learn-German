@@ -1,0 +1,263 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonNegation: Lesson = {
+  id: 'a1-m07-l01',
+  slug: 'negation',
+  level: 'A1',
+  moduleId: 'a1-m07',
+  title: 'Negation: nicht und kein',
+  titleAr: 'النفي: nicht وkein',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'التمييز بين nicht وkein: متى تُستخدم كل أداة نفي',
+    'تصريف kein حسب الجنس والحالة النحوية مثل ein تماماً',
+    'وضع nicht في الموضع الصحيح من الجملة حسب ما يُراد نفيه',
+    'نفي الأفعال والصفات والأسماء بشكل صحيح في جمل كاملة',
+  ],
+  explanation: [
+    {
+      titleAr: 'قاعدة الاختيار الأساسية',
+      bodyAr:
+        'kein تُستخدم فقط لنفي اسم مسبوق بأداة تنكير (ein) أو بلا أداة إطلاقاً: "Ich habe einen Bruder" → "Ich habe keinen Bruder"، و"Ich bin Lehrer" → "Ich bin kein Lehrer" (المهن بلا أداة في الإثبات لكنها تأخذ kein في النفي). أما nicht فتُستخدم لنفي كل ما عدا ذلك: الأفعال، والصفات، والظروف، والأسماء المسبوقة بأداة تعريف أو ضمير ملكية: "Ich kenne den Mann nicht"، "Das Auto ist nicht neu".',
+    },
+    {
+      titleAr: 'kein تتصرّف مثل ein تماماً',
+      bodyAr:
+        'تُصرَّف kein بنفس نهايات ein (kein، keine، kein، keinen...)، بفارق واحد مهم: ein ليس لها صيغة جمع لأنها أداة تنكير للمفرد، لكن kein لها صيغة جمع (keine) لأن الجملة الإيجابية المقابلة لها بلا أداة إطلاقاً في الجمع: "Ich habe Bücher" → "Ich habe keine Bücher".',
+    },
+    {
+      titleAr: 'أين تقع nicht في الجملة؟',
+      bodyAr:
+        'القاعدة العملية: إن كانت الجملة تنفي الفعل ككل بلا تحديد، تقع nicht في نهاية الجملة: "Ich rauche nicht". أما إن كانت الجملة تحتوي عنصراً يجب أن تقع nicht قبله مباشرة — صفة أو ظرف في موضع الخبر ("Das Buch ist nicht interessant")، أو بادئة فعل منفصلة ("Ich stehe nicht auf")، أو شبه جملة جر تحدد مكاناً أو وجهة ("Ich fahre nicht nach Berlin") — فتقع nicht مباشرة قبل ذلك العنصر.',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a1-negation',
+      slug: 'negation-nicht-kein',
+      level: 'A1',
+      titleDe: 'Negation: nicht vs. kein',
+      titleAr: 'أداتا النفي: nicht وkein',
+      conceptAr: 'kein لنفي الأسماء غير المعرّفة، وnicht لنفي كل شيء آخر — الفعل، الصفة، الاسم المعرّف.',
+      ruleAr:
+        'اسأل أولاً: هل أنفي اسماً كان سيُسبق بـ ein أو بلا أداة؟ إن كانت الإجابة نعم فاستخدم kein مصرّفة حسب الجنس والحالة. إن كانت الإجابة لا (الفعل نفسه، صفة، ظرف، أو اسم معرّف بـ der/die/das أو ضمير ملكية)، استخدم nicht وضعها في موضعها الصحيح.',
+      tables: [
+        {
+          caption: 'تصريف kein في Nominativ وAkkusativ',
+          headers: ['الجنس', 'Nominativ', 'Akkusativ'],
+          rows: [
+            { label: 'مذكّر', values: ['kein', 'keinen'] },
+            { label: 'مؤنث', values: ['keine', 'keine'] },
+            { label: 'محايد', values: ['kein', 'kein'] },
+            { label: 'جمع', values: ['keine', 'keine'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Ich habe keinen Bruder.',
+          ar: 'ليس لدي أخ. (Bruder مذكّر Akkusativ)',
+          tokens: [
+            { text: 'Ich', role: 'الفاعل' },
+            { text: 'habe', role: 'الفعل' },
+            { text: 'keinen Bruder.', role: 'المفعول به المنفي' },
+          ],
+        },
+        {
+          de: 'Ich kenne den Mann nicht.',
+          ar: 'لا أعرف هذا الرجل. (اسم معرّف، فتُستخدم nicht)',
+          tokens: [
+            { text: 'Ich', role: 'الفاعل' },
+            { text: 'kenne', role: 'الفعل' },
+            { text: 'den Mann', role: 'المفعول به المعرّف' },
+            { text: 'nicht.', role: 'النفي' },
+          ],
+        },
+        {
+          de: 'Das Auto ist nicht neu.',
+          ar: 'السيارة ليست جديدة. (nicht قبل الصفة الخبرية مباشرة)',
+          tokens: [
+            { text: 'Das Auto', role: 'الفاعل' },
+            { text: 'ist', role: 'الفعل' },
+            { text: 'nicht', role: 'النفي' },
+            { text: 'neu.', role: 'الصفة الخبرية' },
+          ],
+        },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Ich bin kein Student mehr.', ar: 'لم أعد طالباً.' },
+    { de: 'Wir haben keine Zeit.', ar: 'ليس لدينا وقت.' },
+    { de: 'Ich stehe heute nicht früh auf.', ar: 'لن أستيقظ باكراً اليوم. (nicht قبل البادئة المنفصلة auf)' },
+    { de: 'Er kommt nicht aus Deutschland.', ar: 'هو ليس من ألمانيا.' },
+  ],
+  vocabulary: [
+    { id: 'voc-negation-nicht', word: 'nicht', partOfSpeech: 'adverb', meaningAr: 'لا / ليس (نفي عام)', level: 'A1', category: 'أدوات النفي' },
+    { id: 'voc-negation-kein', word: 'kein', partOfSpeech: 'pronoun', meaningAr: 'لا / ولا (نفي اسم غير معرّف)', level: 'A1', category: 'أدوات النفي' },
+    { id: 'voc-negation-nie', word: 'nie', partOfSpeech: 'adverb', meaningAr: 'أبداً', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich rauche nie.', ar: 'لا أدخّن أبداً.' } },
+    { id: 'voc-negation-niemand', word: 'niemand', partOfSpeech: 'pronoun', meaningAr: 'لا أحد', level: 'A1', category: 'أدوات النفي', example: { de: 'Niemand ist zu Hause.', ar: 'لا أحد في المنزل.' } },
+    { id: 'voc-negation-nichts', word: 'nichts', partOfSpeech: 'pronoun', meaningAr: 'لا شيء', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich verstehe nichts.', ar: 'لا أفهم شيئاً.' } },
+    { id: 'voc-negation-noch-nicht', word: 'noch nicht', partOfSpeech: 'phrase', meaningAr: 'ليس بعد', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich weiß es noch nicht.', ar: 'لا أعرف ذلك بعد.' } },
+    { id: 'voc-negation-nicht-mehr', word: 'nicht mehr', partOfSpeech: 'phrase', meaningAr: 'لم يعد', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich wohne nicht mehr hier.', ar: 'لم أعد أسكن هنا.' } },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-negation-informell',
+      level: 'A1',
+      moduleId: 'a1-m07',
+      lessonId: 'a1-m07-l01',
+      titleAr: 'دعوة إلى حفلة',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Paul', de: 'Kommst du heute Abend zur Party?', ar: 'هل ستأتي إلى الحفلة الليلة؟' },
+        { speaker: 'b', name: 'Sara', de: 'Nein, ich habe leider keine Zeit.', ar: 'لا، للأسف ليس لدي وقت.' },
+        { speaker: 'a', name: 'Paul', de: 'Warum nicht? Musst du arbeiten?', ar: 'لماذا لا؟ هل يجب أن تعملي؟' },
+        { speaker: 'b', name: 'Sara', de: 'Nein, ich arbeite nicht. Ich bin einfach sehr müde.', ar: 'لا، لا أعمل. أنا فقط متعبة جداً.' },
+      ],
+    },
+    {
+      id: 'dialogue-negation-formell',
+      level: 'A1',
+      moduleId: 'a1-m07',
+      lessonId: 'a1-m07-l01',
+      titleAr: 'استفسار في مكتب الاستقبال',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Empfangsdame', de: 'Haben Sie einen Termin?', ar: 'هل لديكم موعد؟' },
+        { speaker: 'b', name: 'Herr Ahmadi', de: 'Nein, ich habe keinen Termin.', ar: 'لا، ليس لدي موعد.' },
+        { speaker: 'a', name: 'Empfangsdame', de: 'Der Doktor ist heute leider nicht im Haus.', ar: 'الطبيب للأسف ليس موجوداً اليوم.' },
+        { speaker: 'b', name: 'Herr Ahmadi', de: 'Kein Problem. Ich komme morgen wieder.', ar: 'لا مشكلة. سأعود غداً.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'ch في nicht تُنطق [ç] الأمامية', bodyAr: 'بعد i القصيرة، تُنطق ch بصوت أمامي رقيق [ç]، أقرب لصوت الهمس الاحتكاكي، وليس الخاء الخلفية.', example: 'nicht' },
+    { titleAr: 'ei في kein تُنطق [aɪ]', bodyAr: 'حروف العلة المزدوجة ei تُنطق دائماً [aɪ] كما في نهاية "kein" — لا تُنطق كل حرف منفصلاً.', example: 'kein' },
+  ],
+  exercises: [
+    {
+      id: 'ex-negation-1',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر الأداة الصحيحة: Ich habe ___ Bruder.',
+      questionDe: 'Ich habe ___ Bruder.',
+      options: ['keinen', 'nicht', 'kein', 'keine'],
+      correctIndex: 0,
+      explanationAr: 'Bruder اسم مذكّر في حالة Akkusativ بلا أداة تعريف سابقة، فتصريف kein الصحيح هو keinen.',
+    },
+    {
+      id: 'ex-negation-2',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر الأداة الصحيحة: Ich kenne den Mann ___.',
+      questionDe: 'Ich kenne den Mann ___.',
+      options: ['nicht', 'kein', 'keinen', 'keine'],
+      correctIndex: 0,
+      explanationAr: 'Mann هنا معرّف بـ den، فيُنفى الفعل بـ nicht وليس kein.',
+    },
+    {
+      id: 'ex-negation-3',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر الجملة الصحيحة (المهنة بلا أداة في الإثبات لكن تأخذ kein في النفي)',
+      questionDe: '___',
+      options: ['Ich bin kein Lehrer.', 'Ich bin nicht Lehrer.', 'Ich bin nicht ein Lehrer.', 'Ich habe kein Lehrer.'],
+      correctIndex: 0,
+      explanationAr: 'المهن تُنفى بـ kein رغم غياب الأداة في صيغة الإثبات: Ich bin Lehrer → Ich bin kein Lehrer.',
+    },
+    {
+      id: 'ex-negation-4',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'أين تقع nicht؟ Das Auto ist ___ neu ___.',
+      questionDe: 'Das Auto ist ___ neu ___.',
+      options: ['nicht / (بلا شيء)', '(بلا شيء) / nicht', 'nicht / nicht', 'kein / (بلا شيء)'],
+      correctIndex: 0,
+      explanationAr: 'nicht تقع مباشرة قبل الصفة الخبرية neu.',
+    },
+    {
+      id: 'ex-negation-5',
+      type: 'fill-blank',
+      level: 'A1',
+      promptAr: 'أكمل: Wir haben ____ Zeit. (جمع، بلا وقت إطلاقاً)',
+      sentenceDe: 'Wir haben ____ Zeit.',
+      acceptedAnswers: ['keine'],
+      hint: 'Zeit مؤنثة',
+      explanationAr: 'Zeit اسم مؤنث، فتصريف kein المناسب هو keine.',
+    },
+    {
+      id: 'ex-negation-6',
+      type: 'fill-blank',
+      level: 'A1',
+      promptAr: 'أكمل: Ich stehe heute ____ früh auf. (نفي الفعل المنفصل)',
+      sentenceDe: 'Ich stehe heute ____ früh auf.',
+      acceptedAnswers: ['nicht'],
+      hint: 'nicht قبل الظرف/البادئة',
+      explanationAr: 'nicht تقع قبل الظرف früh وقبل بادئة الفعل المنفصل auf.',
+    },
+    {
+      id: 'ex-negation-7',
+      type: 'true-false',
+      level: 'A1',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Man benutzt "kein" auch, um einen Verb zu negieren.',
+      isTrue: false,
+      explanationAr: 'خطأ — kein تُستخدم فقط لنفي الأسماء غير المعرّفة، أما الأفعال فتُنفى بـ nicht.',
+    },
+    {
+      id: 'ex-negation-8',
+      type: 'matching',
+      level: 'A1',
+      promptAr: 'صل كل جملة إثبات بصيغة نفيها الصحيحة',
+      pairs: [
+        { de: 'Ich habe Geld.', ar: 'Ich habe kein Geld.' },
+        { de: 'Das ist gut.', ar: 'Das ist nicht gut.' },
+        { de: 'Ich bin Arzt.', ar: 'Ich bin kein Arzt.' },
+        { de: 'Ich kenne sie.', ar: 'Ich kenne sie nicht.' },
+      ],
+      explanationAr: 'كل جملة إثبات لها صيغة نفي واحدة صحيحة حسب قاعدة nicht/kein.',
+    },
+    {
+      id: 'ex-negation-9',
+      type: 'ordering',
+      level: 'A1',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Er', 'kommt', 'nicht', 'aus', 'Deutschland.'],
+      correctOrder: [0, 1, 2, 3, 4],
+      explanationAr: 'الترتيب الصحيح: "Er kommt nicht aus Deutschland." — nicht تقع قبل شبه الجملة الجارّة التي تحدد المكان.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Ich habe nicht Bruder.',
+      correct: 'Ich habe keinen Bruder.',
+      explanationAr: 'Bruder اسم غير معرّف، فيجب نفيه بـ kein (مصرّفة) وليس بـ nicht.',
+    },
+    {
+      wrong: 'Ich bin nicht Lehrer.',
+      correct: 'Ich bin kein Lehrer.',
+      explanationAr: 'المهن تُنفى بـ kein في الألمانية رغم غياب الأداة في صيغة الإثبات.',
+    },
+    {
+      wrong: 'Ich kenne nicht den Mann.',
+      correct: 'Ich kenne den Mann nicht.',
+      explanationAr: 'عند نفي الفعل ككل مع اسم معرّف، تقع nicht بعد المفعول به المعرّف، عادة قرب نهاية الجملة.',
+    },
+    {
+      wrong: 'Das Buch ist kein interessant.',
+      correct: 'Das Buch ist nicht interessant.',
+      explanationAr: 'الصفات تُنفى دائماً بـ nicht، فـ kein تُستخدم فقط مع الأسماء.',
+    },
+  ],
+}
+
+export const module07Negation: Module = {
+  id: 'a1-m07',
+  slug: 'negation',
+  level: 'A1',
+  title: 'Negation',
+  titleAr: 'النفي',
+  order: 7,
+  lessons: [lessonNegation],
+}
