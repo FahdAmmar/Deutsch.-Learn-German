@@ -39,7 +39,7 @@ export function OrderingQuestion({ exercise, onAnswer }: Props) {
     <div className="space-y-4">
       <div
         dir="ltr"
-        className="flex min-h-14 flex-wrap items-center gap-2 rounded-md border border-dashed border-border-strong bg-surface-muted p-3"
+        className="flex min-h-14 flex-wrap items-center gap-2 rounded-md border border-dashed border-border-strong bg-surface-sunken p-3"
       >
         {placed.length === 0 && (
           <span dir="rtl" className="text-sm text-ink-faint">
@@ -53,7 +53,7 @@ export function OrderingQuestion({ exercise, onAnswer }: Props) {
             onClick={() => removeWord(position)}
             disabled={checked}
             lang="de"
-            className="flex items-center gap-1 rounded-sm bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground disabled:opacity-80"
+            className="flex items-center gap-1 rounded-md bg-primary px-3.5 py-2 text-base font-medium text-primary-foreground disabled:opacity-80"
           >
             {exercise.words[wordIndex]}
             {!checked && <X size={13} aria-hidden="true" />}
@@ -73,7 +73,7 @@ export function OrderingQuestion({ exercise, onAnswer }: Props) {
               'rounded-sm border border-border-strong px-3 py-1.5 text-sm font-medium transition-colors',
               placed.includes(index)
                 ? 'invisible'
-                : 'bg-surface text-ink hover:bg-surface-muted',
+                : 'bg-surface text-ink hover:bg-surface-sunken',
             )}
           >
             {word}

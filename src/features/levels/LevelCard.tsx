@@ -1,76 +1,83 @@
 import { ArrowLeft, Lock } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { Badge, Button, Card, CardBody, ProgressBar } from '@/components/ui'
+import { Badge, Button, Card, ProgressBar } from '@/components/ui'
 import { CEFR_LEVEL_INFO } from '@/types'
 import type { CEFRLevel } from '@/types'
+import { formatCountAr, LESSON_FORMS, MODULE_FORMS } from '@/utils/arabicCount'
+
+import { LevelMark } from './LevelMark'
+import { LEVEL_STYLE } from './levelTone'
 
 interface LevelCardProps {
   level: CEFRLevel
   totalLessons: number
   completedLessons: number
   moduleCount: number
+  /** The level the learner is working on now: gets the emphasised treatment. */
+  isCurrent?: boolean
 }
 
-export function LevelCard({ level, totalLessons, completedLessons, moduleCount }: LevelCardProps) {
+export function LevelCard({ level, totalLessons, completedLessons, moduleCount, isCurrent }: LevelCardProps) {
   const info = CEFR_LEVEL_INFO[level]
   const hasContent = totalLessons > 0
   const ratio = hasContent ? completedLessons / totalLessons : 0
   const started = completedLessons > 0
+  const finished = hasContent && completedLessons === totalLessons
+  const actionLabel = finished ? 'مراجعة المستوى' : started ? 'متابعة' : 'ابدأ المستوى'
 
   return (
-    <Card className={!hasContent ? 'opacity-70' : undefined}>
-      <CardBody className="flex flex-col gap-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="flex items-center gap-2">
-              <Badge tone="primary" className="text-sm">
-                {level}
-              </Badge>
-              {!hasContent ? <Badge tone="neutral">قريباً</Badge> : null}
-            </div>
-            <h3 dir="ltr" lang="de" className="mt-2 text-lg font-bold text-ink">
+    <Card tone={isCurrent ? 'brand' : hasContent ? 'surface' : 'tint'}>
+      <div dir="rtl" className="space-y-4 p-5 sm:p-6">
+        <div className="flex items-start gap-4">
+          <LevelMark level={level} size="lg" muted={!hasContent} />
+          <div className="min-w-0 flex-1">
+            <h2
+              lang="de"
+              dir="ltr"
+              className="display-de text-end text-xl font-semibold text-ink [overflow-wrap:anywhere] sm:text-2xl"
+            >
               {info.titleDe}
-            </h3>
-            <p dir="rtl" className="text-sm font-medium text-ink-muted">
-              {info.titleAr}
-            </p>
+            </h2>
+            <p className="mt-0.5 font-semibold text-ink-muted">{info.titleAr}</p>
           </div>
         </div>
 
-        <p dir="rtl" className="text-sm leading-relaxed text-ink-muted">
-          {info.descriptionAr}
-        </p>
+        <p className="text-ink-muted">{info.descriptionAr}</p>
 
         {hasContent ? (
           <>
-            <ProgressBar value={ratio} label={`التقدّم في المستوى ${level}`} />
-            <div dir="rtl" className="flex items-center justify-between text-xs text-ink-faint">
-              <span>
-                {moduleCount} {moduleCount === 1 ? 'وحدة' : 'وحدات'} · {totalLessons} درساً
-              </span>
-              <span>{Math.round(ratio * 100)}٪</span>
+            <div className="space-y-2">
+              <ProgressBar value={ratio} tone={LEVEL_STYLE[level].tone} label={`التقدّم في المستوى ${level}`} />
+              <div className="tnum flex items-center justify-between text-sm text-ink-muted">
+                <span>
+                  {formatCountAr(moduleCount, MODULE_FORMS)} · {formatCountAr(totalLessons, LESSON_FORMS)}
+                </span>
+                <span className="font-semibold text-ink">{Math.round(ratio * 100)}%</span>
+              </div>
             </div>
+
+            <Link to={`/levels/${level.toLowerCase()}`} className="block sm:inline-block">
+              <Button
+                variant={isCurrent ? 'primary' : 'outline'}
+                className="w-full sm:w-auto"
+                icon={<ArrowLeft size={17} aria-hidden="true" />}
+                iconPosition="end"
+              >
+                {actionLabel}
+              </Button>
+            </Link>
           </>
         ) : (
-          <div dir="rtl" className="flex items-center gap-2 text-sm text-ink-faint">
-            <Lock size={14} aria-hidden="true" />
-            <span>المحتوى قيد الإعداد</span>
-          </div>
+          <p className="flex flex-wrap items-center gap-2.5 text-sm text-ink-muted">
+            <Badge>قريباً</Badge>
+            <span className="flex items-center gap-1.5">
+              <Lock size={15} aria-hidden="true" />
+              المحتوى قيد الإعداد
+            </span>
+          </p>
         )}
-
-        <Link to={hasContent ? `/levels/${level.toLowerCase()}` : '#'} aria-disabled={!hasContent}>
-          <Button
-            variant={hasContent ? 'primary' : 'outline'}
-            disabled={!hasContent}
-            className="w-full"
-            icon={<ArrowLeft size={16} aria-hidden="true" />}
-            iconPosition="end"
-          >
-            {!hasContent ? 'قريباً' : started ? 'متابعة' : 'ابدأ الآن'}
-          </Button>
-        </Link>
-      </CardBody>
+      </div>
     </Card>
   )
 }

@@ -34,7 +34,7 @@ export function ListeningQuestion({ exercise, onAnswer }: Props) {
         onClick={() => speak(exercise.audioText)}
         disabled={!isSupported}
         aria-label="إعادة الاستماع"
-        className="flex items-center gap-2 rounded-md border border-border-strong bg-surface-muted px-4 py-3 text-sm font-medium text-primary hover:bg-primary-muted disabled:opacity-50"
+        className="flex items-center gap-2 h-12 rounded-md border border-border-strong bg-surface-sunken px-5 text-base font-semibold text-ink hover:bg-accent-muted disabled:opacity-50"
       >
         <Volume2 size={18} aria-hidden="true" className={isSpeaking ? 'animate-pulse' : undefined} />
         استمع مرة أخرى

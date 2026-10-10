@@ -39,7 +39,7 @@ export function TranslationQuestion({ exercise, onAnswer }: Props) {
         rows={2}
         aria-label="أدخل ترجمتك"
         placeholder={sourceIsGerman ? 'اكتب الترجمة بالعربية' : 'Schreib die Übersetzung auf Deutsch'}
-        className="w-full resize-none rounded-md border border-border-strong bg-surface p-3 text-sm outline-none focus-visible:border-primary disabled:opacity-70"
+        className="w-full resize-none rounded-md border-2 border-border-strong bg-surface-sunken p-3.5 text-base outline-none focus-visible:border-accent disabled:opacity-70"
       />
       {checked && !correct ? (
         <p dir={answerDir} className="text-sm text-ink-muted">

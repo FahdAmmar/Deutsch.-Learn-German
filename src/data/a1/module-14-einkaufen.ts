@@ -88,6 +88,7 @@ export const lessonEinkaufen: Lesson = {
       level: 'A1',
       moduleId: 'a1-m14',
       lessonId: 'a1-m14-l01',
+      titleDe: 'Auf dem Wochenmarkt',
       titleAr: 'في السوق الأسبوعي',
       register: 'informal',
       lines: [
@@ -102,6 +103,7 @@ export const lessonEinkaufen: Lesson = {
       level: 'A1',
       moduleId: 'a1-m14',
       lessonId: 'a1-m14-l01',
+      titleDe: 'In der Bäckerei',
       titleAr: 'في المخبز',
       register: 'formal',
       lines: [

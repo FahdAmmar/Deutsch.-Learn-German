@@ -14,6 +14,8 @@
 
   html {
     color-scheme: light dark;
+    /* Anchored sections must clear the sticky header / section rail */
+    scroll-padding-top: 7rem;
   }
 
   html.dark {
@@ -24,12 +26,16 @@
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /* Arabic needs more leading than Latin text to keep diacritics and stacked letters from colliding */
   [dir='rtl'] {
     font-family: var(--font-arabic);
+    line-height: 1.8;
   }
 
   h1, h2, h3 {
@@ -87,5 +93,45 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Typographic roles ---------- */
+
+/* Arabic explanation text: the reading size for lesson prose. 17px with generous leading. */
+@utility prose-ar {
+  font-size: 1.0625rem;
+  line-height: 2;
+  max-inline-size: 64ch;
+}
+
+/* German display and example sentences. Fraunces' optical size axis keeps large titles sharp and small text sturdy. */
+@utility display-de {
+  font-family: var(--font-de);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.15;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Counters, percentages and lesson numbers should not jitter as they change */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Motion that answers an action ---------- */
+
+@keyframes fill-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
 }

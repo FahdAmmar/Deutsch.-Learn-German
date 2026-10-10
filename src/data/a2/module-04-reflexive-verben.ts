@@ -1,0 +1,245 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonReflexiveVerben: Lesson = {
+  id: 'a2-m04-l01',
+  slug: 'reflexive-verben',
+  level: 'A2',
+  moduleId: 'a2-m04',
+  title: 'Reflexive Verben',
+  titleAr: 'الأفعال الانعكاسية',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'حفظ ضمائر النصب الانعكاسية (mich، dich، sich...) واستخدامها بشكل صحيح',
+    'التمييز بين الأفعال الانعكاسية الحقيقية (الفاعل يفعل الشيء لنفسه) والأفعال الانعكاسية الثابتة بلا معنى انعكاسي حرفي',
+    'تصريف أفعال شائعة دائمة الانعكاس مثل sich freuen وsich interessieren',
+    'وضع الضمير الانعكاسي في الموضع الصحيح من الجملة',
+  ],
+  explanation: [
+    {
+      titleAr: 'sich ضمير واحد يخدم كل الحالات الثالثة',
+      bodyAr:
+        'ضمائر النصب الانعكاسية تُطابق ضمائر النصب العادية تماماً لصيغتَي ich وdu (mich، dich)، لكنها تتوحّد جميعاً في صيغة واحدة sich لكل من er وsie وes والجمع sie وSie الرسمية — ميزة تبسّط الحفظ كثيراً مقارنة بالضمائر العادية.',
+    },
+    {
+      titleAr: 'انعكاسي حرفياً أم ثابت بلا معنى؟',
+      bodyAr:
+        'بعض الأفعال الانعكاسية حرفية المعنى: sich waschen (يغسل نفسه) — الفاعل يفعل الشيء لنفسه فعلاً. لكن أفعالاً أخرى كثيرة "دائمة الانعكاس" بلا أي معنى حرفي للانعكاس، وتُحفظ مع ضميرها كوحدة ثابتة: sich freuen (يفرح)، sich interessieren für (يهتمّ بـ)، sich erkälten (يُصاب بالزكام) — هنا sich جزء لا يتجزّأ من الفعل نفسه، وليس "نفسه" بالمعنى الحرفي.',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a2-reflexive-verben',
+      slug: 'reflexivpronomen',
+      level: 'A2',
+      titleDe: 'Reflexivpronomen und reflexive Verben',
+      titleAr: 'الضمائر الانعكاسية والأفعال الانعكاسية',
+      conceptAr: 'ضمير نصب يعود على الفاعل نفسه، إما بمعنى حرفي أو كجزء ثابت من الفعل بلا معنى انعكاسي.',
+      ruleAr:
+        'ضع الضمير الانعكاسي مباشرة بعد الفعل المصرَّف في الجملة الخبرية البسيطة. اختر الضمير المناسب للفاعل: mich لـ ich، dich لـ du، sich لكل ما عدا ذلك (er/sie/es/sie-جمع/Sie)، uns لـ wir، euch لـ ihr.',
+      tables: [
+        {
+          caption: 'الضمائر الانعكاسية',
+          headers: ['الفاعل', 'الضمير الانعكاسي'],
+          rows: [
+            { label: 'ich', values: ['mich'] },
+            { label: 'du', values: ['dich'] },
+            { label: 'er / sie / es', values: ['sich'] },
+            { label: 'wir', values: ['uns'] },
+            { label: 'ihr', values: ['euch'] },
+            { label: 'sie / Sie', values: ['sich'] },
+          ],
+        },
+        {
+          caption: 'أفعال دائمة الانعكاس شائعة',
+          headers: ['الفعل', 'المعنى'],
+          rows: [
+            { label: 'sich freuen (auf/über)', values: ['يفرح (بـ / لـ)'] },
+            { label: 'sich interessieren für', values: ['يهتمّ بـ'] },
+            { label: 'sich erkälten', values: ['يُصاب بالزكام'] },
+            { label: 'sich beeilen', values: ['يستعجل'] },
+            { label: 'sich verlieben (in)', values: ['يقع في الحب (بـ)'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Ich freue mich auf die Ferien.',
+          ar: 'أنا متحمّس للعطلة. (sich freuen، بلا معنى انعكاسي حرفي)',
+          tokens: [
+            { text: 'Ich', role: 'الفاعل' },
+            { text: 'freue', role: 'الفعل' },
+            { text: 'mich', role: 'الضمير الانعكاسي' },
+            { text: 'auf die Ferien.', role: 'شبه الجملة' },
+          ],
+        },
+        {
+          de: 'Er wäscht sich jeden Morgen.',
+          ar: 'يغسل نفسه كل صباح. (sich waschen، معنى انعكاسي حرفي)',
+          tokens: [
+            { text: 'Er', role: 'الفاعل' },
+            { text: 'wäscht', role: 'الفعل' },
+            { text: 'sich', role: 'الضمير الانعكاسي' },
+            { text: 'jeden Morgen.', role: 'الحال' },
+          ],
+        },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Interessierst du dich für Musik?', ar: 'هل تهتمّ بالموسيقى؟' },
+    { de: 'Wir müssen uns beeilen.', ar: 'يجب أن نستعجل.' },
+    { de: 'Sie hat sich in ihn verliebt.', ar: 'وقعت في حبّه.' },
+    { de: 'Ich habe mich erkältet.', ar: 'أُصبت بالزكام.' },
+  ],
+  vocabulary: [
+    { id: 'voc-reflexiv-sich-freuen', word: 'sich freuen', partOfSpeech: 'verb', meaningAr: 'يفرح', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-interessieren', word: 'sich interessieren für', partOfSpeech: 'verb', meaningAr: 'يهتمّ بـ', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-erkaelten', word: 'sich erkälten', partOfSpeech: 'verb', meaningAr: 'يُصاب بالزكام', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-beeilen', word: 'sich beeilen', partOfSpeech: 'verb', meaningAr: 'يستعجل', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-verlieben', word: 'sich verlieben', partOfSpeech: 'verb', meaningAr: 'يقع في الحب', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-waschen', word: 'sich waschen', partOfSpeech: 'verb', meaningAr: 'يغسل نفسه', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-fuehlen', word: 'sich fühlen', partOfSpeech: 'verb', meaningAr: 'يشعر', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-entscheiden', word: 'sich entscheiden', partOfSpeech: 'verb', meaningAr: 'يقرّر', level: 'A2', category: 'أفعال انعكاسية' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-reflexiv-informell',
+      level: 'A2',
+      moduleId: 'a2-m04',
+      lessonId: 'a2-m04-l01',
+      titleDe: 'Ein neues Hobby',
+      titleAr: 'الحديث عن هواية جديدة',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Sami', de: 'Interessierst du dich für Fotografie?', ar: 'هل تهتمّين بالتصوير؟' },
+        { speaker: 'b', name: 'Nora', de: 'Ja, sehr! Ich freue mich schon auf den Kurs.', ar: 'نعم، كثيراً! أنا متحمّسة للدورة بالفعل.' },
+        { speaker: 'a', name: 'Sami', de: 'Wann beginnt er?', ar: 'متى تبدأ؟' },
+        { speaker: 'b', name: 'Nora', de: 'Nächste Woche. Wir müssen uns nur noch anmelden.', ar: 'الأسبوع القادم. يجب أن نسجّل فقط الآن.' },
+      ],
+    },
+    {
+      id: 'dialogue-reflexiv-formell',
+      level: 'A2',
+      moduleId: 'a2-m04',
+      lessonId: 'a2-m04-l01',
+      titleDe: 'Eine Krankmeldung',
+      titleAr: 'اعتذار بسبب المرض',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Herr Sultan', de: 'Ich habe mich leider erkältet.', ar: 'أُصبت بالزكام للأسف.' },
+        { speaker: 'b', name: 'Frau Lang', de: 'Das tut mir leid. Fühlen Sie sich sehr schlecht?', ar: 'يؤسفني ذلك. هل تشعرون بسوء شديد؟' },
+        { speaker: 'a', name: 'Herr Sultan', de: 'Es geht. Ich muss mich nur ausruhen.', ar: 'لا بأس. يجب أن أرتاح فقط.' },
+        { speaker: 'b', name: 'Frau Lang', de: 'Gute Besserung! Beeilen Sie sich nicht, ruhen Sie sich aus.', ar: 'سلامتكم! لا تستعجلوا، ارتاحوا.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'sich تُنطق بصوت ش أمامي رقيق', bodyAr: 'حرف ch بعد i يُنطق [ç]، صوتاً احتكاكياً أمامياً رقيقاً، وليس الخاء الخلفية.', example: 'sich' },
+    { titleAr: 'beeilen: عين مزدوجة', bodyAr: 'حرفا ee في beeilen يُنطقان صوتاً طويلاً واحداً [eː]، بلا فصل بينهما.', example: 'beeilen' },
+  ],
+  exercises: [
+    {
+      id: 'ex-reflexiv-1',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الضمير الصحيح: Ich freue ___ auf die Ferien.',
+      questionDe: 'Ich freue ___ auf die Ferien.',
+      options: ['mich', 'dich', 'sich', 'mir'],
+      correctIndex: 0,
+      explanationAr: 'الضمير الانعكاسي لـ ich هو mich.',
+    },
+    {
+      id: 'ex-reflexiv-2',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الضمير الصحيح: Er interessiert ___ für Musik.',
+      questionDe: 'Er interessiert ___ für Musik.',
+      options: ['sich', 'ihn', 'ihm', 'er'],
+      correctIndex: 0,
+      explanationAr: 'الضمير الانعكاسي لـ er هو sich (نفس الضمير لكل من er/sie/es/sie-جمع/Sie).',
+    },
+    {
+      id: 'ex-reflexiv-3',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الضمير الصحيح: Wir müssen ___ beeilen.',
+      questionDe: 'Wir müssen ___ beeilen.',
+      options: ['uns', 'euch', 'sich', 'wir'],
+      correctIndex: 0,
+      explanationAr: 'الضمير الانعكاسي لـ wir هو uns.',
+    },
+    {
+      id: 'ex-reflexiv-4',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: '"sich" ist für "er", "sie", "es", "sie" (Plural) und "Sie" gleich.',
+      isTrue: true,
+      explanationAr: 'صحيح — sich ضمير واحد يخدم كل هذه الصيغ.',
+    },
+    {
+      id: 'ex-reflexiv-5',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل: Ich habe ____ erkältet. (ich)',
+      sentenceDe: 'Ich habe ____ erkältet.',
+      acceptedAnswers: ['mich'],
+      hint: 'ضمير ich الانعكاسي',
+      explanationAr: 'sich erkälten مع ich: mich.',
+    },
+    {
+      id: 'ex-reflexiv-6',
+      type: 'matching',
+      level: 'A2',
+      promptAr: 'صل كل فعل انعكاسي بمعناه',
+      pairs: [
+        { de: 'sich freuen', ar: 'يفرح' },
+        { de: 'sich beeilen', ar: 'يستعجل' },
+        { de: 'sich erkälten', ar: 'يُصاب بالزكام' },
+        { de: 'sich verlieben', ar: 'يقع في الحب' },
+      ],
+      explanationAr: 'كل فعل انعكاسي من هذه المجموعة له معنى ثابت محدد.',
+    },
+    {
+      id: 'ex-reflexiv-7',
+      type: 'ordering',
+      level: 'A2',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Interessierst', 'du', 'dich', 'für', 'Musik?'],
+      correctOrder: [0, 1, 2, 3, 4],
+      explanationAr: 'الترتيب الصحيح: "Interessierst du dich für Musik؟"',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Er interessiert ihn für Musik.',
+      correct: 'Er interessiert sich für Musik.',
+      explanationAr: 'الضمير الانعكاسي لـ er هو sich، وليس ihn (ضمير نصب عادي غير انعكاسي).',
+    },
+    {
+      wrong: 'Ich freue.',
+      correct: 'Ich freue mich.',
+      explanationAr: 'sich freuen فعل دائم الانعكاس؛ لا يجوز حذف الضمير الانعكاسي أبداً.',
+    },
+    {
+      wrong: 'Ich freue dich auf die Ferien.',
+      correct: 'Ich freue mich auf die Ferien.',
+      explanationAr: 'الضمير الانعكاسي يجب أن يطابق الفاعل نفسه: ich تحتاج mich، وليس dich.',
+    },
+    {
+      wrong: 'Wir beeilen euch.',
+      correct: 'Wir beeilen uns.',
+      explanationAr: 'الضمير الانعكاسي لـ wir هو uns، وليس euch (الخاص بـ ihr).',
+    },
+  ],
+}
+
+export const module04ReflexiveVerben: Module = {
+  id: 'a2-m04',
+  slug: 'reflexive-verben',
+  level: 'A2',
+  title: 'Reflexive Verben',
+  titleAr: 'الأفعال الانعكاسية',
+  order: 4,
+  lessons: [lessonReflexiveVerben],
+}

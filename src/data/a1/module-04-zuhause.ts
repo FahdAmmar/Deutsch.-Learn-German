@@ -121,6 +121,7 @@ export const lessonWohnung: Lesson = {
       level: 'A1',
       moduleId: 'a1-m04',
       lessonId: 'a1-m04-l01',
+      titleDe: 'Im Wohnzimmer',
       titleAr: 'ترتيب غرفة المعيشة',
       register: 'informal',
       lines: [
@@ -137,6 +138,7 @@ export const lessonWohnung: Lesson = {
       level: 'A1',
       moduleId: 'a1-m04',
       lessonId: 'a1-m04-l01',
+      titleDe: 'Eine neue Wohnung besichtigen',
       titleAr: 'زيارة شقة جديدة',
       register: 'formal',
       lines: [

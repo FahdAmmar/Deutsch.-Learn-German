@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Volume2 } from 'lucide-react'
+import { RotateCw, Volume2 } from 'lucide-react'
 
 import { articleToTone, Badge } from '@/components/ui'
 import { cn } from '@/lib/cn'
@@ -25,7 +25,7 @@ export function FlipVocabularyCard({ item }: FlipVocabularyCardProps) {
   return (
     <div
       className={cn(
-        'relative h-[150px] rounded-lg border transition-colors',
+        'relative h-40 rounded-lg border transition-colors',
         flipped ? 'border-plum bg-plum text-plum-foreground' : 'border-border bg-surface hover:border-border-strong',
       )}
     >
@@ -38,18 +38,18 @@ export function FlipVocabularyCard({ item }: FlipVocabularyCardProps) {
       >
         {flipped ? (
           <>
-            {item.article ? <p className="font-mono text-[11px] opacity-75">{item.article}</p> : null}
-            <p dir="rtl" className="text-base font-semibold">
+            {item.article ? <p dir="ltr" lang="de" className="text-sm opacity-80">{item.article}</p> : null}
+            <p dir="rtl" className="text-xl font-semibold">
               {item.meaningAr}
             </p>
             {item.pronunciationHint ? (
-              <p dir="ltr" className="font-mono text-xs opacity-70">
+              <p dir="ltr" className="text-sm opacity-80">
                 {item.pronunciationHint}
               </p>
             ) : null}
           </>
         ) : (
-          <p dir="ltr" lang="de" className="text-lg font-semibold text-ink">
+          <p dir="ltr" lang="de" className="display-de text-xl font-semibold text-ink [overflow-wrap:anywhere]">
             {item.word}
           </p>
         )}
@@ -61,16 +61,22 @@ export function FlipVocabularyCard({ item }: FlipVocabularyCardProps) {
         </Badge>
       ) : null}
 
+      <RotateCw
+        size={14}
+        aria-hidden="true"
+        className={cn('pointer-events-none absolute end-3 top-3', flipped ? 'opacity-70' : 'text-ink-faint')}
+      />
+
       <button
         type="button"
         onClick={() => speak(item.word, GERMAN_LOCALE)}
         aria-label={`الاستماع إلى نطق: ${item.word}`}
         className={cn(
-          'absolute bottom-2.5 start-2.5 flex h-7 w-7 items-center justify-center rounded-full border',
-          flipped ? 'border-white/30 bg-white/10' : 'border-border text-primary',
+          'absolute bottom-2.5 start-2.5 flex h-9 w-9 items-center justify-center rounded-full border',
+          flipped ? 'border-white/30 bg-white/10' : 'border-border text-accent hover:bg-accent-muted',
         )}
       >
-        <Volume2 size={14} className={cn(isSpeaking && 'animate-pulse')} aria-hidden="true" />
+        <Volume2 size={16} className={cn(isSpeaking && 'animate-pulse')} aria-hidden="true" />
       </button>
     </div>
   )

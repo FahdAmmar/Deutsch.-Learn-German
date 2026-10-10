@@ -1,0 +1,220 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonHaeufigkeit: Lesson = {
+  id: 'a1-m20-l01',
+  slug: 'haeufigkeitsadverbien',
+  level: 'A1',
+  moduleId: 'a1-m20',
+  title: 'Wie oft? Häufigkeitsadverbien',
+  titleAr: 'كم مرة؟ أدوات التكرار',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'التعبير عن الهوايات باستخدام gern بعد الفعل المصرَّف',
+    'استخدام سلّم التفضيل gern → lieber → am liebsten',
+    'ترتيب أدوات التكرار (immer، oft، manchmal، selten، nie) في موضعها الصحيح من الجملة',
+    'تكوين حوار كامل عن الأنشطة المفضّلة وتكرارها',
+  ],
+  explanation: [
+    {
+      titleAr: 'gern بعد الفعل مباشرة',
+      bodyAr:
+        'للتعبير عن أنك تحب فعل شيء، أضف gern بعد الفعل المصرَّف مباشرة: "Ich spiele gern Fußball" (أحب لعب كرة القدم، حرفياً "ألعب بسرور"). وسلّم التفضيل الكامل شاذّ ولا يخضع للقاعدة العامة للمقارنة: gern → lieber (أفضّل) → am liebsten (الأكثر تفضيلاً) — وهو يشبه في شذوذه gut → besser → am besten اللذين ستتعلمهما في A2، لكنه هنا تفضيل بالظرف وليس بالصفة.',
+    },
+    {
+      titleAr: 'أين تقع أدوات التكرار؟',
+      bodyAr:
+        'أدوات التكرار مثل immer وoft وmanchmal وselten وnie تحتل عادة نفس الموضع الذي يحتلّه gern: مباشرة بعد الفعل المصرَّف (أو بعد الفاعل إن كان الفعل ثانياً في الجملة): "Ich spiele oft Tennis". يمكن ترتيبها تنازلياً حسب درجة التكرار: immer (دائماً) > oft (غالباً) > manchmal (أحياناً) > selten (نادراً) > nie (أبداً).',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a1-gern-haeufigkeit',
+      slug: 'gern-lieber-haeufigkeitsadverbien',
+      level: 'A1',
+      titleDe: 'gern/lieber/am liebsten und Häufigkeitsadverbien',
+      titleAr: 'التفضيل بالظرف gern وأدوات التكرار',
+      conceptAr: 'gern وأدوات التكرار تقع في نفس الموضع بعد الفعل المصرَّف مباشرة؛ وسلّم التفضيل gern-lieber-am liebsten شاذّ تماماً.',
+      ruleAr:
+        'ضع gern أو أداة التكرار مباشرة بعد الفعل المصرَّف. لسلّم التفضيل، احفظ الأشكال الثلاثة الشاذة: gern → lieber → am liebsten، ولا تحاول اشتقاقها بقاعدة قياسية.',
+      tables: [
+        {
+          caption: 'سلّم التفضيل بالظرف gern',
+          headers: ['Positiv', 'Komparativ', 'Superlativ'],
+          rows: [{ label: 'gern', values: ['lieber', 'am liebsten'] }],
+        },
+        {
+          caption: 'أدوات التكرار من الأكثر إلى الأقل',
+          headers: ['الأداة', 'المعنى'],
+          rows: [
+            { label: 'immer', values: ['دائماً (100٪)'] },
+            { label: 'oft', values: ['غالباً'] },
+            { label: 'manchmal', values: ['أحياناً'] },
+            { label: 'selten', values: ['نادراً'] },
+            { label: 'nie', values: ['أبداً (0٪)'] },
+          ],
+        },
+      ],
+      examples: [
+        { de: 'Ich spiele gern Fußball, aber ich schwimme lieber.', ar: 'أحب لعب كرة القدم، لكن أفضّل السباحة.' },
+        { de: 'Am liebsten lese ich Bücher.', ar: 'قراءة الكتب هي أكثر ما أفضّله.' },
+        { de: 'Er geht nie ins Fitnessstudio.', ar: 'لا يذهب إلى صالة الرياضة أبداً.' },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Was machst du gern in deiner Freizeit?', ar: 'ماذا تحب أن تفعل في وقت فراغك؟' },
+    { de: 'Ich male oft in meiner Freizeit.', ar: 'أرسم غالباً في وقت فراغي.' },
+    { de: 'Wir tanzen manchmal am Wochenende.', ar: 'نرقص أحياناً في نهاية الأسبوع.' },
+    { de: 'Sie singt selten vor anderen Leuten.', ar: 'نادراً ما تغنّي أمام الآخرين.' },
+  ],
+  vocabulary: [
+    { id: 'voc-haeufig-hobby', word: 'Hobby', article: 'das', plural: 'Hobbys', partOfSpeech: 'noun', meaningAr: 'الهواية', level: 'A1', category: 'الهوايات' },
+    { id: 'voc-haeufig-fitnessstudio', word: 'Fitnessstudio', article: 'das', plural: 'Fitnessstudios', partOfSpeech: 'noun', meaningAr: 'صالة رياضية', level: 'A1', category: 'الهوايات' },
+    { id: 'voc-haeufig-immer', word: 'immer', partOfSpeech: 'adverb', meaningAr: 'دائماً', level: 'A1', category: 'أدوات التكرار' },
+    { id: 'voc-haeufig-oft', word: 'oft', partOfSpeech: 'adverb', meaningAr: 'غالباً', level: 'A1', category: 'أدوات التكرار' },
+    { id: 'voc-haeufig-manchmal', word: 'manchmal', partOfSpeech: 'adverb', meaningAr: 'أحياناً', level: 'A1', category: 'أدوات التكرار' },
+    { id: 'voc-haeufig-selten', word: 'selten', partOfSpeech: 'adverb', meaningAr: 'نادراً', level: 'A1', category: 'أدوات التكرار' },
+    { id: 'voc-haeufig-nie', word: 'nie', partOfSpeech: 'adverb', meaningAr: 'أبداً', level: 'A1', category: 'أدوات التكرار' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-haeufig-informell',
+      level: 'A1',
+      moduleId: 'a1-m20',
+      lessonId: 'a1-m20-l01',
+      titleDe: 'Wie oft machst du das?',
+      titleAr: 'الحديث عن الهوايات',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Nadia', de: 'Was machst du gern in deiner Freizeit?', ar: 'ماذا تحب أن تفعل في وقت فراغك؟' },
+        { speaker: 'b', name: 'Ben', de: 'Ich male gern, und ich tanze manchmal.', ar: 'أحب الرسم، وأرقص أحياناً.' },
+        { speaker: 'a', name: 'Nadia', de: 'Cool! Gehst du oft ins Fitnessstudio?', ar: 'رائع! هل تذهب كثيراً إلى صالة الرياضة؟' },
+        { speaker: 'b', name: 'Ben', de: 'Nein, ich gehe selten dorthin. Ich schwimme lieber.', ar: 'لا، أذهب نادراً إلى هناك. أفضّل السباحة.' },
+      ],
+    },
+    {
+      id: 'dialogue-haeufig-formell',
+      level: 'A1',
+      moduleId: 'a1-m20',
+      lessonId: 'a1-m20-l01',
+      titleDe: 'Eine Umfrage zur Freizeit',
+      titleAr: 'استطلاع رأي عن أوقات الفراغ',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Moderatorin', de: 'Was ist Ihr liebstes Hobby?', ar: 'ما هي هوايتكم المفضّلة؟' },
+        { speaker: 'b', name: 'Herr Weiss', de: 'Am liebsten lese ich Bücher über Geschichte.', ar: 'أفضّل شيء بالنسبة لي هو قراءة كتب عن التاريخ.' },
+        { speaker: 'a', name: 'Moderatorin', de: 'Wie oft haben Sie Zeit dafür?', ar: 'كم مرة يتوفّر لديكم وقت لذلك؟' },
+        { speaker: 'b', name: 'Herr Weiss', de: 'Ich lese immer vor dem Schlafen, jeden Abend.', ar: 'أقرأ دائماً قبل النوم، كل ليلة.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'manchmal تُنطق كلمة واحدة', bodyAr: 'رغم أنها مركّبة من manch + mal، تُنطق manchmal بنبرة واحدة متصلة، أقرب لكلمة واحدة.', example: 'manchmal' },
+    { titleAr: 'selten: e الأولى قصيرة', bodyAr: 'حرف e الأول في selten قصير [ɛ]، بخلاف e في نهاية الكلمة التي تكاد لا تُنطق.', example: 'selten' },
+  ],
+  exercises: [
+    {
+      id: 'ex-haeufig-1',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر الترتيب الصحيح للجملة',
+      questionDe: '___',
+      options: ['Ich spiele gern Fußball.', 'Ich gern spiele Fußball.', 'Gern ich spiele Fußball.', 'Ich spiele Fußball gern Fußball.'],
+      correctIndex: 0,
+      explanationAr: 'gern تقع مباشرة بعد الفعل المصرَّف: spiele gern.',
+    },
+    {
+      id: 'ex-haeufig-2',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'اختر صيغة التفضيل الأعلى (Superlativ) لـ gern',
+      questionDe: 'gern → lieber → ___',
+      options: ['am liebsten', 'am gernsten', 'liebsten', 'am lieber'],
+      correctIndex: 0,
+      explanationAr: 'سلّم gern الشاذّ: gern → lieber → am liebsten.',
+    },
+    {
+      id: 'ex-haeufig-3',
+      type: 'multiple-choice',
+      level: 'A1',
+      promptAr: 'رتّب من الأكثر إلى الأقل تكراراً: أيّ كلمة تعني "أبداً"؟',
+      questionDe: '___',
+      options: ['nie', 'immer', 'oft', 'manchmal'],
+      correctIndex: 0,
+      explanationAr: 'nie تعني "أبداً"، وهي أقل درجات التكرار (0٪).',
+    },
+    {
+      id: 'ex-haeufig-4',
+      type: 'true-false',
+      level: 'A1',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Der Komparativ von "gern" ist "gerner".',
+      isTrue: false,
+      explanationAr: 'خطأ — gern شاذّة تماماً، فصيغة المقارنة الصحيحة هي lieber وليست gerner.',
+    },
+    {
+      id: 'ex-haeufig-5',
+      type: 'fill-blank',
+      level: 'A1',
+      promptAr: 'أكمل: Er geht ____ ins Fitnessstudio. (نادراً)',
+      sentenceDe: 'Er geht ____ ins Fitnessstudio.',
+      acceptedAnswers: ['selten'],
+      hint: 'أداة تكرار منخفض',
+      explanationAr: 'selten تعني "نادراً"، وتقع بعد الفعل المصرَّف مباشرة.',
+    },
+    {
+      id: 'ex-haeufig-6',
+      type: 'matching',
+      level: 'A1',
+      promptAr: 'صل كل أداة تكرار بمعناها',
+      pairs: [
+        { de: 'immer', ar: 'دائماً' },
+        { de: 'oft', ar: 'غالباً' },
+        { de: 'manchmal', ar: 'أحياناً' },
+        { de: 'nie', ar: 'أبداً' },
+      ],
+      explanationAr: 'كل أداة من هذه المجموعة تمثّل درجة تكرار مختلفة.',
+    },
+    {
+      id: 'ex-haeufig-7',
+      type: 'ordering',
+      level: 'A1',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Am', 'liebsten', 'lese', 'ich', 'Bücher.'],
+      correctOrder: [0, 1, 2, 3, 4],
+      explanationAr: 'الترتيب الصحيح: "Am liebsten lese ich Bücher." — عند بدء الجملة بـ am liebsten، يأتي الفعل مباشرة بعدها ثم الفاعل.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Ich gern spiele Fußball.',
+      correct: 'Ich spiele gern Fußball.',
+      explanationAr: 'gern يجب أن تقع بعد الفعل المصرَّف مباشرة، وليس قبله.',
+    },
+    {
+      wrong: 'Ich schwimme gerner als Fußball.',
+      correct: 'Ich schwimme lieber als Fußball.',
+      explanationAr: 'gern شاذّة تماماً في المقارنة؛ الصيغة الصحيحة lieber وليست gerner.',
+    },
+    {
+      wrong: 'Am liebsten ich lese Bücher.',
+      correct: 'Am liebsten lese ich Bücher.',
+      explanationAr: 'عند بدء الجملة بظرف مثل am liebsten، يجب أن يأتي الفعل المصرَّف مباشرة بعده (الموضع الثاني)، ثم الفاعل.',
+    },
+    {
+      wrong: 'Er geht ins Fitnessstudio nie.',
+      correct: 'Er geht nie ins Fitnessstudio.',
+      explanationAr: 'أدوات التكرار مثل nie تقع عادة بعد الفعل مباشرة، وليس في نهاية الجملة.',
+    },
+  ],
+}
+
+export const module20Haeufigkeit: Module = {
+  id: 'a1-m20',
+  slug: 'haeufigkeitsadverbien',
+  level: 'A1',
+  title: 'Wie oft? Häufigkeitsadverbien',
+  titleAr: 'كم مرة؟ أدوات التكرار',
+  order: 20,
+  lessons: [lessonHaeufigkeit],
+}

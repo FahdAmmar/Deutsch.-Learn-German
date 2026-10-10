@@ -63,18 +63,48 @@ describe('level navigation', () => {
     expect(screen.getByText('Komparativ und Superlativ')).toBeInTheDocument()
   })
 
-  it('defaults to the Lessons tab and switches to Grammar and Conversation on demand', async () => {
+  it('offers only the Lessons and Texts & conversations tabs — there is no Grammar tab', () => {
+    renderWithRoutes('/levels/a1')
+
+    const tabs = screen.getAllByRole('tab').map((tab) => tab.textContent?.trim())
+    expect(tabs).toEqual(['الدروس', 'نصوص ومحادثات'])
+    expect(screen.queryByRole('tab', { name: 'القواعد' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('tab', { name: 'محادثة' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('tab', { name: 'نصوص للقراءة' })).not.toBeInTheDocument()
+  })
+
+  it('defaults to the Lessons tab and switches to the combined texts & conversations tab', async () => {
     const user = userEvent.setup()
     renderWithRoutes('/levels/a1')
 
     // Lessons tab is the default view.
     expect(screen.getByText('Begrüßungen')).toBeInTheDocument()
 
-    await user.click(screen.getByRole('tab', { name: 'القواعد' }))
+    await user.click(screen.getByRole('tab', { name: 'نصوص ومحادثات' }))
     expect(screen.queryByText('Begrüßungen')).not.toBeInTheDocument()
-    expect(screen.getAllByText(/حروف الجر ذات الاتجاهين|Dativpronomen|sein — Präsens/).length).toBeGreaterThan(0)
+    // Reading texts and conversations are listed together, as links to their own pages.
+    expect(screen.getByRole('heading', { name: /نصوص للقراءة/ })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /محادثات/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Ich stelle mich vor/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a1\/texts\/.+/))
+    expect(screen.getByRole('link', { name: /Im Wohnzimmer/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a1\/texts\/dialogue-wohnung-informell$/))
 
-    await user.click(screen.getByRole('tab', { name: 'محادثة' }))
-    expect(screen.getByText('ترتيب غرفة المعيشة')).toBeInTheDocument()
+    await user.click(screen.getByRole('tab', { name: 'الدروس' }))
+    expect(screen.getByText('Begrüßungen')).toBeInTheDocument()
+  })
+
+  it('opens the texts & conversations tab straight from ?tab=stories', () => {
+    renderWithRoutes('/levels/a1?tab=stories')
+
+    expect(screen.getByRole('tab', { name: 'نصوص ومحادثات' })).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByRole('link', { name: /Mein Tag/ })).toBeInTheDocument()
+  })
+
+  it('lists A2 texts and conversations too', async () => {
+    const user = userEvent.setup()
+    renderWithRoutes('/levels/a2')
+
+    await user.click(screen.getByRole('tab', { name: 'نصوص ومحادثات' }))
+    expect(screen.getByRole('link', { name: /Zwei Wohnungen im Vergleich/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a2\/texts\//))
+    expect(screen.getByRole('link', { name: /Mein Wochenende/ })).toBeInTheDocument()
   })
 })

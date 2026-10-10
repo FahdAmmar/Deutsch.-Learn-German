@@ -8,6 +8,9 @@ export interface SpeakOptions {
   pitch?: number
   volume?: number
   onStart?: () => void
+  /** Called with the character offset of the word being spoken, where the engine reports it (progress inside a sentence). */
+  onBoundary?: (charIndex: number) => void
+  /** Also called when this utterance is replaced or stopped on purpose, so callers can reset their state. */
   onEnd?: () => void
   /** Called instead of throwing — speech failures must never crash the app. */
   onError?: (message: string) => void

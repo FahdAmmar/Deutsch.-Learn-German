@@ -1,0 +1,261 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonNebensaetze: Lesson = {
+  id: 'a2-m03-l01',
+  slug: 'nebensaetze-weil-dass-wenn',
+  level: 'A2',
+  moduleId: 'a2-m03',
+  title: 'Nebensätze: weil, dass, wenn',
+  titleAr: 'الجمل الفرعية: weil وdass وwenn',
+  estimatedMinutes: 34,
+  objectivesAr: [
+    'فهم أن أدوات الربط الفرعية تدفع الفعل المصرَّف إلى نهاية الجملة تماماً',
+    'استخدام weil لإعطاء الأسباب، وdass لنقل كلام أو رأي، وwenn للشرط أو التكرار',
+    'وضع الفاصلة بشكل صحيح قبل أداة الربط الفرعية',
+    'التعامل مع ترتيب الجملة الرئيسية عندما تبدأ الجملة بالجملة الفرعية',
+  ],
+  explanation: [
+    {
+      titleAr: 'الفعل ينتقل إلى آخر الجملة الفرعية تماماً',
+      bodyAr:
+        'في الجملة الرئيسية، يقع الفعل المصرَّف دائماً في الموضع الثاني. لكن بعد أدوات ربط مثل weil وdass وwenn، تصبح الجملة "جملة فرعية" (Nebensatz)، وتنطبق قاعدة مختلفة تماماً: الفعل المصرَّف ينتقل إلى آخر الجملة الفرعية بالكامل، بعد كل المفاعيل والظروف. هذا يعني أن ترتيب الكلمات يتغيّر جذرياً بمجرد إضافة weil أو dass أو wenn.',
+    },
+    {
+      titleAr: 'ثلاث أدوات، ثلاث وظائف',
+      bodyAr:
+        'weil تُقدّم سبباً (لماذا؟): "Ich bleibe zu Hause, weil ich krank bin". dass تنقل كلاماً أو فكرة أو رأياً كمفعول به لفعل مثل wissen أو glauben أو sagen: "Ich weiß, dass er kommt". wenn تُستخدم للشرط أو لحدث متكرر في الحاضر/المستقبل: "Wenn ich Zeit habe, rufe ich an" (كلما كان لدي وقت / إذا كان لدي وقت).',
+    },
+    {
+      titleAr: 'إذا بدأت الجملة بالجملة الفرعية',
+      bodyAr:
+        'يمكن للجملة الفرعية أن تأتي في بداية الجملة الكاملة بدلاً من نهايتها. في هذه الحالة، تُحسب الجملة الفرعية كلها "موضعاً أول" واحداً، فيأتي فعل الجملة الرئيسية مباشرة بعد الفاصلة، قبل الفاعل: "Weil ich krank bin, bleibe ich zu Hause" — لاحظ bleibe قبل ich مباشرة، تطبيقاً لقاعدة "الفعل في الموضع الثاني" على مستوى الجملة الكاملة.',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a2-nebensaetze',
+      slug: 'nebensaetze-verbletztstellung',
+      level: 'A2',
+      titleDe: 'Nebensätze: Verbletztstellung',
+      titleAr: 'الجمل الفرعية: الفعل في نهاية الجملة',
+      conceptAr: 'أدوات ربط فرعية تدفع الفعل المصرَّف من الموضع الثاني إلى نهاية الجملة تماماً.',
+      ruleAr:
+        'بعد weil/dass/wenn، رتّب الجملة عادياً (فاعل، مفعول، ظرف) لكن ضع الفعل المصرَّف في النهاية تماماً. إن كان هناك فعل شرطي أو فعل مساعد + فعل أساسي، يتجمّع الفعلان في النهاية مع بقاء الفعل المصرَّف (المساعد/الشرطي) هو الأخير فعلياً.',
+      tables: [
+        {
+          caption: 'الجملة الرئيسية مقابل الجملة الفرعية',
+          headers: ['نوع الجملة', 'مثال'],
+          rows: [
+            { label: 'Hauptsatz (الفعل ثانياً)', values: ['Ich bleibe zu Hause.'] },
+            { label: 'Nebensatz mit weil (الفعل أخيراً)', values: ['..., weil ich krank bin.'] },
+            { label: 'Nebensatz mit dass', values: ['Ich weiß, dass er kommt.'] },
+            { label: 'Nebensatz mit wenn', values: ['Wenn ich Zeit habe, rufe ich an.'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Ich bleibe zu Hause, weil ich krank bin.',
+          ar: 'أبقى في المنزل لأنني مريض.',
+          tokens: [
+            { text: 'Ich', role: 'فاعل الجملة الرئيسية' },
+            { text: 'bleibe', role: 'فعل الجملة الرئيسية (ثانياً)' },
+            { text: 'zu Hause,', role: 'الحال' },
+            { text: 'weil', role: 'أداة الربط' },
+            { text: 'ich', role: 'فاعل الجملة الفرعية' },
+            { text: 'krank', role: 'الخبر' },
+            { text: 'bin.', role: 'فعل الجملة الفرعية (أخيراً)' },
+          ],
+        },
+        {
+          de: 'Weil ich krank bin, bleibe ich zu Hause.',
+          ar: 'لأنني مريض، أبقى في المنزل. (الجملة الفرعية أولاً)',
+          tokens: [
+            { text: 'Weil ich krank bin,', role: 'الجملة الفرعية (موضع أول واحد)' },
+            { text: 'bleibe', role: 'فعل الجملة الرئيسية (ثانياً)' },
+            { text: 'ich', role: 'الفاعل' },
+            { text: 'zu Hause.', role: 'الحال' },
+          ],
+        },
+        {
+          de: 'Ich glaube, dass er Recht hat.',
+          ar: 'أعتقد أنه محق.',
+          tokens: [
+            { text: 'Ich', role: 'فاعل الجملة الرئيسية' },
+            { text: 'glaube,', role: 'فعل الجملة الرئيسية' },
+            { text: 'dass', role: 'أداة الربط' },
+            { text: 'er', role: 'فاعل الجملة الفرعية' },
+            { text: 'Recht', role: 'المفعول به' },
+            { text: 'hat.', role: 'فعل الجملة الفرعية (أخيراً)' },
+          ],
+        },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte.', ar: 'أتعلّم الألمانية لأنني أريد العمل في ألمانيا.' },
+    { de: 'Er sagt, dass er müde ist.', ar: 'يقول إنه متعب.' },
+    { de: 'Wenn es regnet, bleibe ich zu Hause.', ar: 'إذا أمطرت، أبقى في المنزل.' },
+    { de: 'Ich weiß nicht, ob er kommt.', ar: 'لا أعرف إن كان سيأتي. (ob تتبع نفس القاعدة)' },
+  ],
+  vocabulary: [
+    { id: 'voc-nebensatz-weil', word: 'weil', partOfSpeech: 'conjunction', meaningAr: 'لأنّ', level: 'A2', category: 'أدوات الربط الفرعية' },
+    { id: 'voc-nebensatz-dass', word: 'dass', partOfSpeech: 'conjunction', meaningAr: 'أنّ', level: 'A2', category: 'أدوات الربط الفرعية' },
+    { id: 'voc-nebensatz-wenn', word: 'wenn', partOfSpeech: 'conjunction', meaningAr: 'إذا / عندما (متكرر)', level: 'A2', category: 'أدوات الربط الفرعية' },
+    { id: 'voc-nebensatz-ob', word: 'ob', partOfSpeech: 'conjunction', meaningAr: 'إن (فيما إذا)', level: 'A2', category: 'أدوات الربط الفرعية' },
+    { id: 'voc-nebensatz-glauben', word: 'glauben', partOfSpeech: 'verb', meaningAr: 'يعتقد', level: 'A2', category: 'أفعال الرأي' },
+    { id: 'voc-nebensatz-hoffen', word: 'hoffen', partOfSpeech: 'verb', meaningAr: 'يأمل', level: 'A2', category: 'أفعال الرأي' },
+    { id: 'voc-nebensatz-recht-haben', word: 'Recht haben', partOfSpeech: 'phrase', meaningAr: 'يكون محقاً', level: 'A2', category: 'تعابير' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-nebensatz-informell',
+      level: 'A2',
+      moduleId: 'a2-m03',
+      lessonId: 'a2-m03-l01',
+      titleDe: 'Immer zu spät',
+      titleAr: 'سبب تأخّر صديق',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Timo', de: 'Warum kommst du immer zu spät?', ar: 'لماذا تأتي دائماً متأخراً؟' },
+        { speaker: 'b', name: 'Rana', de: 'Weil der Bus heute nicht pünktlich war.', ar: 'لأن الحافلة لم تكن في موعدها اليوم.' },
+        { speaker: 'a', name: 'Timo', de: 'Glaubst du, dass es morgen besser wird?', ar: 'هل تعتقدين أن الأمر سيتحسّن غداً؟' },
+        { speaker: 'b', name: 'Rana', de: 'Ich hoffe es. Wenn nicht, nehme ich das Fahrrad.', ar: 'أتمنى ذلك. إن لم يحدث، سآخذ الدراجة.' },
+      ],
+    },
+    {
+      id: 'dialogue-nebensatz-formell',
+      level: 'A2',
+      moduleId: 'a2-m03',
+      lessonId: 'a2-m03-l01',
+      titleDe: 'Urlaub beantragen',
+      titleAr: 'تبرير طلب إجازة',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Frau Neumann', de: 'Warum brauchen Sie nächste Woche frei?', ar: 'لماذا تحتاجون إجازة الأسبوع القادم؟' },
+        { speaker: 'b', name: 'Herr Diallo', de: 'Weil ich einen wichtigen Arzttermin habe.', ar: 'لأن لدي موعداً طبياً مهماً.' },
+        { speaker: 'a', name: 'Frau Neumann', de: 'Ich verstehe. Sagen Sie mir bitte, ob es dringend ist.', ar: 'أتفهّم. أخبروني رجاءً إن كان الأمر عاجلاً.' },
+        { speaker: 'b', name: 'Herr Diallo', de: 'Ja, ich denke, dass es wichtig ist.', ar: 'نعم، أعتقد أنه أمر مهم.' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'وقفة قصيرة قبل أداة الربط', bodyAr: 'في الكلام الطبيعي، يتوقّف المتحدّث توقّفاً خفيفاً عند الفاصلة قبل weil/dass/wenn، يقابل الفاصلة المكتوبة.', example: 'weil' },
+    { titleAr: 'النبرة على الفعل الأخير في الجملة الفرعية', bodyAr: 'الفعل الواقع في نهاية الجملة الفرعية غالباً ما يحمل نبرة معلوماتية واضحة رغم موضعه الأخير.', example: 'bin' },
+  ],
+  exercises: [
+    {
+      id: 'ex-nebensatz-1',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الترتيب الصحيح',
+      questionDe: '___',
+      options: ['..., weil ich krank bin.', '..., weil ich bin krank.', '..., weil bin ich krank.', '..., weil krank ich bin.'],
+      correctIndex: 0,
+      explanationAr: 'الفعل bin يجب أن يقع في نهاية الجملة الفرعية تماماً.',
+    },
+    {
+      id: 'ex-nebensatz-2',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر أداة الربط الصحيحة لإعطاء سبب',
+      questionDe: 'Ich bleibe zu Hause, ___ ich krank bin.',
+      options: ['weil', 'dass', 'wenn', 'ob'],
+      correctIndex: 0,
+      explanationAr: 'weil تُستخدم لإعطاء الأسباب.',
+    },
+    {
+      id: 'ex-nebensatz-3',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر أداة الربط الصحيحة لنقل رأي',
+      questionDe: 'Ich glaube, ___ er Recht hat.',
+      options: ['dass', 'weil', 'wenn', 'ob'],
+      correctIndex: 0,
+      explanationAr: 'dass تُستخدم لنقل فكرة أو رأي كمفعول به لفعل مثل glauben.',
+    },
+    {
+      id: 'ex-nebensatz-4',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'إذا بدأت الجملة بـ Weil...، أين يقع فعل الجملة الرئيسية؟',
+      questionDe: 'Weil ich krank bin, ___ ich zu Hause.',
+      options: ['bleibe', 'ich bleibe', 'bin', 'ich bin'],
+      correctIndex: 0,
+      explanationAr: 'الجملة الفرعية كلها تُحسب موضعاً أول واحداً، فيأتي فعل الجملة الرئيسية مباشرة بعدها.',
+    },
+    {
+      id: 'ex-nebensatz-5',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل: Wenn es regnet, ____ ich zu Hause. (bleiben، ich)',
+      sentenceDe: 'Wenn es regnet, ____ ich zu Hause.',
+      acceptedAnswers: ['bleibe'],
+      hint: 'فعل الجملة الرئيسية بعد الجملة الفرعية الأولى',
+      explanationAr: 'bleibe تأتي مباشرة بعد الفاصلة، قبل ich، تطبيقاً لقاعدة الفعل في الموضع الثاني.',
+    },
+    {
+      id: 'ex-nebensatz-6',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Nach "weil" bleibt die Verbposition wie im Hauptsatz.',
+      isTrue: false,
+      explanationAr: 'خطأ — بعد weil ينتقل الفعل إلى نهاية الجملة، وهذا مختلف تماماً عن ترتيب الجملة الرئيسية.',
+    },
+    {
+      id: 'ex-nebensatz-7',
+      type: 'matching',
+      level: 'A2',
+      promptAr: 'صل كل جملة رئيسية بجملتها الفرعية المناسبة',
+      pairs: [
+        { de: 'Ich bin müde,', ar: 'weil ich wenig geschlafen habe.' },
+        { de: 'Ich weiß nicht,', ar: 'ob er kommt.' },
+        { de: 'Ruf mich an,', ar: 'wenn du Zeit hast.' },
+        { de: 'Sie sagt,', ar: 'dass sie krank ist.' },
+      ],
+      explanationAr: 'كل جملة فرعية تكمل معنى جملتها الرئيسية المناسبة.',
+    },
+    {
+      id: 'ex-nebensatz-8',
+      type: 'ordering',
+      level: 'A2',
+      promptAr: 'رتب الكلمات لتكوين جملة فرعية صحيحة',
+      words: ['weil', 'ich', 'in', 'Deutschland', 'arbeiten', 'möchte'],
+      correctOrder: [0, 1, 2, 3, 4, 5],
+      explanationAr: 'الترتيب الصحيح: "weil ich in Deutschland arbeiten möchte" — الفعلان arbeiten وmöchte يتجمّعان في النهاية، وmöchte (المصرَّف) هو الأخير فعلياً.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Ich bleibe zu Hause, weil ich bin krank.',
+      correct: 'Ich bleibe zu Hause, weil ich krank bin.',
+      explanationAr: 'أشيع خطأ في هذا الدرس: نسيان نقل الفعل إلى نهاية الجملة الفرعية.',
+    },
+    {
+      wrong: 'Weil ich krank bin, ich bleibe zu Hause.',
+      correct: 'Weil ich krank bin, bleibe ich zu Hause.',
+      explanationAr: 'عندما تبدأ الجملة بالجملة الفرعية، يجب أن يأتي فعل الجملة الرئيسية مباشرة بعد الفاصلة، قبل الفاعل.',
+    },
+    {
+      wrong: 'Ich glaube dass er Recht hat ohne Komma.',
+      correct: 'Ich glaube, dass er Recht hat.',
+      explanationAr: 'يجب وضع فاصلة إلزامية قبل dass (وقبل كل أدوات الربط الفرعية)، بخلاف بعض اللغات الأخرى.',
+    },
+    {
+      wrong: 'Ich weiß, dass er möchte kommen.',
+      correct: 'Ich weiß, dass er kommen möchte.',
+      explanationAr: 'عند وجود فعلين في الجملة الفرعية، يتجمّعان في النهاية، والفعل المصرَّف (möchte) هو الأخير فعلياً.',
+    },
+  ],
+}
+
+export const module03Nebensaetze: Module = {
+  id: 'a2-m03',
+  slug: 'nebensaetze-weil-dass-wenn',
+  level: 'A2',
+  title: 'Nebensätze',
+  titleAr: 'الجمل الفرعية',
+  order: 3,
+  lessons: [lessonNebensaetze],
+}

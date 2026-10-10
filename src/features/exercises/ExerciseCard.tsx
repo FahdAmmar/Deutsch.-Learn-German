@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
 
-import { Button, Card, CardBody } from '@/components/ui'
+import { Button, Card, InlineMarkup } from '@/components/ui'
 import type { Exercise } from '@/types'
 
 import { ExerciseQuestion } from './ExerciseQuestion'
@@ -20,11 +20,13 @@ export function ExerciseCard({ exercise, questionNumber, totalQuestions, onNext,
 
   return (
     <Card>
-      <CardBody className="space-y-5">
-        <div dir="rtl" className="flex items-center justify-between text-sm text-ink-muted">
-          <span>{exercise.promptAr}</span>
-          <span className="font-mono text-xs">
-            {questionNumber} / {totalQuestions}
+      <div className="space-y-6 p-4 sm:p-6">
+        <div dir="rtl" className="flex items-start justify-between gap-4">
+          <p className="text-[1.05rem] font-semibold text-ink">
+            <InlineMarkup text={exercise.promptAr} />
+          </p>
+          <span className="tnum shrink-0 rounded-md bg-surface-sunken px-2.5 py-1 text-sm font-semibold text-ink-muted">
+            {questionNumber} من {totalQuestions}
           </span>
         </div>
 
@@ -34,12 +36,12 @@ export function ExerciseCard({ exercise, questionNumber, totalQuestions, onNext,
 
         {result !== null ? (
           <div dir="rtl" className="flex justify-end">
-            <Button onClick={() => onNext(result)} icon={<ArrowLeft size={16} aria-hidden="true" />} iconPosition="end">
+            <Button size="lg" onClick={() => onNext(result)} icon={<ArrowLeft size={18} aria-hidden="true" />} iconPosition="end">
               {isLast ? 'إنهاء' : 'التالي'}
             </Button>
           </div>
         ) : null}
-      </CardBody>
+      </div>
     </Card>
   )
 }

@@ -35,9 +35,9 @@ export function ThemeToggle() {
       onClick={handleClick}
       aria-label={`تغيير المظهر، الحالي: ${LABEL_AR[preference]}`}
       title={LABEL_AR[preference]}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-surface-muted hover:text-ink"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-md text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink md:h-10 md:w-10"
     >
-      <Icon size={18} aria-hidden="true" />
+      <Icon size={19} aria-hidden="true" />
     </button>
   )
 }

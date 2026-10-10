@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Playwright
+test-results/
+playwright-report/
+
+# Local-only files
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+.claude/settings.local.json

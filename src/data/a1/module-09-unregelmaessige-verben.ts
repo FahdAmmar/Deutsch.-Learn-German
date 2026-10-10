@@ -120,6 +120,7 @@ export const lessonUnregelmaessigeVerben: Lesson = {
       level: 'A1',
       moduleId: 'a1-m09',
       lessonId: 'a1-m09-l01',
+      titleDe: 'Im Restaurant',
       titleAr: 'في المطعم',
       register: 'informal',
       lines: [
@@ -134,6 +135,7 @@ export const lessonUnregelmaessigeVerben: Lesson = {
       level: 'A1',
       moduleId: 'a1-m09',
       lessonId: 'a1-m09-l01',
+      titleDe: 'Das Vorstellungsgespräch',
       titleAr: 'مقابلة عمل',
       register: 'formal',
       lines: [

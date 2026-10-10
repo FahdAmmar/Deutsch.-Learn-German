@@ -190,6 +190,7 @@ export const lessonKomparativSuperlativ: Lesson = {
       level: 'A2',
       moduleId: 'a2-m01',
       lessonId: 'a2-m01-l01',
+      titleDe: 'Zwei Wohnungen im Vergleich',
       titleAr: 'مقارنة شقتين',
       register: 'informal',
       lines: [

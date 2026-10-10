@@ -13,17 +13,18 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-primary-foreground hover:opacity-90 active:opacity-80',
-  secondary: 'bg-accent text-accent-foreground hover:opacity-90 active:opacity-80',
-  outline: 'bg-transparent text-ink border border-border-strong hover:bg-surface-muted',
-  ghost: 'bg-transparent text-ink hover:bg-surface-muted',
-  danger: 'bg-error text-error-foreground hover:opacity-90 active:opacity-80',
+  primary: 'bg-primary text-primary-foreground hover:brightness-110 active:brightness-95',
+  secondary: 'bg-accent text-accent-foreground hover:brightness-110 active:brightness-95',
+  outline: 'border border-border-strong bg-transparent text-ink hover:bg-surface-sunken',
+  ghost: 'bg-transparent text-ink hover:bg-surface-sunken',
+  danger: 'bg-error text-error-foreground hover:brightness-110 active:brightness-95',
 }
 
+// md and lg meet the 44px touch-target guideline; sm is for dense, secondary actions only.
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'h-8 px-3 text-sm gap-1.5',
-  md: 'h-10 px-4 text-sm gap-2',
-  lg: 'h-12 px-6 text-base gap-2',
+  sm: 'h-9 px-3.5 text-sm gap-1.5',
+  md: 'h-11 px-5 text-[0.95rem] gap-2',
+  lg: 'h-13 px-7 text-base gap-2.5',
 }
 
 export function Button({
@@ -39,8 +40,8 @@ export function Button({
     <button
       type="button"
       className={cn(
-        'inline-flex items-center justify-center rounded-md font-medium transition-colors',
-        'disabled:opacity-50 disabled:pointer-events-none',
+        'inline-flex items-center justify-center rounded-md font-semibold transition-[background-color,filter,transform] duration-150',
+        'active:translate-y-px disabled:pointer-events-none disabled:opacity-45',
         variantClasses[variant],
         sizeClasses[size],
         className,

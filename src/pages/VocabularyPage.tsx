@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
-import { LevelTabs } from '@/components/ui'
+import { EmptyState, LevelTabs, PageHeader } from '@/components/ui'
 import { VocabularyCard } from '@/features/vocabulary/VocabularyCard'
 import { getLevelsWithContent, getVocabularyForLevel } from '@/lib/curriculum'
 import { useProgressStore } from '@/store/progressStore'
@@ -30,30 +30,27 @@ export default function VocabularyPage() {
   }, [allItems, category, query])
 
   return (
-    <div className="space-y-6 pb-10">
-      <header dir="rtl">
-        <h1 className="text-2xl font-bold text-ink">المفردات</h1>
-        <p className="mt-1 text-ink-muted">تصفّح مفردات كل مستوى، مصنّفة حسب الموضوع.</p>
-      </header>
+    <div className="space-y-8 pb-6">
+      <PageHeader title="المفردات" description="تصفّح مفردات كل مستوى، مصنّفة حسب الموضوع. تُعرض الأسماء مع أداة التعريف لأنها تُحفظ معاً." />
 
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <LevelTabs value={level} onChange={setLevel} availableLevels={getLevelsWithContent()} />
 
-        <div dir="rtl" className="relative w-full max-w-xs">
-          <Search size={16} className="absolute end-3 top-1/2 -translate-y-1/2 text-ink-faint" aria-hidden="true" />
+        <div dir="rtl" className="relative w-full sm:max-w-xs">
+          <Search size={18} className="pointer-events-none absolute start-3.5 top-1/2 -translate-y-1/2 text-ink-faint" aria-hidden="true" />
           <input
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="ابحث عن كلمة..."
+            placeholder="ابحث بالألمانية أو العربية"
             aria-label="ابحث عن كلمة"
-            className="w-full rounded-md border border-border-strong bg-surface py-2 pe-9 ps-3 text-sm outline-none focus-visible:border-primary"
+            className="h-12 w-full rounded-md border-2 border-border bg-surface ps-11 pe-3 text-base outline-none transition-colors placeholder:text-ink-faint focus-visible:border-accent"
           />
         </div>
       </div>
 
       {categories.length > 1 ? (
-        <div dir="rtl" className="flex flex-wrap gap-2">
+        <div dir="rtl" role="group" aria-label="تصفية حسب الموضوع" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <CategoryChip label="الكل" active={category === 'all'} onClick={() => setCategory('all')} />
           {categories.map((cat) => (
             <CategoryChip key={cat} label={cat} active={category === cat} onClick={() => setCategory(cat)} />
@@ -62,9 +59,9 @@ export default function VocabularyPage() {
       ) : null}
 
       {filteredItems.length === 0 ? (
-        <p dir="rtl" className="rounded-lg border border-dashed border-border p-8 text-center text-ink-muted">
-          {allItems.length === 0 ? 'لا توجد مفردات لهذا المستوى بعد.' : 'لم يتم العثور على نتائج مطابقة.'}
-        </p>
+        <EmptyState title={allItems.length === 0 ? 'لا توجد مفردات لهذا المستوى بعد' : 'لم نجد كلمات مطابقة'}>
+          {allItems.length === 0 ? 'اختر مستوى آخر لتصفّح مفرداته.' : 'جرّب كلمة أخرى أو اختر "الكل" من المواضيع.'}
+        </EmptyState>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item) => (
@@ -80,11 +77,12 @@ function CategoryChip({ label, active, onClick }: { label: string; active: boole
   return (
     <button
       type="button"
+      aria-pressed={active}
       onClick={onClick}
       className={
         active
-          ? 'rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground'
-          : 'rounded-full bg-surface-muted px-3 py-1 text-xs font-medium text-ink-muted hover:text-ink'
+          ? 'shrink-0 rounded-full bg-ink px-4 py-2 text-sm font-semibold whitespace-nowrap text-bg'
+          : 'shrink-0 rounded-full bg-surface-sunken px-4 py-2 text-sm font-medium whitespace-nowrap text-ink-muted transition-colors hover:text-ink'
       }
     >
       {label}

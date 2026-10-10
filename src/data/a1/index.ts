@@ -18,6 +18,11 @@ import { module15Wetter } from './module-15-wetter'
 import { module16Wegbeschreibung } from './module-16-wegbeschreibung'
 import { module17Freizeit } from './module-17-freizeit'
 import { module18Kleidung } from './module-18-kleidung'
+import { module19EssenTrinken } from './module-19-essen-trinken'
+import { module20Haeufigkeit } from './module-20-haeufigkeit'
+import { a1ReadingTexts } from './reading'
+
+export { a1ReadingTexts }
 
 export const a1Modules: Module[] = [
   module01Grundlagen,
@@ -38,4 +43,6 @@ export const a1Modules: Module[] = [
   module16Wegbeschreibung,
   module17Freizeit,
   module18Kleidung,
+  module19EssenTrinken,
+  module20Haeufigkeit,
 ]

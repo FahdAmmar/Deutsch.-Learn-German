@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
 
+import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { PwaUpdatePrompt } from '@/components/PwaUpdatePrompt'
 import { router } from '@/routes/router'
 import { initThemeSystemListener } from '@/store/themeStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -19,7 +21,12 @@ function App() {
     document.documentElement.classList.toggle('reduce-motion', reducedMotion)
   }, [reducedMotion])
 
-  return <RouterProvider router={router} />
+  return (
+    <ErrorBoundary>
+      <RouterProvider router={router} />
+      <PwaUpdatePrompt />
+    </ErrorBoundary>
+  )
 }
 
 export default App

@@ -99,6 +99,7 @@ export const lessonTrennbareVerben: Lesson = {
       level: 'A1',
       moduleId: 'a1-m10',
       lessonId: 'a1-m10-l01',
+      titleDe: 'Pläne für Samstag',
       titleAr: 'تخطيط ليوم السبت',
       register: 'informal',
       lines: [
@@ -113,6 +114,7 @@ export const lessonTrennbareVerben: Lesson = {
       level: 'A1',
       moduleId: 'a1-m10',
       lessonId: 'a1-m10-l01',
+      titleDe: 'Die Ankunft planen',
       titleAr: 'ترتيب موعد وصول',
       register: 'formal',
       lines: [

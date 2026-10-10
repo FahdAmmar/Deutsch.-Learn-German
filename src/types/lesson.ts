@@ -3,6 +3,7 @@ import type { Dialogue } from './dialogue'
 import type { DiagramScene } from './diagram'
 import type { Exercise } from './exercise'
 import type { AdjectiveComparison, GrammarTopic } from './grammar'
+import type { ReadingText } from './reading'
 import type { VocabularyItem } from './vocabulary'
 
 export interface LessonExample {
@@ -64,4 +65,6 @@ export interface Module {
 export interface LevelCurriculum {
   level: CEFRLevel
   modules: Module[]
+  /** Standalone bilingual reading passages for this level (the "Reading" tab). Always present, empty until authored. */
+  readingTexts: ReadingText[]
 }

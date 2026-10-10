@@ -1,63 +1,96 @@
 /*
  * Design tokens for LEARN GERMAN.
  *
- * Brand identity: a bold, high-contrast black-and-gold palette — near-black
- * neutrals paired with a warm yellow/amber/bronze accent family. Dark mode
- * is true black with a vivid yellow primary; light mode inverts the
- * neutrals (warm off-white background, near-black ink) while keeping the
- * same gold-family accents, so both themes read as the same brand rather
- * than two unrelated palettes.
+ * Brand identity: charcoal-navy + copper. A neutral, low-chroma near-black
+ * navy carries structure (chrome, primary actions) while a warm copper
+ * accent and a deeper brass tertiary supply warmth and pedagogical
+ * emphasis — deliberately more restrained than a "luxury" gold palette,
+ * closer to a well-made instrument than a premium-goods brand, which fits
+ * a serious study tool better. Dark mode brightens the same three hues
+ * (light steel-gray, brighter copper, brighter brass) against true black;
+ * light mode keeps a warm off-white surface with near-black ink — same
+ * brand, inverted neutrals.
  *
- * The three brand accents (primary/accent/plum) form a warm gradient —
- * gold → amber → bronze — used for the three-way pedagogical colour
- * coding the app relies on (e.g. Positiv/Komparativ/Superlativ in the
- * ComparisonLadder), so "more accent" reads as "more intensity" even
- * before you read the label. This is intentionally kept separate from
- * der/die/das gender colour-coding (cool blue / rose / green), which
- * stays untouched here since it's a distinct semantic device, not a
- * branding one, and mixing it into the gold family would make the two
- * systems harder to tell apart at a glance.
+ * The three brand accents (primary/accent/plum) are used for the
+ * three-way pedagogical colour coding the app relies on (e.g.
+ * Positiv/Komparativ/Superlativ in the ComparisonLadder). This is
+ * intentionally kept separate from der/die/das gender colour-coding (cool
+ * blue / rose / green) and from success/error, which stay untouched here
+ * since they're distinct semantic devices, not a branding one — none of
+ * the three brand hues overlaps blue, rose/pink, or green, so the systems
+ * stay tellable apart at a glance.
  *
- * Typography is unaffected by this palette change: Reem Kufi (Arabic
- * headings), IBM Plex Sans Arabic (Arabic body), Fraunces (German serif
- * display), IBM Plex Mono (data/labels).
+ * Every brand/text pairing below is contrast-checked at WCAG AA (4.5:1
+ * for text) rather than assumed from the swatch alone.
+ *
+ * Typography roles: Reem Kufi only for page-level Arabic titles,
+ * IBM Plex Sans Arabic for all Arabic UI/body text (set larger and looser
+ * than Latin — Arabic needs it), Fraunces for German display and example
+ * sentences, IBM Plex Mono only for phonetic/IPA-style strings.
+ *
+ * Shape: a three-step radius scale (control → panel → hero) and borders
+ * rather than drop shadows for hierarchy; shadows are reserved for things
+ * that actually float (menus, dialogs, sticky bars).
  */
 
 :root {
   /* Surfaces — warm off-white, not stark white, for long reading sessions */
-  --bg: #faf9f5;
-  --bg-alt: #f0eee5;
+  --bg: #f3f2ee;
+  --bg-alt: #e9e7e0;
   --surface: #ffffff;
   --surface-glass: rgba(255, 255, 255, 0.7);
   --surface-glass-border: rgba(255, 255, 255, 0.5);
+  /* Recessed areas (inputs, code-like blocks, track backgrounds) sit slightly below the page */
+  --surface-sunken: #ecebe5;
+  /* Route rail: the line that connects sequential steps (modules, lesson sections) */
+  --rail: #cfcbbd;
 
-  /* Text — near-black, warm-tinted charcoal rather than pure #000 */
-  --ink: #16140f;
-  --ink-muted: #59564c;
-  --ink-faint: #8c8878;
+  /* Text — cool near-black, matching the navy-leaning brand rather than a warm charcoal */
+  --ink: #1b1e24;
+  --ink-muted: #4a505a;
+  --ink-faint: #5f656e;
 
   /* Structure */
-  --border: #e4e0d2;
-  --border-strong: #cfc9b3;
+  --border: #dcdad2;
+  --border-strong: #c7c3b6;
 
-  /* Brand: gold (primary) → burnt amber (accent) → bronze (tertiary) */
-  --primary: #c99a00;
+  /* Brand: charcoal-navy (primary) → copper (accent) → brass (tertiary) */
+  --primary: #232b3a;
   --primary-foreground: #ffffff;
-  --primary-muted: #fbf0d2;
-  --primary-glow: rgba(201, 154, 0, 0.22);
+  --primary-muted: #dee1e7;
+  --primary-glow: rgba(35, 43, 58, 0.22);
 
-  --accent: #b8560a;
+  --accent: #9c4b20;
   --accent-foreground: #ffffff;
-  --accent-muted: #f7e2cf;
-  --accent-glow: rgba(184, 86, 10, 0.2);
+  --accent-muted: #f1dfcf;
+  --accent-glow: rgba(156, 75, 32, 0.2);
 
-  --plum: #6b5b3a;
+  --plum: #715a2a;
   --plum-foreground: #ffffff;
-  --plum-muted: #ece6d6;
-  --plum-glow: rgba(107, 91, 58, 0.18);
+  --plum-muted: #ebe4d0;
+  --plum-glow: rgba(113, 90, 42, 0.18);
 
-  /* Feedback — functional colours, kept distinct from the brand gold family on purpose */
-  --success: #2e7d4f;
+  /*
+   * Vivid tier — brighter companions to accent/plum for decorative,
+   * non-text surfaces (icon fills, active-state chips, card accents):
+   * badge/button TEXT stays on the deep accent/plum above because that's
+   * what clears 4.5:1: the vivid tier only needs to clear 3:1 against its
+   * own icon glyph and against --bg, since it's never small text itself.
+   * Icon glyphs drawn on the vivid tier use --vivid-foreground, which
+   * stays dark in both themes since the vivid tier itself stays light-ish
+   * in both (unlike primary/accent/plum, which invert lightness).
+   */
+  --accent-vivid: #c76727;
+  --plum-vivid: #a1821f;
+  --vivid-foreground: #1b1e24;
+
+  /* Highlight — a single added hue (teal) for "new"/streak-adjacent moments; distinct from der's blue and accent's copper on purpose */
+  --highlight: #1b7068;
+  --highlight-foreground: #ffffff;
+  --highlight-muted: #eaf5f4;
+
+  /* Feedback — functional colours, kept distinct from the brand family on purpose */
+  --success: #2b7449;
   --success-foreground: #ffffff;
   --success-muted: #e4f5ea;
 
@@ -70,50 +103,60 @@
   --der-muted: #e3ecf3;
   --die: #a03b60;
   --die-muted: #f5e3ea;
-  --das: #2f7d4f;
+  --das: #2a7449;
   --das-muted: #e1f0e6;
 
   /* Radius */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
 
-  /* Shadow */
-  --shadow-sm: 0 1px 2px rgba(22, 20, 15, 0.06), 0 1px 1px rgba(22, 20, 15, 0.04);
-  --shadow-md: 0 8px 24px -8px rgba(22, 20, 15, 0.16), 0 2px 8px -2px rgba(22, 20, 15, 0.08);
-  --shadow-lg: 0 24px 60px -20px rgba(22, 20, 15, 0.28), 0 8px 20px -8px rgba(22, 20, 15, 0.12);
+  /* Shadow — tinted to the new cool-neutral ink rather than the old warm charcoal */
+  --shadow-sm: 0 1px 0 rgba(27, 30, 36, 0.04);
+  --shadow-md: 0 10px 28px -12px rgba(27, 30, 36, 0.22), 0 2px 6px -2px rgba(27, 30, 36, 0.08);
+  --shadow-lg: 0 28px 64px -24px rgba(27, 30, 36, 0.34), 0 8px 20px -8px rgba(27, 30, 36, 0.14);
 }
 
 .dark {
   /* Surfaces — true black, not navy or charcoal-blue */
-  --bg: #0a0a0a;
-  --bg-alt: #141412;
-  --surface: #1a1a17;
-  --surface-glass: rgba(20, 20, 18, 0.7);
+  --bg: #0b0c0f;
+  --bg-alt: #131519;
+  --surface: #16181d;
+  --surface-glass: rgba(19, 21, 25, 0.7);
   --surface-glass-border: rgba(255, 255, 255, 0.08);
+  --surface-sunken: #0f1114;
+  --rail: #343741;
 
-  --ink: #f5f3ec;
-  --ink-muted: #a8a59c;
-  --ink-faint: #6e6c64;
+  --ink: #edede8;
+  --ink-muted: #a7aab1;
+  --ink-faint: #7f838c;
 
-  --border: #2a2a26;
-  --border-strong: #3d3d37;
+  --border: #2b2d33;
+  --border-strong: #3d4048;
 
-  --primary: #ffd500;
-  --primary-foreground: #0a0a0a;
-  --primary-muted: rgba(255, 213, 0, 0.14);
-  --primary-glow: rgba(255, 213, 0, 0.3);
+  --primary: #9aa1ac;
+  --primary-foreground: #14171c;
+  --primary-muted: rgba(154, 161, 172, 0.16);
+  --primary-glow: rgba(154, 161, 172, 0.3);
 
-  --accent: #f2994a;
-  --accent-foreground: #150d05;
-  --accent-muted: rgba(242, 153, 74, 0.14);
-  --accent-glow: rgba(242, 153, 74, 0.26);
+  --accent: #de8b54;
+  --accent-foreground: #2a1204;
+  --accent-muted: rgba(222, 139, 84, 0.16);
+  --accent-glow: rgba(222, 139, 84, 0.26);
 
-  --plum: #c9a66b;
-  --plum-foreground: #150d05;
-  --plum-muted: rgba(201, 166, 107, 0.16);
-  --plum-glow: rgba(201, 166, 107, 0.22);
+  --plum: #d2bc79;
+  --plum-foreground: #2a2408;
+  --plum-muted: rgba(210, 188, 121, 0.16);
+  --plum-glow: rgba(210, 188, 121, 0.22);
+
+  --accent-vivid: #f0a868;
+  --plum-vivid: #e8c765;
+  --vivid-foreground: #14171c;
+
+  --highlight: #4fbdb2;
+  --highlight-foreground: #14171c;
+  --highlight-muted: rgba(79, 189, 178, 0.16);
 
   --success: #5fcb8c;
   --success-foreground: #06180f;
@@ -130,8 +173,8 @@
   --das: #5cb37e;
   --das-muted: #16291d;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 28px -10px rgba(0, 0, 0, 0.65);
   --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
 }
 
@@ -141,6 +184,8 @@
   --color-surface: var(--surface);
   --color-surface-muted: var(--bg-alt);
   --color-surface-glass: var(--surface-glass);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-rail: var(--rail);
 
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
@@ -160,6 +205,14 @@
   --color-plum: var(--plum);
   --color-plum-foreground: var(--plum-foreground);
   --color-plum-muted: var(--plum-muted);
+
+  --color-accent-vivid: var(--accent-vivid);
+  --color-plum-vivid: var(--plum-vivid);
+  --color-vivid-foreground: var(--vivid-foreground);
+
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-highlight-muted: var(--highlight-muted);
 
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);

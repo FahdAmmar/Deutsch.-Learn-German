@@ -11,6 +11,7 @@ class FakeUtterance {
   onstart: (() => void) | null = null
   onend: (() => void) | null = null
   onerror: ((event: { error: string }) => void) | null = null
+  onboundary: ((event: { charIndex: number }) => void) | null = null
 
   constructor(text: string) {
     this.text = text
@@ -97,5 +98,54 @@ describe('BrowserSpeechService', () => {
     const service = new BrowserSpeechService()
     expect(() => service.stop()).not.toThrow()
     expect(service.getStatus()).toBe('idle')
+  })
+})
+
+describe('BrowserSpeechService — callbacks', () => {
+  let speakSpy: ReturnType<typeof vi.fn>
+
+  beforeEach(() => {
+    speakSpy = vi.fn()
+    vi.stubGlobal('speechSynthesis', { speak: speakSpy, cancel: vi.fn() })
+    vi.stubGlobal('SpeechSynthesisUtterance', FakeUtterance)
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('forwards word-boundary offsets so callers can show progress inside a sentence', () => {
+    const onBoundary = vi.fn()
+    new BrowserSpeechService().speak('Guten Morgen', { language: 'de-DE', onBoundary })
+
+    const utterance = speakSpy.mock.calls[0][0] as FakeUtterance
+    utterance.onboundary?.({ charIndex: 6 })
+    expect(onBoundary).toHaveBeenCalledWith(6)
+  })
+
+  it.each(['canceled', 'interrupted'])('treats a "%s" error as a deliberate end, not a failure', (reason) => {
+    const service = new BrowserSpeechService()
+    const onEnd = vi.fn()
+    const onError = vi.fn()
+    service.speak('Hallo', { language: 'de-DE', onEnd, onError })
+
+    const utterance = speakSpy.mock.calls[0][0] as FakeUtterance
+    utterance.onerror?.({ error: reason })
+
+    expect(onEnd).toHaveBeenCalledTimes(1)
+    expect(onError).not.toHaveBeenCalled()
+    expect(service.getStatus()).not.toBe('error')
+  })
+
+  it('still reports genuine speech errors', () => {
+    const service = new BrowserSpeechService()
+    const onError = vi.fn()
+    service.speak('Hallo', { language: 'de-DE', onError })
+
+    const utterance = speakSpy.mock.calls[0][0] as FakeUtterance
+    utterance.onerror?.({ error: 'synthesis-failed' })
+
+    expect(onError).toHaveBeenCalledWith('synthesis-failed')
+    expect(service.getStatus()).toBe('error')
   })
 })

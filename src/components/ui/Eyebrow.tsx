@@ -12,21 +12,18 @@ interface EyebrowProps {
 }
 
 const toneClasses: Record<EyebrowTone, string> = {
-  primary: 'bg-primary-muted text-primary',
-  accent: 'bg-accent-muted text-accent',
-  plum: 'bg-plum-muted text-plum',
+  primary: 'text-primary',
+  accent: 'text-accent',
+  plum: 'text-plum',
 }
 
-/** Small pill label introducing a section, e.g. "أهم قاعدة نحوية". */
+/**
+ * A short label introducing a section, e.g. "أهم قاعدة نحوية". Plain sentence-case text —
+ * it carries a category, so it needs colour and position, not a pill or tracking.
+ */
 export function Eyebrow({ tone = 'primary', icon, children, className }: EyebrowProps) {
   return (
-    <span
-      className={cn(
-        'mb-4 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-xs tracking-wide',
-        toneClasses[tone],
-        className,
-      )}
-    >
+    <span className={cn('mb-2 inline-flex items-center gap-2 text-sm font-semibold', toneClasses[tone], className)}>
       {icon}
       {children}
     </span>

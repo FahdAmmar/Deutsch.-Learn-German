@@ -1,7 +1,7 @@
 import { Dumbbell } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
-import { Button, Card, CardBody, LevelTabs } from '@/components/ui'
+import { Button, Card, EmptyState, LevelTabs, PageHeader } from '@/components/ui'
 import { ExerciseRunner } from '@/features/exercises/ExerciseRunner'
 import { getLessonsForLevel, getLevelsWithContent } from '@/lib/curriculum'
 import type { CEFRLevel, Exercise } from '@/types'
@@ -25,11 +25,8 @@ export default function PracticePage() {
   }
 
   return (
-    <div className="space-y-6 pb-10">
-      <header dir="rtl">
-        <h1 className="text-2xl font-bold text-ink">التمارين</h1>
-        <p className="mt-1 text-ink-muted">تدرّب على أسئلة مختارة عشوائياً من كل دروس المستوى.</p>
-      </header>
+    <div className="space-y-8 pb-6">
+      <PageHeader title="التمارين" description="تدرّب على أسئلة مختارة عشوائياً من كل دروس المستوى." />
 
       <LevelTabs
         value={level}
@@ -42,23 +39,23 @@ export default function PracticePage() {
 
       {session ? (
         <ExerciseRunner exercises={session} />
+      ) : availableExercises.length === 0 ? (
+        <EmptyState icon={Dumbbell} title="لا توجد تمارين لهذا المستوى بعد">
+          اختر مستوى آخر لتبدأ التدرّب.
+        </EmptyState>
       ) : (
-        <Card>
-          <CardBody dir="rtl" className="flex flex-col items-center gap-4 py-10 text-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-muted text-primary">
-              <Dumbbell size={22} aria-hidden="true" />
-            </span>
-            {availableExercises.length === 0 ? (
-              <p className="text-ink-muted">لا توجد تمارين متاحة لهذا المستوى بعد.</p>
-            ) : (
-              <>
-                <p className="text-ink-muted">
-                  {Math.min(SESSION_SIZE, availableExercises.length)} سؤالاً عشوائياً من أصل {availableExercises.length} في مستوى {level}
-                </p>
-                <Button onClick={startSession}>ابدأ جلسة تمارين</Button>
-              </>
-            )}
-          </CardBody>
+        <Card tone="brand">
+          <div dir="rtl" className="flex flex-col items-start gap-5 p-6 sm:p-8">
+            <div className="space-y-2">
+              <p className="font-sans text-2xl font-bold text-ink">جلسة تدريب سريعة</p>
+              <p className="max-w-[48ch] text-ink-muted">
+                {Math.min(SESSION_SIZE, availableExercises.length)} سؤالاً عشوائياً من أصل {availableExercises.length} في مستوى {level}. بعد كل سؤال ترى الإجابة وشرحها.
+              </p>
+            </div>
+            <Button size="lg" onClick={startSession}>
+              ابدأ جلسة تمارين
+            </Button>
+          </div>
         </Card>
       )}
     </div>

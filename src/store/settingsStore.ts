@@ -9,6 +9,7 @@ interface SettingsState {
   setAutoPlayPronunciation: (value: boolean) => void
   setSpeechRate: (value: number) => void
   setReducedMotion: (value: boolean) => void
+  setShowTranslations: (value: boolean) => void
   resetToDefaults: () => void
 }
 
@@ -28,10 +29,19 @@ export const useSettingsStore = create<SettingsState>()(
       setReducedMotion: (value) =>
         set((state) => ({ settings: { ...state.settings, reducedMotion: value } })),
 
+      setShowTranslations: (value) =>
+        set((state) => ({ settings: { ...state.settings, showTranslations: value } })),
+
       resetToDefaults: () => set({ settings: DEFAULT_PREFERENCES }),
     }),
     {
       name: 'preferences',
+      // Preferences saved by an older version lack newer fields; fill those from the defaults
+      // instead of letting the stored object replace `settings` wholesale.
+      merge: (persisted, current) => ({
+        ...current,
+        settings: { ...current.settings, ...((persisted as Partial<SettingsState> | undefined)?.settings ?? {}) },
+      }),
       storage: {
         getItem: (name) => {
           const value = zustandStorageEngine.getItem(name)

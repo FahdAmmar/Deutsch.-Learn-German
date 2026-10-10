@@ -1,4 +1,6 @@
-import { ArrowLeft, X, Check } from 'lucide-react'
+import { Check, X } from 'lucide-react'
+
+import { InlineMarkup } from '@/components/ui'
 
 interface CommonMistake {
   wrong: string
@@ -10,24 +12,34 @@ interface CommonMistakesListProps {
   mistakes: CommonMistake[]
 }
 
+/** Wrong and right forms stacked and labelled, so the contrast does not depend on colour alone or on an arrow's direction. */
 export function CommonMistakesList({ mistakes }: CommonMistakesListProps) {
   return (
-    <ul className="space-y-3">
+    <ul className="divide-y divide-border">
       {mistakes.map((mistake, index) => (
-        <li key={index} className="rounded-md border border-border bg-surface p-3">
-          <div dir="ltr" className="flex flex-wrap items-center gap-2 text-sm">
-            <span className="flex items-center gap-1 text-error line-through decoration-error/70">
-              <X size={14} aria-hidden="true" />
-              {mistake.wrong}
-            </span>
-            <ArrowLeft size={14} className="text-ink-faint rtl:rotate-180" aria-hidden="true" />
-            <span className="flex items-center gap-1 font-medium text-success">
-              <Check size={14} aria-hidden="true" />
-              {mistake.correct}
-            </span>
-          </div>
-          <p dir="rtl" className="mt-1.5 text-sm text-ink-muted">
-            {mistake.explanationAr}
+        <li key={index} className="space-y-3 p-4 sm:p-5">
+          <dl className="space-y-1.5">
+            <div className="flex items-baseline gap-3">
+              <dt dir="rtl" className="flex w-16 shrink-0 items-center gap-1.5 text-sm font-semibold text-ink-muted">
+                <X size={15} strokeWidth={2.8} className="text-error" aria-hidden="true" />
+                خطأ
+              </dt>
+              <dd dir="ltr" lang="de" className="display-de text-lg font-medium text-ink-muted line-through decoration-error/60">
+                {mistake.wrong}
+              </dd>
+            </div>
+            <div className="flex items-baseline gap-3">
+              <dt dir="rtl" className="flex w-16 shrink-0 items-center gap-1.5 text-sm font-semibold text-ink">
+                <Check size={15} strokeWidth={2.8} className="text-success" aria-hidden="true" />
+                صحيح
+              </dt>
+              <dd dir="ltr" lang="de" className="display-de text-lg font-semibold text-ink">
+                {mistake.correct}
+              </dd>
+            </div>
+          </dl>
+          <p dir="rtl" className="text-[0.95rem] leading-7 text-ink-muted">
+            <InlineMarkup text={mistake.explanationAr} />
           </p>
         </li>
       ))}

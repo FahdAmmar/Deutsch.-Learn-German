@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { RotateCcw, CheckCircle2 } from 'lucide-react'
 
-import { Button, Card, CardBody, ProgressBar } from '@/components/ui'
+import { Button, Card, ProgressBar } from '@/components/ui'
 import type { Exercise } from '@/types'
 import { useProgressStore } from '@/store/progressStore'
 
@@ -11,9 +11,11 @@ interface ExerciseRunnerProps {
   exercises: Exercise[]
   /** Called once all exercises have been answered, with accuracy from 0–1. */
   onComplete?: (accuracy: number) => void
+  /** Called after each exercise is answered, before advancing — for callers that need a per-item breakdown (e.g. the placement test). */
+  onExerciseComplete?: (exercise: Exercise, correct: boolean) => void
 }
 
-export function ExerciseRunner({ exercises, onComplete }: ExerciseRunnerProps) {
+export function ExerciseRunner({ exercises, onComplete, onExerciseComplete }: ExerciseRunnerProps) {
   const [index, setIndex] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
   const [finished, setFinished] = useState(false)
@@ -35,6 +37,7 @@ export function ExerciseRunner({ exercises, onComplete }: ExerciseRunnerProps) {
     if (currentExercise.type === 'vocab-recall') {
       recordVocabularyReview(currentExercise.vocabularyId, correct)
     }
+    onExerciseComplete?.(currentExercise, correct)
 
     const newCorrectCount = correctCount + (correct ? 1 : 0)
     setCorrectCount(newCorrectCount)
@@ -56,30 +59,34 @@ export function ExerciseRunner({ exercises, onComplete }: ExerciseRunnerProps) {
 
   if (finished) {
     const percent = Math.round(accuracy * 100)
+    const passed = accuracy >= 0.7
     return (
-      <Card>
-        <CardBody dir="rtl" className="flex flex-col items-center gap-4 py-8 text-center">
-          <CheckCircle2 size={40} className="text-success" aria-hidden="true" />
-          <div>
-            <p className="text-lg font-semibold text-ink">أكملت التمارين!</p>
+      <Card tone={passed ? 'brand' : 'surface'}>
+        <div dir="rtl" className="flex flex-col items-center gap-5 px-5 py-9 text-center">
+          <CheckCircle2 size={32} className="text-success" aria-hidden="true" />
+          <div className="space-y-1">
+            <p className="font-sans text-xl font-bold text-ink">أكملت التمارين!</p>
             <p className="text-ink-muted">
               أجبت بشكل صحيح على {correctCount} من {exercises.length} ({percent}%)
             </p>
           </div>
           <div className="w-full max-w-xs">
-            <ProgressBar value={accuracy} tone={accuracy >= 0.7 ? 'success' : 'accent'} label="نسبة الإجابات الصحيحة" />
+            <ProgressBar value={accuracy} tone={passed ? 'success' : 'accent'} label="نسبة الإجابات الصحيحة" />
           </div>
-          <Button variant="outline" size="sm" onClick={handleRestart} icon={<RotateCcw size={15} aria-hidden="true" />}>
+          <p className="max-w-[42ch] text-sm text-ink-muted">
+            {passed ? 'نتيجة جيدة، يمكنك المتابعة.' : 'أعد المحاولة لتثبّت ما تعلمته قبل المتابعة.'}
+          </p>
+          <Button variant="outline" onClick={handleRestart} icon={<RotateCcw size={16} aria-hidden="true" />}>
             إعادة المحاولة
           </Button>
-        </CardBody>
+        </div>
       </Card>
     )
   }
 
   return (
-    <div className="space-y-3">
-      <ProgressBar value={index / exercises.length} label="تقدّم التمارين" />
+    <div className="space-y-4">
+      <ProgressBar value={index / exercises.length} size="sm" tone="accent" label="تقدّم التمارين" />
       <ExerciseCard
         key={`${runId}-${currentExercise.id}`}
         exercise={currentExercise}

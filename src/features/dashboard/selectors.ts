@@ -1,5 +1,5 @@
-import { getLessonById, getLessonsForLevel, getModuleById, getVocabularyForLevel } from '@/lib/curriculum'
-import type { ProgressState } from '@/types'
+import { getLessonById, getLessonsForLevel, getModuleById, getModulesForLevel, getVocabularyForLevel } from '@/lib/curriculum'
+import type { Module, ProgressState } from '@/types'
 
 export interface LevelProgressSummary {
   totalLessons: number
@@ -51,4 +51,45 @@ export function getVocabularyReviewSummary(
   const items = getVocabularyForLevel(level)
   const reviewed = items.filter((item) => progress.vocabulary[item.id]).length
   return { total: items.length, reviewed }
+}
+
+export type ModuleStepState = 'done' | 'current' | 'upcoming'
+
+export interface ModuleStep {
+  module: Module
+  completedLessons: number
+  totalLessons: number
+  state: ModuleStepState
+}
+
+/**
+ * Every module of a level, in order, with its own completion count. The first module that is
+ * not fully completed (or the one containing `currentLessonId`) is the "current" stop.
+ */
+export function getModulePath(
+  progress: Pick<ProgressState, 'lessons'>,
+  level: Parameters<typeof getModulesForLevel>[0],
+  currentLessonId?: string,
+): ModuleStep[] {
+  const modules = getModulesForLevel(level)
+  const steps = modules.map((module) => {
+    const completedLessons = module.lessons.filter((lesson) => progress.lessons[lesson.id]?.completed).length
+    return { module, completedLessons, totalLessons: module.lessons.length }
+  })
+
+  const byCurrentLesson = currentLessonId
+    ? steps.findIndex((step) => step.module.lessons.some((lesson) => lesson.id === currentLessonId))
+    : -1
+  const firstUnfinished = steps.findIndex((step) => step.completedLessons < step.totalLessons)
+  const currentIndex = byCurrentLesson >= 0 ? byCurrentLesson : firstUnfinished
+
+  return steps.map((step, index) => ({
+    ...step,
+    state:
+      step.totalLessons > 0 && step.completedLessons === step.totalLessons
+        ? 'done'
+        : index === currentIndex
+          ? 'current'
+          : 'upcoming',
+  }))
 }

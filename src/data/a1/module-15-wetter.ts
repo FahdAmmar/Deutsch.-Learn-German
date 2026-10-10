@@ -105,6 +105,7 @@ export const lessonWetter: Lesson = {
       level: 'A1',
       moduleId: 'a1-m15',
       lessonId: 'a1-m15-l01',
+      titleDe: 'Ein Picknick planen',
       titleAr: 'تخطيط نزهة',
       register: 'informal',
       lines: [
@@ -119,6 +120,7 @@ export const lessonWetter: Lesson = {
       level: 'A1',
       moduleId: 'a1-m15',
       lessonId: 'a1-m15-l01',
+      titleDe: 'Der Wetterbericht',
       titleAr: 'نشرة الطقس',
       register: 'formal',
       lines: [

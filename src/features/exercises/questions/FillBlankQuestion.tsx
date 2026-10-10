@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { Button } from '@/components/ui'
+import { Button, InlineMarkup } from '@/components/ui'
 import type { FillBlankExercise } from '@/types'
 import { isAnswerAccepted } from '@/utils/text'
 
@@ -26,7 +26,7 @@ export function FillBlankQuestion({ exercise, onAnswer }: Props) {
 
   return (
     <div className="space-y-3">
-      <p dir="ltr" lang="de" className="flex flex-wrap items-center gap-2 text-lg font-medium text-ink">
+      <p dir="ltr" lang="de" className="display-de flex flex-wrap items-center gap-2 text-2xl font-medium text-ink">
         <span>{before}</span>
         <input
           type="text"
@@ -37,13 +37,13 @@ export function FillBlankQuestion({ exercise, onAnswer }: Props) {
           dir="ltr"
           lang="de"
           aria-label="أدخل إجابتك"
-          className="w-40 rounded-sm border-b-2 border-primary bg-transparent px-1 py-0.5 text-center outline-none disabled:opacity-70"
+          className="h-11 w-44 rounded-md border-2 border-border-strong bg-surface-sunken px-3 text-center text-xl outline-none focus-visible:border-accent disabled:opacity-70"
         />
         <span>{after}</span>
       </p>
       {exercise.hint && !checked ? (
         <p dir="rtl" className="text-xs text-ink-faint">
-          تلميح: {exercise.hint}
+          تلميح: <InlineMarkup text={exercise.hint} />
         </p>
       ) : null}
       {checked && !correct ? (

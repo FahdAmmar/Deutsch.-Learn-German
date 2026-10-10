@@ -79,8 +79,8 @@ export function MatchingQuestion({ exercise, onAnswer }: Props) {
                 'w-full rounded-md border px-3 py-2.5 text-start text-sm font-medium transition-colors',
                 isMatched && 'border-success bg-success-muted text-success',
                 !isMatched && isWrong && 'border-error bg-error-muted text-error',
-                !isMatched && !isWrong && isSelected && 'border-primary bg-primary-muted text-primary',
-                !isMatched && !isWrong && !isSelected && 'border-border-strong bg-surface hover:bg-surface-muted',
+                !isMatched && !isWrong && isSelected && 'border-accent bg-accent-muted text-ink',
+                !isMatched && !isWrong && !isSelected && 'border-border-strong bg-surface hover:bg-surface-sunken',
               )}
             >
               {pair.de}
@@ -103,7 +103,7 @@ export function MatchingQuestion({ exercise, onAnswer }: Props) {
                 'w-full rounded-md border px-3 py-2.5 text-start text-sm font-medium transition-colors',
                 isMatched && 'border-success bg-success-muted text-success',
                 !isMatched && isWrong && 'border-error bg-error-muted text-error',
-                !isMatched && !isWrong && 'border-border-strong bg-surface hover:bg-surface-muted',
+                !isMatched && !isWrong && 'border-border-strong bg-surface hover:bg-surface-sunken',
               )}
             >
               {ar}

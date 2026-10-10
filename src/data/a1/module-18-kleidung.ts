@@ -115,6 +115,7 @@ export const lessonKleidung: Lesson = {
       level: 'A1',
       moduleId: 'a1-m18',
       lessonId: 'a1-m18-l01',
+      titleDe: 'Kleidung für die Party',
       titleAr: 'اختيار ملابس مع صديقة',
       register: 'informal',
       lines: [
@@ -129,6 +130,7 @@ export const lessonKleidung: Lesson = {
       level: 'A1',
       moduleId: 'a1-m18',
       lessonId: 'a1-m18-l01',
+      titleDe: 'Im Bekleidungsgeschäft',
       titleAr: 'في متجر الملابس',
       register: 'formal',
       lines: [

@@ -144,6 +144,7 @@ export const lessonModalverben: Lesson = {
       level: 'A1',
       moduleId: 'a1-m06',
       lessonId: 'a1-m06-l01',
+      titleDe: 'Pläne fürs Wochenende',
       titleAr: 'خطط نهاية الأسبوع',
       register: 'informal',
       lines: [
@@ -160,6 +161,7 @@ export const lessonModalverben: Lesson = {
       level: 'A1',
       moduleId: 'a1-m06',
       lessonId: 'a1-m06-l01',
+      titleDe: 'Um Erlaubnis bitten',
       titleAr: 'طلب إذن في العمل',
       register: 'formal',
       lines: [

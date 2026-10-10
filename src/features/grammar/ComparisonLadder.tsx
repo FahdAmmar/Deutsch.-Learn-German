@@ -1,5 +1,6 @@
 import { ArrowLeft, Volume2 } from 'lucide-react'
 
+import { Card } from '@/components/ui'
 import { cn } from '@/lib/cn'
 import { GERMAN_LOCALE } from '@/services/speech'
 import { useSpeech } from '@/hooks/useSpeech'
@@ -18,9 +19,10 @@ export function ComparisonLadder({ adjectives }: ComparisonLadderProps) {
   return (
     <div className="space-y-4">
       {adjectives.map((adj) => (
-        <div key={adj.positiv} className="rounded-xl border border-border bg-surface p-4 shadow-sm sm:p-5">
+        <Card key={adj.positiv}>
+        <div className="p-4 sm:p-5">
           <div dir="rtl" className="mb-3 flex items-center justify-between text-sm">
-            <span className="font-semibold text-ink">{adj.meaningAr}</span>
+            <span className="text-base font-bold text-ink">{adj.meaningAr}</span>
             <div className="flex items-center gap-1.5">
               {adj.hasUmlaut ? <Tag tone="accent">Umlaut</Tag> : null}
               {adj.irregular ? <Tag tone="plum">شاذ</Tag> : null}
@@ -41,6 +43,7 @@ export function ComparisonLadder({ adjectives }: ComparisonLadderProps) {
             <ExampleLine example={adj.exampleSuperlativ} tone="plum" />
           </div>
         </div>
+      </Card>
       ))}
     </div>
   )
@@ -55,16 +58,16 @@ const toneClasses: Record<Tone, string> = {
 }
 
 function Tag({ tone, children }: { tone: Tone; children: string }) {
-  return <span className={cn('rounded-full px-2.5 py-0.5 text-xs font-semibold', toneClasses[tone])}>{children}</span>
+  return <span className={cn('rounded-md px-2.5 py-0.5 text-xs font-semibold', toneClasses[tone])}>{children}</span>
 }
 
 function Step({ label, word, tone }: { label: string; word: string; tone: Tone }) {
   return (
-    <div className={cn('rounded-lg px-3 py-2 text-center', toneClasses[tone])}>
-      <p dir="ltr" className="font-mono text-[10px] uppercase tracking-wide opacity-80">
+    <div className={cn('rounded-md px-3.5 py-2 text-center', toneClasses[tone])}>
+      <p dir="ltr" className="text-xs font-semibold">
         {label}
       </p>
-      <p dir="ltr" className="font-de font-semibold">
+      <p dir="ltr" lang="de" className="display-de text-lg font-semibold">
         {word}
       </p>
     </div>
@@ -74,14 +77,14 @@ function Step({ label, word, tone }: { label: string; word: string; tone: Tone }
 function ExampleLine({ example, tone }: { example: AdjectiveComparisonExample; tone: Tone }) {
   const { speak, isSpeaking } = useSpeech()
   return (
-    <p className="flex flex-wrap items-baseline gap-2 text-sm">
+    <p className="flex flex-wrap items-baseline gap-2 text-[0.95rem]">
       <button
         type="button"
         dir="ltr"
         onClick={() => speak(example.sentence, GERMAN_LOCALE)}
-        className={cn('inline-flex items-center gap-1.5 font-de hover:underline', toneClasses[tone].split(' ')[1])}
+        className={cn('display-de inline-flex items-center gap-1.5 text-base font-medium hover:underline', toneClasses[tone].split(' ')[1])}
       >
-        <Volume2 size={12} className={cn(isSpeaking && 'animate-pulse')} aria-hidden="true" />
+        <Volume2 size={14} className={cn(isSpeaking && 'animate-pulse')} aria-hidden="true" />
         {example.sentence}
       </button>
       <span className="text-ink-muted">— {example.ar}</span>

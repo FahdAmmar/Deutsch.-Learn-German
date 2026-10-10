@@ -107,6 +107,7 @@ export const lessonNegation: Lesson = {
       level: 'A1',
       moduleId: 'a1-m07',
       lessonId: 'a1-m07-l01',
+      titleDe: 'Eine Einladung zur Party',
       titleAr: 'دعوة إلى حفلة',
       register: 'informal',
       lines: [
@@ -121,6 +122,7 @@ export const lessonNegation: Lesson = {
       level: 'A1',
       moduleId: 'a1-m07',
       lessonId: 'a1-m07-l01',
+      titleDe: 'An der Rezeption',
       titleAr: 'استفسار في مكتب الاستقبال',
       register: 'formal',
       lines: [

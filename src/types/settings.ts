@@ -12,10 +12,13 @@ export interface UserPreferences {
   /** Playback rate for speech synthesis (0.5–1.5). */
   speechRate: number
   reducedMotion: boolean
+  /** Whether the Arabic translation is shown under each German paragraph or line in texts and conversations. */
+  showTranslations: boolean
 }
 
 export const DEFAULT_PREFERENCES: UserPreferences = {
   autoPlayPronunciation: false,
   speechRate: 0.9,
   reducedMotion: false,
+  showTranslations: true,
 }

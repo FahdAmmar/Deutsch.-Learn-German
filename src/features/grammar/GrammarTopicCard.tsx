@@ -1,6 +1,6 @@
 import { AlertTriangle } from 'lucide-react'
 
-import { Card, CardBody, CardHeader } from '@/components/ui'
+import { Card, CardBody, CardHeader, InlineMarkup } from '@/components/ui'
 import { CommonMistakesList } from '@/features/lessons/CommonMistakesList'
 import { ExampleSentence } from '@/features/lessons/ExampleSentence'
 import { SentenceStructureDiagram } from '@/features/grammar/SentenceStructureDiagram'
@@ -14,34 +14,41 @@ export function GrammarTopicCard({ topic }: GrammarTopicCardProps) {
   return (
     <Card>
       <CardHeader className="space-y-1">
-        <div dir="ltr" className="text-sm font-mono text-ink-faint">
+        <div dir="ltr" lang="de" className="display-de text-end text-base font-medium text-ink-muted">
           {topic.titleDe}
         </div>
-        <h3 dir="rtl" className="text-lg font-semibold text-ink">
+        <h3 dir="rtl" className="font-sans text-xl font-bold text-ink">
           {topic.titleAr}
         </h3>
-        <p dir="rtl" className="text-sm text-ink-muted">
-          {topic.conceptAr}
+        <p dir="rtl" className="leading-8 text-ink-muted">
+          <InlineMarkup text={topic.conceptAr} />
         </p>
       </CardHeader>
 
       <CardBody className="space-y-5">
-        <p dir="rtl" className="text-sm leading-relaxed text-ink">
-          {topic.ruleAr}
+        <p dir="rtl" className="prose-ar text-ink">
+          <InlineMarkup text={topic.ruleAr} />
         </p>
 
         {topic.tables?.map((table, tableIndex) => (
-          <div key={tableIndex} className="overflow-x-auto rounded-md border border-border">
+          <div
+            key={tableIndex}
+            // A sideways-scrolling area must be reachable by keyboard so the overflow is not mouse/touch-only.
+            role="region"
+            tabIndex={0}
+            aria-label={table.caption ?? topic.titleAr}
+            className="overflow-x-auto rounded-md border border-border"
+          >
             {table.caption ? (
-              <p dir="rtl" className="border-b border-border bg-surface-muted px-3 py-1.5 text-xs font-medium text-ink-muted">
+              <p dir="rtl" className="border-b border-border bg-surface-sunken px-3 py-2 text-sm font-semibold text-ink-muted">
                 {table.caption}
               </p>
             ) : null}
-            <table className="w-full text-sm">
+            <table className="w-full text-[0.95rem]">
               <thead>
-                <tr className="border-b border-border bg-surface-muted">
+                <tr className="border-b border-border bg-surface-sunken">
                   {table.headers.map((header, i) => (
-                    <th key={i} dir="rtl" className="px-3 py-2 text-start font-semibold text-ink">
+                    <th key={i} dir="rtl" className="px-3 py-2.5 text-start font-semibold text-ink">
                       {header}
                     </th>
                   ))}
@@ -50,11 +57,11 @@ export function GrammarTopicCard({ topic }: GrammarTopicCardProps) {
               <tbody>
                 {table.rows.map((row, rowIndex) => (
                   <tr key={rowIndex} className="border-b border-border last:border-0">
-                    <td dir="ltr" lang="de" className="px-3 py-2 font-medium text-primary">
+                    <td dir="ltr" lang="de" className="display-de px-3 py-2.5 text-start font-semibold text-ink">
                       {row.label}
                     </td>
                     {row.values.map((value, valueIndex) => (
-                      <td key={valueIndex} dir="rtl" className="px-3 py-2 text-ink">
+                      <td key={valueIndex} dir="rtl" className="px-3 py-2.5 text-ink">
                         {value}
                       </td>
                     ))}
@@ -85,8 +92,8 @@ export function GrammarTopicCard({ topic }: GrammarTopicCardProps) {
         ) : null}
 
         {topic.exceptionsAr && topic.exceptionsAr.length > 0 ? (
-          <div dir="rtl" className="flex gap-2 rounded-md border border-accent/40 bg-accent-muted p-3 text-sm text-accent">
-            <AlertTriangle size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
+          <div dir="rtl" className="flex gap-3 rounded-md bg-accent-muted p-4 text-[0.95rem] leading-7 text-ink">
+            <AlertTriangle size={18} className="mt-1 shrink-0 text-accent" aria-hidden="true" />
             <ul className="list-inside list-disc space-y-1">
               {topic.exceptionsAr.map((exception, index) => (
                 <li key={index}>{exception}</li>
@@ -97,7 +104,7 @@ export function GrammarTopicCard({ topic }: GrammarTopicCardProps) {
 
         {topic.commonMistakes && topic.commonMistakes.length > 0 ? (
           <div>
-            <p dir="rtl" className="mb-2 text-sm font-semibold text-ink">
+            <p dir="rtl" className="mb-2 font-sans text-base font-bold text-ink">
               أخطاء شائعة
             </p>
             <CommonMistakesList mistakes={topic.commonMistakes} />

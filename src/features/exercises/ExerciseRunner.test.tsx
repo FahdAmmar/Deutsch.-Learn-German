@@ -46,7 +46,11 @@ describe('ExerciseRunner', () => {
 
     // First question: pick the correct option.
     await user.click(screen.getByText('مرحباً'))
-    expect(screen.getByText(QUESTION_1.explanationAr)).toBeInTheDocument()
+    // The feedback quotes German inside Arabic prose, which is rendered as an LTR
+    // isolate (so the text is split across nodes) — assert on the whole region.
+    const feedback = screen.getByRole('status')
+    expect(feedback).toHaveTextContent(QUESTION_1.explanationAr)
+    expect(feedback.querySelector('bdi[lang="de"]')).toHaveTextContent('"Hallo"')
 
     await user.click(screen.getByRole('button', { name: 'التالي' }))
 

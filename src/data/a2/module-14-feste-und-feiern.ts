@@ -1,0 +1,227 @@
+import type { Lesson, Module } from '@/types'
+
+export const lessonFesteUndFeiern: Lesson = {
+  id: 'a2-m14-l01',
+  slug: 'feste-und-feiern',
+  level: 'A2',
+  moduleId: 'a2-m14',
+  title: 'Feste und Feiern',
+  titleAr: 'الأعياد والاحتفالات',
+  estimatedMinutes: 30,
+  objectivesAr: [
+    'حفظ أسماء أهمّ الأعياد والمناسبات الألمانية',
+    'تكوين الأعداد الترتيبية (الأول، الثاني، الثالث...) بشكل صحيح',
+    'التعبير عن التاريخ باستخدام am + العدد الترتيبي',
+    'تقديم التهاني والدعوات في مناسبات مختلفة',
+  ],
+  explanation: [
+    {
+      titleAr: 'تكوين الأعداد الترتيبية',
+      bodyAr:
+        'تُبنى الأعداد الترتيبية من 1 إلى 19 بإضافة -te إلى العدد الأصلي (vier → vierte)، ومن 20 فما فوق بإضافة -ste (zwanzig → zwanzigste). أربعة أعداد شاذّة يجب حفظها: erste (الأول)، dritte (الثالث)، siebte (السابع، بحذف الـen)، achte (الثامن، بحذف t واحدة إضافية).',
+    },
+    {
+      titleAr: 'التاريخ: am + العدد الترتيبي + الشهر',
+      bodyAr:
+        'للتعبير عن تاريخ معيّن، تُستخدَم am متبوعة بالعدد الترتيبي مصرَّفاً بنهاية -n واسم الشهر: "am ersten Januar" (في الأول من يناير)، "am dritten Oktober" (في الثالث من أكتوبر). في الكتابة، يُكتفى بكتابة الرقم متبوعاً بنقطة: "am 3. Oktober".',
+    },
+  ],
+  grammarTopics: [
+    {
+      id: 'gr-a2-ordinalzahlen',
+      slug: 'ordinalzahlen-datum',
+      level: 'A2',
+      titleDe: 'Ordinalzahlen und das Datum',
+      titleAr: 'الأعداد الترتيبية والتاريخ',
+      conceptAr: 'الأعداد الترتيبية تُبنى بإضافة -te أو -ste، وتُستخدَم مع am لصياغة التاريخ.',
+      ruleAr:
+        'أضف -te للأعداد من 1-19 (مع استثناءات erste/dritte/siebte/achte)، وأضف -ste من 20 فما فوق. في جملة التاريخ الكاملة استخدم: am + العدد الترتيبي + -n + اسم الشهر.',
+      tables: [
+        {
+          caption: 'الأعداد الترتيبية الأساسية',
+          headers: ['العدد', 'الترتيبي'],
+          rows: [
+            { label: '1', values: ['erste'] },
+            { label: '2', values: ['zweite'] },
+            { label: '3', values: ['dritte'] },
+            { label: '7', values: ['siebte'] },
+            { label: '8', values: ['achte'] },
+            { label: '20', values: ['zwanzigste'] },
+            { label: '31', values: ['einunddreißigste'] },
+          ],
+        },
+      ],
+      examples: [
+        {
+          de: 'Weihnachten ist am fünfundzwanzigsten Dezember.',
+          ar: 'عيد الميلاد في الخامس والعشرين من ديسمبر.',
+          tokens: [
+            { text: 'Weihnachten', role: 'الفاعل' },
+            { text: 'ist', role: 'الفعل' },
+            { text: 'am fünfundzwanzigsten Dezember.', role: 'التاريخ' },
+          ],
+        },
+        { de: 'Mein Geburtstag ist am dritten Oktober.', ar: 'عيد ميلادي في الثالث من أكتوبر.' },
+      ],
+    },
+  ],
+  examples: [
+    { de: 'Frohe Weihnachten!', ar: 'عيد ميلاد مجيد! (تهنئة)' },
+    { de: 'Alles Gute zum Geburtstag!', ar: 'كل التمنيات الطيبة في عيد ميلادك!' },
+    { de: 'Wir feiern Silvester bei meinen Eltern.', ar: 'نحتفل برأس السنة عند والديّ.' },
+    { de: 'Ich lade dich zu meiner Feier ein.', ar: 'أدعوك إلى حفلتي.' },
+  ],
+  vocabulary: [
+    { id: 'voc-feste-weihnachten', word: 'Weihnachten', partOfSpeech: 'noun', meaningAr: 'عيد الميلاد', level: 'A2', category: 'الأعياد' },
+    { id: 'voc-feste-ostern', word: 'Ostern', partOfSpeech: 'noun', meaningAr: 'عيد الفصح', level: 'A2', category: 'الأعياد' },
+    { id: 'voc-feste-silvester', word: 'Silvester', partOfSpeech: 'noun', meaningAr: 'ليلة رأس السنة', level: 'A2', category: 'الأعياد' },
+    { id: 'voc-feste-geburtstag', word: 'Geburtstag', article: 'der', partOfSpeech: 'noun', meaningAr: 'عيد الميلاد الشخصي', level: 'A2', category: 'المناسبات' },
+    { id: 'voc-feste-hochzeit', word: 'Hochzeit', article: 'die', partOfSpeech: 'noun', meaningAr: 'حفل الزفاف', level: 'A2', category: 'المناسبات' },
+    { id: 'voc-feste-einladung', word: 'Einladung', article: 'die', partOfSpeech: 'noun', meaningAr: 'الدعوة', level: 'A2', category: 'المناسبات' },
+    { id: 'voc-feste-geschenk', word: 'Geschenk', article: 'das', partOfSpeech: 'noun', meaningAr: 'الهدية', level: 'A2', category: 'المناسبات' },
+    { id: 'voc-feste-feiern', word: 'feiern', partOfSpeech: 'verb', meaningAr: 'يحتفل', level: 'A2', category: 'المناسبات' },
+    { id: 'voc-feste-einladen', word: 'einladen', partOfSpeech: 'verb', meaningAr: 'يدعو', level: 'A2', category: 'المناسبات' },
+    { id: 'voc-feste-gratulieren', word: 'gratulieren', partOfSpeech: 'verb', meaningAr: 'يهنّئ', level: 'A2', category: 'المناسبات' },
+  ],
+  dialogues: [
+    {
+      id: 'dialogue-feste-informell',
+      level: 'A2',
+      moduleId: 'a2-m14',
+      lessonId: 'a2-m14-l01',
+      titleDe: 'Eine Einladung zum Geburtstag',
+      titleAr: 'دعوة إلى حفلة عيد ميلاد',
+      register: 'informal',
+      lines: [
+        { speaker: 'a', name: 'Pia', de: 'Ich feiere meinen Geburtstag am zwanzigsten Mai. Kommst du?', ar: 'سأحتفل بعيد ميلادي في العشرين من مايو. هل ستأتي؟' },
+        { speaker: 'b', name: 'Kwame', de: 'Klar, gerne! Was soll ich mitbringen?', ar: 'بالتأكيد، بكل سرور! ماذا يجب أن أُحضر؟' },
+        { speaker: 'a', name: 'Pia', de: 'Nur gute Laune! Ein kleines Geschenk reicht auch.', ar: 'فقط مزاج جيد! هدية صغيرة تكفي أيضاً.' },
+        { speaker: 'b', name: 'Kwame', de: 'Alles klar, ich freue mich schon!', ar: 'حسناً، أنا متحمّس بالفعل!' },
+      ],
+    },
+    {
+      id: 'dialogue-feste-formell',
+      level: 'A2',
+      moduleId: 'a2-m14',
+      lessonId: 'a2-m14-l01',
+      titleDe: 'Eine Einladung zur Hochzeit',
+      titleAr: 'دعوة رسمية لحفل زفاف',
+      register: 'formal',
+      lines: [
+        { speaker: 'a', name: 'Frau Delgado', de: 'Wir laden Sie herzlich zu unserer Hochzeit ein.', ar: 'ندعوكم بكل حرارة إلى حفل زفافنا.' },
+        { speaker: 'b', name: 'Herr Wenzel', de: 'Vielen Dank für die Einladung! Wann findet die Feier statt?', ar: 'شكراً جزيلاً على الدعوة! متى سيُقام الحفل؟' },
+        { speaker: 'a', name: 'Frau Delgado', de: 'Am vierzehnten Juni, um 15 Uhr.', ar: 'في الرابع عشر من يونيو، الساعة الثالثة.' },
+        { speaker: 'b', name: 'Herr Wenzel', de: 'Wir werden auf jeden Fall kommen. Herzlichen Glückwunsch im Voraus!', ar: 'سنأتي بالتأكيد. تهانينا الحارّة مسبقاً!' },
+      ],
+    },
+  ],
+  pronunciationTips: [
+    { titleAr: 'النهاية -ste في الأعداد الترتيبية الكبيرة', bodyAr: 'من 20 فما فوق، النهاية -ste تُنطق مقطعاً واضحاً [stə].', example: 'zwanzigste' },
+    { titleAr: 'Weihnachten: نبرة على المقطع الأول', bodyAr: 'النبرة الرئيسية تقع على WEIH، والباقي بلا نبرة قوية.', example: 'Weihnachten' },
+  ],
+  exercises: [
+    {
+      id: 'ex-feste-1',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر العدد الترتيبي الصحيح لـ "الأول"',
+      questionDe: 'der ___ Januar',
+      options: ['erste', 'einste', 'einte', 'erstete'],
+      correctIndex: 0,
+      explanationAr: '"الأول" شكل شاذّ: erste، وليس مبنياً على نمط -te المعتاد.',
+    },
+    {
+      id: 'ex-feste-2',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر العدد الترتيبي الصحيح لـ "الثالث"',
+      questionDe: 'der ___ Oktober',
+      options: ['dritte', 'dreite', 'driete', 'drei'],
+      correctIndex: 0,
+      explanationAr: '"الثالث" شكل شاذّ: dritte.',
+    },
+    {
+      id: 'ex-feste-3',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الأداة الصحيحة للتعبير عن التاريخ',
+      questionDe: 'Weihnachten ist ___ 25. Dezember.',
+      options: ['am', 'im', 'um', 'an'],
+      correctIndex: 0,
+      explanationAr: 'am + العدد الترتيبي + الشهر هي الصيغة الصحيحة للتاريخ.',
+    },
+    {
+      id: 'ex-feste-4',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل: Mein Geburtstag ist am ____ Oktober. (الثالث)',
+      sentenceDe: 'Mein Geburtstag ist am ____ Oktober.',
+      acceptedAnswers: ['dritten'],
+      hint: 'dritte + نهاية -n بعد am',
+      explanationAr: 'بعد am، يأخذ العدد الترتيبي نهاية -n: dritten.',
+    },
+    {
+      id: 'ex-feste-5',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Ordinalzahlen ab 20 bilden sich mit "-ste".',
+      isTrue: true,
+      explanationAr: 'صحيح — من 20 فما فوق تُبنى الأعداد الترتيبية بإضافة -ste.',
+    },
+    {
+      id: 'ex-feste-6',
+      type: 'matching',
+      level: 'A2',
+      promptAr: 'صل كل مناسبة بمعناها',
+      pairs: [
+        { de: 'Weihnachten', ar: 'عيد الميلاد' },
+        { de: 'Ostern', ar: 'عيد الفصح' },
+        { de: 'Silvester', ar: 'ليلة رأس السنة' },
+        { de: 'die Hochzeit', ar: 'حفل الزفاف' },
+      ],
+      explanationAr: 'كل مناسبة من هذه المجموعة لها مقابل واحد محدد بالعربية.',
+    },
+    {
+      id: 'ex-feste-7',
+      type: 'ordering',
+      level: 'A2',
+      promptAr: 'رتب الكلمات لتكوين جملة صحيحة',
+      words: ['Mein', 'Geburtstag', 'ist', 'am', 'zwanzigsten', 'Mai.'],
+      correctOrder: [0, 1, 2, 3, 4, 5],
+      explanationAr: 'الترتيب الصحيح: "Mein Geburtstag ist am zwanzigsten Mai."',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Mein Geburtstag ist am zwanzig Mai.',
+      correct: 'Mein Geburtstag ist am zwanzigsten Mai.',
+      explanationAr: 'التاريخ يحتاج العدد الترتيبي (zwanzigste) وليس العدد الأصلي (zwanzig).',
+    },
+    {
+      wrong: 'der einste Januar',
+      correct: 'der erste Januar',
+      explanationAr: '"الأول" شكل شاذّ تماماً: erste، وليس مبنياً من eins.',
+    },
+    {
+      wrong: 'Weihnachten ist in 25. Dezember.',
+      correct: 'Weihnachten ist am 25. Dezember.',
+      explanationAr: 'التاريخ اليومي المحدَّد يستخدم am، وليس in (المستخدمة مع الشهور والسنوات فقط).',
+    },
+    {
+      wrong: 'Ich gratuliere du zum Geburtstag.',
+      correct: 'Ich gratuliere dir zum Geburtstag.',
+      explanationAr: 'gratulieren تأخذ Dativ دائماً، فالضمير الصحيح هو dir وليس du.',
+    },
+  ],
+}
+
+export const module14FesteUndFeiern: Module = {
+  id: 'a2-m14',
+  slug: 'feste-und-feiern',
+  level: 'A2',
+  title: 'Feste und Feiern',
+  titleAr: 'الأعياد والاحتفالات',
+  order: 14,
+  lessons: [lessonFesteUndFeiern],
+}

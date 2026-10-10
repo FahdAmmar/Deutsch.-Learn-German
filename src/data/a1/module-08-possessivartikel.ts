@@ -115,6 +115,7 @@ export const lessonPossessivartikel: Lesson = {
       level: 'A1',
       moduleId: 'a1-m08',
       lessonId: 'a1-m08-l01',
+      titleDe: 'Familienfotos',
       titleAr: 'عرض صور العائلة',
       register: 'informal',
       lines: [
@@ -129,6 +130,7 @@ export const lessonPossessivartikel: Lesson = {
       level: 'A1',
       moduleId: 'a1-m08',
       lessonId: 'a1-m08-l01',
+      titleDe: 'Auf der Konferenz',
       titleAr: 'تعارف رسمي في مؤتمر',
       register: 'formal',
       lines: [

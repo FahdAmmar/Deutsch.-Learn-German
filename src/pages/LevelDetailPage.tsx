@@ -1,23 +1,29 @@
-import { BookMarked, Library, MessageCircle } from 'lucide-react'
-import { useMemo, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { BookMarked, Headphones } from 'lucide-react'
+import { useMemo } from 'react'
+import { Navigate, useParams, useSearchParams } from 'react-router-dom'
 
-import { Tabs } from '@/components/ui'
-import { DialogueDisplay } from '@/features/lessons/DialogueDisplay'
-import { GrammarTopicCard } from '@/features/grammar/GrammarTopicCard'
+import { EmptyState, RouteItem, RouteList, Tabs, tabPanelProps } from '@/components/ui'
+import { LevelHeader } from '@/features/levels/LevelHeader'
 import { ModuleSection } from '@/features/levels/ModuleSection'
-import { getDialoguesForLevel, getGrammarTopicsForLevel, getModulesForLevel } from '@/lib/curriculum'
+import { getModulePath } from '@/features/dashboard/selectors'
+import { StoryList } from '@/features/stories/StoryList'
+import { getLessonsForLevel, getModulesForLevel } from '@/lib/curriculum'
+import { getStoriesForLevel } from '@/lib/stories'
 import { useProgressStore } from '@/store/progressStore'
-import { CEFR_LEVEL_INFO, CEFR_LEVELS } from '@/types'
+import { CEFR_LEVELS } from '@/types'
 import type { CEFRLevel } from '@/types'
 
-type LevelTab = 'lessons' | 'grammar' | 'conversation'
+type LevelTab = 'lessons' | 'stories'
 
 export default function LevelDetailPage() {
   const { level } = useParams<{ level: string }>()
   const normalizedLevel = level?.toUpperCase() as CEFRLevel | undefined
   const lessons = useProgressStore((state) => state.lessons)
-  const [activeTab, setActiveTab] = useState<LevelTab>('lessons')
+  const currentLessonId = useProgressStore((state) => state.currentLessonId)
+  // The active tab lives in the URL (?tab=stories) so a story page can link back to it.
+  const [searchParams, setSearchParams] = useSearchParams()
+  const activeTab: LevelTab = searchParams.get('tab') === 'stories' ? 'stories' : 'lessons'
+  const setActiveTab = (tab: LevelTab) => setSearchParams(tab === 'lessons' ? {} : { tab }, { replace: true })
 
   const completedLessonIds = useMemo(
     () => new Set(Object.values(lessons).filter((entry) => entry.completed).map((entry) => entry.lessonId)),
@@ -29,78 +35,66 @@ export default function LevelDetailPage() {
   }
 
   const modules = getModulesForLevel(normalizedLevel)
-  const grammarTopics = getGrammarTopicsForLevel(normalizedLevel)
-  const dialogues = getDialoguesForLevel(normalizedLevel)
-  const info = CEFR_LEVEL_INFO[normalizedLevel]
+  const stories = getStoriesForLevel(normalizedLevel)
+  const levelLessons = getLessonsForLevel(normalizedLevel)
+  const completedCount = levelLessons.filter((lesson) => completedLessonIds.has(lesson.id)).length
+  const nextLesson = levelLessons.find((lesson) => !completedLessonIds.has(lesson.id))
+  const modulePath = getModulePath({ lessons }, normalizedLevel, currentLessonId ?? undefined)
+  // Highlight the lesson the learner would resume with, but only if it is inside this level.
+  const resumeLessonId = currentLessonId && levelLessons.some((lesson) => lesson.id === currentLessonId && !completedLessonIds.has(lesson.id))
+    ? currentLessonId
+    : nextLesson?.id
 
   return (
-    <div className="space-y-6 pb-10">
-      <header dir="rtl">
-        <p className="text-sm font-semibold text-primary">{normalizedLevel}</p>
-        <h1 className="text-2xl font-bold text-ink">{info.titleAr}</h1>
-        <p dir="ltr" lang="de" className="text-ink-muted">
-          {info.titleDe}
-        </p>
-      </header>
+    <div className="space-y-8 pb-6">
+      <LevelHeader
+        level={normalizedLevel}
+        moduleCount={modules.length}
+        totalLessons={levelLessons.length}
+        completedLessons={completedCount}
+        nextLesson={nextLesson}
+      />
 
       {modules.length === 0 ? (
-        <p dir="rtl" className="rounded-lg border border-dashed border-border p-6 text-center text-ink-muted">
-          محتوى هذا المستوى قيد الإعداد حالياً. تابعنا قريباً!
-        </p>
+        <EmptyState title="محتوى هذا المستوى قيد الإعداد">نعمل على إضافة الدروس، وسيظهر المحتوى هنا فور جاهزيته.</EmptyState>
       ) : (
-        <>
+        <div className="space-y-6">
           <Tabs<LevelTab>
             label="أقسام المستوى"
+            idPrefix="level"
             value={activeTab}
             onChange={setActiveTab}
             tabs={[
-              { value: 'lessons', label: 'الدروس', icon: <BookMarked size={15} aria-hidden="true" /> },
-              { value: 'grammar', label: 'القواعد', icon: <Library size={15} aria-hidden="true" /> },
-              { value: 'conversation', label: 'محادثة', icon: <MessageCircle size={15} aria-hidden="true" /> },
+              { value: 'lessons', label: 'الدروس', icon: <BookMarked size={16} aria-hidden="true" /> },
+              { value: 'stories', label: 'نصوص ومحادثات', icon: <Headphones size={16} aria-hidden="true" /> },
             ]}
           />
 
-          {activeTab === 'lessons' ? (
-            <div className="space-y-8">
-              {modules.map((module) => (
-                <ModuleSection key={module.id} module={module} completedLessonIds={completedLessonIds} />
-              ))}
-            </div>
-          ) : null}
-
-          {activeTab === 'grammar' ? (
-            grammarTopics.length === 0 ? (
-              <EmptyTabMessage text="لا توجد مواضيع نحوية منشورة لهذا المستوى بعد." />
-            ) : (
-              <div className="space-y-4">
-                {grammarTopics.map((topic) => (
-                  <GrammarTopicCard key={topic.id} topic={topic} />
+          <div {...tabPanelProps('level', activeTab)} tabIndex={0} className="outline-offset-4">
+            {activeTab === 'lessons' ? (
+              <RouteList dir="rtl">
+                {modulePath.map((step, index) => (
+                  <RouteItem
+                    key={step.module.id}
+                    state={step.state}
+                    marker={step.module.order}
+                    last={index === modulePath.length - 1}
+                  >
+                    <ModuleSection
+                      module={step.module}
+                      state={step.state}
+                      completedLessonIds={completedLessonIds}
+                      nextLessonId={resumeLessonId}
+                    />
+                  </RouteItem>
                 ))}
-              </div>
-            )
-          ) : null}
+              </RouteList>
+            ) : null}
 
-          {activeTab === 'conversation' ? (
-            dialogues.length === 0 ? (
-              <EmptyTabMessage text="لا توجد محادثات منشورة لهذا المستوى بعد." />
-            ) : (
-              <div className="grid gap-4 lg:grid-cols-2">
-                {dialogues.map((dialogue) => (
-                  <DialogueDisplay key={dialogue.id} dialogue={dialogue} />
-                ))}
-              </div>
-            )
-          ) : null}
-        </>
+            {activeTab === 'stories' ? <StoryList stories={stories} /> : null}
+          </div>
+        </div>
       )}
     </div>
-  )
-}
-
-function EmptyTabMessage({ text }: { text: string }) {
-  return (
-    <p dir="rtl" className="rounded-lg border border-dashed border-border p-8 text-center text-ink-muted">
-      {text}
-    </p>
   )
 }

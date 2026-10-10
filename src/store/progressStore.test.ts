@@ -50,6 +50,17 @@ describe('progressStore', () => {
     expect(entry.timesCorrect).toBe(1)
   })
 
+  it('schedules spaced-repetition state (boxLevel/nextReviewAt) on every vocabulary review', () => {
+    useProgressStore.getState().recordVocabularyReview('voc-srs', true)
+    const afterCorrect = useProgressStore.getState().vocabulary['voc-srs']
+    expect(afterCorrect.boxLevel).toBe(1)
+    expect(afterCorrect.nextReviewAt).toBeGreaterThan(Date.now())
+
+    useProgressStore.getState().recordVocabularyReview('voc-srs', false)
+    const afterIncorrect = useProgressStore.getState().vocabulary['voc-srs']
+    expect(afterIncorrect.boxLevel).toBe(0)
+  })
+
   it('starts a streak at 1 on the first day of activity', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-08-20T10:00:00'))

@@ -21,7 +21,7 @@ export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
   return (
     <div className="space-y-3">
       {exercise.questionDe ? (
-        <p dir="ltr" lang="de" className="text-lg font-medium text-ink">
+        <p dir="ltr" lang="de" className="display-de text-start text-2xl font-medium text-ink">
           {exercise.questionDe}
         </p>
       ) : null}
@@ -34,7 +34,13 @@ export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
             if (index === selected && index === exercise.correctIndex) state = 'selected-correct'
           }
           return (
-            <OptionButton key={option} onClick={() => handleSelect(index)} disabled={selected !== null} state={state}>
+            <OptionButton
+              key={option}
+              marker={String.fromCharCode(65 + index)}
+              onClick={() => handleSelect(index)}
+              disabled={selected !== null}
+              state={state}
+            >
               <span lang="de">{option}</span>
             </OptionButton>
           )

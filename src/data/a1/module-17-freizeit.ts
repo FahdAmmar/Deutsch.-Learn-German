@@ -111,6 +111,7 @@ export const lessonFreizeit: Lesson = {
       level: 'A1',
       moduleId: 'a1-m17',
       lessonId: 'a1-m17-l01',
+      titleDe: 'Über Hobbys sprechen',
       titleAr: 'الحديث عن الهوايات',
       register: 'informal',
       lines: [
@@ -125,6 +126,7 @@ export const lessonFreizeit: Lesson = {
       level: 'A1',
       moduleId: 'a1-m17',
       lessonId: 'a1-m17-l01',
+      titleDe: 'Ein Kennenlerngespräch',
       titleAr: 'محادثة تعارف في مقابلة',
       register: 'formal',
       lines: [

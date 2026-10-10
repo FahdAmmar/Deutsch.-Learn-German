@@ -108,6 +108,7 @@ export const lessonKoerper: Lesson = {
       level: 'A1',
       moduleId: 'a1-m05',
       lessonId: 'a1-m05-l01',
+      titleDe: 'Ein kranker Freund',
       titleAr: 'صديق مريض',
       register: 'informal',
       lines: [
@@ -124,6 +125,7 @@ export const lessonKoerper: Lesson = {
       level: 'A1',
       moduleId: 'a1-m05',
       lessonId: 'a1-m05-l01',
+      titleDe: 'Beim Arzt',
       titleAr: 'زيارة الطبيب',
       register: 'formal',
       lines: [

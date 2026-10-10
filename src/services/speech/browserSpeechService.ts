@@ -41,11 +41,19 @@ export class BrowserSpeechService implements SpeechService {
         this.status = 'speaking'
         options.onStart?.()
       }
+      utterance.onboundary = (event) => options.onBoundary?.(event.charIndex)
       utterance.onend = () => {
         this.status = 'idle'
         options.onEnd?.()
       }
       utterance.onerror = (event) => {
+        // `cancel()` — called when a new utterance replaces this one, or on stop() — makes browsers
+        // report 'canceled'/'interrupted'. That is a deliberate end, not a failure: say so, and leave
+        // the shared status to whoever cancelled (the replacement utterance may already be speaking).
+        if (event.error === 'canceled' || event.error === 'interrupted') {
+          options.onEnd?.()
+          return
+        }
         this.status = 'error'
         options.onError?.(event.error || 'Unbekannter Sprachausgabefehler.')
       }

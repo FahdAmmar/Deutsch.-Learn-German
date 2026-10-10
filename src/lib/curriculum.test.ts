@@ -32,6 +32,8 @@ describe('curriculum helpers (against real A1 data)', () => {
       'wegbeschreibung',
       'freizeit-und-hobbys',
       'kleidung',
+      'essen-und-trinken',
+      'haeufigkeitsadverbien',
     ])
   })
 

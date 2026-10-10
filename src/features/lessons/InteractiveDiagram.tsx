@@ -32,8 +32,8 @@ export function InteractiveDiagram({ scene }: InteractiveDiagramProps) {
   }
 
   return (
-    <div className="rounded-xl border border-border bg-surface p-4 shadow-md sm:p-7">
-      <p dir="rtl" className="mb-5 text-sm text-ink-muted">
+    <div className="rounded-lg border border-border bg-surface p-4 sm:p-7">
+      <p dir="rtl" className="mb-5 text-[0.95rem] text-ink-muted">
         {scene.promptAr}
       </p>
 
@@ -71,7 +71,9 @@ export function InteractiveDiagram({ scene }: InteractiveDiagramProps) {
               </span>
               <span
                 className={cn(
-                  'pointer-events-none absolute start-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-ink px-2 py-1 font-de text-xs text-bg opacity-0 shadow-md transition-opacity group-hover:opacity-100',
+                  'display-de pointer-events-none absolute top-full mt-1.5 whitespace-nowrap rounded-md bg-ink px-2.5 py-1 text-sm text-bg opacity-0 shadow-md transition-opacity group-hover:opacity-100',
+                  // Anchor the label to the scene edge nearest the hotspot so it can never spill outside the scene.
+                  hotspot.x < 28 ? 'left-0' : hotspot.x > 72 ? 'right-0' : 'left-1/2 -translate-x-1/2',
                   isActive && 'opacity-100',
                 )}
               >
@@ -82,13 +84,13 @@ export function InteractiveDiagram({ scene }: InteractiveDiagramProps) {
         })}
       </div>
 
-      <div dir="rtl" className="mt-5 min-h-24 rounded-lg bg-bg-alt p-4 text-center">
+      <div dir="rtl" className="mt-5 min-h-24 rounded-lg bg-surface-sunken p-4 text-center">
         {active ? (
           <>
             <button
               type="button"
               onClick={() => activate(active.id, active.sentenceDe)}
-              className="inline-flex items-center gap-2 font-de text-lg font-semibold text-ink hover:text-primary"
+              className="display-de inline-flex items-center gap-2 text-xl font-semibold text-ink hover:text-accent"
               dir="ltr"
             >
               <Volume2 size={16} className={cn(isSpeaking && 'animate-pulse')} aria-hidden="true" />
@@ -97,7 +99,7 @@ export function InteractiveDiagram({ scene }: InteractiveDiagramProps) {
             <p className="mt-2 text-ink-muted">{active.sentenceAr}</p>
           </>
         ) : (
-          <p className="text-ink-faint">انقر على أي عنصر في الرسم لسماع الجملة الخاصة به</p>
+          <p className="text-ink-muted">انقر على أي عنصر في الرسم لسماع الجملة الخاصة به</p>
         )}
       </div>
     </div>

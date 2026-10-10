@@ -17,8 +17,8 @@ export interface GermanWordProps {
 
 const sizeClasses = {
   sm: 'text-sm gap-1',
-  md: 'text-base gap-1.5',
-  lg: 'text-lg gap-1.5',
+  md: 'text-[1.05rem] gap-1.5',
+  lg: 'text-xl gap-2',
 }
 
 const iconSizes = { sm: 14, md: 16, lg: 18 }
@@ -46,10 +46,10 @@ export function GermanWord({
         aria-label={`الاستماع إلى نطق: ${word}`}
         title={isSupported ? 'انقر للاستماع إلى النطق' : 'النطق الصوتي غير مدعوم في هذا المتصفح'}
         className={cn(
-          'inline-flex items-center rounded-sm font-medium text-primary',
-          'hover:bg-primary-muted disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent',
+          'inline-flex items-center rounded-sm text-start font-medium text-ink',
+          'hover:bg-surface-sunken disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent',
           'px-1 -mx-1 transition-colors',
-          isSpeaking && 'bg-primary-muted',
+          isSpeaking && 'bg-accent-muted',
           sizeClasses[size],
           className,
         )}
@@ -57,7 +57,7 @@ export function GermanWord({
         <span lang="de">{word}</span>
         {showIcon &&
           (isSupported ? (
-            <Volume2 size={iconSizes[size]} aria-hidden="true" className={cn(isSpeaking && 'animate-pulse')} />
+            <Volume2 size={iconSizes[size]} aria-hidden="true" className={cn('shrink-0 text-accent', isSpeaking && 'animate-pulse')} />
           ) : (
             <VolumeX size={iconSizes[size]} aria-hidden="true" />
           ))}

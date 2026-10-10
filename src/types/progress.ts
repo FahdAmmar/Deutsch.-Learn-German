@@ -16,6 +16,15 @@ export interface VocabularyProgress {
   /** Number of times answered correctly in a vocab-recall exercise. */
   timesCorrect: number
   lastReviewedAt: number
+  /**
+   * Leitner box level (0–4): higher means better-retained, reviewed less
+   * often. Absent on progress data persisted before spaced repetition was
+   * added, or on imported files from before that point — always read with
+   * a `?? 0` fallback rather than assuming it exists.
+   */
+  boxLevel?: number
+  /** Timestamp this item next becomes due for review. Absent for the same reason as `boxLevel`. */
+  nextReviewAt?: number
 }
 
 export interface ActivityEntry {

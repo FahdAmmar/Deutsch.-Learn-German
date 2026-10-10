@@ -1,8 +1,9 @@
 import { Volume2 } from 'lucide-react'
 
+import { Badge, Card } from '@/components/ui'
+import { useSpeech } from '@/hooks/useSpeech'
 import { cn } from '@/lib/cn'
 import { GERMAN_LOCALE } from '@/services/speech'
-import { useSpeech } from '@/hooks/useSpeech'
 import type { Dialogue } from '@/types'
 
 interface DialogueDisplayProps {
@@ -11,20 +12,18 @@ interface DialogueDisplayProps {
 
 export function DialogueDisplay({ dialogue }: DialogueDisplayProps) {
   return (
-    <div className="rounded-xl border border-border bg-surface p-4 shadow-sm sm:p-6">
-      <div dir="rtl" className="mb-4 flex items-center justify-between">
-        <h3 className="font-semibold text-ink">{dialogue.titleAr}</h3>
-        <span className="rounded-full bg-bg-alt px-3 py-1 text-xs text-ink-muted">
-          {dialogue.register === 'formal' ? 'أسلوب رسمي' : 'أسلوب غير رسمي'}
-        </span>
+    <Card>
+      <div dir="rtl" className="flex items-center justify-between gap-3 border-b border-border px-4 py-3 sm:px-5">
+        <h3 className="font-sans text-base font-bold text-ink">{dialogue.titleAr}</h3>
+        <Badge>{dialogue.register === 'formal' ? 'أسلوب رسمي' : 'أسلوب غير رسمي'}</Badge>
       </div>
 
-      <ol className="space-y-3">
+      <ol className="space-y-3 p-4 sm:p-5">
         {dialogue.lines.map((line, index) => (
           <DialogueBubble key={index} line={line} />
         ))}
       </ol>
-    </div>
+    </Card>
   )
 }
 
@@ -33,21 +32,29 @@ function DialogueBubble({ line }: { line: Dialogue['lines'][number] }) {
   const isA = line.speaker === 'a'
 
   return (
+    // Speaker A sits at the reading start, speaker B at the end, like a chat.
     <li className={cn('flex', isA ? 'justify-start' : 'justify-end')}>
-      <div className={cn('max-w-[85%] rounded-lg p-3', isA ? 'bg-bg-alt' : 'bg-primary-muted')}>
-        <p dir="rtl" className="mb-1 text-xs font-semibold text-ink-muted">
+      <div
+        className={cn(
+          'max-w-[88%] space-y-1 rounded-lg px-4 py-3',
+          isA ? 'rounded-ss-sm bg-surface-sunken' : 'rounded-se-sm bg-accent-muted',
+        )}
+      >
+        <p dir="rtl" className="text-sm font-semibold text-ink-muted">
           {line.name}
         </p>
         <button
           type="button"
           dir="ltr"
+          lang="de"
           onClick={() => speak(line.de, GERMAN_LOCALE)}
-          className="inline-flex items-center gap-1.5 font-de text-ink hover:text-primary"
+          aria-label={`الاستماع إلى: ${line.de}`}
+          className="display-de inline-flex items-start gap-2 text-start text-[1.05rem] font-medium text-ink hover:text-accent"
         >
-          <Volume2 size={14} className={cn(isSpeaking && 'animate-pulse')} aria-hidden="true" />
+          <Volume2 size={16} className={cn('mt-1 shrink-0 text-accent', isSpeaking && 'animate-pulse')} aria-hidden="true" />
           {line.de}
         </button>
-        <p dir="rtl" className="mt-1 text-sm text-ink-muted">
+        <p dir="rtl" className="text-[0.95rem] leading-7 text-ink-muted">
           {line.ar}
         </p>
       </div>

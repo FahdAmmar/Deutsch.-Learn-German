@@ -96,6 +96,7 @@ export const lessonPraepositionen: Lesson = {
       level: 'A1',
       moduleId: 'a1-m11',
       lessonId: 'a1-m11-l01',
+      titleDe: 'Eine Einladung zum Kaffee',
       titleAr: 'دعوة لتناول القهوة',
       register: 'informal',
       lines: [
@@ -110,6 +111,7 @@ export const lessonPraepositionen: Lesson = {
       level: 'A1',
       moduleId: 'a1-m11',
       lessonId: 'a1-m11-l01',
+      titleDe: 'Ein Arzttermin',
       titleAr: 'استشارة طبية',
       register: 'formal',
       lines: [

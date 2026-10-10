@@ -23,14 +23,14 @@ export function Switch({ checked, onChange, label, id }: SwitchProps) {
       aria-label={label}
       onClick={() => onChange(!checked)}
       className={cn(
-        'relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors',
-        checked ? 'bg-primary' : 'border border-border-strong bg-surface-muted',
+        'relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors',
+        checked ? 'bg-accent' : 'border-2 border-border-strong bg-surface-sunken',
       )}
     >
       <span
         className={cn(
-          'absolute top-0.5 h-5 w-5 rounded-full bg-surface shadow-sm transition-all',
-          checked ? 'end-0.5' : 'start-0.5',
+          'absolute h-5 w-5 rounded-full transition-all',
+          checked ? 'end-1 bg-accent-foreground' : 'start-1 bg-ink-faint',
         )}
       />
     </button>

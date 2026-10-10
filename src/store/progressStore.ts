@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 import { zustandStorageEngine } from '@/lib/storage'
+import { computeNextReview } from '@/lib/srs'
 import type { CEFRLevel, ProgressState } from '@/types'
 import { todayKey, daysBetween } from '@/utils/date'
 import { generateId } from '@/utils/id'
@@ -15,6 +16,14 @@ interface ProgressActions {
   isLessonCompleted: (lessonId: string) => boolean
   getLessonAccuracy: (lessonId: string) => number | null
   resetProgress: () => void
+  /** Wholesale-replaces progress state, used by the Settings import flow after validation. */
+  replaceProgress: (nextState: ProgressState) => void
+  /**
+   * Sets the learner's active level without touching lesson/module
+   * pointers — used by the placement test recommendation and manual
+   * level switching. Does not fabricate completed-lesson history.
+   */
+  setCurrentLevel: (level: CEFRLevel) => void
 }
 
 type ProgressStore = ProgressState & ProgressActions
@@ -102,6 +111,9 @@ export const useProgressStore = create<ProgressStore>()(
       recordVocabularyReview: (vocabularyId, correct) => {
         set((state) => {
           const existing = state.vocabulary[vocabularyId]
+          // `existing?.boxLevel` can be undefined for entries persisted before
+          // spaced repetition existed — treat those as box 0 (new).
+          const { boxLevel, nextReviewAt } = computeNextReview(existing?.boxLevel ?? 0, correct)
           return {
             vocabulary: {
               ...state.vocabulary,
@@ -110,6 +122,8 @@ export const useProgressStore = create<ProgressStore>()(
                 timesReviewed: (existing?.timesReviewed ?? 0) + 1,
                 timesCorrect: (existing?.timesCorrect ?? 0) + (correct ? 1 : 0),
                 lastReviewedAt: Date.now(),
+                boxLevel,
+                nextReviewAt,
               },
             },
           }
@@ -121,6 +135,10 @@ export const useProgressStore = create<ProgressStore>()(
       getLessonAccuracy: (lessonId) => get().lessons[lessonId]?.accuracy ?? null,
 
       resetProgress: () => set(initialState),
+
+      replaceProgress: (nextState) => set(nextState),
+
+      setCurrentLevel: (level) => set({ currentLevel: level }),
     }),
     {
       name: 'progress',

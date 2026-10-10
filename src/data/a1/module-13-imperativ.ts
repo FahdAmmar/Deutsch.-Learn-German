@@ -115,6 +115,7 @@ export const lessonImperativ: Lesson = {
       level: 'A1',
       moduleId: 'a1-m13',
       lessonId: 'a1-m13-l01',
+      titleDe: 'Tipps vor der Prüfung',
       titleAr: 'نصائح قبل الامتحان',
       register: 'informal',
       lines: [
@@ -129,6 +130,7 @@ export const lessonImperativ: Lesson = {
       level: 'A1',
       moduleId: 'a1-m13',
       lessonId: 'a1-m13-l01',
+      titleDe: 'Anweisungen in der Praxis',
       titleAr: 'تعليمات في العيادة',
       register: 'formal',
       lines: [

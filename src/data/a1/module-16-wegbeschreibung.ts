@@ -106,6 +106,7 @@ export const lessonWegbeschreibung: Lesson = {
       level: 'A1',
       moduleId: 'a1-m16',
       lessonId: 'a1-m16-l01',
+      titleDe: 'Der Weg zum Café',
       titleAr: 'الطريق إلى المقهى',
       register: 'informal',
       lines: [
@@ -120,6 +121,7 @@ export const lessonWegbeschreibung: Lesson = {
       level: 'A1',
       moduleId: 'a1-m16',
       lessonId: 'a1-m16-l01',
+      titleDe: 'Wie komme ich zum Bahnhof?',
       titleAr: 'سائح يسأل عن المحطة',
       register: 'formal',
       lines: [

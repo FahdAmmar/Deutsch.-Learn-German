@@ -140,6 +140,7 @@ export const lessonPerfekt: Lesson = {
       level: 'A1',
       moduleId: 'a1-m12',
       lessonId: 'a1-m12-l01',
+      titleDe: 'Wie war dein Wochenende?',
       titleAr: 'كيف كانت عطلة نهاية الأسبوع؟',
       register: 'informal',
       lines: [
@@ -154,6 +155,7 @@ export const lessonPerfekt: Lesson = {
       level: 'A1',
       moduleId: 'a1-m12',
       lessonId: 'a1-m12-l01',
+      titleDe: 'Bericht von der Dienstreise',
       titleAr: 'تقرير عن رحلة عمل',
       register: 'formal',
       lines: [
@@ -195,7 +197,7 @@ export const lessonPerfekt: Lesson = {
       level: 'A1',
       promptAr: 'اختر صيغة Partizip II الصحيحة لـ essen',
       questionDe: 'Ich habe Pizza ___.',
-      options: ['gegessen', 'geesst', 'gegesst', 'geesst'],
+      options: ['gegessen', 'geesst', 'gegesst', 'esst'],
       correctIndex: 0,
       explanationAr: 'essen فعل شاذ: Partizip II الصحيح هو gegessen.',
     },

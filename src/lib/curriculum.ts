@@ -1,6 +1,6 @@
 import { curriculum } from '@/data/curriculum'
 import { CEFR_LEVELS } from '@/types'
-import type { CEFRLevel, Lesson, Module } from '@/types'
+import type { CEFRLevel, Lesson, Module, ReadingText } from '@/types'
 
 export function getLevelCurriculum(level: CEFRLevel) {
   return curriculum.find((entry) => entry.level === level)
@@ -74,6 +74,11 @@ export function getVocabularyForLevel(level: CEFRLevel) {
   return Array.from(seen.values())
 }
 
+/** Every vocabulary item across every level — used to pool plausible distractors for review sessions. */
+export function getAllVocabulary() {
+  return CEFR_LEVELS.flatMap((level) => getVocabularyForLevel(level))
+}
+
 /** Every grammar topic across a level's lessons, deduplicated by id. */
 export function getGrammarTopicsForLevel(level: CEFRLevel) {
   const seen = new Map<string, NonNullable<ReturnType<typeof getLessonsForLevel>[number]['grammarTopics']>[number]>()
@@ -88,4 +93,9 @@ export function getGrammarTopicsForLevel(level: CEFRLevel) {
 /** Every practical-usage dialogue across a level's lessons, in curriculum order. */
 export function getDialoguesForLevel(level: CEFRLevel) {
   return getLessonsForLevel(level).flatMap((lesson) => lesson.dialogues ?? [])
+}
+
+/** Standalone bilingual reading texts for a level (the "Reading" tab), in curriculum order. */
+export function getReadingTextsForLevel(level: CEFRLevel): ReadingText[] {
+  return getLevelCurriculum(level)?.readingTexts ?? []
 }

@@ -1,7 +1,7 @@
-import { BookMarked } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { ProgressBar } from '@/components/ui'
+import { Card, ProgressBar } from '@/components/ui'
 import type { VocabularyReviewSummary } from './selectors'
 
 interface VocabularyReviewCardProps {
@@ -12,20 +12,19 @@ export function VocabularyReviewCard({ summary }: VocabularyReviewCardProps) {
   const ratio = summary.total === 0 ? 0 : summary.reviewed / summary.total
 
   return (
-    <Link
-      to="/vocabulary"
-      className="block rounded-lg border border-border bg-surface p-4 transition-colors hover:border-primary/40"
-    >
-      <div dir="rtl" className="mb-3 flex items-center gap-2">
-        <span className="flex h-8 w-8 items-center justify-center rounded-md bg-der-muted text-der">
-          <BookMarked size={16} aria-hidden="true" />
-        </span>
-        <h3 className="font-semibold text-ink">مراجعة المفردات</h3>
-      </div>
-      <ProgressBar value={ratio} tone="accent" label="نسبة مراجعة المفردات" />
-      <p dir="rtl" className="mt-2 text-sm text-ink-muted">
-        راجعت {summary.reviewed} من {summary.total} كلمة في هذا المستوى
-      </p>
+    <Link to="/vocabulary" className="block">
+      <Card interactive>
+        <div dir="rtl" className="space-y-3 p-5">
+          <div className="flex items-center justify-between">
+            <h2 className="font-sans text-lg font-bold text-ink">مفردات المستوى</h2>
+            <ChevronLeft size={18} className="text-ink-faint" aria-hidden="true" />
+          </div>
+          <ProgressBar value={ratio} tone="highlight" label="نسبة مراجعة المفردات" />
+          <p className="tnum text-sm text-ink-muted">
+            راجعت {summary.reviewed} من {summary.total} كلمة
+          </p>
+        </div>
+      </Card>
     </Link>
   )
 }

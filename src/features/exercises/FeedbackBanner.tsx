@@ -1,5 +1,6 @@
 import { CheckCircle2, XCircle } from 'lucide-react'
 
+import { InlineMarkup } from '@/components/ui'
 import { cn } from '@/lib/cn'
 
 interface FeedbackBannerProps {
@@ -7,24 +8,29 @@ interface FeedbackBannerProps {
   explanationAr: string
 }
 
+/** Shown right after an answer. It slides in because it is the direct result of the learner's action. */
 export function FeedbackBanner({ correct, explanationAr }: FeedbackBannerProps) {
   return (
     <div
       dir="rtl"
       role="status"
       className={cn(
-        'flex items-start gap-2.5 rounded-md border p-3.5 text-sm',
-        correct ? 'border-success bg-success-muted text-success' : 'border-error bg-error-muted text-error',
+        'flex animate-[pop-in_220ms_ease-out_both] items-start gap-3 rounded-md p-4',
+        correct ? 'bg-success-muted' : 'bg-error-muted',
       )}
     >
       {correct ? (
-        <CheckCircle2 size={18} className="mt-0.5 shrink-0" aria-hidden="true" />
+        <CheckCircle2 size={22} className="mt-0.5 shrink-0 text-success" aria-hidden="true" />
       ) : (
-        <XCircle size={18} className="mt-0.5 shrink-0" aria-hidden="true" />
+        <XCircle size={22} className="mt-0.5 shrink-0 text-error" aria-hidden="true" />
       )}
       <div className="space-y-1">
-        <p className="font-semibold">{correct ? 'إجابة صحيحة!' : 'إجابة غير صحيحة'}</p>
-        <p className="text-ink-muted">{explanationAr}</p>
+        <p className={cn('font-bold', correct ? 'text-success' : 'text-error')}>
+          {correct ? 'إجابة صحيحة!' : 'إجابة غير صحيحة'}
+        </p>
+        <p className="leading-7 text-ink">
+          <InlineMarkup text={explanationAr} />
+        </p>
       </div>
     </div>
   )
