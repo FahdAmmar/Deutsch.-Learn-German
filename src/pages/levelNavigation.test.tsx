@@ -23,13 +23,20 @@ describe('level navigation', () => {
     useProgressStore.getState().resetProgress()
   })
 
-  it('lists all four CEFR levels on the overview page', () => {
+  it('lists all four CEFR levels on the overview page, in order, as a track and as level cards', () => {
     renderWithRoutes('/levels')
 
-    expect(screen.getByText('A1')).toBeInTheDocument()
-    expect(screen.getByText('A2')).toBeInTheDocument()
-    expect(screen.getByText('B1')).toBeInTheDocument()
-    expect(screen.getByText('B2')).toBeInTheDocument()
+    const track = screen.getByRole('list', { name: 'مراحل المسار' })
+    expect(Array.from(track.querySelectorAll('li')).map((item) => item.textContent?.slice(0, 2))).toEqual(['A1', 'A2', 'B1', 'B2'])
+    expect(screen.getAllByRole('article')).toHaveLength(4)
+  })
+
+  it('opens the current level up to list its chapters, linking to each one', () => {
+    renderWithRoutes('/levels')
+
+    const chapters = screen.getByRole('heading', { name: 'فصول المستوى' }).parentElement!
+    expect(chapters.querySelectorAll('a')).toHaveLength(7)
+    expect(screen.getByRole('link', { name: /Buchstaben und Zahlen/ })).toHaveAttribute('href', '/levels/a1#chapter-buchstaben-zahlen')
   })
 
   it('marks levels without content yet as coming soon', () => {
@@ -38,18 +45,46 @@ describe('level navigation', () => {
     expect(screen.getAllByText('قريباً').length).toBeGreaterThan(0)
   })
 
-  it('renders the module and lesson list for A1', () => {
+  it('renders A1 as an ordered path of chapters with its lessons', () => {
     renderWithRoutes('/levels/a1')
 
-    expect(screen.getByText(/Grundlagen/)).toBeInTheDocument()
+    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
+      'البداية',
+      'الحروف والأرقام',
+      'الأيام والوقت',
+      'أساس القواعد',
+      'عالمي',
+      'الأفعال وبناء الجملة',
+      'مواقف الحياة اليومية',
+    ])
     expect(screen.getByText('Begrüßungen')).toBeInTheDocument()
+    expect(screen.getByText('Alphabet')).toBeInTheDocument()
+    expect(screen.getByText('Wochentage und Monate')).toBeInTheDocument()
+    expect(screen.getByText('Uhrzeit')).toBeInTheDocument()
+  })
+
+  it('teaches letters, then days and time, then the grammar foundation, in that order', () => {
+    renderWithRoutes('/levels/a1')
+
+    const titles = screen.getAllByRole('link').map((link) => link.textContent ?? '')
+    const position = (title: string) => titles.findIndex((text) => text.includes(title))
+    expect(position('Alphabet')).toBeLessThan(position('Wochentage und Monate'))
+    expect(position('Wochentage und Monate')).toBeLessThan(position('Uhrzeit'))
+    expect(position('Uhrzeit')).toBeLessThan(position('Personalpronomen'))
+    expect(position('Personalpronomen')).toBeLessThan(position('Akkusativ'))
+  })
+
+  it('links a lesson to the grammar rule it practises', () => {
+    renderWithRoutes('/levels/a1')
+
+    expect(screen.getAllByRole('link', { name: /Akkusativ/ }).some((link) => link.getAttribute('href')?.startsWith('/grammar/a1/'))).toBe(true)
   })
 
   it('redirects to /levels when given an invalid level slug', () => {
     renderWithRoutes('/levels/z9')
 
-    expect(screen.getByText('A1')).toBeInTheDocument()
-    expect(screen.queryByText(/Grundlagen/)).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /مسار التعلّم والمستويات/ })).toBeInTheDocument()
+    expect(screen.queryByText('Wochentage und Monate')).not.toBeInTheDocument()
   })
 
   it('shows a coming-soon message for a valid level with no modules', () => {

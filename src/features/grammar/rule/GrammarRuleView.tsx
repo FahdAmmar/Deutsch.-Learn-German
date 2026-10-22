@@ -9,6 +9,7 @@ import { FlashcardGrid } from './FlashcardGrid'
 import { RuleHero } from './RuleHero'
 import { LessonsForRule } from '../links/LessonsForRule'
 import { getLessonsForGrammarRule } from '@/lib/grammarLinks'
+import { RuleIndex } from './RuleIndex'
 import { RuleNeighborNav } from './RuleNeighborNav'
 import { RuleQuiz } from './RuleQuiz'
 import { RuleSectionNav } from './RuleSectionNav'
@@ -57,34 +58,40 @@ export function GrammarRuleView({ rule }: GrammarRuleViewProps) {
   }
 
   return (
-    <article dir="rtl" lang="ar" className="space-y-10 pb-12">
-      <RuleHero rule={rule} onStart={startLesson} />
-      <RuleSectionNav items={navItems} />
+    <div className="gap-8 lg:grid lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
+      <article dir="rtl" lang="ar" className="min-w-0 space-y-10 pb-12">
+        <RuleHero rule={rule} onStart={startLesson} />
+        <RuleSectionNav items={navItems} />
 
-      {rule.sections.map((section, index) => (
-        <div key={section.id} className="space-y-10">
-          <RuleSectionView section={section} index={index} />
-          <RailRule />
-        </div>
-      ))}
+        {rule.sections.map((section, index) => (
+          <div key={section.id} className="space-y-10">
+            <RuleSectionView section={section} index={index} />
+            <RailRule />
+          </div>
+        ))}
 
-      <FixedSection id="review" kicker="Wiederholung / مراجعة سريعة" title="مراجعة سريعة — اضغط لقلب كل بطاقة">
-        <FlashcardGrid cards={rule.flashcards} />
-      </FixedSection>
-      <RailRule />
+        <FixedSection id="review" kicker="Wiederholung / مراجعة سريعة" title="مراجعة سريعة — اضغط لقلب كل بطاقة">
+          <FlashcardGrid cards={rule.flashcards} />
+        </FixedSection>
+        <RailRule />
 
-      <FixedSection id="quiz" kicker="Abschlusstest / الاختبار الختامي" title={`الاختبار الختامي — ${rule.termDe}`}>
-        <RuleQuiz rule={rule} />
-      </FixedSection>
-      <RailRule />
+        <FixedSection id="quiz" kicker="Abschlusstest / الاختبار الختامي" title={`الاختبار الختامي — ${rule.termDe}`}>
+          <RuleQuiz rule={rule} />
+        </FixedSection>
+        <RailRule />
 
-      <FixedSection id="cheat-sheet" kicker="Merkzettel / بطاقة مرجعية" title="البطاقة المرجعية السريعة">
-        <CheatSheet items={rule.cheatSheet} />
-      </FixedSection>
+        <FixedSection id="cheat-sheet" kicker="Merkzettel / بطاقة مرجعية" title="البطاقة المرجعية السريعة">
+          <CheatSheet items={rule.cheatSheet} />
+        </FixedSection>
 
-      <LessonsForRule lessons={getLessonsForGrammarRule(rule.number)} />
+        <LessonsForRule lessons={getLessonsForGrammarRule(rule.number)} />
 
-      <RuleNeighborNav number={rule.number} />
-    </article>
+        <RuleNeighborNav number={rule.number} />
+      </article>
+
+      <aside className="hidden lg:block">
+        <RuleIndex level={rule.level} currentNumber={rule.number} />
+      </aside>
+    </div>
   )
 }

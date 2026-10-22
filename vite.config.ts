@@ -34,8 +34,8 @@ export default defineConfig(({ mode }) => {
           start_url: '/dashboard',
           scope: '/',
           display: 'standalone',
-          background_color: '#0b0c0f',
-          theme_color: '#0b0c0f',
+          background_color: '#101216',
+          theme_color: '#172554',
           icons: [
             { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
             { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
@@ -44,29 +44,10 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
-          // Precache the built app shell so the whole SPA opens offline after
+          // Precache the built app shell — including the self-hosted fonts and
+          // the per-level lesson chunks — so the whole SPA opens offline after
           // a first successful visit.
           globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-          runtimeCaching: [
-            {
-              // Google Fonts stylesheets: fetch fresh when online, fall back
-              // to cache when offline.
-              urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-              handler: 'StaleWhileRevalidate',
-              options: { cacheName: 'google-fonts-stylesheets' },
-            },
-            {
-              // The actual font files rarely change once fetched — cache them
-              // long-term so German/Arabic type renders correctly offline too.
-              urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-              handler: 'CacheFirst',
-              options: {
-                cacheName: 'google-fonts-webfonts',
-                cacheableResponse: { statuses: [0, 200] },
-                expiration: { maxAgeSeconds: 60 * 60 * 24 * 365, maxEntries: 20 },
-              },
-            },
-          ],
         },
       }),
     ],

@@ -1,14 +1,17 @@
 import type { CEFRLevel } from './cefr'
 
-export type ExerciseType =
-  | 'multiple-choice'
-  | 'fill-blank'
-  | 'ordering'
-  | 'matching'
-  | 'translation'
-  | 'true-false'
-  | 'listening'
-  | 'vocab-recall'
+export const EXERCISE_TYPES = [
+  'multiple-choice',
+  'fill-blank',
+  'ordering',
+  'matching',
+  'translation',
+  'true-false',
+  'listening',
+  'vocab-recall',
+] as const
+
+export type ExerciseType = (typeof EXERCISE_TYPES)[number]
 
 interface ExerciseBase {
   id: string
@@ -22,9 +25,12 @@ interface ExerciseBase {
 
 export interface MultipleChoiceExercise extends ExerciseBase {
   type: 'multiple-choice'
+  /** The German question or sentence. May be empty when the question is carried by `promptAr`. */
   questionDe: string
   options: string[]
   correctIndex: number
+  /** Language of the options, so they are laid out and read correctly. German unless stated. */
+  optionLanguage?: 'de' | 'ar'
 }
 
 export interface TrueFalseExercise extends ExerciseBase {

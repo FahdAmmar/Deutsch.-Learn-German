@@ -31,6 +31,7 @@ export function ListeningQuestion({ exercise, onAnswer }: Props) {
     <div className="space-y-4">
       <button
         type="button"
+        data-exercise-audio=""
         onClick={() => speak(exercise.audioText)}
         disabled={!isSupported}
         aria-label="إعادة الاستماع"

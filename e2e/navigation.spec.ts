@@ -14,6 +14,8 @@ const ROUTES: ReadonlyArray<{ path: string; heading: RegExp | string }> = [
   { path: '/grammar/a2/25-adjektivdeklination', heading: /Adjektivdeklination/ },
   { path: '/vocabulary', heading: 'المفردات' },
   { path: '/practice', heading: 'التمارين' },
+  { path: '/pronunciation', heading: 'تدريب النطق' },
+  { path: '/my-text/weak-words', heading: 'لا توجد كلمات صعبة الآن' },
   { path: '/progress', heading: 'التقدّم' },
   { path: '/settings', heading: 'الإعدادات' },
 ]

@@ -125,14 +125,14 @@ export const lessonPerfekt: Lesson = {
     { de: 'Ich habe meine Familie besucht.', ar: 'زرت عائلتي. (besuchen بلا ge-)' },
   ],
   vocabulary: [
-    { id: 'voc-perfekt-gestern', word: 'gestern', partOfSpeech: 'adverb', meaningAr: 'أمس', level: 'A1', category: 'ظروف زمنية للماضي' },
-    { id: 'voc-perfekt-letzte-woche', word: 'letzte Woche', partOfSpeech: 'phrase', meaningAr: 'الأسبوع الماضي', level: 'A1', category: 'ظروف زمنية للماضي' },
-    { id: 'voc-perfekt-schon', word: 'schon', partOfSpeech: 'adverb', meaningAr: 'بالفعل / سبق أن', level: 'A1', category: 'ظروف زمنية للماضي' },
-    { id: 'voc-perfekt-noch-nie', word: 'noch nie', partOfSpeech: 'phrase', meaningAr: 'لم يسبق أبداً', level: 'A1', category: 'ظروف زمنية للماضي' },
-    { id: 'voc-perfekt-besuchen', word: 'besuchen', partOfSpeech: 'verb', meaningAr: 'يزور', level: 'A1', category: 'أفعال Perfekt', example: { de: 'Ich habe besucht.', ar: 'زرت. (بلا ge-)' } },
-    { id: 'voc-perfekt-studieren', word: 'studieren', partOfSpeech: 'verb', meaningAr: 'يدرس (جامعياً)', level: 'A1', category: 'أفعال Perfekt', example: { de: 'Ich habe studiert.', ar: 'درست. (بلا ge-)' } },
-    { id: 'voc-perfekt-treffen', word: 'treffen', partOfSpeech: 'verb', meaningAr: 'يقابل', level: 'A1', category: 'أفعال Perfekt', example: { de: 'Ich habe getroffen.', ar: 'قابلت.' } },
-    { id: 'voc-perfekt-bleiben', word: 'bleiben', partOfSpeech: 'verb', meaningAr: 'يبقى', level: 'A1', category: 'أفعال Perfekt', example: { de: 'Ich bin geblieben.', ar: 'بقيت.' } },
+    { id: 'voc-perfekt-gestern', word: 'gestern', partOfSpeech: 'adverb', meaningAr: 'أمس', level: 'A1', category: 'ظروف زمنية للماضي', example: { de: 'Gestern habe ich Deutsch gelernt.', ar: 'أمس تعلّمت الألمانية.' } },
+    { id: 'voc-perfekt-letzte-woche', word: 'letzte Woche', partOfSpeech: 'phrase', meaningAr: 'الأسبوع الماضي', level: 'A1', category: 'ظروف زمنية للماضي', example: { de: 'Letzte Woche bin ich nach Berlin gefahren.', ar: 'الأسبوع الماضي سافرت إلى برلين.' } },
+    { id: 'voc-perfekt-schon', word: 'schon', partOfSpeech: 'adverb', meaningAr: 'بالفعل / سبق أن', level: 'A1', category: 'ظروف زمنية للماضي', example: { de: 'Ich habe schon gegessen.', ar: 'لقد أكلت بالفعل.' } },
+    { id: 'voc-perfekt-noch-nie', word: 'noch nie', partOfSpeech: 'phrase', meaningAr: 'لم يسبق أبداً', level: 'A1', category: 'ظروف زمنية للماضي', example: { de: 'Ich habe noch nie Sushi gegessen.', ar: 'لم آكل السوشي قط.' } },
+    { id: 'voc-perfekt-besuchen', word: 'besuchen', partOfSpeech: 'verb', meaningAr: 'يزور', level: 'A1', category: 'أفعال Perfekt', verb: { praeteritum: 'besuchte', partizip: 'besucht', auxiliary: 'haben' }, example: { de: 'Ich habe meine Tante besucht.', ar: 'زرت عمّتي (أو خالتي). (Partizip II بلا ge-)' } },
+    { id: 'voc-perfekt-studieren', word: 'studieren', partOfSpeech: 'verb', meaningAr: 'يدرس (جامعياً)', level: 'A1', category: 'أفعال Perfekt', verb: { praeteritum: 'studierte', partizip: 'studiert', auxiliary: 'haben' }, example: { de: 'Ich habe in Berlin studiert.', ar: 'درست في برلين. (Partizip II بلا ge-)' } },
+    { id: 'voc-perfekt-treffen', word: 'treffen', partOfSpeech: 'verb', meaningAr: 'يقابل', level: 'A1', category: 'أفعال Perfekt', verb: { present: ['treffe', 'triffst', 'trifft', 'treffen', 'trefft', 'treffen'], praeteritum: 'traf', partizip: 'getroffen', auxiliary: 'haben' }, example: { de: 'Ich habe gestern einen Freund getroffen.', ar: 'قابلت أمس صديقاً.' } },
+    { id: 'voc-perfekt-bleiben', word: 'bleiben', partOfSpeech: 'verb', meaningAr: 'يبقى', level: 'A1', category: 'أفعال Perfekt', verb: { praeteritum: 'blieb', partizip: 'geblieben', auxiliary: 'sein' }, example: { de: 'Ich bin gestern zu Hause geblieben.', ar: 'بقيت أمس في البيت.' } },
   ],
   dialogues: [
     {

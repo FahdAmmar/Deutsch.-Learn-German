@@ -2,13 +2,13 @@ import { describe, expect, it } from 'vitest'
 
 import {
   getDialoguesForLevel,
-  getGrammarTopicsForLevel,
   getLesson,
   getLessonsForLevel,
   getModulesForLevel,
   getNextLesson,
   getVocabularyForLevel,
 } from './curriculum'
+import { getLevelChapters } from './learningPath'
 
 describe('curriculum helpers (against real A1 data)', () => {
   it('returns all authored A1 modules in order', () => {
@@ -67,13 +67,13 @@ describe('curriculum helpers (against real A1 data)', () => {
     expect(next?.level).toBe('A1')
   })
 
-  it('chains across a module boundary to the first lesson of the next module', () => {
+  it('chains across a chapter boundary to the first lesson of the next chapter on the learning path', () => {
     const lessons = getLessonsForLevel('A1')
-    const lastOfFirstModule = getModulesForLevel('A1')[0].lessons.at(-1)!
-    const next = getNextLesson(lastOfFirstModule.id)
+    const [first, second] = getLevelChapters('A1')
+    const lastOfFirstChapter = first.lessons.at(-1)!
+    const next = getNextLesson(lastOfFirstChapter.id)
 
-    const firstOfSecondModule = getModulesForLevel('A1')[1].lessons[0]
-    expect(next?.id).toBe(firstOfSecondModule.id)
+    expect(next?.id).toBe(second.lessons[0].id)
     expect(lessons).toContainEqual(next)
   })
 
@@ -86,12 +86,6 @@ describe('curriculum helpers (against real A1 data)', () => {
   it('deduplicates vocabulary items that appear in more than one lesson', () => {
     const vocabulary = getVocabularyForLevel('A1')
     const ids = vocabulary.map((item) => item.id)
-    expect(new Set(ids).size).toBe(ids.length)
-  })
-
-  it('deduplicates grammar topics across lessons', () => {
-    const topics = getGrammarTopicsForLevel('A1')
-    const ids = topics.map((topic) => topic.id)
     expect(new Set(ids).size).toBe(ids.length)
   })
 

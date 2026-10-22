@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
 import { getAllVocabulary, getLessonsForLevel, getReadingTextsForLevel } from '@/lib/curriculum'
+import { splitSentences } from '@/lib/sentences'
+import { parseInfinitive } from '@/lib/verbs'
 import { CEFR_LEVELS } from '@/types'
 
 /**
@@ -122,6 +124,79 @@ describe('curriculum content integrity', () => {
         expect(paragraph.de.trim(), `${text.id} has a blank German paragraph`).not.toBe('')
         expect(paragraph.ar.trim(), `${text.id} has a blank Arabic paragraph`).not.toBe('')
       }
+    }
+  })
+
+  // Dictation shows one sentence at a time with its own translation, so every shipped paragraph
+  // needs one Arabic line per German sentence, in the same order the sentence splitter yields them.
+  it('every reading paragraph has one non-empty Arabic sentence per German sentence', () => {
+    const allReadingTexts = CEFR_LEVELS.flatMap((level) => getReadingTextsForLevel(level))
+    for (const text of allReadingTexts) {
+      text.paragraphs.forEach((paragraph, position) => {
+        const sentences = splitSentences(paragraph.de)
+        const label = `${text.id} paragraph ${position + 1}`
+        expect(paragraph.sentencesAr, `${label} has no sentencesAr`).toBeDefined()
+        expect(paragraph.sentencesAr?.length, `${label}: ${sentences.length} German sentences vs sentencesAr`).toBe(sentences.length)
+        for (const arabic of paragraph.sentencesAr ?? []) expect(arabic.trim(), `${label} has a blank Arabic sentence`).not.toBe('')
+      })
+    }
+  })
+})
+
+describe('vocabulary integrity', () => {
+  const vocabulary = getAllVocabulary()
+  const nouns = vocabulary.filter((item) => item.partOfSpeech === 'noun')
+  const verbs = vocabulary.filter((item) => item.partOfSpeech === 'verb')
+
+  it('every noun is taught with its article and its plural, unless it is marked as having none', () => {
+    for (const noun of nouns) {
+      if (noun.numberUse === 'name') {
+        expect(noun.article, `${noun.id} is a name used without an article`).toBeUndefined()
+        expect(noun.plural, `${noun.id} is a name used without a plural`).toBeUndefined()
+        continue
+      }
+      expect(noun.article, `${noun.id} needs its article`).toBeDefined()
+      if (noun.numberUse === undefined) expect(noun.plural, `${noun.id} needs its plural (or numberUse)`).toBeTruthy()
+      if (noun.numberUse === 'none' || noun.numberUse === 'only') expect(noun.plural, `${noun.id} has no ordinary plural`).toBeUndefined()
+    }
+  })
+
+  it('every vocabulary item has a complete bilingual example sentence', () => {
+    for (const item of vocabulary) {
+      expect(item.example?.de.trim(), `${item.id} needs a German example`).toBeTruthy()
+      expect(item.example?.ar.trim(), `${item.id} needs an Arabic example`).toBeTruthy()
+    }
+  })
+
+  it('every verb carries the forms of its Perfekt and Präteritum (möchten has neither)', () => {
+    for (const verb of verbs) {
+      expect(verb.verb, `${verb.id} needs its verb forms`).toBeDefined()
+      if (verb.word === 'möchten') continue
+      expect(verb.verb?.praeteritum, `${verb.id} needs its Präteritum`).toBeTruthy()
+      expect(verb.verb?.partizip, `${verb.id} needs its Partizip II`).toBeTruthy()
+      expect(verb.verb?.auxiliary, `${verb.id} needs haben or sein`).toBeDefined()
+    }
+  })
+
+  it('stored present forms are six full forms whose plural matches the infinitive', () => {
+    for (const verb of verbs) {
+      const present = verb.verb?.present
+      if (!present) continue
+      expect(present, `${verb.id} present`).toHaveLength(6)
+      for (const form of present) expect(form.trim(), `${verb.id} has an empty present form`).not.toBe('')
+      if (verb.word === 'sein') continue
+      const { verb: infinitive } = parseInfinitive(verb)
+      expect(present[3], `${verb.id}: wir-form`).toBe(infinitive)
+      expect(present[5], `${verb.id}: sie-form`).toBe(infinitive)
+    }
+  })
+
+  it('a separable verb starts with its prefix, and so does its Partizip II', () => {
+    for (const verb of verbs) {
+      const prefix = verb.verb?.separablePrefix
+      if (!prefix) continue
+      expect(verb.word.startsWith(prefix), `${verb.id}: infinitive`).toBe(true)
+      expect(verb.verb?.partizip?.startsWith(prefix), `${verb.id}: Partizip II`).toBe(true)
     }
   })
 })

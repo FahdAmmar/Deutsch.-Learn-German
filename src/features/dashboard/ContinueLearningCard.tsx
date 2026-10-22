@@ -1,7 +1,7 @@
 import { ArrowLeft, Clock } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { Button, Card, ProgressBar } from '@/components/ui'
+import { Badge, Button, Card, ProgressBar } from '@/components/ui'
 import { LevelMark } from '@/features/levels/LevelMark'
 import { getModuleById } from '@/lib/curriculum'
 import { useProgressStore } from '@/store/progressStore'
@@ -32,7 +32,7 @@ export function ContinueLearningCard({ lesson }: ContinueLearningCardProps) {
   const started = Boolean(lessons[lesson.id]) && !lessons[lesson.id]?.completed
 
   return (
-    <Card tone="brand" className="overflow-hidden">
+    <Card className="overflow-hidden shadow-sm">
       <div dir="rtl" className="space-y-5 p-5 sm:p-8">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
           <LevelMark level={lesson.level} size="sm" />
@@ -48,12 +48,26 @@ export function ContinueLearningCard({ lesson }: ContinueLearningCardProps) {
           <h2
             lang="de"
             dir="ltr"
-            className="display-de text-end text-[2.4rem] font-semibold text-ink [overflow-wrap:anywhere] sm:text-5xl"
+            className="display-de text-end text-4xl font-semibold text-ink [overflow-wrap:anywhere] sm:text-5xl"
           >
             {lesson.title}
           </h2>
           <p className="text-xl font-medium text-ink-muted">{lesson.titleAr}</p>
         </div>
+
+        {lesson.vocabulary.length > 0 ? (
+          <ul aria-label="كلمات من هذا الدرس" className="flex flex-wrap gap-2">
+            {lesson.vocabulary.slice(0, 4).map((item) => (
+              <li key={item.id} dir="ltr" lang="de" className="flex items-center gap-2 rounded-md border border-border bg-bg px-3 py-1.5">
+                {item.article ? <Badge tone={item.article}>{item.article}</Badge> : null}
+                <span className="font-medium text-ink">{item.word}</span>
+                <span dir="rtl" lang="ar" className="text-sm text-ink-muted">
+                  ({item.meaningAr})
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <Link to={`/lessons/${lesson.level.toLowerCase()}/${lesson.slug}`}>
@@ -69,7 +83,7 @@ export function ContinueLearningCard({ lesson }: ContinueLearningCardProps) {
       </div>
 
       {moduleLessons.length > 1 ? (
-        <div dir="rtl" className="flex items-center gap-4 border-t border-primary/15 bg-surface/40 px-5 py-3 sm:px-8">
+        <div dir="rtl" className="flex items-center gap-4 border-t border-border bg-bg px-5 py-3 sm:px-8">
           <ProgressBar
             value={completedInModule / moduleLessons.length}
             size="sm"

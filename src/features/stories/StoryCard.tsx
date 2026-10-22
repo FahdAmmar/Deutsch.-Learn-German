@@ -1,7 +1,10 @@
-import { Clock, MessagesSquare, Play, BookOpenText } from 'lucide-react'
+import { Check, ClipboardCheck, Clock, MessagesSquare, Play, BookOpenText } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui'
+import { formatPercent } from '@/features/dictation/format'
+import { selectDictationProgress, useDictationStore } from '@/store/dictationStore'
+import { selectStoryQuizProgress, useStoryQuizStore } from '@/store/storyQuizStore'
 import type { Story } from '@/types'
 
 import { categoryTone } from '@/features/reading/categoryTone'
@@ -14,6 +17,8 @@ interface StoryCardProps {
 export function StoryCard({ story }: StoryCardProps) {
   const isReading = story.kind === 'reading'
   const lineCount = story.segments.length
+  const dictation = useDictationStore(selectDictationProgress(story.id))
+  const quiz = useStoryQuizStore(selectStoryQuizProgress(story.id))
 
   return (
     <Link
@@ -51,6 +56,18 @@ export function StoryCard({ story }: StoryCardProps) {
               </>
             )}
           </span>
+          {quiz ? (
+            <Badge tone="success">
+              <ClipboardCheck size={12} aria-hidden="true" />
+              اختبار {formatPercent(quiz.bestAccuracy)}
+            </Badge>
+          ) : null}
+          {dictation?.completed ? (
+            <Badge tone="success">
+              <Check size={12} aria-hidden="true" />
+              إملاء {formatPercent(dictation.bestAccuracy)}
+            </Badge>
+          ) : null}
         </span>
       </span>
     </Link>

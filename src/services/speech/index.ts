@@ -1,7 +1,8 @@
 import { BrowserSpeechService } from './browserSpeechService'
-import type { SpeakOptions, SpeechService, SpeechStatus } from './types'
+import type { SpeakOptions, SpeechService, SpeechStatus, VoiceInfo } from './types'
 
-export type { SpeakOptions, SpeechService, SpeechStatus }
+export type { SpeakOptions, SpeechService, SpeechStatus, VoiceInfo }
+export { chooseVoice, scoreVoice, voicesForLanguage } from './voices'
 
 /**
  * Single instance used across the app. To move to an external TTS

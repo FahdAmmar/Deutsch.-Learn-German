@@ -84,14 +84,14 @@ export const lessonUmZu: Lesson = {
     { de: 'Ruf mich an, damit wir uns treffen können.', ar: 'اتصل بي لكي نتمكّن من اللقاء.' },
   ],
   vocabulary: [
-    { id: 'voc-umzu-karriere', word: 'Karriere', article: 'die', partOfSpeech: 'noun', meaningAr: 'المسيرة المهنية', level: 'A2', category: 'المهنة والعمل' },
-    { id: 'voc-umzu-bewerbung', word: 'Bewerbung', article: 'die', partOfSpeech: 'noun', meaningAr: 'طلب التوظيف', level: 'A2', category: 'المهنة والعمل' },
-    { id: 'voc-umzu-lebenslauf', word: 'Lebenslauf', article: 'der', partOfSpeech: 'noun', meaningAr: 'السيرة الذاتية', level: 'A2', category: 'المهنة والعمل' },
-    { id: 'voc-umzu-vorstellungsgespraech', word: 'Vorstellungsgespräch', article: 'das', partOfSpeech: 'noun', meaningAr: 'مقابلة العمل', level: 'A2', category: 'المهنة والعمل' },
-    { id: 'voc-umzu-gehalt', word: 'Gehalt', article: 'das', partOfSpeech: 'noun', meaningAr: 'الراتب', level: 'A2', category: 'المهنة والعمل' },
-    { id: 'voc-umzu-erfahrung', word: 'Erfahrung', article: 'die', partOfSpeech: 'noun', meaningAr: 'الخبرة', level: 'A2', category: 'المهنة والعمل' },
-    { id: 'voc-umzu-bestehen', word: 'bestehen', partOfSpeech: 'verb', meaningAr: 'ينجح (في امتحان)', level: 'A2', category: 'مفردات مرافقة' },
-    { id: 'voc-umzu-sparen', word: 'sparen', partOfSpeech: 'verb', meaningAr: 'يدّخر', level: 'A2', category: 'مفردات مرافقة' },
+    { id: 'voc-umzu-karriere', word: 'Karriere', article: 'die', plural: 'Karrieren', partOfSpeech: 'noun', meaningAr: 'المسيرة المهنية', level: 'A2', category: 'المهنة والعمل', example: { de: 'Sie macht Karriere in einer Bank.', ar: 'هي تبني مسيرة مهنية في بنك.' } },
+    { id: 'voc-umzu-bewerbung', word: 'Bewerbung', article: 'die', plural: 'Bewerbungen', partOfSpeech: 'noun', meaningAr: 'طلب التوظيف', level: 'A2', category: 'المهنة والعمل', example: { de: 'Ich schreibe eine Bewerbung.', ar: 'أكتب طلب توظيف.' } },
+    { id: 'voc-umzu-lebenslauf', word: 'Lebenslauf', article: 'der', plural: 'Lebensläufe', partOfSpeech: 'noun', meaningAr: 'السيرة الذاتية', level: 'A2', category: 'المهنة والعمل', example: { de: 'Im Lebenslauf stehen meine Erfahrungen.', ar: 'في السيرة الذاتية تُذكر خبراتي.' } },
+    { id: 'voc-umzu-vorstellungsgespraech', word: 'Vorstellungsgespräch', article: 'das', plural: 'Vorstellungsgespräche', partOfSpeech: 'noun', meaningAr: 'مقابلة العمل', level: 'A2', category: 'المهنة والعمل', example: { de: 'Morgen habe ich ein Vorstellungsgespräch.', ar: 'غداً عندي مقابلة عمل.' } },
+    { id: 'voc-umzu-gehalt', word: 'Gehalt', article: 'das', plural: 'Gehälter', partOfSpeech: 'noun', meaningAr: 'الراتب', level: 'A2', category: 'المهنة والعمل', example: { de: 'Das Gehalt ist gut.', ar: 'الراتب جيد.' } },
+    { id: 'voc-umzu-erfahrung', word: 'Erfahrung', article: 'die', plural: 'Erfahrungen', partOfSpeech: 'noun', meaningAr: 'الخبرة', level: 'A2', category: 'المهنة والعمل', example: { de: 'Ich habe viel Erfahrung im Verkauf.', ar: 'عندي خبرة كبيرة في المبيعات.' } },
+    { id: 'voc-umzu-bestehen', word: 'bestehen', partOfSpeech: 'verb', meaningAr: 'ينجح (في امتحان)', level: 'A2', category: 'مفردات مرافقة', verb: { praeteritum: 'bestand', partizip: 'bestanden', auxiliary: 'haben' }, example: { de: 'Ich muss die Prüfung bestehen.', ar: 'يجب أن أنجح في الامتحان.' } },
+    { id: 'voc-umzu-sparen', word: 'sparen', partOfSpeech: 'verb', meaningAr: 'يدّخر', level: 'A2', category: 'مفردات مرافقة', verb: { praeteritum: 'sparte', partizip: 'gespart', auxiliary: 'haben' }, example: { de: 'Ich spare Geld für ein Auto.', ar: 'أدّخر المال لشراء سيارة.' } },
   ],
   dialogues: [
     {

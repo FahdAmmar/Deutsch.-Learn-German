@@ -100,14 +100,14 @@ export const lessonPossessivartikel: Lesson = {
     { de: 'Er hat sein Auto verkauft.', ar: 'باع سيارته.' },
   ],
   vocabulary: [
-    { id: 'voc-possessiv-onkel', word: 'Onkel', article: 'der', partOfSpeech: 'noun', meaningAr: 'العمّ / الخال', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-tante', word: 'Tante', article: 'die', partOfSpeech: 'noun', meaningAr: 'العمّة / الخالة', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-cousin', word: 'Cousin', article: 'der', partOfSpeech: 'noun', meaningAr: 'ابن العم/الخال', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-cousine', word: 'Cousine', article: 'die', partOfSpeech: 'noun', meaningAr: 'بنت العم/الخال', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-grosseltern', word: 'Großeltern', article: 'die', partOfSpeech: 'noun', meaningAr: 'الأجداد', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-enkel', word: 'Enkel', article: 'der', partOfSpeech: 'noun', meaningAr: 'الحفيد', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-freund', word: 'Freund', article: 'der', partOfSpeech: 'noun', meaningAr: 'الصديق', level: 'A1', category: 'العائلة الممتدة' },
-    { id: 'voc-possessiv-freundin', word: 'Freundin', article: 'die', partOfSpeech: 'noun', meaningAr: 'الصديقة', level: 'A1', category: 'العائلة الممتدة' },
+    { id: 'voc-possessiv-onkel', word: 'Onkel', article: 'der', plural: 'Onkel', partOfSpeech: 'noun', meaningAr: 'العمّ / الخال', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Mein Onkel wohnt in München.', ar: 'عمّي (أو خالي) يسكن في ميونخ.' } },
+    { id: 'voc-possessiv-tante', word: 'Tante', article: 'die', plural: 'Tanten', partOfSpeech: 'noun', meaningAr: 'العمّة / الخالة', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Meine Tante wohnt in Wien.', ar: 'عمّتي (أو خالتي) تسكن في فيينا.' } },
+    { id: 'voc-possessiv-cousin', word: 'Cousin', article: 'der', plural: 'Cousins', partOfSpeech: 'noun', meaningAr: 'ابن العم/الخال', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Mein Cousin ist neunzehn.', ar: 'ابن عمّي (أو خالي) عمره تسعة عشر عاماً.' } },
+    { id: 'voc-possessiv-cousine', word: 'Cousine', article: 'die', plural: 'Cousinen', partOfSpeech: 'noun', meaningAr: 'بنت العم/الخال', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Meine Cousine wohnt in Bonn.', ar: 'بنت عمّي (أو خالي) تسكن في بون.' } },
+    { id: 'voc-possessiv-grosseltern', word: 'Großeltern', article: 'die', numberUse: 'only', partOfSpeech: 'noun', meaningAr: 'الأجداد', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Meine Großeltern haben ein Haus.', ar: 'جدّي وجدّتي عندهما بيت.' } },
+    { id: 'voc-possessiv-enkel', word: 'Enkel', article: 'der', plural: 'Enkel', partOfSpeech: 'noun', meaningAr: 'الحفيد', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Das ist mein Enkel.', ar: 'هذا حفيدي.' } },
+    { id: 'voc-possessiv-freund', word: 'Freund', article: 'der', plural: 'Freunde', partOfSpeech: 'noun', meaningAr: 'الصديق', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Mein Freund heißt Karim.', ar: 'اسم صديقي كريم.' } },
+    { id: 'voc-possessiv-freundin', word: 'Freundin', article: 'die', plural: 'Freundinnen', partOfSpeech: 'noun', meaningAr: 'الصديقة', level: 'A1', category: 'العائلة الممتدة', example: { de: 'Meine Freundin wohnt in Hamburg.', ar: 'صديقتي تسكن في هامبورغ.' } },
   ],
   dialogues: [
     {

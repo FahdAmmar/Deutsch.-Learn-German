@@ -69,10 +69,10 @@ export const lessonSein: Lesson = {
     { de: 'Seid ihr fertig?', ar: 'هل أنتم جاهزون؟' },
   ],
   vocabulary: [
-    { id: 'voc-sein-sein', word: 'sein', partOfSpeech: 'verb', meaningAr: 'يكون', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-sein-mued', word: 'müde', partOfSpeech: 'adjective', meaningAr: 'متعب', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-sein-nett', word: 'nett', partOfSpeech: 'adjective', meaningAr: 'لطيف', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-sein-fertig', word: 'fertig', partOfSpeech: 'adjective', meaningAr: 'جاهز/منتهٍ', level: 'A1', category: 'Grundgrammatik' },
+    { id: 'voc-sein-sein', word: 'sein', partOfSpeech: 'verb', meaningAr: 'يكون', level: 'A1', category: 'Grundgrammatik', verb: { present: ['bin', 'bist', 'ist', 'sind', 'seid', 'sind'], praeteritum: 'war', partizip: 'gewesen', auxiliary: 'sein' }, example: { de: 'Wir sind Freunde.', ar: 'نحن أصدقاء.' } },
+    { id: 'voc-sein-mued', word: 'müde', partOfSpeech: 'adjective', meaningAr: 'متعب', level: 'A1', category: 'Grundgrammatik', example: { de: 'Ich bin müde.', ar: 'أنا متعب.' } },
+    { id: 'voc-sein-nett', word: 'nett', partOfSpeech: 'adjective', meaningAr: 'لطيف', level: 'A1', category: 'Grundgrammatik', example: { de: 'Mein Lehrer ist nett.', ar: 'معلّمي لطيف.' } },
+    { id: 'voc-sein-fertig', word: 'fertig', partOfSpeech: 'adjective', meaningAr: 'جاهز/منتهٍ', level: 'A1', category: 'Grundgrammatik', example: { de: 'Ich bin fertig!', ar: 'أنا جاهز! / انتهيت!' } },
   ],
   exercises: [
     {
@@ -186,10 +186,10 @@ export const lessonHaben: Lesson = {
     { de: 'Wir haben keine Zeit.', ar: 'ليس لدينا وقت.' },
   ],
   vocabulary: [
-    { id: 'voc-haben-haben', word: 'haben', partOfSpeech: 'verb', meaningAr: 'يملك/لديه', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-haben-hunger', word: 'Hunger', article: 'der', partOfSpeech: 'noun', meaningAr: 'الجوع', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-haben-zeit', word: 'Zeit', article: 'die', partOfSpeech: 'noun', meaningAr: 'الوقت', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-haben-hund', word: 'Hund', article: 'der', plural: 'Hunde', partOfSpeech: 'noun', meaningAr: 'الكلب', level: 'A1', category: 'Grundgrammatik' },
+    { id: 'voc-haben-haben', word: 'haben', partOfSpeech: 'verb', meaningAr: 'يملك/لديه', level: 'A1', category: 'Grundgrammatik', verb: { present: ['habe', 'hast', 'hat', 'haben', 'habt', 'haben'], praeteritum: 'hatte', partizip: 'gehabt', auxiliary: 'haben' }, example: { de: 'Ich habe eine Schwester.', ar: 'عندي أخت.' } },
+    { id: 'voc-haben-hunger', word: 'Hunger', article: 'der', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'الجوع', level: 'A1', category: 'Grundgrammatik', example: { de: 'Ich habe Hunger.', ar: 'أنا جائع.' } },
+    { id: 'voc-haben-zeit', word: 'Zeit', article: 'die', plural: 'Zeiten', partOfSpeech: 'noun', meaningAr: 'الوقت', level: 'A1', category: 'Grundgrammatik', example: { de: 'Hast du heute Zeit?', ar: 'هل عندك وقت اليوم؟' } },
+    { id: 'voc-haben-hund', word: 'Hund', article: 'der', plural: 'Hunde', partOfSpeech: 'noun', meaningAr: 'الكلب', level: 'A1', category: 'Grundgrammatik', example: { de: 'Ich habe einen Hund.', ar: 'عندي كلب.' } },
   ],
   exercises: [
     {
@@ -316,10 +316,10 @@ export const lessonRegelmaessigeVerben: Lesson = {
     },
   ],
   vocabulary: [
-    { id: 'voc-regelmaessig-lernen', word: 'lernen', partOfSpeech: 'verb', meaningAr: 'يتعلّم', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-regelmaessig-wohnen', word: 'wohnen', partOfSpeech: 'verb', meaningAr: 'يسكن', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-regelmaessig-spielen', word: 'spielen', partOfSpeech: 'verb', meaningAr: 'يلعب', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-regelmaessig-arbeiten', word: 'arbeiten', partOfSpeech: 'verb', meaningAr: 'يعمل', level: 'A1', category: 'Grundgrammatik' },
+    { id: 'voc-regelmaessig-lernen', word: 'lernen', partOfSpeech: 'verb', meaningAr: 'يتعلّم', level: 'A1', category: 'Grundgrammatik', verb: { praeteritum: 'lernte', partizip: 'gelernt', auxiliary: 'haben' }, example: { de: 'Ich lerne jeden Tag Deutsch.', ar: 'أتعلّم الألمانية كل يوم.' } },
+    { id: 'voc-regelmaessig-wohnen', word: 'wohnen', partOfSpeech: 'verb', meaningAr: 'يسكن', level: 'A1', category: 'Grundgrammatik', verb: { praeteritum: 'wohnte', partizip: 'gewohnt', auxiliary: 'haben' }, example: { de: 'Wir wohnen in Berlin.', ar: 'نحن نسكن في برلين.' } },
+    { id: 'voc-regelmaessig-spielen', word: 'spielen', partOfSpeech: 'verb', meaningAr: 'يلعب', level: 'A1', category: 'Grundgrammatik', verb: { praeteritum: 'spielte', partizip: 'gespielt', auxiliary: 'haben' }, example: { de: 'Die Kinder spielen im Park.', ar: 'الأطفال يلعبون في الحديقة العامة.' } },
+    { id: 'voc-regelmaessig-arbeiten', word: 'arbeiten', partOfSpeech: 'verb', meaningAr: 'يعمل', level: 'A1', category: 'Grundgrammatik', verb: { praeteritum: 'arbeitete', partizip: 'gearbeitet', auxiliary: 'haben' }, example: { de: 'Sie arbeitet in einer Bank.', ar: 'هي تعمل في بنك.' } },
   ],
   exercises: [
     {
@@ -426,10 +426,10 @@ export const lessonArtikel: Lesson = {
     },
   ],
   vocabulary: [
-    { id: 'voc-artikel-tisch', word: 'Tisch', article: 'der', plural: 'Tische', partOfSpeech: 'noun', meaningAr: 'الطاولة', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-artikel-lampe', word: 'Lampe', article: 'die', plural: 'Lampen', partOfSpeech: 'noun', meaningAr: 'المصباح', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-artikel-buch', word: 'Buch', article: 'das', plural: 'Bücher', partOfSpeech: 'noun', meaningAr: 'الكتاب', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-artikel-stuhl', word: 'Stuhl', article: 'der', plural: 'Stühle', partOfSpeech: 'noun', meaningAr: 'الكرسي', level: 'A1', category: 'Grundgrammatik' },
+    { id: 'voc-artikel-tisch', word: 'Tisch', article: 'der', plural: 'Tische', partOfSpeech: 'noun', meaningAr: 'الطاولة', level: 'A1', category: 'Grundgrammatik', example: { de: 'Der Tisch ist groß.', ar: 'الطاولة كبيرة.' } },
+    { id: 'voc-artikel-lampe', word: 'Lampe', article: 'die', plural: 'Lampen', partOfSpeech: 'noun', meaningAr: 'المصباح', level: 'A1', category: 'Grundgrammatik', example: { de: 'Die Lampe ist neu.', ar: 'المصباح جديد.' } },
+    { id: 'voc-artikel-buch', word: 'Buch', article: 'das', plural: 'Bücher', partOfSpeech: 'noun', meaningAr: 'الكتاب', level: 'A1', category: 'Grundgrammatik', example: { de: 'Das Buch ist interessant.', ar: 'الكتاب ممتع.' } },
+    { id: 'voc-artikel-stuhl', word: 'Stuhl', article: 'der', plural: 'Stühle', partOfSpeech: 'noun', meaningAr: 'الكرسي', level: 'A1', category: 'Grundgrammatik', example: { de: 'Der Stuhl ist braun.', ar: 'الكرسي بنّي اللون.' } },
   ],
   exercises: [
     {
@@ -549,10 +549,10 @@ export const lessonAkkusativ: Lesson = {
     },
   ],
   vocabulary: [
-    { id: 'voc-akkusativ-sehen', word: 'sehen', partOfSpeech: 'verb', meaningAr: 'يرى', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-akkusativ-kaufen', word: 'kaufen', partOfSpeech: 'verb', meaningAr: 'يشتري', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-akkusativ-brauchen', word: 'brauchen', partOfSpeech: 'verb', meaningAr: 'يحتاج', level: 'A1', category: 'Grundgrammatik' },
-    { id: 'voc-akkusativ-tasche', word: 'Tasche', article: 'die', plural: 'Taschen', partOfSpeech: 'noun', meaningAr: 'الحقيبة', level: 'A1', category: 'Grundgrammatik' },
+    { id: 'voc-akkusativ-sehen', word: 'sehen', partOfSpeech: 'verb', meaningAr: 'يرى', level: 'A1', category: 'Grundgrammatik', verb: { present: ['sehe', 'siehst', 'sieht', 'sehen', 'seht', 'sehen'], praeteritum: 'sah', partizip: 'gesehen', auxiliary: 'haben' }, example: { de: 'Ich sehe einen Hund.', ar: 'أرى كلباً.' } },
+    { id: 'voc-akkusativ-kaufen', word: 'kaufen', partOfSpeech: 'verb', meaningAr: 'يشتري', level: 'A1', category: 'Grundgrammatik', verb: { praeteritum: 'kaufte', partizip: 'gekauft', auxiliary: 'haben' }, example: { de: 'Ich kaufe ein Brot.', ar: 'أشتري رغيف خبز.' } },
+    { id: 'voc-akkusativ-brauchen', word: 'brauchen', partOfSpeech: 'verb', meaningAr: 'يحتاج', level: 'A1', category: 'Grundgrammatik', verb: { praeteritum: 'brauchte', partizip: 'gebraucht', auxiliary: 'haben' }, example: { de: 'Ich brauche einen Stuhl.', ar: 'أحتاج إلى كرسي.' } },
+    { id: 'voc-akkusativ-tasche', word: 'Tasche', article: 'die', plural: 'Taschen', partOfSpeech: 'noun', meaningAr: 'الحقيبة', level: 'A1', category: 'Grundgrammatik', example: { de: 'Ich habe eine Tasche.', ar: 'عندي حقيبة.' } },
   ],
   exercises: [
     {

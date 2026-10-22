@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 import { zustandStorageEngine } from '@/lib/storage'
-import { DEFAULT_PREFERENCES, type UserPreferences } from '@/types/settings'
+import { DEFAULT_PREFERENCES, type TextScale, type UserPreferences } from '@/types/settings'
 
 interface SettingsState {
   settings: UserPreferences
@@ -10,6 +10,16 @@ interface SettingsState {
   setSpeechRate: (value: number) => void
   setReducedMotion: (value: boolean) => void
   setShowTranslations: (value: boolean) => void
+  setDictationAcceptTransliteration: (value: boolean) => void
+  setDictationHideText: (value: boolean) => void
+  setSoundEffects: (value: boolean) => void
+  setPreferredVoiceURI: (value: string | null) => void
+  toggleFavoriteVoice: (voiceURI: string) => void
+  setTextScale: (value: TextScale) => void
+  setHighContrast: (value: boolean) => void
+  setShowPronunciationHints: (value: boolean) => void
+  setDailyGoal: (value: number) => void
+  completeOnboarding: () => void
   resetToDefaults: () => void
 }
 
@@ -32,7 +42,38 @@ export const useSettingsStore = create<SettingsState>()(
       setShowTranslations: (value) =>
         set((state) => ({ settings: { ...state.settings, showTranslations: value } })),
 
-      resetToDefaults: () => set({ settings: DEFAULT_PREFERENCES }),
+      setDictationAcceptTransliteration: (value) =>
+        set((state) => ({ settings: { ...state.settings, dictationAcceptTransliteration: value } })),
+
+      setDictationHideText: (value) =>
+        set((state) => ({ settings: { ...state.settings, dictationHideText: value } })),
+
+      setSoundEffects: (value) => set((state) => ({ settings: { ...state.settings, soundEffects: value } })),
+
+      setPreferredVoiceURI: (value) => set((state) => ({ settings: { ...state.settings, preferredVoiceURI: value } })),
+
+      toggleFavoriteVoice: (voiceURI) =>
+        set((state) => {
+          const current = state.settings.favoriteVoiceURIs
+          const next = current.includes(voiceURI) ? current.filter((uri) => uri !== voiceURI) : [...current, voiceURI]
+          return { settings: { ...state.settings, favoriteVoiceURIs: next } }
+        }),
+
+      setTextScale: (value) => set((state) => ({ settings: { ...state.settings, textScale: value } })),
+
+      setHighContrast: (value) => set((state) => ({ settings: { ...state.settings, highContrast: value } })),
+
+      setShowPronunciationHints: (value) =>
+        set((state) => ({ settings: { ...state.settings, showPronunciationHints: value } })),
+
+      setDailyGoal: (value) =>
+        set((state) => ({ settings: { ...state.settings, dailyGoal: Math.min(Math.max(Math.round(value), 1), 100) } })),
+
+      completeOnboarding: () => set((state) => ({ settings: { ...state.settings, onboardingDone: true } })),
+
+      // Resetting preferences must not send a returning learner back through the welcome step.
+      resetToDefaults: () =>
+        set((state) => ({ settings: { ...DEFAULT_PREFERENCES, onboardingDone: state.settings.onboardingDone } })),
     }),
     {
       name: 'preferences',

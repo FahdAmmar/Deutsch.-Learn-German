@@ -101,13 +101,13 @@ export const lessonImperativ: Lesson = {
     { de: 'Fahr vorsichtig!', ar: 'قُد بحذر! (a→ä تزول في الأمر)' },
   ],
   vocabulary: [
-    { id: 'voc-imperativ-warten', word: 'warten', partOfSpeech: 'verb', meaningAr: 'ينتظر', level: 'A1', category: 'أفعال الأمر' },
-    { id: 'voc-imperativ-oeffnen', word: 'öffnen', partOfSpeech: 'verb', meaningAr: 'يفتح', level: 'A1', category: 'أفعال الأمر' },
-    { id: 'voc-imperativ-schliessen', word: 'schließen', partOfSpeech: 'verb', meaningAr: 'يغلق', level: 'A1', category: 'أفعال الأمر' },
+    { id: 'voc-imperativ-warten', word: 'warten', partOfSpeech: 'verb', meaningAr: 'ينتظر', level: 'A1', category: 'أفعال الأمر', verb: { praeteritum: 'wartete', partizip: 'gewartet', auxiliary: 'haben' }, example: { de: 'Warten Sie bitte hier!', ar: 'انتظر هنا من فضلك! (بصيغة الاحترام)' } },
+    { id: 'voc-imperativ-oeffnen', word: 'öffnen', partOfSpeech: 'verb', meaningAr: 'يفتح', level: 'A1', category: 'أفعال الأمر', verb: { praeteritum: 'öffnete', partizip: 'geöffnet', auxiliary: 'haben' }, example: { de: 'Öffne bitte das Fenster!', ar: 'افتح النافذة من فضلك!' } },
+    { id: 'voc-imperativ-schliessen', word: 'schließen', partOfSpeech: 'verb', meaningAr: 'يغلق', level: 'A1', category: 'أفعال الأمر', verb: { praeteritum: 'schloss', partizip: 'geschlossen', auxiliary: 'haben' }, example: { de: 'Schließen Sie bitte die Tür!', ar: 'أغلق الباب من فضلك! (بصيغة الاحترام)' } },
     { id: 'voc-imperativ-ruhig', word: 'ruhig', partOfSpeech: 'adjective', meaningAr: 'هادئ', level: 'A1', category: 'أفعال الأمر', example: { de: 'Sei ruhig!', ar: 'كن هادئاً!' } },
-    { id: 'voc-imperativ-vorsichtig', word: 'vorsichtig', partOfSpeech: 'adjective', meaningAr: 'حذر', level: 'A1', category: 'أفعال الأمر' },
-    { id: 'voc-imperativ-langsam', word: 'langsam', partOfSpeech: 'adjective', meaningAr: 'بطيء / ببطء', level: 'A1', category: 'أفعال الأمر' },
-    { id: 'voc-imperativ-platz-nehmen', word: 'Platz nehmen', partOfSpeech: 'phrase', meaningAr: 'يجلس (تعبير مهذب)', level: 'A1', category: 'أفعال الأمر' },
+    { id: 'voc-imperativ-vorsichtig', word: 'vorsichtig', partOfSpeech: 'adjective', meaningAr: 'حذر', level: 'A1', category: 'أفعال الأمر', example: { de: 'Sei vorsichtig!', ar: 'كن حذراً!' } },
+    { id: 'voc-imperativ-langsam', word: 'langsam', partOfSpeech: 'adjective', meaningAr: 'بطيء / ببطء', level: 'A1', category: 'أفعال الأمر', example: { de: 'Sprechen Sie bitte langsam!', ar: 'تحدّث ببطء من فضلك! (بصيغة الاحترام)' } },
+    { id: 'voc-imperativ-platz-nehmen', word: 'Platz nehmen', partOfSpeech: 'phrase', meaningAr: 'يجلس (تعبير مهذب)', level: 'A1', category: 'أفعال الأمر', example: { de: 'Nehmen Sie bitte Platz!', ar: 'تفضّل بالجلوس! (بصيغة الاحترام)' } },
   ],
   dialogues: [
     {

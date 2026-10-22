@@ -1,12 +1,12 @@
 import type { BadgeTone } from '@/components/ui'
 import type { CEFRLevel } from '@/types'
 
-/** Each level gets its own badge colour so the app reads as a progression (A1 → B2), not four identical grey tiles. */
+/** CEFR badge colours from the design system: A1/A2 blue (beginner), B1/B2 amber (intermediate). */
 export const LEVEL_TONE: Record<CEFRLevel, BadgeTone> = {
   A1: 'accent',
-  A2: 'highlight',
+  A2: 'accent',
   B1: 'plum',
-  B2: 'primary',
+  B2: 'plum',
 }
 
 export interface LevelStyle {
@@ -22,7 +22,7 @@ export interface LevelStyle {
 // Full class names are spelled out so Tailwind can see them at build time.
 export const LEVEL_STYLE: Record<CEFRLevel, LevelStyle> = {
   A1: { text: 'text-accent', tint: 'bg-accent-muted', solid: 'bg-accent-vivid', tone: 'accent' },
-  A2: { text: 'text-highlight', tint: 'bg-highlight-muted', solid: 'bg-highlight', tone: 'highlight' },
+  A2: { text: 'text-accent', tint: 'bg-accent-muted', solid: 'bg-accent-vivid', tone: 'accent' },
   B1: { text: 'text-plum', tint: 'bg-plum-muted', solid: 'bg-plum-vivid', tone: 'plum' },
-  B2: { text: 'text-primary', tint: 'bg-primary-muted', solid: 'bg-primary', tone: 'primary' },
+  B2: { text: 'text-plum', tint: 'bg-plum-muted', solid: 'bg-plum-vivid', tone: 'plum' },
 }

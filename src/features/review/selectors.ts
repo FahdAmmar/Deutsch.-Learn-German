@@ -1,4 +1,4 @@
-import { getLessonById } from '@/lib/curriculum'
+import { getLessonById, getVocabularyById } from '@/lib/curriculum'
 import { isDue } from '@/lib/srs'
 import type { ProgressState, VocabularyItem } from '@/types'
 
@@ -8,7 +8,9 @@ import type { ProgressState, VocabularyItem } from '@/types'
  * spaced repetition draws from; a word never becomes reviewable just
  * because it exists somewhere in the curriculum.
  */
-export function getReviewableVocabulary(progress: Pick<ProgressState, 'lessons'>): VocabularyItem[] {
+export function getReviewableVocabulary(
+  progress: Pick<ProgressState, 'lessons'> & Partial<Pick<ProgressState, 'savedVocabularyIds'>>,
+): VocabularyItem[] {
   const completedLessonIds = Object.values(progress.lessons)
     .filter((entry) => entry.completed)
     .map((entry) => entry.lessonId)
@@ -21,6 +23,11 @@ export function getReviewableVocabulary(progress: Pick<ProgressState, 'lessons'>
       seen.set(item.id, item)
     }
   }
+  // Words the learner added by hand are reviewable even if their lesson is not finished yet.
+  for (const id of progress.savedVocabularyIds ?? []) {
+    const item = getVocabularyById(id)
+    if (item) seen.set(item.id, item)
+  }
   return Array.from(seen.values())
 }
 
@@ -29,7 +36,7 @@ export function getReviewableVocabulary(progress: Pick<ProgressState, 'lessons'>
  * reviewed (new) or past its scheduled Leitner review date.
  */
 export function getDueVocabulary(
-  progress: Pick<ProgressState, 'lessons' | 'vocabulary'>,
+  progress: Pick<ProgressState, 'lessons' | 'vocabulary'> & Partial<Pick<ProgressState, 'savedVocabularyIds'>>,
   limit?: number,
 ): VocabularyItem[] {
   const due = getReviewableVocabulary(progress).filter((item) =>

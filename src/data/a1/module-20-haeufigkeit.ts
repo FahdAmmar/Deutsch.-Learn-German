@@ -68,13 +68,13 @@ export const lessonHaeufigkeit: Lesson = {
     { de: 'Sie singt selten vor anderen Leuten.', ar: 'نادراً ما تغنّي أمام الآخرين.' },
   ],
   vocabulary: [
-    { id: 'voc-haeufig-hobby', word: 'Hobby', article: 'das', plural: 'Hobbys', partOfSpeech: 'noun', meaningAr: 'الهواية', level: 'A1', category: 'الهوايات' },
-    { id: 'voc-haeufig-fitnessstudio', word: 'Fitnessstudio', article: 'das', plural: 'Fitnessstudios', partOfSpeech: 'noun', meaningAr: 'صالة رياضية', level: 'A1', category: 'الهوايات' },
-    { id: 'voc-haeufig-immer', word: 'immer', partOfSpeech: 'adverb', meaningAr: 'دائماً', level: 'A1', category: 'أدوات التكرار' },
-    { id: 'voc-haeufig-oft', word: 'oft', partOfSpeech: 'adverb', meaningAr: 'غالباً', level: 'A1', category: 'أدوات التكرار' },
-    { id: 'voc-haeufig-manchmal', word: 'manchmal', partOfSpeech: 'adverb', meaningAr: 'أحياناً', level: 'A1', category: 'أدوات التكرار' },
-    { id: 'voc-haeufig-selten', word: 'selten', partOfSpeech: 'adverb', meaningAr: 'نادراً', level: 'A1', category: 'أدوات التكرار' },
-    { id: 'voc-haeufig-nie', word: 'nie', partOfSpeech: 'adverb', meaningAr: 'أبداً', level: 'A1', category: 'أدوات التكرار' },
+    { id: 'voc-haeufig-hobby', word: 'Hobby', article: 'das', plural: 'Hobbys', partOfSpeech: 'noun', meaningAr: 'الهواية', level: 'A1', category: 'الهوايات', example: { de: 'Mein Hobby ist Fußball.', ar: 'هوايتي كرة القدم.' } },
+    { id: 'voc-haeufig-fitnessstudio', word: 'Fitnessstudio', article: 'das', plural: 'Fitnessstudios', partOfSpeech: 'noun', meaningAr: 'صالة رياضية', level: 'A1', category: 'الهوايات', example: { de: 'Ich gehe zweimal pro Woche ins Fitnessstudio.', ar: 'أذهب إلى الصالة الرياضية مرتين في الأسبوع.' } },
+    { id: 'voc-haeufig-immer', word: 'immer', partOfSpeech: 'adverb', meaningAr: 'دائماً', level: 'A1', category: 'أدوات التكرار', example: { de: 'Ich trinke immer Tee.', ar: 'أشرب الشاي دائماً.' } },
+    { id: 'voc-haeufig-oft', word: 'oft', partOfSpeech: 'adverb', meaningAr: 'غالباً', level: 'A1', category: 'أدوات التكرار', example: { de: 'Ich lese oft abends.', ar: 'أقرأ غالباً في المساء.' } },
+    { id: 'voc-haeufig-manchmal', word: 'manchmal', partOfSpeech: 'adverb', meaningAr: 'أحياناً', level: 'A1', category: 'أدوات التكرار', example: { de: 'Manchmal gehe ich zu Fuß.', ar: 'أحياناً أذهب مشياً على الأقدام.' } },
+    { id: 'voc-haeufig-selten', word: 'selten', partOfSpeech: 'adverb', meaningAr: 'نادراً', level: 'A1', category: 'أدوات التكرار', example: { de: 'Ich esse selten Fleisch.', ar: 'نادراً ما آكل اللحم.' } },
+    { id: 'voc-haeufig-nie', word: 'nie', partOfSpeech: 'adverb', meaningAr: 'أبداً', level: 'A1', category: 'أدوات التكرار', example: { de: 'Ich trinke nie Kaffee.', ar: 'لا أشرب القهوة أبداً.' } },
   ],
   dialogues: [
     {

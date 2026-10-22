@@ -6,20 +6,14 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f3f2ee" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0c0f" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101216" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Deutsch Lernen" />
     <meta
       name="description"
       content="Deutsch lernen von A1 bis B2 – zweisprachig Deutsch/Arabisch. تعلم الألمانية من المستوى A1 إلى B2 بشرح ثنائي اللغة."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
     />
     <title>Deutsch Lernen — تعلّم الألمانية</title>
     <script>
@@ -33,6 +27,15 @@
           if (isDark) document.documentElement.classList.add('dark');
         } catch (e) {
           // If anything goes wrong, fall back to the default light theme silently.
+        }
+        // Text size and contrast are applied before first paint too, so the page never jumps from 100% to the chosen size.
+        try {
+          var prefs = JSON.parse(localStorage.getItem('learn-german:preferences')).state.settings;
+          var percent = { large: 112.5, xlarge: 125 }[prefs.textScale];
+          if (percent) document.documentElement.style.fontSize = percent + '%';
+          if (prefs.highContrast) document.documentElement.classList.add('high-contrast');
+        } catch (e) {
+          // No saved preferences yet — defaults apply.
         }
       })();
     </script>

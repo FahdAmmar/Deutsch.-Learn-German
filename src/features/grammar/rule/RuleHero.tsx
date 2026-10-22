@@ -40,7 +40,7 @@ export function RuleHero({ rule, onStart }: RuleHeroProps) {
 
           <h1 className="text-3xl leading-tight font-bold text-ink sm:text-5xl">
             {rule.titleAr}{' '}
-            <span lang="de" dir="ltr" className="font-de font-semibold text-accent italic">
+            <span lang="de" dir="ltr" className="display-de text-accent">
               {rule.termDe}
             </span>
           </h1>
@@ -69,7 +69,7 @@ export function RuleHero({ rule, onStart }: RuleHeroProps) {
               <div key={stat.labelAr}>
                 <dt className="sr-only">{stat.labelAr}</dt>
                 <dd>
-                  <span dir="ltr" className="block font-de text-3xl font-semibold text-ink">
+                  <span dir="ltr" className="display-de block text-3xl text-ink">
                     {stat.value}
                   </span>
                   <span className="text-sm text-ink-faint">{stat.labelAr}</span>

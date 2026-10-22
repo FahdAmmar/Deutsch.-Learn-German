@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   Clock,
   Dumbbell,
+  Globe,
   Languages,
   ListChecks,
   MessageCircle,
@@ -27,7 +28,9 @@ import { LessonSectionNav } from '@/features/lessons/LessonSectionNav'
 import type { LessonSectionLink } from '@/features/lessons/LessonSectionNav'
 import { LevelMark } from '@/features/levels/LevelMark'
 import { PronunciationTips } from '@/features/lessons/PronunciationTips'
+import { ArabicSpeakerNotes } from '@/features/lessons/ArabicSpeakerNotes'
 import { SectionHeading } from '@/features/lessons/SectionHeading'
+import { getContrastiveNotes } from '@/data/contrastive'
 import { GermanWord } from '@/features/pronunciation/GermanWord'
 import { GrammarTopicCard } from '@/features/grammar/GrammarTopicCard'
 import { RelatedGrammarRules } from '@/features/grammar/links/RelatedGrammarRules'
@@ -104,6 +107,7 @@ export default function LessonPage() {
   const hasPronunciation = Boolean((lesson.pronunciationTips && lesson.pronunciationTips.length > 0) || practiceWords.length > 0)
   const hasDialogues = Boolean(lesson.dialogues && lesson.dialogues.length > 0)
   const hasMistakes = Boolean(lesson.commonMistakes && lesson.commonMistakes.length > 0)
+  const arabicNotes = getContrastiveNotes(lesson.id)
 
   // The rail only lists sections this lesson actually has.
   const sections: LessonSectionLink[] = [
@@ -116,6 +120,7 @@ export default function LessonPage() {
     ...(hasDialogues ? [{ id: 'lesson-dialogues', label: 'محادثة' }] : []),
     ...(hasPronunciation ? [{ id: 'lesson-pronunciation', label: 'النطق' }] : []),
     ...(lesson.exercises.length > 0 ? [{ id: 'lesson-exercises', label: 'التمارين' }] : []),
+    ...(arabicNotes.length > 0 ? [{ id: 'lesson-arabic', label: 'للناطقين بالعربية' }] : []),
     ...(hasMistakes ? [{ id: 'lesson-mistakes', label: 'أخطاء شائعة' }] : []),
     { id: 'lesson-complete', label: 'الإكمال' },
   ]
@@ -141,11 +146,11 @@ export default function LessonPage() {
           <h1
             dir="ltr"
             lang="de"
-            className="display-de text-end text-[2.5rem] font-semibold text-ink [overflow-wrap:anywhere] sm:text-6xl"
+            className="display-de text-end text-4xl text-ink [overflow-wrap:anywhere] sm:text-5xl"
           >
             {lesson.title}
           </h1>
-          <p className="font-sans text-xl font-semibold text-ink-muted sm:text-2xl">{lesson.titleAr}</p>
+          <p className="text-xl font-semibold text-ink-muted sm:text-2xl">{lesson.titleAr}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-muted">
@@ -293,6 +298,14 @@ export default function LessonPage() {
             <section aria-labelledby="lesson-exercises" className="space-y-4">
               <SectionHeading id="lesson-exercises" icon={Dumbbell} titleAr="التمارين" />
               <ExerciseRunner exercises={lesson.exercises} onComplete={setExerciseAccuracy} />
+            </section>
+          ) : null}
+
+          {/* Where Arabic and German differ */}
+          {arabicNotes.length > 0 ? (
+            <section aria-labelledby="lesson-arabic" className="space-y-4">
+              <SectionHeading id="lesson-arabic" icon={Globe} titleAr="للناطقين بالعربية" />
+              <ArabicSpeakerNotes notes={arabicNotes} />
             </section>
           ) : null}
 

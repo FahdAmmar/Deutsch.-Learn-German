@@ -92,14 +92,14 @@ export const lessonReflexiveVerben: Lesson = {
     { de: 'Ich habe mich erkältet.', ar: 'أُصبت بالزكام.' },
   ],
   vocabulary: [
-    { id: 'voc-reflexiv-sich-freuen', word: 'sich freuen', partOfSpeech: 'verb', meaningAr: 'يفرح', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-interessieren', word: 'sich interessieren für', partOfSpeech: 'verb', meaningAr: 'يهتمّ بـ', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-erkaelten', word: 'sich erkälten', partOfSpeech: 'verb', meaningAr: 'يُصاب بالزكام', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-beeilen', word: 'sich beeilen', partOfSpeech: 'verb', meaningAr: 'يستعجل', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-verlieben', word: 'sich verlieben', partOfSpeech: 'verb', meaningAr: 'يقع في الحب', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-waschen', word: 'sich waschen', partOfSpeech: 'verb', meaningAr: 'يغسل نفسه', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-fuehlen', word: 'sich fühlen', partOfSpeech: 'verb', meaningAr: 'يشعر', level: 'A2', category: 'أفعال انعكاسية' },
-    { id: 'voc-reflexiv-sich-entscheiden', word: 'sich entscheiden', partOfSpeech: 'verb', meaningAr: 'يقرّر', level: 'A2', category: 'أفعال انعكاسية' },
+    { id: 'voc-reflexiv-sich-freuen', word: 'sich freuen', partOfSpeech: 'verb', meaningAr: 'يفرح', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'freute', partizip: 'gefreut', auxiliary: 'haben' }, example: { de: 'Ich freue mich auf das Wochenende.', ar: 'أنا سعيد وأتطلّع إلى عطلة نهاية الأسبوع.' } },
+    { id: 'voc-reflexiv-sich-interessieren', word: 'sich interessieren für', partOfSpeech: 'verb', meaningAr: 'يهتمّ بـ', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'interessierte', partizip: 'interessiert', auxiliary: 'haben' }, example: { de: 'Ich interessiere mich für Musik.', ar: 'أهتمّ بالموسيقى.' } },
+    { id: 'voc-reflexiv-sich-erkaelten', word: 'sich erkälten', partOfSpeech: 'verb', meaningAr: 'يُصاب بالزكام', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'erkältete', partizip: 'erkältet', auxiliary: 'haben' }, example: { de: 'Im Winter erkälte ich mich oft.', ar: 'في الشتاء أُصاب بنزلة برد كثيراً.' } },
+    { id: 'voc-reflexiv-sich-beeilen', word: 'sich beeilen', partOfSpeech: 'verb', meaningAr: 'يستعجل', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'beeilte', partizip: 'beeilt', auxiliary: 'haben' }, example: { de: 'Wir müssen uns beeilen!', ar: 'يجب أن نستعجل!' } },
+    { id: 'voc-reflexiv-sich-verlieben', word: 'sich verlieben', partOfSpeech: 'verb', meaningAr: 'يقع في الحب', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'verliebte', partizip: 'verliebt', auxiliary: 'haben' }, example: { de: 'Er hat sich in sie verliebt.', ar: 'وقع في حبّها.' } },
+    { id: 'voc-reflexiv-sich-waschen', word: 'sich waschen', partOfSpeech: 'verb', meaningAr: 'يغسل نفسه', level: 'A2', category: 'أفعال انعكاسية', verb: { present: ['wasche', 'wäschst', 'wäscht', 'waschen', 'wascht', 'waschen'], praeteritum: 'wusch', partizip: 'gewaschen', auxiliary: 'haben' }, example: { de: 'Ich wasche mich jeden Morgen.', ar: 'أغسل نفسي (أغتسل) كل صباح.' } },
+    { id: 'voc-reflexiv-sich-fuehlen', word: 'sich fühlen', partOfSpeech: 'verb', meaningAr: 'يشعر', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'fühlte', partizip: 'gefühlt', auxiliary: 'haben' }, example: { de: 'Ich fühle mich heute nicht gut.', ar: 'لا أشعر أنني بخير اليوم.' } },
+    { id: 'voc-reflexiv-sich-entscheiden', word: 'sich entscheiden', partOfSpeech: 'verb', meaningAr: 'يقرّر', level: 'A2', category: 'أفعال انعكاسية', verb: { praeteritum: 'entschied', partizip: 'entschieden', auxiliary: 'haben' }, example: { de: 'Ich kann mich nicht entscheiden.', ar: 'لا أستطيع أن أقرّر.' } },
   ],
   dialogues: [
     {

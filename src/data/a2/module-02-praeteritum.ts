@@ -99,12 +99,12 @@ export const lessonPraeteritum: Lesson = {
     { de: 'Ich mochte diesen Lehrer sehr.', ar: 'كنت أحبّ هذا المعلّم كثيراً.' },
   ],
   vocabulary: [
-    { id: 'voc-praeteritum-frueher', word: 'früher', partOfSpeech: 'adverb', meaningAr: 'سابقاً / في الماضي', level: 'A2', category: 'ظروف زمنية' },
-    { id: 'voc-praeteritum-als-kind', word: 'als Kind', partOfSpeech: 'phrase', meaningAr: 'عندما كنت طفلاً', level: 'A2', category: 'ظروف زمنية' },
-    { id: 'voc-praeteritum-damals', word: 'damals', partOfSpeech: 'adverb', meaningAr: 'في ذلك الوقت', level: 'A2', category: 'ظروف زمنية' },
-    { id: 'voc-praeteritum-letztes-jahr', word: 'letztes Jahr', partOfSpeech: 'phrase', meaningAr: 'العام الماضي', level: 'A2', category: 'ظروف زمنية' },
-    { id: 'voc-praeteritum-urlaub', word: 'Urlaub', article: 'der', partOfSpeech: 'noun', meaningAr: 'الإجازة', level: 'A2', category: 'مفردات مرافقة' },
-    { id: 'voc-praeteritum-muede', word: 'müde', partOfSpeech: 'adjective', meaningAr: 'متعب', level: 'A2', category: 'مفردات مرافقة' },
+    { id: 'voc-praeteritum-frueher', word: 'früher', partOfSpeech: 'adverb', meaningAr: 'سابقاً / في الماضي', level: 'A2', category: 'ظروف زمنية', example: { de: 'Früher war ich Student.', ar: 'في السابق كنت طالباً.' } },
+    { id: 'voc-praeteritum-als-kind', word: 'als Kind', partOfSpeech: 'phrase', meaningAr: 'عندما كنت طفلاً', level: 'A2', category: 'ظروف زمنية', example: { de: 'Als Kind spielte ich oft Fußball.', ar: 'عندما كنت طفلاً كنت ألعب كرة القدم كثيراً.' } },
+    { id: 'voc-praeteritum-damals', word: 'damals', partOfSpeech: 'adverb', meaningAr: 'في ذلك الوقت', level: 'A2', category: 'ظروف زمنية', example: { de: 'Damals gab es kein Internet.', ar: 'في ذلك الوقت لم يكن هناك إنترنت.' } },
+    { id: 'voc-praeteritum-letztes-jahr', word: 'letztes Jahr', partOfSpeech: 'phrase', meaningAr: 'العام الماضي', level: 'A2', category: 'ظروف زمنية', example: { de: 'Letztes Jahr war ich in Spanien.', ar: 'العام الماضي كنت في إسبانيا.' } },
+    { id: 'voc-praeteritum-urlaub', word: 'Urlaub', article: 'der', plural: 'Urlaube', partOfSpeech: 'noun', meaningAr: 'الإجازة', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Wir machen im Sommer Urlaub.', ar: 'نأخذ إجازة في الصيف.' } },
+    { id: 'voc-praeteritum-muede', word: 'müde', partOfSpeech: 'adjective', meaningAr: 'متعب', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Gestern war ich sehr müde.', ar: 'أمس كنت متعباً جداً.' } },
   ],
   dialogues: [
     {

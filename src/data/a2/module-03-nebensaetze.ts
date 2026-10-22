@@ -99,13 +99,13 @@ export const lessonNebensaetze: Lesson = {
     { de: 'Ich weiß nicht, ob er kommt.', ar: 'لا أعرف إن كان سيأتي. (ob تتبع نفس القاعدة)' },
   ],
   vocabulary: [
-    { id: 'voc-nebensatz-weil', word: 'weil', partOfSpeech: 'conjunction', meaningAr: 'لأنّ', level: 'A2', category: 'أدوات الربط الفرعية' },
-    { id: 'voc-nebensatz-dass', word: 'dass', partOfSpeech: 'conjunction', meaningAr: 'أنّ', level: 'A2', category: 'أدوات الربط الفرعية' },
-    { id: 'voc-nebensatz-wenn', word: 'wenn', partOfSpeech: 'conjunction', meaningAr: 'إذا / عندما (متكرر)', level: 'A2', category: 'أدوات الربط الفرعية' },
-    { id: 'voc-nebensatz-ob', word: 'ob', partOfSpeech: 'conjunction', meaningAr: 'إن (فيما إذا)', level: 'A2', category: 'أدوات الربط الفرعية' },
-    { id: 'voc-nebensatz-glauben', word: 'glauben', partOfSpeech: 'verb', meaningAr: 'يعتقد', level: 'A2', category: 'أفعال الرأي' },
-    { id: 'voc-nebensatz-hoffen', word: 'hoffen', partOfSpeech: 'verb', meaningAr: 'يأمل', level: 'A2', category: 'أفعال الرأي' },
-    { id: 'voc-nebensatz-recht-haben', word: 'Recht haben', partOfSpeech: 'phrase', meaningAr: 'يكون محقاً', level: 'A2', category: 'تعابير' },
+    { id: 'voc-nebensatz-weil', word: 'weil', partOfSpeech: 'conjunction', meaningAr: 'لأنّ', level: 'A2', category: 'أدوات الربط الفرعية', example: { de: 'Ich bleibe zu Hause, weil ich krank bin.', ar: 'أبقى في البيت لأنني مريض.' } },
+    { id: 'voc-nebensatz-dass', word: 'dass', partOfSpeech: 'conjunction', meaningAr: 'أنّ', level: 'A2', category: 'أدوات الربط الفرعية', example: { de: 'Ich glaube, dass er recht hat.', ar: 'أعتقد أنه محقّ.' } },
+    { id: 'voc-nebensatz-wenn', word: 'wenn', partOfSpeech: 'conjunction', meaningAr: 'إذا / عندما (متكرر)', level: 'A2', category: 'أدوات الربط الفرعية', example: { de: 'Wenn es regnet, bleibe ich zu Hause.', ar: 'إذا أمطرت أبقى في البيت.' } },
+    { id: 'voc-nebensatz-ob', word: 'ob', partOfSpeech: 'conjunction', meaningAr: 'إن (فيما إذا)', level: 'A2', category: 'أدوات الربط الفرعية', example: { de: 'Ich weiß nicht, ob er kommt.', ar: 'لا أعرف هل سيأتي.' } },
+    { id: 'voc-nebensatz-glauben', word: 'glauben', partOfSpeech: 'verb', meaningAr: 'يعتقد', level: 'A2', category: 'أفعال الرأي', verb: { praeteritum: 'glaubte', partizip: 'geglaubt', auxiliary: 'haben' }, example: { de: 'Ich glaube, es regnet bald.', ar: 'أظن أنها ستمطر قريباً.' } },
+    { id: 'voc-nebensatz-hoffen', word: 'hoffen', partOfSpeech: 'verb', meaningAr: 'يأمل', level: 'A2', category: 'أفعال الرأي', verb: { praeteritum: 'hoffte', partizip: 'gehofft', auxiliary: 'haben' }, example: { de: 'Ich hoffe, dass du kommst.', ar: 'آمل أن تأتي.' } },
+    { id: 'voc-nebensatz-recht-haben', word: 'Recht haben', partOfSpeech: 'phrase', meaningAr: 'يكون محقاً', level: 'A2', category: 'تعابير', example: { de: 'Da hast du Recht.', ar: 'في هذا أنت محقّ.' } },
   ],
   dialogues: [
     {

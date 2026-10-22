@@ -7,6 +7,8 @@ export interface StorySegment {
   /** Position in the story's playback order (0-based, contiguous). */
   index: number
   text: string
+  /** Arabic translation of just this segment, where the content has one (always for conversation lines). */
+  ar?: string
   /** Optional voice pitch, used to tell two speakers apart. */
   pitch?: number
 }

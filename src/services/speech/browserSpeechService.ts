@@ -1,4 +1,5 @@
-import type { SpeakOptions, SpeechService, SpeechStatus } from './types'
+import type { SpeakOptions, SpeechService, SpeechStatus, VoiceInfo } from './types'
+import { chooseVoice } from './voices'
 
 /**
  * SpeechService backed by the browser's native SpeechSynthesis API.
@@ -8,6 +9,7 @@ import type { SpeakOptions, SpeechService, SpeechStatus } from './types'
  */
 export class BrowserSpeechService implements SpeechService {
   private status: SpeechStatus = 'idle'
+  private preferredVoiceURI: string | null = null
 
   isSupported(): boolean {
     return typeof window !== 'undefined' && 'speechSynthesis' in window
@@ -15,6 +17,27 @@ export class BrowserSpeechService implements SpeechService {
 
   getStatus(): SpeechStatus {
     return this.status
+  }
+
+  setPreferredVoice(voiceURI: string | null): void {
+    this.preferredVoiceURI = voiceURI
+  }
+
+  getVoices(): VoiceInfo[] {
+    try {
+      if (!this.isSupported() || typeof window.speechSynthesis.getVoices !== 'function') return []
+      return window.speechSynthesis.getVoices().map(toVoiceInfo)
+    } catch {
+      return []
+    }
+  }
+
+  onVoicesChanged(listener: () => void): () => void {
+    if (!this.isSupported() || typeof window.speechSynthesis.addEventListener !== 'function') return () => undefined
+    // Keep the engine we subscribed to: the unsubscribe must work even if `window.speechSynthesis` is gone by then.
+    const synthesis = window.speechSynthesis
+    synthesis.addEventListener('voiceschanged', listener)
+    return () => synthesis.removeEventListener('voiceschanged', listener)
   }
 
   speak(text: string, options: SpeakOptions): void {
@@ -33,6 +56,8 @@ export class BrowserSpeechService implements SpeechService {
 
       const utterance = new SpeechSynthesisUtterance(trimmed)
       utterance.lang = options.language
+      const voice = chooseVoice(this.getNativeVoices(), options.language, options.voiceURI ?? this.preferredVoiceURI)
+      if (voice) utterance.voice = voice
       utterance.rate = clamp(options.rate ?? 1, 0.5, 2)
       utterance.pitch = clamp(options.pitch ?? 1, 0, 2)
       utterance.volume = clamp(options.volume ?? 1, 0, 1)
@@ -66,6 +91,14 @@ export class BrowserSpeechService implements SpeechService {
     }
   }
 
+  private getNativeVoices(): SpeechSynthesisVoice[] {
+    try {
+      return typeof window.speechSynthesis.getVoices === 'function' ? window.speechSynthesis.getVoices() : []
+    } catch {
+      return []
+    }
+  }
+
   stop(): void {
     try {
       if (this.isSupported()) {
@@ -77,6 +110,10 @@ export class BrowserSpeechService implements SpeechService {
       this.status = 'idle'
     }
   }
+}
+
+function toVoiceInfo(voice: SpeechSynthesisVoice): VoiceInfo {
+  return { voiceURI: voice.voiceURI, name: voice.name, lang: voice.lang, localService: voice.localService }
 }
 
 function clamp(value: number, min: number, max: number): number {

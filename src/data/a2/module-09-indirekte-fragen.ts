@@ -84,10 +84,10 @@ export const lessonIndirekteFragen: Lesson = {
     { de: 'Können Sie mir sagen, wann der Zug abfährt?', ar: 'هل يمكنكم إخباري متى يغادر القطار؟' },
   ],
   vocabulary: [
-    { id: 'voc-indirekt-ob', word: 'ob', partOfSpeech: 'conjunction', meaningAr: 'هل (غير مباشر)', level: 'A2', category: 'أدوات ربط ثانوية' },
-    { id: 'voc-indirekt-sich-fragen', word: 'sich fragen', partOfSpeech: 'verb', meaningAr: 'يتساءل', level: 'A2', category: 'أفعال تقديم السؤال' },
-    { id: 'voc-indirekt-wissen', word: 'wissen', partOfSpeech: 'verb', meaningAr: 'يعرف', level: 'A2', category: 'أفعال تقديم السؤال' },
-    { id: 'voc-indirekt-sagen', word: 'sagen', partOfSpeech: 'verb', meaningAr: 'يقول', level: 'A2', category: 'أفعال تقديم السؤال' },
+    { id: 'voc-indirekt-ob', word: 'ob', partOfSpeech: 'conjunction', meaningAr: 'هل (غير مباشر)', level: 'A2', category: 'أدوات ربط ثانوية', example: { de: 'Ich frage ihn, ob er Zeit hat.', ar: 'أسأله هل عنده وقت.' } },
+    { id: 'voc-indirekt-sich-fragen', word: 'sich fragen', partOfSpeech: 'verb', meaningAr: 'يتساءل', level: 'A2', category: 'أفعال تقديم السؤال', verb: { praeteritum: 'fragte', partizip: 'gefragt', auxiliary: 'haben' }, example: { de: 'Ich frage mich, wo er ist.', ar: 'أتساءل أين هو.' } },
+    { id: 'voc-indirekt-wissen', word: 'wissen', partOfSpeech: 'verb', meaningAr: 'يعرف', level: 'A2', category: 'أفعال تقديم السؤال', verb: { present: ['weiß', 'weißt', 'weiß', 'wissen', 'wisst', 'wissen'], praeteritum: 'wusste', partizip: 'gewusst', auxiliary: 'haben' }, example: { de: 'Ich weiß nicht, wo er wohnt.', ar: 'لا أعرف أين يسكن.' } },
+    { id: 'voc-indirekt-sagen', word: 'sagen', partOfSpeech: 'verb', meaningAr: 'يقول', level: 'A2', category: 'أفعال تقديم السؤال', verb: { praeteritum: 'sagte', partizip: 'gesagt', auxiliary: 'haben' }, example: { de: 'Kannst du mir sagen, wie spät es ist?', ar: 'هل تستطيع أن تخبرني كم الساعة؟' } },
   ],
   dialogues: [
     {

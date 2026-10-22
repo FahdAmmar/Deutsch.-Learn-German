@@ -81,14 +81,14 @@ export const lessonWohnungssuche: Lesson = {
     { de: 'Der Vermieter hat den Mietvertrag noch nicht unterschrieben.', ar: 'لم يوقّع المالك عقد الإيجار بعد.' },
   ],
   vocabulary: [
-    { id: 'voc-wohnung-miete', word: 'Miete', article: 'die', partOfSpeech: 'noun', meaningAr: 'الإيجار', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-kaution', word: 'Kaution', article: 'die', partOfSpeech: 'noun', meaningAr: 'وديعة الضمان', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-vermieter', word: 'Vermieter', article: 'der', partOfSpeech: 'noun', meaningAr: 'المؤجّر / المالك', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-mieter', word: 'Mieter', article: 'der', partOfSpeech: 'noun', meaningAr: 'المستأجر', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-mietvertrag', word: 'Mietvertrag', article: 'der', partOfSpeech: 'noun', meaningAr: 'عقد الإيجار', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-besichtigung', word: 'Besichtigung', article: 'die', partOfSpeech: 'noun', meaningAr: 'معاينة (الشقة)', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-anzeige', word: 'Anzeige', article: 'die', partOfSpeech: 'noun', meaningAr: 'الإعلان', level: 'A2', category: 'البحث عن شقة' },
-    { id: 'voc-wohnung-umziehen', word: 'umziehen', partOfSpeech: 'verb', meaningAr: 'ينتقل (للسكن)', level: 'A2', category: 'البحث عن شقة' },
+    { id: 'voc-wohnung-miete', word: 'Miete', article: 'die', plural: 'Mieten', partOfSpeech: 'noun', meaningAr: 'الإيجار', level: 'A2', category: 'البحث عن شقة', example: { de: 'Die Miete kostet 600 Euro im Monat.', ar: 'الإيجار 600 يورو في الشهر.' } },
+    { id: 'voc-wohnung-kaution', word: 'Kaution', article: 'die', plural: 'Kautionen', partOfSpeech: 'noun', meaningAr: 'وديعة الضمان', level: 'A2', category: 'البحث عن شقة', example: { de: 'Die Kaution beträgt zwei Monatsmieten.', ar: 'وديعة الضمان تساوي إيجار شهرين.' } },
+    { id: 'voc-wohnung-vermieter', word: 'Vermieter', article: 'der', plural: 'Vermieter', partOfSpeech: 'noun', meaningAr: 'المؤجّر / المالك', level: 'A2', category: 'البحث عن شقة', example: { de: 'Der Vermieter wohnt im Haus.', ar: 'المالك يسكن في المبنى.' } },
+    { id: 'voc-wohnung-mieter', word: 'Mieter', article: 'der', plural: 'Mieter', partOfSpeech: 'noun', meaningAr: 'المستأجر', level: 'A2', category: 'البحث عن شقة', example: { de: 'Der Mieter bezahlt die Miete jeden Monat.', ar: 'المستأجر يدفع الإيجار كل شهر.' } },
+    { id: 'voc-wohnung-mietvertrag', word: 'Mietvertrag', article: 'der', plural: 'Mietverträge', partOfSpeech: 'noun', meaningAr: 'عقد الإيجار', level: 'A2', category: 'البحث عن شقة', example: { de: 'Ich unterschreibe den Mietvertrag.', ar: 'أوقّع عقد الإيجار.' } },
+    { id: 'voc-wohnung-besichtigung', word: 'Besichtigung', article: 'die', plural: 'Besichtigungen', partOfSpeech: 'noun', meaningAr: 'معاينة (الشقة)', level: 'A2', category: 'البحث عن شقة', example: { de: 'Die Besichtigung ist am Samstag.', ar: 'المعاينة يوم السبت.' } },
+    { id: 'voc-wohnung-anzeige', word: 'Anzeige', article: 'die', plural: 'Anzeigen', partOfSpeech: 'noun', meaningAr: 'الإعلان', level: 'A2', category: 'البحث عن شقة', example: { de: 'Ich habe die Anzeige im Internet gefunden.', ar: 'وجدت الإعلان على الإنترنت.' } },
+    { id: 'voc-wohnung-umziehen', word: 'umziehen', partOfSpeech: 'verb', meaningAr: 'ينتقل (للسكن)', level: 'A2', category: 'البحث عن شقة', verb: { praeteritum: 'zog', partizip: 'umgezogen', auxiliary: 'sein', separablePrefix: 'um' }, example: { de: 'Wir ziehen nächsten Monat um.', ar: 'ننتقل إلى سكن جديد الشهر القادم.' } },
   ],
   dialogues: [
     {

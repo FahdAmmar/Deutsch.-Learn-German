@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { getLesson } from '@/lib/curriculum'
+import { getAllVocabulary } from '@/lib/curriculum'
 import type { ProgressState } from '@/types'
 
 import { getDueVocabulary, getReviewableVocabulary } from './selectors'
@@ -98,5 +99,32 @@ describe('getDueVocabulary', () => {
     }
 
     expect(getDueVocabulary(progress, 2)).toHaveLength(2)
+  })
+})
+
+describe('hand-saved vocabulary', () => {
+  it('is reviewable even though no lesson is completed', () => {
+    const word = getAllVocabulary()[0]
+    const reviewable = getReviewableVocabulary({ ...emptyProgress(), savedVocabularyIds: [word.id] })
+    expect(reviewable.map((item) => item.id)).toEqual([word.id])
+  })
+
+  it('is due straight away, as a never-reviewed word', () => {
+    const word = getAllVocabulary()[0]
+    expect(getDueVocabulary({ ...emptyProgress(), savedVocabularyIds: [word.id] }).map((item) => item.id)).toEqual([word.id])
+  })
+
+  it('is not counted twice when its lesson is also completed', () => {
+    const lesson = getLesson('A1', 'begruessungen')!
+    const progress = {
+      ...emptyProgress(),
+      savedVocabularyIds: [lesson.vocabulary[0].id],
+      lessons: { [lesson.id]: { lessonId: lesson.id, completed: true, accuracy: 1, lastVisitedAt: 1 } },
+    }
+    expect(getReviewableVocabulary(progress)).toHaveLength(lesson.vocabulary.length)
+  })
+
+  it('ignores an id that no longer exists in the curriculum', () => {
+    expect(getReviewableVocabulary({ ...emptyProgress(), savedVocabularyIds: ['gone'] })).toEqual([])
   })
 })

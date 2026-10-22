@@ -1,181 +1,208 @@
 /*
- * Design tokens for LEARN GERMAN.
+ * Design tokens for LEARN GERMAN — "Bilingual Academic Prestige".
  *
- * Brand identity: charcoal-navy + copper. A neutral, low-chroma near-black
- * navy carries structure (chrome, primary actions) while a warm copper
- * accent and a deeper brass tertiary supply warmth and pedagogical
- * emphasis — deliberately more restrained than a "luxury" gold palette,
- * closer to a well-made instrument than a premium-goods brand, which fits
- * a serious study tool better. Dark mode brightens the same three hues
- * (light steel-gray, brighter copper, brighter brass) against true black;
- * light mode keeps a warm off-white surface with near-black ink — same
- * brand, inverted neutrals.
+ * Source: the DeutschWelt design files (`stitch_deutschwelt_edtech_platform`,
+ * DESIGN.md). A deep scholastic navy carries the structural frame (shell,
+ * headers, primary actions); pristine white working surfaces sit on a slate
+ * canvas; royal blue marks interaction (links, audio, focus); amber gold
+ * marks achievement and the intermediate CEFR levels.
  *
- * The three brand accents (primary/accent/plum) are used for the
- * three-way pedagogical colour coding the app relies on (e.g.
- * Positiv/Komparativ/Superlativ in the ComparisonLadder). This is
- * intentionally kept separate from der/die/das gender colour-coding (cool
- * blue / rose / green) and from success/error, which stay untouched here
- * since they're distinct semantic devices, not a branding one — none of
- * the three brand hues overlaps blue, rose/pink, or green, so the systems
- * stay tellable apart at a glance.
+ * Token slots keep their historical names because lesson and grammar-rule
+ * DATA refers to them (`tone: 'plum'`): `primary` = navy, `accent` = royal
+ * blue, `plum` = the design's tertiary amber, `highlight` = emerald. Do not
+ * rename them without migrating `src/data/grammar/rules/`.
  *
- * Every brand/text pairing below is contrast-checked at WCAG AA (4.5:1
- * for text) rather than assumed from the swatch alone.
+ * Grammatical gender follows the design: der blue, die rose, das green,
+ * plural amber. Where the design's hex fails 4.5:1 as TEXT (die #E11D48,
+ * das #059669, plural #D97706) the token is darkened one step and the
+ * brighter hue is not used for text.
  *
- * Typography roles: Reem Kufi only for page-level Arabic titles,
- * IBM Plex Sans Arabic for all Arabic UI/body text (set larger and looser
- * than Latin — Arabic needs it), Fraunces for German display and example
- * sentences, IBM Plex Mono only for phonetic/IPA-style strings.
+ * Dark mode is not specified by the design files. It is a neutral graphite
+ * theme that keeps the design's blue as the single colour (accent, active
+ * nav, hero); primary buttons invert to near-white on graphite.
  *
- * Shape: a three-step radius scale (control → panel → hero) and borders
- * rather than drop shadows for hierarchy; shadows are reserved for things
- * that actually float (menus, dialogs, sticky bars).
+ * Every text pairing below is contrast-checked at WCAG AA (4.5:1).
+ *
+ * Typography roles: Plus Jakarta Sans for headings, numbers and lesson
+ * titles; Noto Sans Arabic (which carries its own Latin glyphs) for body text (Arabic is set 15–25%
+ * looser than Latin); Inter for German specimens, so long compounds keep
+ * clear letterforms at neutral tracking; IBM Plex Mono only for phonetics.
+ *
+ * Shape: 8px controls, 16px cards, 24px dialogs, pill badges. Elevation is a
+ * thin slate border plus a low-opacity navy ambient shadow in three levels.
  */
 
 :root {
-  /* Surfaces — warm off-white, not stark white, for long reading sessions */
-  --bg: #f3f2ee;
-  --bg-alt: #e9e7e0;
+  /* Surfaces — slate canvas, crisp white working surfaces */
+  --bg: #f8fafc;
+  --bg-alt: #f1f5f9;
   --surface: #ffffff;
-  --surface-glass: rgba(255, 255, 255, 0.7);
-  --surface-glass-border: rgba(255, 255, 255, 0.5);
-  /* Recessed areas (inputs, code-like blocks, track backgrounds) sit slightly below the page */
-  --surface-sunken: #ecebe5;
-  /* Route rail: the line that connects sequential steps (modules, lesson sections) */
-  --rail: #cfcbbd;
+  --surface-glass: rgba(255, 255, 255, 0.85);
+  --surface-glass-border: rgba(255, 255, 255, 0.6);
+  --surface-sunken: #f1f5f9;
+  --rail: #cbd5e1;
 
-  /* Text — cool near-black, matching the navy-leaning brand rather than a warm charcoal */
-  --ink: #1b1e24;
-  --ink-muted: #4a505a;
-  --ink-faint: #5f656e;
+  /* Text — slate */
+  --ink: #0f172a;
+  --ink-muted: #475569;
+  --ink-faint: #5b6b82;
 
-  /* Structure */
-  --border: #dcdad2;
-  --border-strong: #c7c3b6;
+  /* Structure — slate strokes */
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
 
-  /* Brand: charcoal-navy (primary) → copper (accent) → brass (tertiary) */
-  --primary: #232b3a;
+  /* Brand: deep navy (primary) → royal blue (accent) → amber gold (tertiary slot, "plum") */
+  --primary: #172554;
   --primary-foreground: #ffffff;
-  --primary-muted: #dee1e7;
-  --primary-glow: rgba(35, 43, 58, 0.22);
+  --primary-muted: #e2e7ff;
+  --primary-glow: rgba(23, 37, 84, 0.22);
+  /* Navy surface used by the active nav item and the one emphasised panel on a screen */
+  --primary-container: #172554;
+  --on-primary-container: #dce1ff;
 
-  --accent: #9c4b20;
+  --accent: #2563eb;
   --accent-foreground: #ffffff;
-  --accent-muted: #f1dfcf;
-  --accent-glow: rgba(156, 75, 32, 0.2);
+  --accent-muted: #eff6ff;
+  --accent-glow: rgba(37, 99, 235, 0.2);
 
-  --plum: #715a2a;
+  --plum: #b45309;
   --plum-foreground: #ffffff;
-  --plum-muted: #ebe4d0;
-  --plum-glow: rgba(113, 90, 42, 0.18);
+  --plum-muted: #fef3c7;
+  --plum-glow: rgba(180, 83, 9, 0.18);
 
-  /*
-   * Vivid tier — brighter companions to accent/plum for decorative,
-   * non-text surfaces (icon fills, active-state chips, card accents):
-   * badge/button TEXT stays on the deep accent/plum above because that's
-   * what clears 4.5:1: the vivid tier only needs to clear 3:1 against its
-   * own icon glyph and against --bg, since it's never small text itself.
-   * Icon glyphs drawn on the vivid tier use --vivid-foreground, which
-   * stays dark in both themes since the vivid tier itself stays light-ish
-   * in both (unlike primary/accent/plum, which invert lightness).
-   */
-  --accent-vivid: #c76727;
-  --plum-vivid: #a1821f;
-  --vivid-foreground: #1b1e24;
+  /* Vivid tier — brighter companions for decorative, non-text fills (progress, icon plates). Never text. */
+  --accent-vivid: #2563eb;
+  --plum-vivid: #f59e0b;
+  --vivid-foreground: #ffffff;
 
-  /* Highlight — a single added hue (teal) for "new"/streak-adjacent moments; distinct from der's blue and accent's copper on purpose */
-  --highlight: #1b7068;
+  /* Marker — a soft amber stroke behind ink text (weekend days, special letters). Never used as text colour. */
+  --marker: #fcd34d;
+  --marker-foreground: #0f172a;
+
+  /* Highlight slot — emerald, the design's C1/C2 and success family */
+  --highlight: #047857;
   --highlight-foreground: #ffffff;
-  --highlight-muted: #eaf5f4;
+  --highlight-muted: #ecfdf5;
 
-  /* Feedback — functional colours, kept distinct from the brand family on purpose */
-  --success: #2b7449;
+  /* Feedback */
+  --success: #047857;
   --success-foreground: #ffffff;
-  --success-muted: #e4f5ea;
+  --success-muted: #ecfdf5;
 
-  --error: #b23a2e;
+  --error: #ba1a1a;
   --error-foreground: #ffffff;
-  --error-muted: #fbeae7;
+  --error-muted: #fef2f2;
 
-  /* Grammatical gender — used consistently for der / die / das, independent of the brand palette */
-  --der: #2b5d8a;
-  --der-muted: #e3ecf3;
-  --die: #a03b60;
-  --die-muted: #f5e3ea;
-  --das: #2a7449;
-  --das-muted: #e1f0e6;
+  /* Grammatical gender — der / die / das / plural */
+  --der: #2563eb;
+  --der-muted: #eff6ff;
+  --die: #be123c;
+  --die-muted: #fff1f2;
+  --das: #047857;
+  --das-muted: #ecfdf5;
+  --plural: #b45309;
+  --plural-muted: #fffbeb;
 
-  /* Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
+  /* Radius — controls 8px, cards 16px, dialogs 24px (pills use rounded-full) */
+  --radius-sm: 6px;
+  --radius-md: 8px;
   --radius-lg: 16px;
-  --radius-xl: 22px;
+  --radius-xl: 24px;
 
-  /* Shadow — tinted to the new cool-neutral ink rather than the old warm charcoal */
-  --shadow-sm: 0 1px 0 rgba(27, 30, 36, 0.04);
-  --shadow-md: 0 10px 28px -12px rgba(27, 30, 36, 0.22), 0 2px 6px -2px rgba(27, 30, 36, 0.08);
-  --shadow-lg: 0 28px 64px -24px rgba(27, 30, 36, 0.34), 0 8px 20px -8px rgba(27, 30, 36, 0.14);
+  /* Elevation — navy ambient shadows, three levels */
+  --shadow-sm: 0 1px 3px 0 rgba(23, 37, 84, 0.04), 0 1px 2px -1px rgba(23, 37, 84, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(23, 37, 84, 0.07), 0 2px 4px -2px rgba(23, 37, 84, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(23, 37, 84, 0.1), 0 8px 10px -6px rgba(23, 37, 84, 0.06);
 }
 
 .dark {
-  /* Surfaces — true black, not navy or charcoal-blue */
-  --bg: #0b0c0f;
-  --bg-alt: #131519;
-  --surface: #16181d;
-  --surface-glass: rgba(19, 21, 25, 0.7);
+  /* Surfaces — neutral graphite, so the blue reads as the only colour on screen */
+  --bg: #101216;
+  --bg-alt: #151820;
+  --surface: #1a1d25;
+  --surface-glass: rgba(26, 29, 37, 0.85);
   --surface-glass-border: rgba(255, 255, 255, 0.08);
-  --surface-sunken: #0f1114;
-  --rail: #343741;
+  --surface-sunken: #0b0c10;
+  --rail: #343946;
 
-  --ink: #edede8;
-  --ink-muted: #a7aab1;
-  --ink-faint: #7f838c;
+  --ink: #f1f3f8;
+  --ink-muted: #b9bfce;
+  --ink-faint: #9199ab;
 
-  --border: #2b2d33;
-  --border-strong: #3d4048;
+  --border: #2a2e3a;
+  --border-strong: #3b4150;
 
-  --primary: #9aa1ac;
-  --primary-foreground: #14171c;
-  --primary-muted: rgba(154, 161, 172, 0.16);
-  --primary-glow: rgba(154, 161, 172, 0.3);
+  /* Primary flips to a near-white button on graphite; the blue container carries navy's role (active nav, hero) */
+  --primary: #e8edff;
+  --primary-foreground: #0f1115;
+  --primary-muted: rgba(232, 237, 255, 0.1);
+  --primary-glow: rgba(232, 237, 255, 0.24);
+  --primary-container: #1d3573;
+  --on-primary-container: #dbe4ff;
 
-  --accent: #de8b54;
-  --accent-foreground: #2a1204;
-  --accent-muted: rgba(222, 139, 84, 0.16);
-  --accent-glow: rgba(222, 139, 84, 0.26);
+  --accent: #7fb0ff;
+  --accent-foreground: #0b1020;
+  --accent-muted: rgba(127, 176, 255, 0.14);
+  --accent-glow: rgba(127, 176, 255, 0.26);
 
-  --plum: #d2bc79;
-  --plum-foreground: #2a2408;
-  --plum-muted: rgba(210, 188, 121, 0.16);
-  --plum-glow: rgba(210, 188, 121, 0.22);
+  --plum: #fbbf24;
+  --plum-foreground: #201100;
+  --plum-muted: rgba(251, 191, 36, 0.14);
+  --plum-glow: rgba(251, 191, 36, 0.22);
 
-  --accent-vivid: #f0a868;
-  --plum-vivid: #e8c765;
-  --vivid-foreground: #14171c;
+  --accent-vivid: #5b9bff;
+  --plum-vivid: #fbbf24;
+  --vivid-foreground: #0b1020;
 
-  --highlight: #4fbdb2;
-  --highlight-foreground: #14171c;
-  --highlight-muted: rgba(79, 189, 178, 0.16);
+  --marker: #fbbf24;
+  --marker-foreground: #101216;
 
-  --success: #5fcb8c;
-  --success-foreground: #06180f;
-  --success-muted: rgba(95, 203, 140, 0.14);
+  --highlight: #34d399;
+  --highlight-foreground: #05150f;
+  --highlight-muted: rgba(52, 211, 153, 0.14);
 
-  --error: #e5534b;
-  --error-foreground: #200604;
-  --error-muted: rgba(229, 83, 75, 0.14);
+  --success: #34d399;
+  --success-foreground: #05150f;
+  --success-muted: rgba(52, 211, 153, 0.14);
 
-  --der: #7cb2e0;
-  --der-muted: #1b2a3a;
-  --die: #e08aa3;
-  --die-muted: #33202a;
-  --das: #5cb37e;
-  --das-muted: #16291d;
+  --error: #ff8a80;
+  --error-foreground: #2a0505;
+  --error-muted: rgba(255, 138, 128, 0.14);
 
-  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 10px 28px -10px rgba(0, 0, 0, 0.65);
-  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+  --der: #7fb0ff;
+  --der-muted: rgba(127, 176, 255, 0.14);
+  --die: #fb7185;
+  --die-muted: rgba(251, 113, 133, 0.14);
+  --das: #34d399;
+  --das-muted: rgba(52, 211, 153, 0.14);
+  --plural: #fbbf24;
+  --plural-muted: rgba(251, 191, 36, 0.14);
+
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 10px -2px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 20px 30px -8px rgba(0, 0, 0, 0.65);
+}
+
+/*
+ * High contrast (a learner setting, layered on either theme): secondary text is
+ * pushed to near-ink and every border and rail becomes clearly visible, so no
+ * information depends on a faint line or a grey caption.
+ */
+html.high-contrast {
+  --ink-muted: #1e293b;
+  --ink-faint: #334155;
+  --border: #64748b;
+  --border-strong: #334155;
+  --rail: #64748b;
+}
+
+html.high-contrast.dark {
+  --ink: #ffffff;
+  --ink-muted: #f1f3f8;
+  --ink-faint: #d6dbe8;
+  --border: #8a93a8;
+  --border-strong: #b9bfce;
+  --rail: #8a93a8;
 }
 
 @theme inline {
@@ -197,6 +224,8 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-muted: var(--primary-muted);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
 
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
@@ -209,6 +238,9 @@
   --color-accent-vivid: var(--accent-vivid);
   --color-plum-vivid: var(--plum-vivid);
   --color-vivid-foreground: var(--vivid-foreground);
+
+  --color-marker: var(--marker);
+  --color-marker-foreground: var(--marker-foreground);
 
   --color-highlight: var(--highlight);
   --color-highlight-foreground: var(--highlight-foreground);
@@ -228,6 +260,8 @@
   --color-die-muted: var(--die-muted);
   --color-das: var(--das);
   --color-das-muted: var(--das-muted);
+  --color-plural: var(--plural);
+  --color-plural-muted: var(--plural-muted);
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -238,9 +272,9 @@
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
 
-  --font-sans: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
-  --font-arabic: 'IBM Plex Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
-  --font-heading: 'Reem Kufi', 'Segoe UI', sans-serif;
-  --font-de: 'Fraunces', Georgia, serif;
+  --font-sans: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --font-arabic: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', 'Noto Sans Arabic', 'Segoe UI', sans-serif;
+  --font-de: 'Inter', 'Noto Sans Arabic', 'Segoe UI', sans-serif;
   --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
 }

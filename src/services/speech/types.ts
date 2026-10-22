@@ -1,5 +1,16 @@
 export type SpeechStatus = 'idle' | 'speaking' | 'unsupported' | 'error'
 
+/** A voice the engine can speak with — only the facts the UI and the voice picker need. */
+export interface VoiceInfo {
+  /** Stable identifier used to remember the learner's choice. */
+  voiceURI: string
+  name: string
+  /** BCP-47 tag of the voice, e.g. 'de-DE'. */
+  lang: string
+  /** Installed on the device (as opposed to streamed from a service). */
+  localService: boolean
+}
+
 export interface SpeakOptions {
   /** BCP-47 language tag, e.g. 'de-DE'. */
   language: string
@@ -7,6 +18,8 @@ export interface SpeakOptions {
   rate?: number
   pitch?: number
   volume?: number
+  /** Speak with this voice just this once (used to preview voices), instead of the preferred one. */
+  voiceURI?: string
   onStart?: () => void
   /** Called with the character offset of the word being spoken, where the engine reports it (progress inside a sentence). */
   onBoundary?: (charIndex: number) => void
@@ -28,4 +41,10 @@ export interface SpeechService {
   speak(text: string, options: SpeakOptions): void
   stop(): void
   getStatus(): SpeechStatus
+  /** The voices on offer. Browsers load them asynchronously, so this can be empty at first — see `onVoicesChanged`. */
+  getVoices(): VoiceInfo[]
+  /** Notifies when the list of voices changes. Returns an unsubscribe function. */
+  onVoicesChanged(listener: () => void): () => void
+  /** Chooses the voice to speak with; `null` picks the best match for the requested language. */
+  setPreferredVoice(voiceURI: string | null): void
 }

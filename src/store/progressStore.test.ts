@@ -113,4 +113,43 @@ describe('progressStore', () => {
     expect(state.activity).toHaveLength(0)
     expect(state.streakDays).toBe(0)
   })
+
+  describe('toggleSavedVocabulary', () => {
+    it('adds a word to spaced review and removes it again', () => {
+      useProgressStore.getState().toggleSavedVocabulary('voc-1')
+      expect(useProgressStore.getState().savedVocabularyIds).toEqual(['voc-1'])
+
+      useProgressStore.getState().toggleSavedVocabulary('voc-1')
+      expect(useProgressStore.getState().savedVocabularyIds).toEqual([])
+    })
+  })
+
+  describe('resetLessons', () => {
+    it('forgets the given lessons and vocabulary history but keeps everything else', () => {
+      const store = useProgressStore.getState()
+      store.completeLesson({ lessonId: 'a1-l1', moduleId: 'm1', level: 'A1', accuracy: 1 })
+      store.completeLesson({ lessonId: 'a2-l1', moduleId: 'm2', level: 'A2', accuracy: 1 })
+      store.recordVocabularyReview('a1-word', true)
+      store.recordVocabularyReview('a2-word', true)
+      store.toggleSavedVocabulary('a1-word')
+
+      useProgressStore.getState().resetLessons({ lessonIds: ['a1-l1'], vocabularyIds: ['a1-word'] })
+
+      const state = useProgressStore.getState()
+      expect(state.lessons['a1-l1']).toBeUndefined()
+      expect(state.lessons['a2-l1']?.completed).toBe(true)
+      expect(state.vocabulary['a1-word']).toBeUndefined()
+      expect(state.vocabulary['a2-word']).toBeDefined()
+      expect(state.activity.every((entry) => entry.lessonId !== 'a1-l1')).toBe(true)
+      expect(state.savedVocabularyIds).toEqual(['a1-word'])
+      expect(state.streakDays).toBeGreaterThan(0)
+    })
+
+    it('clears the "continue" pointer when it pointed into the reset lessons', () => {
+      useProgressStore.getState().startLesson({ lessonId: 'a1-l1', moduleId: 'm1', level: 'A1' })
+      useProgressStore.getState().resetLessons({ lessonIds: ['a1-l1'], vocabularyIds: [] })
+      expect(useProgressStore.getState().currentLessonId).toBeNull()
+      expect(useProgressStore.getState().currentModuleId).toBeNull()
+    })
+  })
 })

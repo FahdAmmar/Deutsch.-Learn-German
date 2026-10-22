@@ -8,8 +8,8 @@ const SPEAKER_PITCH = { a: 1.05, b: 0.85 } as const
 function buildReadingStory(text: ReadingText): Story {
   const segments: StorySegment[] = []
   const blocks = text.paragraphs.map((paragraph) => {
-    const paragraphSegments = splitSentences(paragraph.de).map((sentence) => {
-      const segment: StorySegment = { index: segments.length, text: sentence }
+    const paragraphSegments = splitSentences(paragraph.de).map((sentence, position) => {
+      const segment: StorySegment = { index: segments.length, text: sentence, ar: paragraph.sentencesAr?.[position] }
       segments.push(segment)
       return segment
     })
@@ -33,7 +33,7 @@ function buildReadingStory(text: ReadingText): Story {
 function buildDialogueStory(dialogue: Dialogue): Story {
   const segments: StorySegment[] = []
   const blocks = dialogue.lines.map((line) => {
-    const segment: StorySegment = { index: segments.length, text: line.de, pitch: SPEAKER_PITCH[line.speaker] }
+    const segment: StorySegment = { index: segments.length, text: line.de, ar: line.ar, pitch: SPEAKER_PITCH[line.speaker] }
     segments.push(segment)
     return { type: 'line' as const, speaker: line.speaker, name: line.name, ar: line.ar, segment }
   })

@@ -1,5 +1,6 @@
-import { getLessonById, getLessonsForLevel, getModuleById, getModulesForLevel, getVocabularyForLevel } from '@/lib/curriculum'
-import type { Module, ProgressState } from '@/types'
+import { getLessonById, getLessonsForLevel, getModuleById, getVocabularyForLevel } from '@/lib/curriculum'
+import { getPathLessons } from '@/lib/learningPath'
+import type { ActivityEntry, ProgressState } from '@/types'
 
 export interface LevelProgressSummary {
   totalLessons: number
@@ -20,7 +21,7 @@ export function getLevelProgressSummary(
   }
 }
 
-/** The lesson to resume: the current lesson if unfinished, otherwise the first incomplete lesson in the level. */
+/** The lesson to resume: the current lesson if unfinished, otherwise the first incomplete lesson on the level's learning path. */
 export function getContinueLearningLesson(progress: Pick<ProgressState, 'currentLevel' | 'currentLessonId' | 'lessons'>) {
   if (progress.currentLessonId) {
     const current = getLessonById(progress.currentLessonId)
@@ -29,7 +30,7 @@ export function getContinueLearningLesson(progress: Pick<ProgressState, 'current
     }
   }
 
-  const lessons = getLessonsForLevel(progress.currentLevel)
+  const lessons = getPathLessons(progress.currentLevel)
   return lessons.find((lesson) => !progress.lessons[lesson.id]?.completed) ?? lessons[0]
 }
 
@@ -53,43 +54,33 @@ export function getVocabularyReviewSummary(
   return { total: items.length, reviewed }
 }
 
-export type ModuleStepState = 'done' | 'current' | 'upcoming'
-
-export interface ModuleStep {
-  module: Module
-  completedLessons: number
-  totalLessons: number
-  state: ModuleStepState
+export interface DayActivity {
+  /** Local calendar day, `YYYY-MM-DD`. */
+  key: string
+  /** `Date.getDay()` of that day: 0 = Sunday. */
+  weekday: number
+  /** Lessons started or completed and exercise sets finished on that day. */
+  count: number
+  isToday: boolean
 }
 
-/**
- * Every module of a level, in order, with its own completion count. The first module that is
- * not fully completed (or the one containing `currentLessonId`) is the "current" stop.
- */
-export function getModulePath(
-  progress: Pick<ProgressState, 'lessons'>,
-  level: Parameters<typeof getModulesForLevel>[0],
-  currentLessonId?: string,
-): ModuleStep[] {
-  const modules = getModulesForLevel(level)
-  const steps = modules.map((module) => {
-    const completedLessons = module.lessons.filter((lesson) => progress.lessons[lesson.id]?.completed).length
-    return { module, completedLessons, totalLessons: module.lessons.length }
+function dayKey(date: Date): string {
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  return `${date.getFullYear()}-${month}-${day}`
+}
+
+/** Activity per local day for the last `days` days, oldest first, ending today. */
+export function getWeeklyActivity(activity: readonly ActivityEntry[], now: Date = new Date(), days = 7): DayActivity[] {
+  const counts = new Map<string, number>()
+  for (const entry of activity) {
+    const key = dayKey(new Date(entry.timestamp))
+    counts.set(key, (counts.get(key) ?? 0) + 1)
+  }
+
+  return Array.from({ length: days }, (_, index) => {
+    const date = new Date(now.getFullYear(), now.getMonth(), now.getDate() - (days - 1 - index))
+    const key = dayKey(date)
+    return { key, weekday: date.getDay(), count: counts.get(key) ?? 0, isToday: index === days - 1 }
   })
-
-  const byCurrentLesson = currentLessonId
-    ? steps.findIndex((step) => step.module.lessons.some((lesson) => lesson.id === currentLessonId))
-    : -1
-  const firstUnfinished = steps.findIndex((step) => step.completedLessons < step.totalLessons)
-  const currentIndex = byCurrentLesson >= 0 ? byCurrentLesson : firstUnfinished
-
-  return steps.map((step, index) => ({
-    ...step,
-    state:
-      step.totalLessons > 0 && step.completedLessons === step.totalLessons
-        ? 'done'
-        : index === currentIndex
-          ? 'current'
-          : 'upcoming',
-  }))
 }

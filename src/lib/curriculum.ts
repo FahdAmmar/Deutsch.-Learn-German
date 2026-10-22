@@ -1,18 +1,20 @@
-import { curriculum } from '@/data/curriculum'
+import { getCurriculum, LEVELS_WITH_CONTENT } from '@/data/curriculum'
 import { CEFR_LEVELS } from '@/types'
-import type { CEFRLevel, Lesson, Module, ReadingText } from '@/types'
+import type { CEFRLevel, Lesson, LevelCurriculum, Module, ReadingText, VocabularyItem } from '@/types'
+
+import { getNextLessonInPath } from './learningPath'
 
 export function getLevelCurriculum(level: CEFRLevel) {
-  return curriculum.find((entry) => entry.level === level)
+  return getCurriculum().find((entry) => entry.level === level)
 }
 
 export function getModulesForLevel(level: CEFRLevel): Module[] {
   return getLevelCurriculum(level)?.modules ?? []
 }
 
-/** Levels that have at least one authored module — derived from the data so pages never hardcode this. */
+/** Levels that have authored content. Known up front (it does not depend on what has been loaded). */
 export function getLevelsWithContent(): CEFRLevel[] {
-  return CEFR_LEVELS.filter((level) => getModulesForLevel(level).length > 0)
+  return [...LEVELS_WITH_CONTENT]
 }
 
 export function getModule(level: CEFRLevel, moduleSlug: string): Module | undefined {
@@ -20,7 +22,7 @@ export function getModule(level: CEFRLevel, moduleSlug: string): Module | undefi
 }
 
 export function getModuleById(moduleId: string): Module | undefined {
-  for (const entry of curriculum) {
+  for (const entry of getCurriculum()) {
     const found = entry.modules.find((module) => module.id === moduleId)
     if (found) return found
   }
@@ -37,7 +39,7 @@ export function getLesson(level: CEFRLevel, lessonSlug: string): Lesson | undefi
 }
 
 export function getLessonById(lessonId: string): Lesson | undefined {
-  for (const entry of curriculum) {
+  for (const entry of getCurriculum()) {
     for (const module of entry.modules) {
       const found = module.lessons.find((lesson) => lesson.id === lessonId)
       if (found) return found
@@ -51,16 +53,10 @@ export function getTotalLessonCount(level: CEFRLevel): number {
   return getLessonsForLevel(level).length
 }
 
-/** The lesson immediately after the given one within its module/level, if any. */
+/** The lesson that follows the given one on its level's learning path (falls back to module order for levels without a hand-made path). */
 export function getNextLesson(currentLessonId: string): Lesson | undefined {
   const lesson = getLessonById(currentLessonId)
-  if (!lesson) return undefined
-
-  const lessonsInLevel = getLessonsForLevel(lesson.level)
-  const currentIndex = lessonsInLevel.findIndex((entry) => entry.id === currentLessonId)
-  if (currentIndex === -1) return undefined
-
-  return lessonsInLevel[currentIndex + 1]
+  return lesson ? getNextLessonInPath(lesson) : undefined
 }
 
 /** Every vocabulary item across a level's lessons, deduplicated by id. */
@@ -75,19 +71,13 @@ export function getVocabularyForLevel(level: CEFRLevel) {
 }
 
 /** Every vocabulary item across every level — used to pool plausible distractors for review sessions. */
-export function getAllVocabulary() {
-  return CEFR_LEVELS.flatMap((level) => getVocabularyForLevel(level))
+/** The vocabulary of a level and of every level below it: A2 builds on A1, so its drills may use both. */
+export function getCumulativeVocabulary(level: CEFRLevel) {
+  return CEFR_LEVELS.slice(0, CEFR_LEVELS.indexOf(level) + 1).flatMap((each) => getVocabularyForLevel(each))
 }
 
-/** Every grammar topic across a level's lessons, deduplicated by id. */
-export function getGrammarTopicsForLevel(level: CEFRLevel) {
-  const seen = new Map<string, NonNullable<ReturnType<typeof getLessonsForLevel>[number]['grammarTopics']>[number]>()
-  for (const lesson of getLessonsForLevel(level)) {
-    for (const topic of lesson.grammarTopics ?? []) {
-      seen.set(topic.id, topic)
-    }
-  }
-  return Array.from(seen.values())
+export function getAllVocabulary() {
+  return CEFR_LEVELS.flatMap((level) => getVocabularyForLevel(level))
 }
 
 /** Every practical-usage dialogue across a level's lessons, in curriculum order. */
@@ -98,4 +88,47 @@ export function getDialoguesForLevel(level: CEFRLevel) {
 /** Standalone bilingual reading texts for a level (the "Reading" tab), in curriculum order. */
 export function getReadingTextsForLevel(level: CEFRLevel): ReadingText[] {
   return getLevelCurriculum(level)?.readingTexts ?? []
+}
+
+let exerciseIndex: { source: readonly LevelCurriculum[]; lessons: Map<string, Lesson> } | null = null
+
+/**
+ * The lesson an exercise belongs to, so a mistake can link back to where it
+ * was taught. Exercises that live elsewhere (grammar-rule quizzes, generated
+ * review questions) belong to no lesson and return `undefined`.
+ */
+export function getLessonByExerciseId(exerciseId: string): Lesson | undefined {
+  const source = getCurriculum()
+  // The curriculum snapshot changes identity whenever a level loads, which rebuilds the index.
+  if (exerciseIndex?.source !== source) {
+    const lessons = new Map<string, Lesson>()
+    for (const entry of source) {
+      for (const module of entry.modules) {
+        for (const lesson of module.lessons) {
+          for (const exercise of lesson.exercises) lessons.set(exercise.id, lesson)
+        }
+      }
+    }
+    exerciseIndex = { source, lessons }
+  }
+  return exerciseIndex.lessons.get(exerciseId)
+}
+
+let vocabularyIndex: { source: readonly LevelCurriculum[]; items: Map<string, VocabularyItem> } | null = null
+
+/** One vocabulary item by id, across the levels loaded so far. */
+export function getVocabularyById(vocabularyId: string): VocabularyItem | undefined {
+  const source = getCurriculum()
+  if (vocabularyIndex?.source !== source) {
+    const items = new Map<string, VocabularyItem>()
+    for (const entry of source) {
+      for (const module of entry.modules) {
+        for (const lesson of module.lessons) {
+          for (const item of lesson.vocabulary) items.set(item.id, item)
+        }
+      }
+    }
+    vocabularyIndex = { source, items }
+  }
+  return vocabularyIndex.items.get(vocabularyId)
 }

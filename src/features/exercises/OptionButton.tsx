@@ -21,6 +21,7 @@ export function OptionButton({ children, onClick, disabled, state = 'default', d
   return (
     <button
       type="button"
+      data-exercise-option=""
       onClick={onClick}
       disabled={disabled}
       dir={dir}

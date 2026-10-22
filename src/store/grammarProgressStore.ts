@@ -16,6 +16,8 @@ interface GrammarProgressActions {
   visitRule: (number: number) => void
   /** Records a finished quiz attempt. Completion is sticky; `bestAccuracy` only ever goes up. */
   recordQuizResult: (number: number, accuracy: number) => void
+  /** Replaces all progress, e.g. when a backup is imported. */
+  replaceRules: (rules: Record<string, GrammarRuleProgress>) => void
   resetGrammarProgress: () => void
 }
 
@@ -62,6 +64,8 @@ export const useGrammarProgressStore = create<GrammarProgressStore>()(
           }
         })
       },
+
+      replaceRules: (rules) => set({ rules }),
 
       resetGrammarProgress: () => set(initialState),
     }),

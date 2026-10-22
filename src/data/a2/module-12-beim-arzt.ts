@@ -77,14 +77,14 @@ export const lessonBeimArzt: Lesson = {
     { de: 'Nehmen Sie diese Tabletten dreimal täglich.', ar: 'تناولوا هذه الحبوب ثلاث مرات يومياً.' },
   ],
   vocabulary: [
-    { id: 'voc-arzt-termin', word: 'Termin', article: 'der', partOfSpeech: 'noun', meaningAr: 'الموعد', level: 'A2', category: 'عند الطبيب' },
-    { id: 'voc-arzt-rezept', word: 'Rezept', article: 'das', partOfSpeech: 'noun', meaningAr: 'الوصفة الطبية', level: 'A2', category: 'عند الطبيب' },
-    { id: 'voc-arzt-tablette', word: 'Tablette', article: 'die', partOfSpeech: 'noun', meaningAr: 'الحبّة الدوائية', level: 'A2', category: 'الصيدلية' },
-    { id: 'voc-arzt-symptom', word: 'Symptom', article: 'das', partOfSpeech: 'noun', meaningAr: 'العرض (المرضي)', level: 'A2', category: 'عند الطبيب' },
-    { id: 'voc-arzt-untersuchung', word: 'Untersuchung', article: 'die', partOfSpeech: 'noun', meaningAr: 'الفحص الطبي', level: 'A2', category: 'عند الطبيب' },
-    { id: 'voc-arzt-facharzt', word: 'Facharzt', article: 'der', partOfSpeech: 'noun', meaningAr: 'الطبيب الأخصائي', level: 'A2', category: 'عند الطبيب' },
-    { id: 'voc-arzt-versicherung', word: 'Versicherung', article: 'die', partOfSpeech: 'noun', meaningAr: 'التأمين', level: 'A2', category: 'عند الطبيب' },
-    { id: 'voc-arzt-vereinbaren', word: 'vereinbaren', partOfSpeech: 'verb', meaningAr: 'يحدّد (موعداً)', level: 'A2', category: 'عند الطبيب' },
+    { id: 'voc-arzt-termin', word: 'Termin', article: 'der', plural: 'Termine', partOfSpeech: 'noun', meaningAr: 'الموعد', level: 'A2', category: 'عند الطبيب', example: { de: 'Ich habe morgen einen Termin beim Arzt.', ar: 'عندي غداً موعد عند الطبيب.' } },
+    { id: 'voc-arzt-rezept', word: 'Rezept', article: 'das', plural: 'Rezepte', partOfSpeech: 'noun', meaningAr: 'الوصفة الطبية', level: 'A2', category: 'عند الطبيب', example: { de: 'Der Arzt schreibt ein Rezept.', ar: 'الطبيب يكتب وصفة طبية.' } },
+    { id: 'voc-arzt-tablette', word: 'Tablette', article: 'die', plural: 'Tabletten', partOfSpeech: 'noun', meaningAr: 'الحبّة الدوائية', level: 'A2', category: 'الصيدلية', example: { de: 'Nehmen Sie dreimal täglich eine Tablette.', ar: 'خذ حبّة ثلاث مرات يومياً. (بصيغة الاحترام)' } },
+    { id: 'voc-arzt-symptom', word: 'Symptom', article: 'das', plural: 'Symptome', partOfSpeech: 'noun', meaningAr: 'العرض (المرضي)', level: 'A2', category: 'عند الطبيب', example: { de: 'Fieber und Husten sind Symptome einer Erkältung.', ar: 'الحمّى والسعال من أعراض نزلة البرد.' } },
+    { id: 'voc-arzt-untersuchung', word: 'Untersuchung', article: 'die', plural: 'Untersuchungen', partOfSpeech: 'noun', meaningAr: 'الفحص الطبي', level: 'A2', category: 'عند الطبيب', example: { de: 'Die Untersuchung dauert zehn Minuten.', ar: 'يستغرق الفحص عشر دقائق.' } },
+    { id: 'voc-arzt-facharzt', word: 'Facharzt', article: 'der', plural: 'Fachärzte', partOfSpeech: 'noun', meaningAr: 'الطبيب الأخصائي', level: 'A2', category: 'عند الطبيب', example: { de: 'Der Hausarzt schickt mich zum Facharzt.', ar: 'طبيب العائلة يحوّلني إلى الطبيب الأخصائي.' } },
+    { id: 'voc-arzt-versicherung', word: 'Versicherung', article: 'die', plural: 'Versicherungen', partOfSpeech: 'noun', meaningAr: 'التأمين', level: 'A2', category: 'عند الطبيب', example: { de: 'Haben Sie eine Versicherung?', ar: 'هل لديك تأمين؟ (بصيغة الاحترام)' } },
+    { id: 'voc-arzt-vereinbaren', word: 'vereinbaren', partOfSpeech: 'verb', meaningAr: 'يحدّد (موعداً)', level: 'A2', category: 'عند الطبيب', verb: { praeteritum: 'vereinbarte', partizip: 'vereinbart', auxiliary: 'haben' }, example: { de: 'Ich möchte einen Termin vereinbaren.', ar: 'أريد أن أحدّد موعداً.' } },
   ],
   dialogues: [
     {

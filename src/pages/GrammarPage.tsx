@@ -1,11 +1,8 @@
-import { ChevronDown } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { LevelTabs, PageHeader, ProgressBar } from '@/components/ui'
-import { GrammarTopicCard } from '@/features/grammar/GrammarTopicCard'
 import { RoadmapRow } from '@/features/grammar/roadmap/RoadmapRow'
 import { getPublishedCount, getRoadmapEntries, isRulePublished } from '@/lib/grammarRoadmap'
-import { getGrammarTopicsForLevel } from '@/lib/curriculum'
 import { useGrammarProgressStore } from '@/store/grammarProgressStore'
 import { useProgressStore } from '@/store/progressStore'
 import type { CEFRLevel } from '@/types'
@@ -16,7 +13,6 @@ export default function GrammarPage() {
   const rules = useGrammarProgressStore((state) => state.rules)
 
   const entries = useMemo(() => getRoadmapEntries(level), [level])
-  const lessonTopics = useMemo(() => getGrammarTopicsForLevel(level), [level])
 
   const publishedInLevel = getPublishedCount(level)
   const completedInLevel = entries.filter((entry) => rules[entry.number]?.completed).length
@@ -53,22 +49,6 @@ export default function GrammarPage() {
           />
         ))}
       </ol>
-
-      {lessonTopics.length > 0 ? (
-        <details dir="rtl" className="group rounded-lg border border-border bg-surface">
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-lg px-4 py-3.5 font-semibold text-ink [&::-webkit-details-marker]:hidden">
-            <span>
-              ملخصات قصيرة من دروس {level} ({lessonTopics.length})
-            </span>
-            <ChevronDown size={20} aria-hidden="true" className="text-ink-faint transition-transform duration-200 group-open:rotate-180" />
-          </summary>
-          <div className="space-y-4 border-t border-border p-4">
-            {lessonTopics.map((topic) => (
-              <GrammarTopicCard key={topic.id} topic={topic} />
-            ))}
-          </div>
-        </details>
-      ) : null}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock, MessagesSquare, BookOpenText } from 'lucide-react'
+import { ArrowLeft, ClipboardCheck, Clock, Keyboard, MessagesSquare, BookOpenText } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui'
@@ -71,6 +71,23 @@ export function StoryView({ story }: StoryViewProps) {
               من درس: {lesson.titleAr}
             </Link>
           ) : null}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            to={`/levels/${story.level.toLowerCase()}/texts/${story.id}/quiz`}
+            className="inline-flex h-11 items-center gap-2 rounded-md bg-accent px-5 text-[0.95rem] font-semibold text-accent-foreground transition-[filter] hover:brightness-110"
+          >
+            <ClipboardCheck size={18} aria-hidden="true" />
+            <span dir="rtl">اختبر نفسك</span>
+          </Link>
+          <Link
+            to={`/levels/${story.level.toLowerCase()}/texts/${story.id}/diktat`}
+            className="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-5 text-[0.95rem] font-semibold text-ink transition-colors hover:bg-surface-sunken"
+          >
+            <Keyboard size={18} aria-hidden="true" />
+            <span dir="rtl">إملاء حرفًا بحرف</span>
+          </Link>
         </div>
       </header>
 

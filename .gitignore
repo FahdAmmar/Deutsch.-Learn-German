@@ -33,3 +33,10 @@ playwright-report/
 !.env.example
 CLAUDE.local.md
 .claude/settings.local.json
+.zip 
+zip
+
+
+# Stale agent worktrees (a copy of src/ that must never ship)
+.kilo/
+.vscode 

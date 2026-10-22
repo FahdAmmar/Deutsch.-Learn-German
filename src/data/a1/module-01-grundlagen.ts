@@ -33,12 +33,12 @@ export const lessonBegruessungen: Lesson = {
     { de: 'Tschüss! Bis morgen!', ar: 'وداعاً! إلى الغد!' },
   ],
   vocabulary: [
-    { id: 'voc-begruessungen-hallo', word: 'Hallo', partOfSpeech: 'interjection', meaningAr: 'مرحباً', level: 'A1', category: 'Begrüßungen' },
-    { id: 'voc-begruessungen-guten-morgen', word: 'Guten Morgen', partOfSpeech: 'phrase', meaningAr: 'صباح الخير', level: 'A1', category: 'Begrüßungen' },
-    { id: 'voc-begruessungen-guten-tag', word: 'Guten Tag', partOfSpeech: 'phrase', meaningAr: 'نهارك سعيد', level: 'A1', category: 'Begrüßungen' },
-    { id: 'voc-begruessungen-guten-abend', word: 'Guten Abend', partOfSpeech: 'phrase', meaningAr: 'مساء الخير', level: 'A1', category: 'Begrüßungen' },
-    { id: 'voc-begruessungen-auf-wiedersehen', word: 'Auf Wiedersehen', partOfSpeech: 'phrase', meaningAr: 'إلى اللقاء (رسمي)', level: 'A1', category: 'Begrüßungen' },
-    { id: 'voc-begruessungen-tschuess', word: 'Tschüss', partOfSpeech: 'interjection', meaningAr: 'وداعاً (غير رسمي)', level: 'A1', category: 'Begrüßungen' },
+    { id: 'voc-begruessungen-hallo', word: 'Hallo', partOfSpeech: 'interjection', meaningAr: 'مرحباً', level: 'A1', category: 'Begrüßungen', example: { de: 'Hallo, ich bin Lena.', ar: 'مرحباً، أنا لينا.' } },
+    { id: 'voc-begruessungen-guten-morgen', word: 'Guten Morgen', partOfSpeech: 'phrase', meaningAr: 'صباح الخير', level: 'A1', category: 'Begrüßungen', example: { de: 'Guten Morgen, Herr Braun!', ar: 'صباح الخير يا سيد براون!' } },
+    { id: 'voc-begruessungen-guten-tag', word: 'Guten Tag', partOfSpeech: 'phrase', meaningAr: 'نهارك سعيد', level: 'A1', category: 'Begrüßungen', example: { de: 'Guten Tag, Frau Schmidt.', ar: 'نهارك سعيد يا سيدة شميدت.' } },
+    { id: 'voc-begruessungen-guten-abend', word: 'Guten Abend', partOfSpeech: 'phrase', meaningAr: 'مساء الخير', level: 'A1', category: 'Begrüßungen', example: { de: 'Guten Abend, willkommen!', ar: 'مساء الخير، أهلاً بك!' } },
+    { id: 'voc-begruessungen-auf-wiedersehen', word: 'Auf Wiedersehen', partOfSpeech: 'phrase', meaningAr: 'إلى اللقاء (رسمي)', level: 'A1', category: 'Begrüßungen', example: { de: 'Auf Wiedersehen, Herr Braun!', ar: 'إلى اللقاء يا سيد براون!' } },
+    { id: 'voc-begruessungen-tschuess', word: 'Tschüss', partOfSpeech: 'interjection', meaningAr: 'وداعاً (غير رسمي)', level: 'A1', category: 'Begrüßungen', example: { de: 'Tschüss, bis morgen!', ar: 'وداعاً، أراك غداً!' } },
     {
       id: 'voc-begruessungen-wie-gehts',
       word: "Wie geht's?",
@@ -48,8 +48,8 @@ export const lessonBegruessungen: Lesson = {
       category: 'Begrüßungen',
       example: { de: "Hallo Tom, wie geht's?", ar: 'مرحباً توم، كيف حالك؟' },
     },
-    { id: 'voc-begruessungen-danke', word: 'danke', partOfSpeech: 'adverb', meaningAr: 'شكراً', level: 'A1', category: 'Begrüßungen' },
-    { id: 'voc-begruessungen-bitte', word: 'bitte', partOfSpeech: 'adverb', meaningAr: 'من فضلك / عفواً', level: 'A1', category: 'Begrüßungen' },
+    { id: 'voc-begruessungen-danke', word: 'danke', partOfSpeech: 'adverb', meaningAr: 'شكراً', level: 'A1', category: 'Begrüßungen', example: { de: 'Danke, es geht mir gut.', ar: 'شكراً، أنا بخير.' } },
+    { id: 'voc-begruessungen-bitte', word: 'bitte', partOfSpeech: 'adverb', meaningAr: 'من فضلك / عفواً', level: 'A1', category: 'Begrüßungen', example: { de: 'Einen Kaffee, bitte.', ar: 'قهوة من فضلك.' } },
   ],
   exercises: [
     {
@@ -141,11 +141,11 @@ export const lessonSichVorstellen: Lesson = {
     { de: 'Ich bin Student.', ar: 'أنا طالب.' },
   ],
   vocabulary: [
-    { id: 'voc-sich-vorstellen-heissen', word: 'heißen', partOfSpeech: 'verb', meaningAr: 'يُدعى / اسمه', level: 'A1', category: 'Sich vorstellen', example: { de: 'Ich heiße Omar.', ar: 'اسمي عمر.' } },
-    { id: 'voc-sich-vorstellen-kommen', word: 'kommen', partOfSpeech: 'verb', meaningAr: 'يأتي / قادم من', level: 'A1', category: 'Sich vorstellen', example: { de: 'Ich komme aus Jordanien.', ar: 'أنا من الأردن.' } },
-    { id: 'voc-sich-vorstellen-name', word: 'Name', article: 'der', plural: 'Namen', partOfSpeech: 'noun', meaningAr: 'الاسم', level: 'A1', category: 'Sich vorstellen' },
-    { id: 'voc-sich-vorstellen-land', word: 'Land', article: 'das', plural: 'Länder', partOfSpeech: 'noun', meaningAr: 'البلد', level: 'A1', category: 'Sich vorstellen' },
-    { id: 'voc-sich-vorstellen-woher', word: 'Woher?', partOfSpeech: 'phrase', meaningAr: 'من أين؟', level: 'A1', category: 'Sich vorstellen' },
+    { id: 'voc-sich-vorstellen-heissen', word: 'heißen', partOfSpeech: 'verb', meaningAr: 'يُدعى / اسمه', level: 'A1', category: 'Sich vorstellen', verb: { praeteritum: 'hieß', partizip: 'geheißen', auxiliary: 'haben' }, example: { de: 'Ich heiße Omar.', ar: 'اسمي عمر.' } },
+    { id: 'voc-sich-vorstellen-kommen', word: 'kommen', partOfSpeech: 'verb', meaningAr: 'يأتي / قادم من', level: 'A1', category: 'Sich vorstellen', verb: { praeteritum: 'kam', partizip: 'gekommen', auxiliary: 'sein' }, example: { de: 'Ich komme aus Jordanien.', ar: 'أنا من الأردن.' } },
+    { id: 'voc-sich-vorstellen-name', word: 'Name', article: 'der', plural: 'Namen', partOfSpeech: 'noun', meaningAr: 'الاسم', level: 'A1', category: 'Sich vorstellen', example: { de: 'Mein Name ist Samir.', ar: 'اسمي سمير.' } },
+    { id: 'voc-sich-vorstellen-land', word: 'Land', article: 'das', plural: 'Länder', partOfSpeech: 'noun', meaningAr: 'البلد', level: 'A1', category: 'Sich vorstellen', example: { de: 'Deutschland ist ein Land in Europa.', ar: 'ألمانيا بلد في أوروبا.' } },
+    { id: 'voc-sich-vorstellen-woher', word: 'Woher?', partOfSpeech: 'phrase', meaningAr: 'من أين؟', level: 'A1', category: 'Sich vorstellen', example: { de: 'Woher kommst du?', ar: 'من أين أنت؟' } },
   ],
   exercises: [
     {
@@ -234,10 +234,10 @@ export const lessonAlphabet: Lesson = {
     { de: 'Das Wort „schön" hat einen Umlaut.', ar: 'كلمة "schön" تحتوي على حرف متحول.' },
   ],
   vocabulary: [
-    { id: 'voc-alphabet-buchstabe', word: 'Buchstabe', article: 'der', plural: 'Buchstaben', partOfSpeech: 'noun', meaningAr: 'الحرف', level: 'A1', category: 'Alphabet' },
-    { id: 'voc-alphabet-buchstabieren', word: 'buchstabieren', partOfSpeech: 'verb', meaningAr: 'يتهجّى', level: 'A1', category: 'Alphabet' },
-    { id: 'voc-alphabet-alphabet', word: 'Alphabet', article: 'das', partOfSpeech: 'noun', meaningAr: 'الأبجدية', level: 'A1', category: 'Alphabet' },
-    { id: 'voc-alphabet-umlaut', word: 'Umlaut', article: 'der', plural: 'Umlaute', partOfSpeech: 'noun', meaningAr: 'الحرف المتحول (ä, ö, ü)', level: 'A1', category: 'Alphabet' },
+    { id: 'voc-alphabet-buchstabe', word: 'Buchstabe', article: 'der', plural: 'Buchstaben', partOfSpeech: 'noun', meaningAr: 'الحرف', level: 'A1', category: 'Alphabet', example: { de: 'Das Wort „Haus“ hat vier Buchstaben.', ar: 'كلمة «Haus» فيها أربعة أحرف.' } },
+    { id: 'voc-alphabet-buchstabieren', word: 'buchstabieren', partOfSpeech: 'verb', meaningAr: 'يتهجّى', level: 'A1', category: 'Alphabet', verb: { praeteritum: 'buchstabierte', partizip: 'buchstabiert', auxiliary: 'haben' }, example: { de: 'Ich buchstabiere: H-A-U-S.', ar: 'أتهجّى: H-A-U-S.' } },
+    { id: 'voc-alphabet-alphabet', word: 'Alphabet', article: 'das', plural: 'Alphabete', partOfSpeech: 'noun', meaningAr: 'الأبجدية', level: 'A1', category: 'Alphabet', example: { de: 'Das Alphabet hat 26 Buchstaben.', ar: 'الأبجدية فيها 26 حرفاً (إضافةً إلى ä وö وü وß).' } },
+    { id: 'voc-alphabet-umlaut', word: 'Umlaut', article: 'der', plural: 'Umlaute', partOfSpeech: 'noun', meaningAr: 'الحرف المتحول (ä, ö, ü)', level: 'A1', category: 'Alphabet', example: { de: 'Das „ü“ in „Tür“ ist ein Umlaut.', ar: 'حرف «ü» في كلمة «Tür» حرف متحوّل (Umlaut).' } },
   ],
   exercises: [
     {
@@ -313,14 +313,14 @@ export const lessonZahlen: Lesson = {
     { de: 'Die Zahl einundzwanzig kommt nach zwanzig.', ar: 'الرقم واحد وعشرون يأتي بعد عشرين.' },
   ],
   vocabulary: [
-    { id: 'voc-zahlen-eins', word: 'eins', partOfSpeech: 'number', meaningAr: 'واحد', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-zwei', word: 'zwei', partOfSpeech: 'number', meaningAr: 'اثنان', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-drei', word: 'drei', partOfSpeech: 'number', meaningAr: 'ثلاثة', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-zehn', word: 'zehn', partOfSpeech: 'number', meaningAr: 'عشرة', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-zwanzig', word: 'zwanzig', partOfSpeech: 'number', meaningAr: 'عشرون', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-hundert', word: 'hundert', partOfSpeech: 'number', meaningAr: 'مئة', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-die-zahl', word: 'Zahl', article: 'die', plural: 'Zahlen', partOfSpeech: 'noun', meaningAr: 'الرقم', level: 'A1', category: 'Zahlen' },
-    { id: 'voc-zahlen-jahr', word: 'Jahr', article: 'das', plural: 'Jahre', partOfSpeech: 'noun', meaningAr: 'السنة/العام', level: 'A1', category: 'Zahlen' },
+    { id: 'voc-zahlen-eins', word: 'eins', partOfSpeech: 'number', meaningAr: 'واحد', level: 'A1', category: 'Zahlen', example: { de: 'Eins plus eins ist zwei.', ar: 'واحد زائد واحد يساوي اثنين.' } },
+    { id: 'voc-zahlen-zwei', word: 'zwei', partOfSpeech: 'number', meaningAr: 'اثنان', level: 'A1', category: 'Zahlen', example: { de: 'Zwei Kaffee, bitte.', ar: 'قهوتان من فضلك.' } },
+    { id: 'voc-zahlen-drei', word: 'drei', partOfSpeech: 'number', meaningAr: 'ثلاثة', level: 'A1', category: 'Zahlen', example: { de: 'Drei Äpfel, bitte.', ar: 'ثلاث تفاحات من فضلك.' } },
+    { id: 'voc-zahlen-zehn', word: 'zehn', partOfSpeech: 'number', meaningAr: 'عشرة', level: 'A1', category: 'Zahlen', example: { de: 'Zehn Euro, bitte.', ar: 'عشرة يورو من فضلك.' } },
+    { id: 'voc-zahlen-zwanzig', word: 'zwanzig', partOfSpeech: 'number', meaningAr: 'عشرون', level: 'A1', category: 'Zahlen', example: { de: 'Ich bin zwanzig Jahre alt.', ar: 'عمري عشرون عاماً.' } },
+    { id: 'voc-zahlen-hundert', word: 'hundert', partOfSpeech: 'number', meaningAr: 'مئة', level: 'A1', category: 'Zahlen', example: { de: 'Das Zimmer kostet hundert Euro.', ar: 'الغرفة تكلّف مئة يورو.' } },
+    { id: 'voc-zahlen-die-zahl', word: 'Zahl', article: 'die', plural: 'Zahlen', partOfSpeech: 'noun', meaningAr: 'الرقم', level: 'A1', category: 'Zahlen', example: { de: 'Welche Zahl ist das?', ar: 'أي رقم هذا؟' } },
+    { id: 'voc-zahlen-jahr', word: 'Jahr', article: 'das', plural: 'Jahre', partOfSpeech: 'noun', meaningAr: 'السنة/العام', level: 'A1', category: 'Zahlen', example: { de: 'Ein Jahr hat zwölf Monate.', ar: 'السنة فيها اثنا عشر شهراً.' } },
   ],
   exercises: [
     {
@@ -404,13 +404,13 @@ export const lessonPersonalpronomen: Lesson = {
     { de: 'Sprechen Sie Englisch?', ar: 'هل تتحدث الإنجليزية؟ (رسمي)' },
   ],
   vocabulary: [
-    { id: 'voc-personalpronomen-ich', word: 'ich', partOfSpeech: 'pronoun', meaningAr: 'أنا', level: 'A1', category: 'Personalpronomen' },
-    { id: 'voc-personalpronomen-du', word: 'du', partOfSpeech: 'pronoun', meaningAr: 'أنتَ/أنتِ (غير رسمي)', level: 'A1', category: 'Personalpronomen' },
-    { id: 'voc-personalpronomen-er', word: 'er', partOfSpeech: 'pronoun', meaningAr: 'هو', level: 'A1', category: 'Personalpronomen' },
-    { id: 'voc-personalpronomen-sie', word: 'sie', partOfSpeech: 'pronoun', meaningAr: 'هي / هم', level: 'A1', category: 'Personalpronomen' },
-    { id: 'voc-personalpronomen-wir', word: 'wir', partOfSpeech: 'pronoun', meaningAr: 'نحن', level: 'A1', category: 'Personalpronomen' },
-    { id: 'voc-personalpronomen-ihr', word: 'ihr', partOfSpeech: 'pronoun', meaningAr: 'أنتم (جمع غير رسمي)', level: 'A1', category: 'Personalpronomen' },
-    { id: 'voc-personalpronomen-Sie', word: 'Sie', partOfSpeech: 'pronoun', meaningAr: 'حضرتك/حضرتكم (صيغة الاحترام)', level: 'A1', category: 'Personalpronomen' },
+    { id: 'voc-personalpronomen-ich', word: 'ich', partOfSpeech: 'pronoun', meaningAr: 'أنا', level: 'A1', category: 'Personalpronomen', example: { de: 'Ich lerne Deutsch.', ar: 'أنا أتعلّم الألمانية.' } },
+    { id: 'voc-personalpronomen-du', word: 'du', partOfSpeech: 'pronoun', meaningAr: 'أنتَ/أنتِ (غير رسمي)', level: 'A1', category: 'Personalpronomen', example: { de: 'Wie heißt du?', ar: 'ما اسمك؟' } },
+    { id: 'voc-personalpronomen-er', word: 'er', partOfSpeech: 'pronoun', meaningAr: 'هو', level: 'A1', category: 'Personalpronomen', example: { de: 'Er heißt Paul.', ar: 'اسمه باول.' } },
+    { id: 'voc-personalpronomen-sie', word: 'sie', partOfSpeech: 'pronoun', meaningAr: 'هي / هم', level: 'A1', category: 'Personalpronomen', example: { de: 'Sie heißt Anna.', ar: 'اسمها آنا.' } },
+    { id: 'voc-personalpronomen-wir', word: 'wir', partOfSpeech: 'pronoun', meaningAr: 'نحن', level: 'A1', category: 'Personalpronomen', example: { de: 'Wir lernen Deutsch.', ar: 'نحن نتعلّم الألمانية.' } },
+    { id: 'voc-personalpronomen-ihr', word: 'ihr', partOfSpeech: 'pronoun', meaningAr: 'أنتم (جمع غير رسمي)', level: 'A1', category: 'Personalpronomen', example: { de: 'Wo wohnt ihr?', ar: 'أين تسكنون؟' } },
+    { id: 'voc-personalpronomen-Sie', word: 'Sie', partOfSpeech: 'pronoun', meaningAr: 'حضرتك/حضرتكم (صيغة الاحترام)', level: 'A1', category: 'Personalpronomen', example: { de: 'Wie heißen Sie?', ar: 'ما اسمك؟ (بصيغة الاحترام)' } },
   ],
   grammarTopics: [
     {

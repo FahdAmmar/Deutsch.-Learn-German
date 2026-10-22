@@ -1,20 +1,34 @@
 import { Download, Monitor, Moon, RotateCcw, Sun, Upload } from 'lucide-react'
 import { useRef, useState } from 'react'
 
-import { Button, Card, PageHeader, Switch } from '@/components/ui'
+import { Button, Card, PageHeader } from '@/components/ui'
+import { ChoiceGroup } from '@/features/settings/ChoiceGroup'
+import { SettingGroup, SettingRow } from '@/features/settings/SettingRow'
+import { VoicePicker } from '@/features/settings/VoicePicker'
+import { getLessonsForLevel, getVocabularyForLevel, getLevelsWithContent } from '@/lib/curriculum'
 import { cn } from '@/lib/cn'
-import { parseProgressImport, serializeProgress } from '@/lib/progressExport'
+import { loadLevel } from '@/data/curriculum'
+import { parseProgressBackup, type ProgressBackup } from '@/lib/progressExport'
+import { applyBackup, createBackupJson, describeExtras } from '@/store/backup'
 import { useProgressStore } from '@/store/progressStore'
 import { useSettingsStore } from '@/store/settingsStore'
+import { useStatsStore } from '@/store/statsStore'
 import { useThemeStore } from '@/store/themeStore'
 import { todayKey } from '@/utils/date'
-import type { ProgressState } from '@/types'
-import type { ThemePreference } from '@/types/settings'
+import { CEFR_LEVEL_INFO } from '@/types'
+import type { CEFRLevel } from '@/types'
+import { DAILY_GOAL_OPTIONS, type TextScale, type ThemePreference } from '@/types/settings'
 
 const THEME_OPTIONS: { value: ThemePreference; icon: typeof Sun; labelAr: string }[] = [
   { value: 'light', icon: Sun, labelAr: 'فاتح' },
   { value: 'dark', icon: Moon, labelAr: 'داكن' },
   { value: 'system', icon: Monitor, labelAr: 'النظام' },
+]
+
+const TEXT_SCALE_OPTIONS: { value: TextScale; label: string; hint: string }[] = [
+  { value: 'normal', label: 'عادي', hint: '100%' },
+  { value: 'large', label: 'كبير', hint: '112%' },
+  { value: 'xlarge', label: 'كبير جداً', hint: '125%' },
 ]
 
 export default function SettingsPage() {
@@ -25,14 +39,23 @@ export default function SettingsPage() {
   const setAutoPlayPronunciation = useSettingsStore((state) => state.setAutoPlayPronunciation)
   const setSpeechRate = useSettingsStore((state) => state.setSpeechRate)
   const setReducedMotion = useSettingsStore((state) => state.setReducedMotion)
+  const setSoundEffects = useSettingsStore((state) => state.setSoundEffects)
+  const setTextScale = useSettingsStore((state) => state.setTextScale)
+  const setHighContrast = useSettingsStore((state) => state.setHighContrast)
+  const setShowPronunciationHints = useSettingsStore((state) => state.setShowPronunciationHints)
+  const setDailyGoal = useSettingsStore((state) => state.setDailyGoal)
 
   const resetProgress = useProgressStore((state) => state.resetProgress)
-  const replaceProgress = useProgressStore((state) => state.replaceProgress)
+  const resetLessons = useProgressStore((state) => state.resetLessons)
+  const resetStats = useStatsStore((state) => state.resetStats)
   const [confirmingReset, setConfirmingReset] = useState(false)
+  const [resetLevelChoice, setResetLevelChoice] = useState<CEFRLevel | null>(null)
+  const [levelResetDone, setLevelResetDone] = useState<CEFRLevel | null>(null)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const [pendingImport, setPendingImport] = useState<ProgressState | null>(null)
+  const [pendingImport, setPendingImport] = useState<ProgressBackup | null>(null)
   const [importError, setImportError] = useState<string | null>(null)
+  const pendingExtras = describeExtras(pendingImport?.extras)
   const [importSuccess, setImportSuccess] = useState(false)
 
   function handleResetProgress() {
@@ -41,11 +64,25 @@ export default function SettingsPage() {
       return
     }
     resetProgress()
+    resetStats()
     setConfirmingReset(false)
   }
 
+  async function handleResetLevel() {
+    if (!resetLevelChoice) return
+    const level = resetLevelChoice
+    // The level's content may not be loaded yet (it is fetched on demand); the reset needs its lesson ids.
+    await loadLevel(level)
+    resetLessons({
+      lessonIds: getLessonsForLevel(level).map((lesson) => lesson.id),
+      vocabularyIds: getVocabularyForLevel(level).map((item) => item.id),
+    })
+    setResetLevelChoice(null)
+    setLevelResetDone(level)
+  }
+
   function handleExport() {
-    const json = serializeProgress(useProgressStore.getState())
+    const json = createBackupJson()
     const blob = new Blob([json], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
     const link = document.createElement('a')
@@ -65,7 +102,7 @@ export default function SettingsPage() {
 
     setImportSuccess(false)
     const text = await file.text()
-    const result = parseProgressImport(text)
+    const result = parseProgressBackup(text)
 
     if (!result.success) {
       setImportError(result.error)
@@ -79,7 +116,7 @@ export default function SettingsPage() {
 
   function confirmImport() {
     if (!pendingImport) return
-    replaceProgress(pendingImport)
+    applyBackup(pendingImport)
     setPendingImport(null)
     setImportSuccess(true)
   }
@@ -89,42 +126,49 @@ export default function SettingsPage() {
       <PageHeader title="الإعدادات" description="خصّص طريقة تعلّمك." />
 
       <SettingsSection title="المظهر">
-        <div dir="rtl" role="group" aria-label="المظهر" className="grid max-w-md grid-cols-3 gap-2">
-          {THEME_OPTIONS.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              aria-pressed={themePreference === option.value}
-              onClick={() => setThemePreference(option.value)}
-              className={cn(
-                'flex min-h-16 flex-col items-center justify-center gap-1.5 rounded-md border-2 px-3 py-3 text-sm font-semibold transition-colors',
-                themePreference === option.value
-                  ? 'border-accent bg-accent-muted text-ink'
-                  : 'border-border text-ink-muted hover:border-border-strong hover:text-ink',
-              )}
-            >
-              <option.icon size={20} aria-hidden="true" />
-              {option.labelAr}
-            </button>
-          ))}
-        </div>
+        <SettingGroup title="السمة">
+          <div dir="rtl" role="group" aria-label="المظهر" className="grid max-w-md grid-cols-3 gap-2">
+            {THEME_OPTIONS.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                aria-pressed={themePreference === option.value}
+                onClick={() => setThemePreference(option.value)}
+                className={cn(
+                  'flex min-h-16 flex-col items-center justify-center gap-1.5 rounded-md border-2 px-3 py-3 text-sm font-semibold transition-colors',
+                  themePreference === option.value
+                    ? 'border-accent bg-accent-muted text-ink'
+                    : 'border-border text-ink-muted hover:border-border-strong hover:text-ink',
+                )}
+              >
+                <option.icon size={20} aria-hidden="true" />
+                {option.labelAr}
+              </button>
+            ))}
+          </div>
+        </SettingGroup>
+
+        <SettingGroup title="حجم النص" description="يكبّر كل النصوص والعناصر في التطبيق معاً.">
+          <ChoiceGroup label="حجم النص" value={settings.textScale} options={TEXT_SCALE_OPTIONS} onChange={setTextScale} />
+        </SettingGroup>
+
+        <SettingRow
+          id="high-contrast-switch"
+          title="تباين عالٍ"
+          description="نصوص أغمق وحدود أوضح لسهولة القراءة."
+          checked={settings.highContrast}
+          onChange={setHighContrast}
+        />
       </SettingsSection>
 
-      <SettingsSection title="النطق">
-        <div dir="rtl" className="flex items-center justify-between gap-4">
-          <div>
-            <label htmlFor="autoplay-switch" className="font-semibold text-ink">
-              تشغيل النطق تلقائياً
-            </label>
-            <p className="text-sm text-ink-muted">نطق الجمل الألمانية تلقائياً عند فتح الدرس.</p>
-          </div>
-          <Switch
-            id="autoplay-switch"
-            checked={settings.autoPlayPronunciation}
-            onChange={setAutoPlayPronunciation}
-            label="تشغيل النطق تلقائياً"
-          />
-        </div>
+      <SettingsSection title="النطق والصوت">
+        <SettingRow
+          id="autoplay-switch"
+          title="تشغيل النطق تلقائياً"
+          description="نطق الجمل الألمانية تلقائياً عند فتح الدرس."
+          checked={settings.autoPlayPronunciation}
+          onChange={setAutoPlayPronunciation}
+        />
 
         <div dir="rtl" className="space-y-3">
           <div className="flex items-center justify-between">
@@ -146,30 +190,54 @@ export default function SettingsPage() {
             className="h-6 w-full accent-accent"
           />
         </div>
+
+        <SettingGroup title="الصوت الألماني" description="اختر الصوت الذي تُقرأ به الدروس. جرّب كل صوت بزر التشغيل قبل اختياره.">
+          <VoicePicker />
+        </SettingGroup>
+
+        <SettingRow
+          id="sound-effects-switch"
+          title="أصوات الإجابات"
+          description="نغمة قصيرة للإجابة الصحيحة وأخرى للخاطئة، وعند إنهاء التمارين."
+          checked={settings.soundEffects}
+          onChange={setSoundEffects}
+        />
+
+        <SettingRow
+          id="pronunciation-hints-switch"
+          title="إظهار تقطيع النطق"
+          description="عرض تقطيع المقاطع تحت الكلمة في بطاقات المفردات."
+          checked={settings.showPronunciationHints}
+          onChange={setShowPronunciationHints}
+        />
+      </SettingsSection>
+
+      <SettingsSection title="الهدف اليومي">
+        <SettingGroup title="عدد الأسئلة يومياً" description="يظهر تقدّمك نحو الهدف في لوحة التحكم وصفحة التقدّم.">
+          <ChoiceGroup
+            label="الهدف اليومي"
+            value={settings.dailyGoal}
+            options={DAILY_GOAL_OPTIONS.map((goal) => ({ value: goal, label: String(goal), hint: 'سؤالاً' }))}
+            onChange={setDailyGoal}
+          />
+        </SettingGroup>
       </SettingsSection>
 
       <SettingsSection title="إمكانية الوصول">
-        <div dir="rtl" className="flex items-center justify-between gap-4">
-          <div>
-            <label htmlFor="reduced-motion-switch" className="font-semibold text-ink">
-              تقليل الحركة
-            </label>
-            <p className="text-sm text-ink-muted">تقليل الانتقالات والحركات المرئية في التطبيق.</p>
-          </div>
-          <Switch
-            id="reduced-motion-switch"
-            checked={settings.reducedMotion}
-            onChange={setReducedMotion}
-            label="تقليل الحركة"
-          />
-        </div>
+        <SettingRow
+          id="reduced-motion-switch"
+          title="تقليل الحركة"
+          description="تقليل الانتقالات والحركات المرئية في التطبيق."
+          checked={settings.reducedMotion}
+          onChange={setReducedMotion}
+        />
       </SettingsSection>
 
       <SettingsSection title="النسخ الاحتياطي للتقدّم">
         <div dir="rtl" className="space-y-4">
           <p className="max-w-[60ch] text-ink-muted">
-            التقدّم محفوظ حالياً في هذا المتصفح فقط. صدّر نسخة احتياطية قبل مسح بيانات المتصفح، أو لنقل تقدّمك إلى
-            جهاز آخر.
+            تقدّمك وإحصاءاتك ونصوصك الخاصة محفوظة حالياً في هذا المتصفح فقط. صدّر نسخة احتياطية قبل مسح بيانات المتصفح، أو لنقل
+            كل ذلك إلى جهاز آخر.
           </p>
           <div className="flex flex-wrap gap-3">
             <Button variant="outline" onClick={handleExport} icon={<Download size={17} aria-hidden="true" />}>
@@ -198,13 +266,17 @@ export default function SettingsPage() {
           ) : null}
 
           {importSuccess ? (
-            <p className="rounded-md bg-success-muted p-3.5 text-success">تم استيراد التقدّم بنجاح.</p>
+            <p role="status" className="rounded-md bg-success-muted p-3.5 text-success">
+              تم استيراد التقدّم بنجاح.
+            </p>
           ) : null}
 
           {pendingImport ? (
             <div className="flex flex-wrap items-center justify-between gap-3 rounded-md bg-accent-muted p-4">
               <p className="text-ink">
-                سيستبدل هذا الملف تقدّمك الحالي بالكامل. هذا الإجراء لا يمكن التراجع عنه.
+                {pendingExtras.length > 0
+                  ? `سيستبدل هذا الملف تقدّمك الحالي ويستبدل أيضاً: ${pendingExtras.join('، ')}. هذا الإجراء لا يمكن التراجع عنه.`
+                  : 'سيستبدل هذا الملف تقدّمك الحالي. إنه ملف قديم لا يتضمن نصوصك الخاصة، فتبقى نصوص هذا الجهاز كما هي. هذا الإجراء لا يمكن التراجع عنه.'}
               </p>
               <div className="flex gap-2">
                 <Button size="sm" variant="danger" onClick={confirmImport}>
@@ -220,10 +292,43 @@ export default function SettingsPage() {
       </SettingsSection>
 
       <SettingsSection title="منطقة الخطر" tone="danger">
-        <div dir="rtl" className="flex flex-wrap items-center justify-between gap-3">
+        <div dir="rtl" className="space-y-3">
           <div>
-            <p className="font-semibold text-ink">إعادة تعيين التقدّم</p>
-            <p className="text-sm text-ink-muted">سيتم حذف جميع الدروس المكتملة وسجل المفردات نهائياً.</p>
+            <p className="font-semibold text-ink">إعادة مستوى من البداية</p>
+            <p className="text-sm text-ink-muted">
+              يمسح دروس هذا المستوى المكتملة وسجل كلماته. باقي المستويات وسلسلة الأيام وإحصاءاتك العامة تبقى كما هي.
+            </p>
+          </div>
+          <ChoiceGroup
+            label="المستوى المراد إعادته"
+            value={resetLevelChoice ?? ('' as CEFRLevel)}
+            options={getLevelsWithContent().map((level) => ({ value: level, label: level, hint: CEFR_LEVEL_INFO[level].titleAr }))}
+            onChange={(level) => {
+              setLevelResetDone(null)
+              setResetLevelChoice(level)
+            }}
+          />
+          {resetLevelChoice ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <Button variant="danger" size="sm" onClick={handleResetLevel}>
+                تأكيد إعادة {resetLevelChoice} من البداية
+              </Button>
+              <Button variant="ghost" size="sm" onClick={() => setResetLevelChoice(null)}>
+                إلغاء
+              </Button>
+            </div>
+          ) : null}
+          {levelResetDone ? (
+            <p role="status" className="rounded-md bg-success-muted p-3 text-success">
+              تمت إعادة المستوى {levelResetDone} من البداية.
+            </p>
+          ) : null}
+        </div>
+
+        <div dir="rtl" className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
+          <div>
+            <p className="font-semibold text-ink">إعادة تعيين كل التقدّم</p>
+            <p className="text-sm text-ink-muted">سيتم حذف جميع الدروس المكتملة وسجل المفردات والإحصاءات نهائياً.</p>
           </div>
           <Button
             variant="danger"

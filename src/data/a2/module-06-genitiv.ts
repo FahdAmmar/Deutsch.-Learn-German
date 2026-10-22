@@ -79,11 +79,11 @@ export const lessonGenitiv: Lesson = {
     { de: 'Trotz des schlechten Wetters gehen wir spazieren.', ar: 'رغم الطقس السيئ، سنذهب في نزهة. (trotz تأخذ Genitiv)' },
   ],
   vocabulary: [
-    { id: 'voc-genitiv-farbe', word: 'Farbe', article: 'die', partOfSpeech: 'noun', meaningAr: 'اللون', level: 'A2', category: 'مفردات مرافقة' },
-    { id: 'voc-genitiv-titel', word: 'Titel', article: 'der', partOfSpeech: 'noun', meaningAr: 'العنوان', level: 'A2', category: 'مفردات مرافقة' },
-    { id: 'voc-genitiv-trotz', word: 'trotz', partOfSpeech: 'preposition', meaningAr: 'رغم', level: 'A2', category: 'حروف جر + Genitiv' },
-    { id: 'voc-genitiv-waehrend', word: 'während', partOfSpeech: 'preposition', meaningAr: 'أثناء', level: 'A2', category: 'حروف جر + Genitiv' },
-    { id: 'voc-genitiv-wegen', word: 'wegen', partOfSpeech: 'preposition', meaningAr: 'بسبب', level: 'A2', category: 'حروف جر + Genitiv' },
+    { id: 'voc-genitiv-farbe', word: 'Farbe', article: 'die', plural: 'Farben', partOfSpeech: 'noun', meaningAr: 'اللون', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Die Farbe des Autos ist rot.', ar: 'لون السيارة أحمر.' } },
+    { id: 'voc-genitiv-titel', word: 'Titel', article: 'der', plural: 'Titel', partOfSpeech: 'noun', meaningAr: 'العنوان', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Der Titel des Buches ist interessant.', ar: 'عنوان الكتاب ممتع.' } },
+    { id: 'voc-genitiv-trotz', word: 'trotz', partOfSpeech: 'preposition', meaningAr: 'رغم', level: 'A2', category: 'حروف جر + Genitiv', example: { de: 'Trotz des Regens gehen wir spazieren.', ar: 'رغم المطر نذهب في نزهة.' } },
+    { id: 'voc-genitiv-waehrend', word: 'während', partOfSpeech: 'preposition', meaningAr: 'أثناء', level: 'A2', category: 'حروف جر + Genitiv', example: { de: 'Während des Unterrichts schreibe ich viel.', ar: 'أثناء الدرس أكتب كثيراً.' } },
+    { id: 'voc-genitiv-wegen', word: 'wegen', partOfSpeech: 'preposition', meaningAr: 'بسبب', level: 'A2', category: 'حروف جر + Genitiv', example: { de: 'Wegen des Wetters bleiben wir zu Hause.', ar: 'بسبب الطقس نبقى في البيت.' } },
   ],
   dialogues: [
     {

@@ -1,16 +1,27 @@
 import { Brand } from './Brand'
+import { LevelChip } from './LevelChip'
+import { SearchButton } from './SearchButton'
 import { StreakChip } from './StreakChip'
 import { ThemeToggle } from './ThemeToggle'
 
-/** Phone-only top bar. On larger screens the sidebar carries the brand, streak and theme. */
-export function Header() {
+/**
+ * Top bar. On phones it carries the wordmark; from `md` up the sidebar carries the brand and this
+ * bar holds the learner's level and streak, with the theme switch at the far end.
+ */
+interface HeaderProps {
+  onOpenSearch?: () => void
+}
+
+export function Header({ onOpenSearch }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border bg-bg/90 px-4 backdrop-blur md:hidden">
-      <Brand className="[&>span:first-child]:text-xl [&>span:last-child]:hidden" />
-      <div className="flex items-center gap-1">
+    <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-surface-glass px-4 backdrop-blur md:px-10">
+      <Brand className="md:hidden [&>div>span:last-child]:hidden" />
+      <div className="flex flex-1 items-center gap-2.5">
+        <LevelChip />
         <StreakChip />
-        <ThemeToggle />
       </div>
+      {onOpenSearch ? <SearchButton onClick={onOpenSearch} /> : null}
+      <ThemeToggle />
     </header>
   )
 }

@@ -86,11 +86,11 @@ export const lessonFutur: Lesson = {
     { de: 'Nächste Woche fahre ich nach Köln.', ar: 'الأسبوع القادم سأذهب إلى كولن. (مضارع بدل Futur I، أكثر شيوعاً)' },
   ],
   vocabulary: [
-    { id: 'voc-futur-versprechen', word: 'versprechen', partOfSpeech: 'verb', meaningAr: 'يَعِد', level: 'A2', category: 'مفردات المستقبل' },
-    { id: 'voc-futur-wohl', word: 'wohl', partOfSpeech: 'adverb', meaningAr: 'على الأرجح', level: 'A2', category: 'مفردات المستقبل' },
-    { id: 'voc-futur-bald', word: 'bald', partOfSpeech: 'adverb', meaningAr: 'قريباً', level: 'A2', category: 'مفردات المستقبل' },
-    { id: 'voc-futur-vielleicht', word: 'vielleicht', partOfSpeech: 'adverb', meaningAr: 'ربما', level: 'A2', category: 'مفردات المستقبل' },
-    { id: 'voc-futur-zukunft', word: 'Zukunft', article: 'die', partOfSpeech: 'noun', meaningAr: 'المستقبل', level: 'A2', category: 'مفردات المستقبل' },
+    { id: 'voc-futur-versprechen', word: 'versprechen', partOfSpeech: 'verb', meaningAr: 'يَعِد', level: 'A2', category: 'مفردات المستقبل', verb: { present: ['verspreche', 'versprichst', 'verspricht', 'versprechen', 'versprecht', 'versprechen'], praeteritum: 'versprach', partizip: 'versprochen', auxiliary: 'haben' }, example: { de: 'Ich verspreche dir, dass ich komme.', ar: 'أعدك بأنني سآتي.' } },
+    { id: 'voc-futur-wohl', word: 'wohl', partOfSpeech: 'adverb', meaningAr: 'على الأرجح', level: 'A2', category: 'مفردات المستقبل', example: { de: 'Er wird wohl krank sein.', ar: 'على الأرجح هو مريض.' } },
+    { id: 'voc-futur-bald', word: 'bald', partOfSpeech: 'adverb', meaningAr: 'قريباً', level: 'A2', category: 'مفردات المستقبل', example: { de: 'Wir sehen uns bald.', ar: 'سنلتقي قريباً.' } },
+    { id: 'voc-futur-vielleicht', word: 'vielleicht', partOfSpeech: 'adverb', meaningAr: 'ربما', level: 'A2', category: 'مفردات المستقبل', example: { de: 'Vielleicht komme ich morgen.', ar: 'ربما آتي غداً.' } },
+    { id: 'voc-futur-zukunft', word: 'Zukunft', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'المستقبل', level: 'A2', category: 'مفردات المستقبل', example: { de: 'In der Zukunft möchte ich in Deutschland arbeiten.', ar: 'في المستقبل أريد أن أعمل في ألمانيا.' } },
   ],
   dialogues: [
     {

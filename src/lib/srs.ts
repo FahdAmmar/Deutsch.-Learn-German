@@ -11,7 +11,8 @@
  */
 
 /** Days until next review, indexed by box level (0–4). */
-const INTERVAL_DAYS = [1, 3, 7, 16, 35] as const
+export const BOX_INTERVAL_DAYS = [1, 3, 7, 16, 35] as const
+const INTERVAL_DAYS = BOX_INTERVAL_DAYS
 
 export const MAX_BOX_LEVEL = INTERVAL_DAYS.length - 1
 

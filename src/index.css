@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './styles/fonts.css';
 @import './styles/tokens.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -105,13 +106,12 @@
   max-inline-size: 64ch;
 }
 
-/* German display and example sentences. Fraunces' optical size axis keeps large titles sharp and small text sturdy. */
+/* German display text and specimens: Inter at a firm weight with neutral tracking, so long compounds keep their letterforms. */
 @utility display-de {
   font-family: var(--font-de);
-  font-optical-sizing: auto;
   font-weight: 600;
-  letter-spacing: -0.012em;
-  line-height: 1.15;
+  letter-spacing: 0;
+  line-height: 1.25;
   direction: ltr;
   unicode-bidi: isolate;
 }
@@ -133,5 +133,27 @@
   from {
     opacity: 0;
     transform: translateY(6px);
+  }
+}
+
+/* A letter that was just typed right drops into place; a wrong one shakes the cursor slot. */
+@keyframes key-land {
+  from {
+    transform: translateY(-0.14em) scale(1.18);
+  }
+}
+
+@keyframes key-shake {
+  20% {
+    transform: translateX(-0.08em);
+  }
+  40% {
+    transform: translateX(0.08em);
+  }
+  60% {
+    transform: translateX(-0.05em);
+  }
+  80% {
+    transform: translateX(0.04em);
   }
 }

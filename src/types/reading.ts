@@ -3,7 +3,14 @@ import type { StoryImage } from './media'
 
 export interface ReadingParagraph {
   de: string
+  /** Arabic explanation of the whole paragraph. */
   ar: string
+  /**
+   * Arabic for each sentence, in the order `splitSentences(de)` yields them.
+   * Lets dictation show a translation under every sentence; the
+   * content-integrity suite checks the counts match.
+   */
+  sentencesAr?: string[]
 }
 
 /**

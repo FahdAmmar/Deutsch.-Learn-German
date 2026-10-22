@@ -101,14 +101,14 @@ export const lessonAdjektivdeklination: Lesson = {
     { de: 'Frisches Obst ist gesund.', ar: 'الفواكه الطازجة صحية. (بلا أداة، جمع/غير معدود)' },
   ],
   vocabulary: [
-    { id: 'voc-adjektiv-gross', word: 'groß', partOfSpeech: 'adjective', meaningAr: 'كبير', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-klein', word: 'klein', partOfSpeech: 'adjective', meaningAr: 'صغير', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-neu', word: 'neu', partOfSpeech: 'adjective', meaningAr: 'جديد', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-alt', word: 'alt', partOfSpeech: 'adjective', meaningAr: 'قديم', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-billig', word: 'billig', partOfSpeech: 'adjective', meaningAr: 'رخيص', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-hell', word: 'hell', partOfSpeech: 'adjective', meaningAr: 'مضيء', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-frisch', word: 'frisch', partOfSpeech: 'adjective', meaningAr: 'طازج', level: 'A2', category: 'صفات وصفية' },
-    { id: 'voc-adjektiv-rucksack', word: 'Rucksack', article: 'der', partOfSpeech: 'noun', meaningAr: 'حقيبة الظهر', level: 'A2', category: 'مفردات مرافقة' },
+    { id: 'voc-adjektiv-gross', word: 'groß', partOfSpeech: 'adjective', meaningAr: 'كبير', level: 'A2', category: 'صفات وصفية', example: { de: 'Das ist ein großes Haus.', ar: 'هذا بيت كبير.' } },
+    { id: 'voc-adjektiv-klein', word: 'klein', partOfSpeech: 'adjective', meaningAr: 'صغير', level: 'A2', category: 'صفات وصفية', example: { de: 'Wir haben eine kleine Wohnung.', ar: 'عندنا شقة صغيرة.' } },
+    { id: 'voc-adjektiv-neu', word: 'neu', partOfSpeech: 'adjective', meaningAr: 'جديد', level: 'A2', category: 'صفات وصفية', example: { de: 'Ich kaufe ein neues Handy.', ar: 'أشتري هاتفاً جديداً.' } },
+    { id: 'voc-adjektiv-alt', word: 'alt', partOfSpeech: 'adjective', meaningAr: 'قديم', level: 'A2', category: 'صفات وصفية', example: { de: 'Das ist ein altes Auto.', ar: 'هذه سيارة قديمة.' } },
+    { id: 'voc-adjektiv-billig', word: 'billig', partOfSpeech: 'adjective', meaningAr: 'رخيص', level: 'A2', category: 'صفات وصفية', example: { de: 'Das ist ein billiges Hemd.', ar: 'هذا قميص رخيص.' } },
+    { id: 'voc-adjektiv-hell', word: 'hell', partOfSpeech: 'adjective', meaningAr: 'مضيء', level: 'A2', category: 'صفات وصفية', example: { de: 'Wir haben ein helles Zimmer.', ar: 'عندنا غرفة مضيئة.' } },
+    { id: 'voc-adjektiv-frisch', word: 'frisch', partOfSpeech: 'adjective', meaningAr: 'طازج', level: 'A2', category: 'صفات وصفية', example: { de: 'Ich kaufe frisches Brot.', ar: 'أشتري خبزاً طازجاً.' } },
+    { id: 'voc-adjektiv-rucksack', word: 'Rucksack', article: 'der', plural: 'Rucksäcke', partOfSpeech: 'noun', meaningAr: 'حقيبة الظهر', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Mein Rucksack ist schwer.', ar: 'حقيبة ظهري ثقيلة.' } },
   ],
   dialogues: [
     {

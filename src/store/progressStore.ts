@@ -13,6 +13,13 @@ interface ProgressActions {
   startLesson: (params: { lessonId: string; moduleId: string; level: CEFRLevel }) => void
   completeLesson: (params: { lessonId: string; moduleId: string; level: CEFRLevel; accuracy: number }) => void
   recordVocabularyReview: (vocabularyId: string, correct: boolean) => void
+  /** Adds a word to spaced review by hand, or removes it again if it was added. */
+  toggleSavedVocabulary: (vocabularyId: string) => void
+  /**
+   * Forgets a set of lessons and their vocabulary history — the "start this level over" action.
+   * Streak, other levels, hand-saved words and the lifetime statistics are left alone.
+   */
+  resetLessons: (params: { lessonIds: readonly string[]; vocabularyIds: readonly string[] }) => void
   isLessonCompleted: (lessonId: string) => boolean
   getLessonAccuracy: (lessonId: string) => number | null
   resetProgress: () => void
@@ -35,6 +42,7 @@ const initialState: ProgressState = {
   lessons: {},
   vocabulary: {},
   activity: [],
+  savedVocabularyIds: [],
   streakDays: 0,
   lastActivityDate: null,
 }
@@ -126,6 +134,31 @@ export const useProgressStore = create<ProgressStore>()(
                 nextReviewAt,
               },
             },
+          }
+        })
+      },
+
+      resetLessons: ({ lessonIds, vocabularyIds }) => {
+        const lessonSet = new Set(lessonIds)
+        const vocabularySet = new Set(vocabularyIds)
+        set((state) => ({
+          lessons: Object.fromEntries(Object.entries(state.lessons).filter(([id]) => !lessonSet.has(id))),
+          vocabulary: Object.fromEntries(Object.entries(state.vocabulary).filter(([id]) => !vocabularySet.has(id))),
+          activity: state.activity.filter((entry) => !lessonSet.has(entry.lessonId)),
+          // A pointer into a lesson that no longer has progress would lead the dashboard to a stale "continue".
+          ...(state.currentLessonId && lessonSet.has(state.currentLessonId)
+            ? { currentLessonId: null, currentModuleId: null }
+            : {}),
+        }))
+      },
+
+      toggleSavedVocabulary: (vocabularyId) => {
+        set((state) => {
+          const saved = state.savedVocabularyIds ?? []
+          return {
+            savedVocabularyIds: saved.includes(vocabularyId)
+              ? saved.filter((id) => id !== vocabularyId)
+              : [...saved, vocabularyId],
           }
         })
       },

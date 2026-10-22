@@ -83,9 +83,9 @@ export const lessonRelativsaetze: Lesson = {
     { de: 'Die Kinder, die im Garten spielen, sind meine Neffen.', ar: 'الأطفال الذين يلعبون في الحديقة هم أبناء إخوتي.' },
   ],
   vocabulary: [
-    { id: 'voc-relativ-dankbar', word: 'dankbar', partOfSpeech: 'adjective', meaningAr: 'شاكر / ممتنّ', level: 'A2', category: 'مفردات مرافقة' },
-    { id: 'voc-relativ-gehoeren', word: 'gehören', partOfSpeech: 'verb', meaningAr: 'يخصّ / يملك', level: 'A2', category: 'مفردات مرافقة' },
-    { id: 'voc-relativ-neffe', word: 'Neffe', article: 'der', partOfSpeech: 'noun', meaningAr: 'ابن الأخ/الأخت', level: 'A2', category: 'مفردات مرافقة' },
+    { id: 'voc-relativ-dankbar', word: 'dankbar', partOfSpeech: 'adjective', meaningAr: 'شاكر / ممتنّ', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Ich bin dir sehr dankbar.', ar: 'أنا ممتنّ لك جداً.' } },
+    { id: 'voc-relativ-gehoeren', word: 'gehören', partOfSpeech: 'verb', meaningAr: 'يخصّ / يملك', level: 'A2', category: 'مفردات مرافقة', verb: { praeteritum: 'gehörte', partizip: 'gehört', auxiliary: 'haben' }, example: { de: 'Das Buch gehört mir.', ar: 'الكتاب لي.' } },
+    { id: 'voc-relativ-neffe', word: 'Neffe', article: 'der', plural: 'Neffen', partOfSpeech: 'noun', meaningAr: 'ابن الأخ/الأخت', level: 'A2', category: 'مفردات مرافقة', example: { de: 'Mein Neffe ist fünf Jahre alt.', ar: 'ابن أخي عمره خمس سنوات.' } },
   ],
   dialogues: [
     {

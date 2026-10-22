@@ -28,8 +28,8 @@ export function BottomNav({ onOpenMore }: BottomNavProps) {
     >
       {PRIMARY_MOBILE_ITEMS.map((item) => (
         <NavLink
-          key={item.to}
-          to={item.to}
+          key={item.id}
+          to={item.to ?? '/dashboard'}
           className={({ isActive }) => cn(itemClasses, isActive ? 'text-ink' : 'text-ink-muted')}
         >
           {({ isActive }) => (
@@ -38,7 +38,7 @@ export function BottomNav({ onOpenMore }: BottomNavProps) {
                 aria-hidden="true"
                 className={cn(
                   'absolute top-0 h-0.5 w-8 rounded-full transition-colors',
-                  isActive ? 'bg-accent' : 'bg-transparent',
+                  isActive ? 'bg-primary' : 'bg-transparent',
                 )}
               />
               <item.icon size={21} aria-hidden="true" strokeWidth={isActive ? 2.4 : 1.9} />

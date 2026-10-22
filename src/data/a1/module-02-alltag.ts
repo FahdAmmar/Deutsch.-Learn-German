@@ -1,5 +1,7 @@
 import type { Lesson } from '@/types'
 
+import { lessonWochentage } from './lesson-wochentage'
+
 export const lessonFamilie: Lesson = {
   id: 'a1-m02-l01',
   slug: 'familie',
@@ -32,14 +34,14 @@ export const lessonFamilie: Lesson = {
     { de: 'Wie viele Geschwister hast du?', ar: 'كم عدد إخوتك وأخواتك؟' },
   ],
   vocabulary: [
-    { id: 'voc-familie-familie', word: 'Familie', article: 'die', plural: 'Familien', partOfSpeech: 'noun', meaningAr: 'العائلة', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-mutter', word: 'Mutter', article: 'die', plural: 'Mütter', partOfSpeech: 'noun', meaningAr: 'الأم', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-vater', word: 'Vater', article: 'der', plural: 'Väter', partOfSpeech: 'noun', meaningAr: 'الأب', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-bruder', word: 'Bruder', article: 'der', plural: 'Brüder', partOfSpeech: 'noun', meaningAr: 'الأخ', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-schwester', word: 'Schwester', article: 'die', plural: 'Schwestern', partOfSpeech: 'noun', meaningAr: 'الأخت', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-kind', word: 'Kind', article: 'das', plural: 'Kinder', partOfSpeech: 'noun', meaningAr: 'الطفل', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-eltern', word: 'Eltern', article: 'die', partOfSpeech: 'noun', meaningAr: 'الوالدان (جمع فقط)', level: 'A1', category: 'Familie' },
-    { id: 'voc-familie-geschwister', word: 'Geschwister', article: 'die', partOfSpeech: 'noun', meaningAr: 'الإخوة والأخوات (جمع فقط)', level: 'A1', category: 'Familie' },
+    { id: 'voc-familie-familie', word: 'Familie', article: 'die', plural: 'Familien', partOfSpeech: 'noun', meaningAr: 'العائلة', level: 'A1', category: 'Familie', example: { de: 'Das ist meine Familie.', ar: 'هذه عائلتي.' } },
+    { id: 'voc-familie-mutter', word: 'Mutter', article: 'die', plural: 'Mütter', partOfSpeech: 'noun', meaningAr: 'الأم', level: 'A1', category: 'Familie', example: { de: 'Meine Mutter heißt Laila.', ar: 'اسم أمي ليلى.' } },
+    { id: 'voc-familie-vater', word: 'Vater', article: 'der', plural: 'Väter', partOfSpeech: 'noun', meaningAr: 'الأب', level: 'A1', category: 'Familie', example: { de: 'Mein Vater ist Lehrer.', ar: 'أبي معلّم.' } },
+    { id: 'voc-familie-bruder', word: 'Bruder', article: 'der', plural: 'Brüder', partOfSpeech: 'noun', meaningAr: 'الأخ', level: 'A1', category: 'Familie', example: { de: 'Mein Bruder heißt Omar.', ar: 'اسم أخي عمر.' } },
+    { id: 'voc-familie-schwester', word: 'Schwester', article: 'die', plural: 'Schwestern', partOfSpeech: 'noun', meaningAr: 'الأخت', level: 'A1', category: 'Familie', example: { de: 'Meine Schwester ist Studentin.', ar: 'أختي طالبة جامعية.' } },
+    { id: 'voc-familie-kind', word: 'Kind', article: 'das', plural: 'Kinder', partOfSpeech: 'noun', meaningAr: 'الطفل', level: 'A1', category: 'Familie', example: { de: 'Das Kind heißt Mia.', ar: 'اسم الطفلة ميا.' } },
+    { id: 'voc-familie-eltern', word: 'Eltern', article: 'die', numberUse: 'only', partOfSpeech: 'noun', meaningAr: 'الوالدان (جمع فقط)', level: 'A1', category: 'Familie', example: { de: 'Meine Eltern wohnen in Köln.', ar: 'والداي يسكنان في كولونيا.' } },
+    { id: 'voc-familie-geschwister', word: 'Geschwister', article: 'die', numberUse: 'only', partOfSpeech: 'noun', meaningAr: 'الإخوة والأخوات (جمع فقط)', level: 'A1', category: 'Familie', example: { de: 'Ich habe zwei Geschwister.', ar: 'عندي أخوان اثنان (إخوة أو أخوات).' } },
   ],
   exercises: [
     {
@@ -118,12 +120,12 @@ export const lessonBerufe: Lesson = {
     { de: 'Sie arbeitet als Krankenschwester.', ar: 'هي تعمل كممرضة.' },
   ],
   vocabulary: [
-    { id: 'voc-berufe-beruf', word: 'Beruf', article: 'der', plural: 'Berufe', partOfSpeech: 'noun', meaningAr: 'المهنة', level: 'A1', category: 'Berufe' },
-    { id: 'voc-berufe-lehrer', word: 'Lehrer / Lehrerin', article: 'der', partOfSpeech: 'noun', meaningAr: 'معلّم / معلّمة', level: 'A1', category: 'Berufe' },
-    { id: 'voc-berufe-arzt', word: 'Arzt / Ärztin', article: 'der', partOfSpeech: 'noun', meaningAr: 'طبيب / طبيبة', level: 'A1', category: 'Berufe' },
-    { id: 'voc-berufe-ingenieur', word: 'Ingenieur / Ingenieurin', article: 'der', partOfSpeech: 'noun', meaningAr: 'مهندس / مهندسة', level: 'A1', category: 'Berufe' },
-    { id: 'voc-berufe-student', word: 'Student / Studentin', article: 'der', partOfSpeech: 'noun', meaningAr: 'طالب / طالبة (جامعي)', level: 'A1', category: 'Berufe' },
-    { id: 'voc-berufe-arbeiten', word: 'arbeiten', partOfSpeech: 'verb', meaningAr: 'يعمل', level: 'A1', category: 'Berufe', example: { de: 'Ich arbeite in Berlin.', ar: 'أعمل في برلين.' } },
+    { id: 'voc-berufe-beruf', word: 'Beruf', article: 'der', plural: 'Berufe', partOfSpeech: 'noun', meaningAr: 'المهنة', level: 'A1', category: 'Berufe', example: { de: 'Was ist dein Beruf?', ar: 'ما هي مهنتك؟' } },
+    { id: 'voc-berufe-lehrer', word: 'Lehrer / Lehrerin', article: 'der', plural: 'Lehrer / Lehrerinnen', partOfSpeech: 'noun', meaningAr: 'معلّم / معلّمة', level: 'A1', category: 'Berufe', example: { de: 'Er ist Lehrer, sie ist Lehrerin.', ar: 'هو معلّم وهي معلّمة.' } },
+    { id: 'voc-berufe-arzt', word: 'Arzt / Ärztin', article: 'der', plural: 'Ärzte / Ärztinnen', partOfSpeech: 'noun', meaningAr: 'طبيب / طبيبة', level: 'A1', category: 'Berufe', example: { de: 'Meine Schwester ist Ärztin.', ar: 'أختي طبيبة.' } },
+    { id: 'voc-berufe-ingenieur', word: 'Ingenieur / Ingenieurin', article: 'der', plural: 'Ingenieure / Ingenieurinnen', partOfSpeech: 'noun', meaningAr: 'مهندس / مهندسة', level: 'A1', category: 'Berufe', example: { de: 'Mein Bruder ist Ingenieur.', ar: 'أخي مهندس.' } },
+    { id: 'voc-berufe-student', word: 'Student / Studentin', article: 'der', plural: 'Studenten / Studentinnen', partOfSpeech: 'noun', meaningAr: 'طالب / طالبة (جامعي)', level: 'A1', category: 'Berufe', example: { de: 'Ich bin Student in Berlin.', ar: 'أنا طالب جامعي في برلين.' } },
+    { id: 'voc-berufe-arbeiten', word: 'arbeiten', partOfSpeech: 'verb', meaningAr: 'يعمل', level: 'A1', category: 'Berufe', verb: { praeteritum: 'arbeitete', partizip: 'gearbeitet', auxiliary: 'haben' }, example: { de: 'Ich arbeite in Berlin.', ar: 'أعمل في برلين.' } },
   ],
   exercises: [
     {
@@ -201,13 +203,13 @@ export const lessonTagesablauf: Lesson = {
     { de: 'Am Abend sehe ich fern.', ar: 'في المساء أشاهد التلفاز.' },
   ],
   vocabulary: [
-    { id: 'voc-tagesablauf-aufstehen', word: 'aufstehen', partOfSpeech: 'verb', meaningAr: 'يستيقظ / ينهض', level: 'A1', category: 'Tagesablauf', example: { de: 'Ich stehe früh auf.', ar: 'أستيقظ باكراً.' } },
-    { id: 'voc-tagesablauf-fruehstuecken', word: 'frühstücken', partOfSpeech: 'verb', meaningAr: 'يتناول الفطور', level: 'A1', category: 'Tagesablauf' },
-    { id: 'voc-tagesablauf-arbeiten', word: 'arbeiten', partOfSpeech: 'verb', meaningAr: 'يعمل', level: 'A1', category: 'Tagesablauf' },
-    { id: 'voc-tagesablauf-schlafen', word: 'schlafen', partOfSpeech: 'verb', meaningAr: 'ينام', level: 'A1', category: 'Tagesablauf' },
-    { id: 'voc-tagesablauf-morgen', word: 'Morgen', article: 'der', partOfSpeech: 'noun', meaningAr: 'الصباح', level: 'A1', category: 'Tagesablauf' },
-    { id: 'voc-tagesablauf-abend', word: 'Abend', article: 'der', plural: 'Abende', partOfSpeech: 'noun', meaningAr: 'المساء', level: 'A1', category: 'Tagesablauf' },
-    { id: 'voc-tagesablauf-dann', word: 'dann', partOfSpeech: 'adverb', meaningAr: 'ثم', level: 'A1', category: 'Tagesablauf' },
+    { id: 'voc-tagesablauf-aufstehen', word: 'aufstehen', partOfSpeech: 'verb', meaningAr: 'يستيقظ / ينهض', level: 'A1', category: 'Tagesablauf', verb: { praeteritum: 'stand', partizip: 'aufgestanden', auxiliary: 'sein', separablePrefix: 'auf' }, example: { de: 'Ich stehe früh auf.', ar: 'أستيقظ باكراً.' } },
+    { id: 'voc-tagesablauf-fruehstuecken', word: 'frühstücken', partOfSpeech: 'verb', meaningAr: 'يتناول الفطور', level: 'A1', category: 'Tagesablauf', verb: { praeteritum: 'frühstückte', partizip: 'gefrühstückt', auxiliary: 'haben' }, example: { de: 'Ich frühstücke um sieben Uhr.', ar: 'أتناول الفطور في الساعة السابعة.' } },
+    { id: 'voc-tagesablauf-arbeiten', word: 'arbeiten', partOfSpeech: 'verb', meaningAr: 'يعمل', level: 'A1', category: 'Tagesablauf', verb: { praeteritum: 'arbeitete', partizip: 'gearbeitet', auxiliary: 'haben' }, example: { de: 'Er arbeitet von Montag bis Freitag.', ar: 'يعمل من الاثنين إلى الجمعة.' } },
+    { id: 'voc-tagesablauf-schlafen', word: 'schlafen', partOfSpeech: 'verb', meaningAr: 'ينام', level: 'A1', category: 'Tagesablauf', verb: { present: ['schlafe', 'schläfst', 'schläft', 'schlafen', 'schlaft', 'schlafen'], praeteritum: 'schlief', partizip: 'geschlafen', auxiliary: 'haben' }, example: { de: 'Das Kind schläft.', ar: 'الطفل نائم.' } },
+    { id: 'voc-tagesablauf-morgen', word: 'Morgen', article: 'der', plural: 'Morgen', partOfSpeech: 'noun', meaningAr: 'الصباح', level: 'A1', category: 'Tagesablauf', example: { de: 'Am Morgen trinke ich Kaffee.', ar: 'في الصباح أشرب القهوة.' } },
+    { id: 'voc-tagesablauf-abend', word: 'Abend', article: 'der', plural: 'Abende', partOfSpeech: 'noun', meaningAr: 'المساء', level: 'A1', category: 'Tagesablauf', example: { de: 'Am Abend sehe ich fern.', ar: 'في المساء أشاهد التلفاز.' } },
+    { id: 'voc-tagesablauf-dann', word: 'dann', partOfSpeech: 'adverb', meaningAr: 'ثم', level: 'A1', category: 'Tagesablauf', example: { de: 'Zuerst esse ich, dann arbeite ich.', ar: 'أولاً آكل، ثم أعمل.' } },
   ],
   exercises: [
     {
@@ -286,11 +288,11 @@ export const lessonUhrzeit: Lesson = {
     { de: 'Der Zug fährt um vierzehn Uhr fünfzehn.', ar: 'ينطلق القطار الساعة 14:15.' },
   ],
   vocabulary: [
-    { id: 'voc-uhrzeit-uhrzeit', word: 'Uhrzeit', article: 'die', plural: 'Uhrzeiten', partOfSpeech: 'noun', meaningAr: 'الوقت/التوقيت', level: 'A1', category: 'Uhrzeit' },
-    { id: 'voc-uhrzeit-stunde', word: 'Stunde', article: 'die', plural: 'Stunden', partOfSpeech: 'noun', meaningAr: 'الساعة (مدة زمنية)', level: 'A1', category: 'Uhrzeit' },
-    { id: 'voc-uhrzeit-minute', word: 'Minute', article: 'die', plural: 'Minuten', partOfSpeech: 'noun', meaningAr: 'الدقيقة', level: 'A1', category: 'Uhrzeit' },
-    { id: 'voc-uhrzeit-halb', word: 'halb', partOfSpeech: 'adverb', meaningAr: 'النصف (قبل الساعة القادمة)', level: 'A1', category: 'Uhrzeit' },
-    { id: 'voc-uhrzeit-viertel', word: 'Viertel', article: 'das', partOfSpeech: 'noun', meaningAr: 'الربع', level: 'A1', category: 'Uhrzeit' },
+    { id: 'voc-uhrzeit-uhrzeit', word: 'Uhrzeit', article: 'die', plural: 'Uhrzeiten', partOfSpeech: 'noun', meaningAr: 'الوقت/التوقيت', level: 'A1', category: 'Uhrzeit', example: { de: 'Welche Uhrzeit steht auf dem Ticket?', ar: 'ما الوقت المكتوب على التذكرة؟' } },
+    { id: 'voc-uhrzeit-stunde', word: 'Stunde', article: 'die', plural: 'Stunden', partOfSpeech: 'noun', meaningAr: 'الساعة (مدة زمنية)', level: 'A1', category: 'Uhrzeit', example: { de: 'Eine Stunde hat sechzig Minuten.', ar: 'الساعة (المدة) فيها ستون دقيقة.' } },
+    { id: 'voc-uhrzeit-minute', word: 'Minute', article: 'die', plural: 'Minuten', partOfSpeech: 'noun', meaningAr: 'الدقيقة', level: 'A1', category: 'Uhrzeit', example: { de: 'Der Bus kommt in fünf Minuten.', ar: 'الحافلة تأتي بعد خمس دقائق.' } },
+    { id: 'voc-uhrzeit-halb', word: 'halb', partOfSpeech: 'adverb', meaningAr: 'النصف (قبل الساعة القادمة)', level: 'A1', category: 'Uhrzeit', example: { de: 'Es ist halb vier.', ar: 'الساعة الثالثة والنصف. (halb vier = نصف ساعة قبل الرابعة)' } },
+    { id: 'voc-uhrzeit-viertel', word: 'Viertel', article: 'das', plural: 'Viertel', partOfSpeech: 'noun', meaningAr: 'الربع', level: 'A1', category: 'Uhrzeit', example: { de: 'Es ist Viertel nach drei.', ar: 'الساعة الثالثة والربع.' } },
   ],
   exercises: [
     {
@@ -344,5 +346,5 @@ export const module02Alltag = {
   title: 'Alltag',
   titleAr: 'الحياة اليومية',
   order: 2,
-  lessons: [lessonFamilie, lessonBerufe, lessonTagesablauf, lessonUhrzeit],
+  lessons: [lessonFamilie, lessonBerufe, lessonTagesablauf, lessonUhrzeit, lessonWochentage],
 }

@@ -11,6 +11,7 @@ interface Props {
 
 export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
   const [selected, setSelected] = useState<number | null>(null)
+  const isArabic = exercise.optionLanguage === 'ar'
 
   function handleSelect(index: number) {
     if (selected !== null) return
@@ -25,7 +26,7 @@ export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
           {exercise.questionDe}
         </p>
       ) : null}
-      <div className="space-y-2" dir="ltr">
+      <div className="space-y-2" dir={isArabic ? 'rtl' : 'ltr'}>
         {exercise.options.map((option, index) => {
           let state: 'default' | 'selected-correct' | 'selected-incorrect' | 'unselected-correct' = 'default'
           if (selected !== null) {
@@ -40,8 +41,9 @@ export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
               onClick={() => handleSelect(index)}
               disabled={selected !== null}
               state={state}
+              dir={isArabic ? 'rtl' : undefined}
             >
-              <span lang="de">{option}</span>
+              <span lang={isArabic ? 'ar' : 'de'}>{option}</span>
             </OptionButton>
           )
         })}

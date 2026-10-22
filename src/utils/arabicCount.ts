@@ -28,5 +28,6 @@ export function formatCountAr(n: number, forms: ArabicCountForms): string {
 
 export const LESSON_FORMS: ArabicCountForms = { one: 'درس واحد', two: 'درسان', few: 'دروس', many: 'درساً' }
 export const MODULE_FORMS: ArabicCountForms = { one: 'وحدة واحدة', two: 'وحدتان', few: 'وحدات', many: 'وحدة' }
+export const CHAPTER_FORMS: ArabicCountForms = { one: 'فصل واحد', two: 'فصلان', few: 'فصول', many: 'فصلاً' }
 export const WORD_FORMS: ArabicCountForms = { one: 'كلمة واحدة', two: 'كلمتان', few: 'كلمات', many: 'كلمة' }
 export const DAY_FORMS: ArabicCountForms = { one: 'يوم واحد', two: 'يومان', few: 'أيام', many: 'يوماً' }

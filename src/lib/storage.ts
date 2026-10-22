@@ -29,6 +29,9 @@ const memoryFallback = new Map<string, string>()
 const hasLocalStorage = typeof window !== 'undefined' && isLocalStorageAvailable()
 
 export const appStorage = {
+  /** False when only the in-memory fallback is available: nothing written survives a page reload. */
+  persistent: hasLocalStorage,
+
   getItem(key: string): string | null {
     try {
       if (hasLocalStorage) return window.localStorage.getItem(keyFor(key))

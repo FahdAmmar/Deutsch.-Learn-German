@@ -93,8 +93,8 @@ export const lessonNegation: Lesson = {
     { de: 'Er kommt nicht aus Deutschland.', ar: 'هو ليس من ألمانيا.' },
   ],
   vocabulary: [
-    { id: 'voc-negation-nicht', word: 'nicht', partOfSpeech: 'adverb', meaningAr: 'لا / ليس (نفي عام)', level: 'A1', category: 'أدوات النفي' },
-    { id: 'voc-negation-kein', word: 'kein', partOfSpeech: 'pronoun', meaningAr: 'لا / ولا (نفي اسم غير معرّف)', level: 'A1', category: 'أدوات النفي' },
+    { id: 'voc-negation-nicht', word: 'nicht', partOfSpeech: 'adverb', meaningAr: 'لا / ليس (نفي عام)', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich arbeite heute nicht.', ar: 'لا أعمل اليوم.' } },
+    { id: 'voc-negation-kein', word: 'kein', partOfSpeech: 'pronoun', meaningAr: 'لا / ولا (نفي اسم غير معرّف)', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich habe kein Auto.', ar: 'ليس عندي سيارة.' } },
     { id: 'voc-negation-nie', word: 'nie', partOfSpeech: 'adverb', meaningAr: 'أبداً', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich rauche nie.', ar: 'لا أدخّن أبداً.' } },
     { id: 'voc-negation-niemand', word: 'niemand', partOfSpeech: 'pronoun', meaningAr: 'لا أحد', level: 'A1', category: 'أدوات النفي', example: { de: 'Niemand ist zu Hause.', ar: 'لا أحد في المنزل.' } },
     { id: 'voc-negation-nichts', word: 'nichts', partOfSpeech: 'pronoun', meaningAr: 'لا شيء', level: 'A1', category: 'أدوات النفي', example: { de: 'Ich verstehe nichts.', ar: 'لا أفهم شيئاً.' } },

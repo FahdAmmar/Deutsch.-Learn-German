@@ -12,18 +12,22 @@ export const readingBeimArzt: ReadingText = {
     {
       de: 'Letzte Woche war ich krank. Ich hatte Fieber und Kopfschmerzen, und ich konnte nicht arbeiten.',
       ar: 'في الأسبوع الماضي كنتُ مريضاً. كانت عندي حرارة وصداع، ولم أستطع الذهاب إلى العمل.',
+      sentencesAr: ['في الأسبوع الماضي كنتُ مريضاً.', 'كانت عندي حرارة وصداع، ولم أستطع الذهاب إلى العمل.'],
     },
     {
       de: 'Deshalb bin ich zum Arzt gegangen. Die Ärztin hat mich gründlich untersucht.',
       ar: 'لذلك ذهبتُ إلى الطبيب. فحصتني الطبيبة فحصاً دقيقاً.',
+      sentencesAr: ['لذلك ذهبتُ إلى الطبيب.', 'فحصتني الطبيبة فحصاً دقيقاً.'],
     },
     {
       de: 'Sie hat gesagt, dass ich mich ausruhen und viel Tee trinken soll.',
       ar: 'قالت إنه ينبغي أن أستريح وأشرب الكثير من الشاي.',
+      sentencesAr: ['قالت إنه ينبغي أن أستريح وأشرب الكثير من الشاي.'],
     },
     {
       de: 'Nach drei Tagen habe ich mich schon viel besser gefühlt.',
       ar: 'بعد ثلاثة أيام شعرتُ أنني أفضل بكثير.',
+      sentencesAr: ['بعد ثلاثة أيام شعرتُ أنني أفضل بكثير.'],
     },
   ],
 }

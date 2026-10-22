@@ -16,7 +16,7 @@ uncertain grammar as settled fact.
 
 - React 19, TypeScript ~6 (strict), Vite 8 — path alias `@` → `./src`
 - Tailwind CSS v4 (`@tailwindcss/vite`); design tokens in
-  `src/styles/tokens.css`, black-and-gold palette, light/dark/system theme
+  `src/styles/tokens.css`, "Bilingual Academic Prestige" palette from the DeutschWelt design files (navy + royal blue + amber), light/dark/system theme
 - Zustand 5 (global state), Zod 4 (schema validation — e.g. progress import)
 - React Router 7 (`src/routes/router.tsx`), Lucide React icons
 - Vitest 4 + React Testing Library + jsdom; **oxlint** for linting (this
@@ -41,17 +41,41 @@ Before calling any phase complete: `typecheck && lint && test && build`.
 - `components/ui/` — design-system primitives, re-exported from `index.ts`
 - `components/layout/` — app shell, nav, theme toggle
 - `features/<domain>/` — feature UI: lessons, grammar, exercises,
-  vocabulary, review, progress, dashboard, pronunciation
+  vocabulary, review, progress, dashboard, pronunciation, stories (texts
+  and conversations), dictation (letter-by-letter Diktat mode; pure logic
+  in `lib/dictation/`; `DictationStage` is the typing screen and works on any
+  `DictationSource`, so lesson stories and the learner's own texts share it),
+  mytext (the learner's own texts: `lib/myText/split.ts` cuts a text into parts,
+  `validate.ts` checks input and storage), story quizzes (`lib/storyQuiz.ts` builds exercises
+  from a story's own sentences for the existing `ExerciseRunner`); study
+  and decisions in `docs/sentencestep-study.md`
 - `pages/` + `routes/router.tsx` — routed pages (lazy-loaded); they
-  compose features rather than containing feature logic themselves
-- `store/` — Zustand stores (`progressStore`, `settingsStore`,
-  `themeStore`); read through selectors, never one giant store
+  compose features rather than containing feature logic themselves.
+  Pages are loaded with `lib/lazyWithReload` (a stale tab reloads once, never in
+  a loop) and the router's `errorElement` is `components/RouteErrorPage` — React
+  Router catches route errors before the root `ErrorBoundary`, so route errors
+  must be handled there, not only in `ErrorBoundary`
+- `store/` — Zustand stores (`progressStore`, `statsStore` (answer
+  statistics for the heatmap, daily goal and accuracy views), `settingsStore`,
+  `themeStore`, `grammarProgressStore`, `dictationStore`, `storyQuizStore`, `myTextStore`); read through
+  selectors, never one giant store
 - `services/speech/` — TTS abstraction (`types.ts` interface,
-  `browserSpeechService.ts` implementation) so a provider can be swapped
+  `browserSpeechService.ts` implementation, `voices.ts` voice choice) so a provider can be swapped
   later without touching the UI
+- `services/sound/` — feedback-sound abstraction (key / correct / wrong / complete),
+  Web Audio implementation; use it through `hooks/useSound`, which honours the setting
 - `data/a1/`, `data/a2/` (`b1/`/`b2/` next) — curriculum content as typed
-  data, aggregated per level via `index.ts` and registered in
-  `data/curriculum.ts`; never JSX
+  data, aggregated per level via `index.ts`; never JSX. `data/curriculum.ts`
+  is a **lazy per-level registry**: each level is its own chunk, fetched on
+  first need. `lib/curriculum.ts` stays synchronous and reads what is loaded,
+  so a screen that uses it must sit under `<CurriculumGate>` (see
+  `routes/router.tsx`), and tests get every level from `test/setup.ts`. A new
+  level = a loader in `LEVEL_SOURCES`
+- `data/paths/` — the learning order of a level as chapters of lesson ids
+  (A1 is hand-sequenced: letters → days & time → grammar foundation → …);
+  `lib/learningPath.ts` resolves it, and `getNextLesson` and the dashboard's
+  "continue" follow it. Levels without a path fall back to module order.
+  A test fails if any A1 lesson is missing from the path
 - `types/` — domain types: `lesson`, `exercise`, `grammar`, `vocabulary`,
   `dialogue`, `cefr`, `progress`, `settings`
 - `lib/` — `curriculum.ts`, `srs.ts` (Leitner spaced repetition),

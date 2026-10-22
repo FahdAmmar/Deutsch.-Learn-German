@@ -12,18 +12,22 @@ export const readingVorstellung: ReadingText = {
     {
       de: 'Hallo! Ich heiße Sami. Ich bin fünfundzwanzig Jahre alt und komme aus Ägypten. Ich wohne jetzt in Berlin.',
       ar: 'مرحبًا! اسمي سامي. عمري خمسة وعشرون عامًا، وأنا من مصر. أسكن الآن في برلين.',
+      sentencesAr: ['مرحبًا!', 'اسمي سامي.', 'عمري خمسة وعشرون عامًا، وأنا من مصر.', 'أسكن الآن في برلين.'],
     },
     {
       de: 'Ich bin Student. Ich studiere Informatik an der Universität. Ich lerne jeden Tag Deutsch.',
       ar: 'أنا طالب. أدرس علوم الحاسوب في الجامعة. أتعلّم اللغة الألمانية كل يوم.',
+      sentencesAr: ['أنا طالب.', 'أدرس علوم الحاسوب في الجامعة.', 'أتعلّم اللغة الألمانية كل يوم.'],
     },
     {
       de: 'Ich spreche Arabisch, Englisch und ein bisschen Deutsch. Mein Hobby ist Fußball. Ich spiele oft mit meinen Freunden.',
       ar: 'أتحدث العربية والإنجليزية وقليلًا من الألمانية. هوايتي هي كرة القدم، وألعبها غالبًا مع أصدقائي.',
+      sentencesAr: ['أتحدث العربية والإنجليزية وقليلًا من الألمانية.', 'هوايتي هي كرة القدم.', 'ألعب غالبًا مع أصدقائي.'],
     },
     {
       de: 'Ich mag Berlin. Die Stadt ist groß und interessant. Ich lebe gern hier.',
       ar: 'أنا أحب برلين. المدينة كبيرة ومثيرة للاهتمام. يعجبني العيش هنا.',
+      sentencesAr: ['أنا أحب برلين.', 'المدينة كبيرة ومثيرة للاهتمام.', 'يعجبني العيش هنا.'],
     },
   ],
 }

@@ -41,6 +41,12 @@ export interface ProgressState {
   lessons: Record<string, LessonProgress>
   vocabulary: Record<string, VocabularyProgress>
   activity: ActivityEntry[]
+  /**
+   * Words the learner added to spaced review by hand, from the vocabulary page,
+   * besides the ones that arrive by completing lessons. Absent on data saved
+   * before this existed — always read with a `?? []` fallback.
+   */
+  savedVocabularyIds?: string[]
   /** Consecutive days with at least one completed lesson or exercise. */
   streakDays: number
   lastActivityDate: string | null

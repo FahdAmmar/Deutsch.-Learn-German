@@ -5,6 +5,7 @@ import { articleToTone, Badge } from '@/components/ui'
 import { cn } from '@/lib/cn'
 import { GERMAN_LOCALE } from '@/services/speech'
 import { useSpeech } from '@/hooks/useSpeech'
+import { useSettingsStore } from '@/store/settingsStore'
 import type { VocabularyItem } from '@/types'
 
 interface FlipVocabularyCardProps {
@@ -21,6 +22,7 @@ interface FlipVocabularyCardProps {
 export function FlipVocabularyCard({ item }: FlipVocabularyCardProps) {
   const [flipped, setFlipped] = useState(false)
   const { speak, isSpeaking } = useSpeech()
+  const showHint = useSettingsStore((state) => state.settings.showPronunciationHints)
 
   return (
     <div
@@ -42,7 +44,7 @@ export function FlipVocabularyCard({ item }: FlipVocabularyCardProps) {
             <p dir="rtl" className="text-xl font-semibold">
               {item.meaningAr}
             </p>
-            {item.pronunciationHint ? (
+            {showHint && item.pronunciationHint ? (
               <p dir="ltr" className="text-sm opacity-80">
                 {item.pronunciationHint}
               </p>
