@@ -41,7 +41,7 @@ export function SpeakableGerman({ text, tone, showIcon = true, className }: Spea
       )}
     >
       <span>
-        <RichText text={text} boldAs="mark" tone={tone} />
+        <RichText text={text} boldAs="mark" tone={tone} german />
       </span>
       {showIcon && isSupported ? (
         <Volume2 size={14} aria-hidden="true" className={cn('shrink-0 text-ink-faint', isSpeaking && 'animate-pulse text-primary')} />

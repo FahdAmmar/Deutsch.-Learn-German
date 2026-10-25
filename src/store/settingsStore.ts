@@ -18,6 +18,8 @@ interface SettingsState {
   setTextScale: (value: TextScale) => void
   setHighContrast: (value: boolean) => void
   setShowPronunciationHints: (value: boolean) => void
+  setShowGrammarHints: (value: boolean) => void
+  setLockScreenControls: (value: boolean) => void
   setDailyGoal: (value: number) => void
   completeOnboarding: () => void
   resetToDefaults: () => void
@@ -65,6 +67,10 @@ export const useSettingsStore = create<SettingsState>()(
 
       setShowPronunciationHints: (value) =>
         set((state) => ({ settings: { ...state.settings, showPronunciationHints: value } })),
+
+      setShowGrammarHints: (value) => set((state) => ({ settings: { ...state.settings, showGrammarHints: value } })),
+
+      setLockScreenControls: (value) => set((state) => ({ settings: { ...state.settings, lockScreenControls: value } })),
 
       setDailyGoal: (value) =>
         set((state) => ({ settings: { ...state.settings, dailyGoal: Math.min(Math.max(Math.round(value), 1), 100) } })),

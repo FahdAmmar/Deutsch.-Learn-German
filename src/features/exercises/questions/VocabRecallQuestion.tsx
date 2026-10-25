@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 
+import { ArticleText } from '@/components/ui'
 import type { VocabRecallExercise } from '@/types'
 import { shuffle } from '@/utils/shuffle'
 
@@ -26,7 +27,7 @@ export function VocabRecallQuestion({ exercise, onAnswer }: Props) {
   return (
     <div className="space-y-3">
       <p dir="ltr" lang="de" className="text-lg font-medium text-ink">
-        {exercise.questionDe}
+        <ArticleText text={exercise.questionDe} />
       </p>
       <div className="space-y-2" dir="rtl">
         {options.map((option) => {

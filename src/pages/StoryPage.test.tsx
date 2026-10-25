@@ -127,6 +127,28 @@ describe('StoryPage — reading text', () => {
     expect(useSettingsStore.getState().settings.showTranslations).toBe(false)
   })
 
+  it('marks "dem Frühstück" and "zur Arbeit" with grammar hints that explain why on hover, and can be switched off', async () => {
+    const user = userEvent.setup()
+    const { container } = renderStory('/levels/a1/texts/a1-read-02')
+
+    const marked = Array.from(container.querySelectorAll('[data-hint-owner]')).map((element) => element.textContent)
+    expect(marked).toEqual(expect.arrayContaining(['dem Frühstück', 'zur Arbeit']))
+
+    await user.hover(screen.getByText('zur Arbeit'))
+    expect(document.querySelector('[data-hint-popup]')).toHaveTextContent('zu + der → zur')
+    await user.unhover(screen.getByText('zur Arbeit'))
+
+    const toggle = screen.getByRole('button', { name: 'تلميحات القواعد' })
+    expect(toggle).toHaveAttribute('aria-pressed', 'true')
+    await user.click(toggle)
+
+    expect(toggle).toHaveAttribute('aria-pressed', 'false')
+    expect(container.querySelectorAll('[data-hint-owner]')).toHaveLength(0)
+    expect(useSettingsStore.getState().settings.showGrammarHints).toBe(false)
+    // The sentences are still there and still play.
+    expect(screen.getByRole('button', { name: /Nach dem Frühstück gehe ich zur Arbeit/ })).toBeInTheDocument()
+  })
+
   it('silences the audio when leaving the page', async () => {
     const user = userEvent.setup()
     const { unmount } = renderStory(`/levels/a1/texts/${text!.id}`)
@@ -159,8 +181,85 @@ describe('StoryPage — conversation', () => {
   })
 
   it('works for A2 conversations as well', () => {
-    renderStory('/levels/a2/texts/dialogue-wohnung-formell')
+    renderStory('/levels/a2/texts/dialogue-wohnungssuche-formell')
     expect(screen.getByRole('heading', { level: 1, name: 'Die Wohnungsbesichtigung' })).toBeInTheDocument()
+  })
+})
+
+describe('StoryPage — repeating', () => {
+  const text = getStory('A1', 'a1-read-01')!
+  const sentence = (index: number) => screen.getByRole('button', { name: text.segments[index].text })
+
+  beforeEach(() => {
+    speech.spoken.length = 0
+    speech.stop.mockClear()
+    useSettingsStore.getState().resetToDefaults()
+  })
+
+  it('offers the repeat button, off at first, and cycles sentence → passage → off', async () => {
+    const user = userEvent.setup()
+    renderStory(`/levels/a1/texts/${text.id}`)
+
+    const repeat = () => screen.getByRole('button', { name: /^التكرار:/ })
+    expect(repeat()).toHaveAccessibleName('التكرار: إيقاف. اضغط للتغيير')
+
+    await user.click(repeat())
+    expect(repeat()).toHaveAccessibleName('التكرار: الجملة. اضغط للتغيير')
+    await user.click(repeat())
+    expect(repeat()).toHaveAccessibleName('التكرار: مقطع. اضغط للتغيير')
+    await user.click(repeat())
+    expect(repeat()).toHaveAccessibleName('التكرار: إيقاف. اضغط للتغيير')
+  })
+
+  it('chooses a passage with two taps, tints its sentences and says which sentences repeat', async () => {
+    const user = userEvent.setup()
+    const { container } = renderStory(`/levels/a1/texts/${text.id}`)
+    const repeat = screen.getByRole('button', { name: /^التكرار:/ })
+    const tinted = () => Array.from(container.querySelectorAll('[data-in-range]')).map((element) => element.textContent)
+
+    await user.click(repeat)
+    await user.click(repeat)
+    expect(screen.getByRole('status')).toHaveTextContent('اضغط على أول جملة في المقطع')
+
+    await user.click(sentence(1))
+    expect(screen.getByRole('status')).toHaveTextContent('اضغط على آخر جملة في المقطع')
+    expect(tinted()).toEqual([text.segments[1].text])
+
+    await user.click(sentence(2))
+    expect(screen.getByRole('status')).toHaveTextContent('المقطع المكرَّر: الجمل 2–3')
+    expect(tinted()).toEqual([text.segments[1].text, text.segments[2].text])
+    expect(speech.spoken[speech.spoken.length - 1].text).toBe(text.segments[1].text)
+  })
+
+  it('forgets the passage when the repeat is switched off', async () => {
+    const user = userEvent.setup()
+    const { container } = renderStory(`/levels/a1/texts/${text.id}`)
+    const repeat = screen.getByRole('button', { name: /^التكرار:/ })
+
+    await user.click(repeat)
+    await user.click(repeat)
+    await user.click(sentence(0))
+    await user.click(sentence(1))
+    expect(container.querySelectorAll('[data-in-range]')).toHaveLength(2)
+
+    await user.click(repeat)
+    expect(container.querySelectorAll('[data-in-range]')).toHaveLength(0)
+    expect(screen.queryByText(/المقطع المكرَّر/)).not.toBeInTheDocument()
+  })
+
+  it('tints the chosen lines of a conversation too', async () => {
+    const user = userEvent.setup()
+    const dialogue = getStory('A1', 'dialogue-wohnung-informell')!
+    const lines = dialogue.blocks.filter((block) => block.type === 'line')
+    const { container } = renderStory('/levels/a1/texts/dialogue-wohnung-informell')
+    const repeat = screen.getByRole('button', { name: /^التكرار:/ })
+
+    await user.click(repeat)
+    await user.click(repeat)
+    await user.click(screen.getByRole('button', { name: lines[0].segment.text }))
+    await user.click(screen.getByRole('button', { name: lines[1].segment.text }))
+
+    expect(container.querySelectorAll('li [data-in-range]')).toHaveLength(2)
   })
 })
 

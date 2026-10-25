@@ -1,11 +1,16 @@
-import { ArrowLeft, ClipboardCheck, Clock, Keyboard, MessagesSquare, BookOpenText } from 'lucide-react'
+import { ArrowLeft, ClipboardCheck, Clock, Ellipsis, Keyboard, MessagesSquare, BookOpenText } from 'lucide-react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui'
+import { useGrammarHintsEnabled } from '@/features/grammarHints/useGrammarHints'
 import { categoryTone } from '@/features/reading/categoryTone'
 import { LevelMark } from '@/features/levels/LevelMark'
+import { useStoryMediaSession } from '@/hooks/useStoryMediaSession'
 import { useStoryPlayer } from '@/hooks/useStoryPlayer'
+import { cn } from '@/lib/cn'
 import { getLessonById } from '@/lib/curriculum'
+import { findGrammarHints } from '@/lib/grammarHints'
 import { useSettingsStore } from '@/store/settingsStore'
 import type { Story } from '@/types'
 
@@ -24,8 +29,13 @@ interface StoryViewProps {
  */
 export function StoryView({ story }: StoryViewProps) {
   const player = useStoryPlayer(story.segments)
+  useStoryMediaSession(story, player)
   const showTranslations = useSettingsStore((state) => state.settings.showTranslations ?? true)
   const setShowTranslations = useSettingsStore((state) => state.setShowTranslations)
+  const hintsEnabled = useGrammarHintsEnabled()
+  const setShowGrammarHints = useSettingsStore((state) => state.setShowGrammarHints)
+  // The switch is only offered where there is something to switch.
+  const hasGrammarHints = useMemo(() => story.segments.some((segment) => findGrammarHints(segment.text).length > 0), [story])
   const lesson = story.lessonId ? getLessonById(story.lessonId) : undefined
   const isReading = story.kind === 'reading'
   const playing = player.status === 'playing'
@@ -88,6 +98,21 @@ export function StoryView({ story }: StoryViewProps) {
             <Keyboard size={18} aria-hidden="true" />
             <span dir="rtl">إملاء حرفًا بحرف</span>
           </Link>
+          {hasGrammarHints ? (
+            <button
+              type="button"
+              aria-pressed={hintsEnabled}
+              onClick={() => setShowGrammarHints(!hintsEnabled)}
+              title={hintsEnabled ? 'إخفاء النقاط التي تشرح القواعد' : 'إظهار النقاط التي تشرح القواعد'}
+              className={cn(
+                'inline-flex h-11 items-center gap-2 rounded-md border px-5 text-[0.95rem] font-semibold transition-colors',
+                hintsEnabled ? 'border-accent bg-accent-muted text-accent' : 'border-border-strong text-ink hover:bg-surface-sunken',
+              )}
+            >
+              <Ellipsis size={18} aria-hidden="true" />
+              <span dir="rtl">تلميحات القواعد</span>
+            </button>
+          ) : null}
         </div>
       </header>
 
@@ -97,7 +122,8 @@ export function StoryView({ story }: StoryViewProps) {
         story={story}
         currentIndex={player.status === 'idle' ? null : player.index}
         showTranslations={showTranslations}
-        onPlayFrom={player.playFrom}
+        range={player.loop === 'range' ? player.range : null}
+        onPlayFrom={player.selectSegment}
       />
 
       <AudioPlayerBar

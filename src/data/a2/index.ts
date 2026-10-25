@@ -32,4 +32,5 @@ export const a2Modules: Module[] = [
   module14FesteUndFeiern,
 ]
 
+export { a2Conversations } from './conversations'
 export { a2ReadingTexts } from './reading'

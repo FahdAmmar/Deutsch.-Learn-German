@@ -28,14 +28,14 @@ function Flashcard({ card }: { card: RuleFlashcard }) {
           </span>
           {card.exampleDe ? (
             <span dir="ltr" lang="de" className="block rounded-md bg-surface px-3 py-2 font-de text-sm font-semibold text-ink">
-              <RichText text={card.exampleDe} boldAs="mark" />
+              <RichText text={card.exampleDe} boldAs="mark" german />
             </span>
           ) : null}
         </span>
       ) : (
         <span className="space-y-2">
           <span dir="ltr" lang="de" className="block font-de text-lg font-semibold text-ink">
-            <RichText text={card.frontDe} boldAs="mark" />
+            <RichText text={card.frontDe} boldAs="mark" german />
           </span>
           {card.hintAr ? <span className="block text-sm text-ink-muted">{card.hintAr}</span> : null}
         </span>

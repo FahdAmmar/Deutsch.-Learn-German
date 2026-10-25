@@ -128,6 +128,19 @@ describe('SettingsPage — display and learning preferences', () => {
     expect(showPronunciationHints).toBe(false)
   })
 
+  it('switches the lock-screen controls for stories on and off', async () => {
+    const user = userEvent.setup()
+    render(<SettingsPage />)
+
+    const lockScreen = screen.getByRole('switch', { name: 'أزرار التحكم على شاشة القفل' })
+    expect(lockScreen).toBeChecked()
+
+    await user.click(lockScreen)
+
+    expect(useSettingsStore.getState().settings.lockScreenControls).toBe(false)
+    expect(lockScreen).not.toBeChecked()
+  })
+
   it('sets the daily goal', async () => {
     const user = userEvent.setup()
     render(<SettingsPage />)

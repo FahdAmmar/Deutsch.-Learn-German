@@ -1,12 +1,16 @@
 import { cn } from '@/lib/cn'
 import { parseRichText, splitQuotedLatin } from '@/lib/richText'
 
+import { ArticleText } from './ArticleText'
+
 interface InlineMarkupProps {
   text: string
   /** How `**bold**` segments are drawn: plain emphasis, or a tinted highlight. */
   boldAs?: 'strong' | 'mark'
   /** Classes for highlighted (`mark`) segments — supplied by the caller so this primitive stays colour-agnostic. */
   markClassName?: string
+  /** The whole text is German (a phrase or sentence, not Arabic prose): its der / die / das are coloured. */
+  german?: boolean
 }
 
 /**
@@ -17,10 +21,18 @@ interface InlineMarkupProps {
  * isolated as LTR automatically, so use this (not a bare `{string}`) for any
  * Arabic prose that may quote German.
  */
-export function InlineMarkup({ text, boldAs = 'strong', markClassName }: InlineMarkupProps) {
+export function InlineMarkup({ text, boldAs = 'strong', markClassName, german = false }: InlineMarkupProps) {
   return (
     <>
       {parseRichText(text).map((segment, index) => {
+        if (segment.type === 'text' && german) {
+          return (
+            <span key={index}>
+              <ArticleText text={segment.text} />
+            </span>
+          )
+        }
+
         if (segment.type === 'text') {
           // Quoted German inside Arabic prose is isolated as LTR so its closing
           // quote and full stop stay attached to the sentence (see richText.ts).

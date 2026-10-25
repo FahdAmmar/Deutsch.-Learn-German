@@ -1,7 +1,8 @@
 import { Play } from 'lucide-react'
 import { useId, useMemo, useState } from 'react'
 
-import { Button } from '@/components/ui'
+import { Button, SpecialCharsBar } from '@/components/ui'
+import { useInsertAtCaret } from '@/hooks/useInsertAtCaret'
 import { cn } from '@/lib/cn'
 import { DEFAULT_PHRASE_WORDS, MAX_PHRASE_WORDS, MAX_SAVED_TEXTS, MAX_TEXT_CHARS, MIN_PHRASE_WORDS } from '@/lib/myText/limits'
 import { splitText } from '@/lib/myText/split'
@@ -40,6 +41,7 @@ export function MyTextWorkbench({ editing, onCancelEdit, onSaved }: MyTextWorkbe
 
   const [title, setTitle] = useState(editing?.title ?? '')
   const [text, setText] = useState(editing?.text ?? '')
+  const { ref: textRef, insert: insertIntoText } = useInsertAtCaret<HTMLTextAreaElement>(text, setText)
   const [mode, setMode] = useState<SplitMode>(editing?.mode ?? 'phrases')
   const [maxWords, setMaxWords] = useState(editing?.maxWords ?? DEFAULT_PHRASE_WORDS)
   const [errors, setErrors] = useState<{ title?: string; text?: string; form?: string }>({})
@@ -123,6 +125,7 @@ export function MyTextWorkbench({ editing, onCancelEdit, onSaved }: MyTextWorkbe
             ) : null}
           </div>
           <textarea
+            ref={textRef}
             id={ids.text}
             lang="de"
             dir="ltr"
@@ -135,6 +138,7 @@ export function MyTextWorkbench({ editing, onCancelEdit, onSaved }: MyTextWorkbe
             aria-describedby={errors.text ? `${ids.text}-error` : `${ids.text}-count`}
             className={cn(fieldClass, 'resize-y py-3 text-base leading-7', errors.text || overLimit ? 'border-error' : 'border-border-strong')}
           />
+          <SpecialCharsBar onInsert={insertIntoText} />
           <div className="flex items-start justify-between gap-3">
             {errors.text ? (
               <p id={`${ids.text}-error`} role="alert" className="text-sm text-error">

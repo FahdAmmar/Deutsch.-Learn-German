@@ -11,16 +11,16 @@ type LevelLoader = () => Promise<LevelCurriculum>
  * `null` means the level has no authored content yet; the Levels page shows an
  * honest "coming soon" state for it instead of fabricated lessons. To author a
  * level, add a loader here following the A1/A2 shape (`Module[]` plus reading
- * texts) — nothing else in the app needs to change.
+ * texts and standalone conversations) — nothing else in the app needs to change.
  */
 const LEVEL_SOURCES: Record<CEFRLevel, LevelLoader | null> = {
-  A1: () => import('./a1').then(({ a1Modules, a1ReadingTexts }) => ({ level: 'A1', modules: a1Modules, readingTexts: a1ReadingTexts })),
-  A2: () => import('./a2').then(({ a2Modules, a2ReadingTexts }) => ({ level: 'A2', modules: a2Modules, readingTexts: a2ReadingTexts })),
+  A1: () => import('./a1').then(({ a1Modules, a1ReadingTexts, a1Conversations }) => ({ level: 'A1', modules: a1Modules, readingTexts: a1ReadingTexts, conversations: a1Conversations })),
+  A2: () => import('./a2').then(({ a2Modules, a2ReadingTexts, a2Conversations }) => ({ level: 'A2', modules: a2Modules, readingTexts: a2ReadingTexts, conversations: a2Conversations })),
   B1: null,
   B2: null,
 }
 
-const emptyLevel = (level: CEFRLevel): LevelCurriculum => ({ level, modules: [], readingTexts: [] })
+const emptyLevel = (level: CEFRLevel): LevelCurriculum => ({ level, modules: [], readingTexts: [], conversations: [] })
 
 const loaded = new Map<CEFRLevel, LevelCurriculum>()
 const inFlight = new Map<CEFRLevel, Promise<void>>()

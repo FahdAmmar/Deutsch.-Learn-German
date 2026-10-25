@@ -29,6 +29,26 @@ describe('settingsStore', () => {
     expect(settings.showTranslations).toBe(true)
   })
 
+  it('turns grammar hints on for a learner whose saved settings predate them, and persists the choice', async () => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ state: { settings: { speechRate: 1.1 } }, version: 0 }))
+    await useSettingsStore.persist.rehydrate()
+    expect(useSettingsStore.getState().settings.showGrammarHints).toBe(true)
+
+    useSettingsStore.getState().setShowGrammarHints(false)
+    expect(useSettingsStore.getState().settings.showGrammarHints).toBe(false)
+    expect(window.localStorage.getItem(STORAGE_KEY)).toContain('"showGrammarHints":false')
+  })
+
+  it('turns the lock-screen controls on for a learner whose saved settings predate them, and persists the choice', async () => {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ state: { settings: { speechRate: 1.1 } }, version: 0 }))
+    await useSettingsStore.persist.rehydrate()
+    expect(useSettingsStore.getState().settings.lockScreenControls).toBe(true)
+
+    useSettingsStore.getState().setLockScreenControls(false)
+    expect(useSettingsStore.getState().settings.lockScreenControls).toBe(false)
+    expect(window.localStorage.getItem(STORAGE_KEY)).toContain('"lockScreenControls":false')
+  })
+
   it('persists the translation preference', () => {
     useSettingsStore.getState().setShowTranslations(false)
     expect(useSettingsStore.getState().settings.showTranslations).toBe(false)

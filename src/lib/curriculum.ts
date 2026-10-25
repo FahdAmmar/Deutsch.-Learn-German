@@ -1,6 +1,6 @@
 import { getCurriculum, LEVELS_WITH_CONTENT } from '@/data/curriculum'
 import { CEFR_LEVELS } from '@/types'
-import type { CEFRLevel, Lesson, LevelCurriculum, Module, ReadingText, VocabularyItem } from '@/types'
+import type { CEFRLevel, Dialogue, Lesson, LevelCurriculum, Module, ReadingText, VocabularyItem } from '@/types'
 
 import { getNextLessonInPath } from './learningPath'
 
@@ -80,9 +80,13 @@ export function getAllVocabulary() {
   return CEFR_LEVELS.flatMap((level) => getVocabularyForLevel(level))
 }
 
-/** Every practical-usage dialogue across a level's lessons, in curriculum order. */
-export function getDialoguesForLevel(level: CEFRLevel) {
-  return getLessonsForLevel(level).flatMap((lesson) => lesson.dialogues ?? [])
+/**
+ * Every conversation of a level: the dialogues that belong to its lessons, in
+ * curriculum order, followed by the level's standalone situational conversations.
+ */
+export function getDialoguesForLevel(level: CEFRLevel): Dialogue[] {
+  const lessonDialogues = getLessonsForLevel(level).flatMap((lesson) => lesson.dialogues ?? [])
+  return [...lessonDialogues, ...(getLevelCurriculum(level)?.conversations ?? [])]
 }
 
 /** Standalone bilingual reading texts for a level (the "Reading" tab), in curriculum order. */

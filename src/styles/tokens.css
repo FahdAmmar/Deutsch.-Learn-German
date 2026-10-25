@@ -12,10 +12,12 @@
  * blue, `plum` = the design's tertiary amber, `highlight` = emerald. Do not
  * rename them without migrating `src/data/grammar/rules/`.
  *
- * Grammatical gender follows the design: der blue, die rose, das green,
- * plural amber. Where the design's hex fails 4.5:1 as TEXT (die #E11D48,
- * das #059669, plural #D97706) the token is darkened one step and the
- * brighter hue is not used for text.
+ * Grammatical gender, everywhere in the app: der blue, die pink, das orange
+ * (the learner's choice — it replaces the design's rose and green for die and
+ * das; plural amber is unchanged and not used in the UI). Light-mode das is a
+ * deep burnt orange, because a lighter orange fails 4.5:1 as text; dark mode
+ * uses the bright orange. Each of the three is checked at 4.5:1 on white, on
+ * its own tint, on the success/error tints and on the primary tint.
  *
  * Dark mode is not specified by the design files. It is a neutral graphite
  * theme that keeps the design's blue as the single colour (accent, active
@@ -94,12 +96,12 @@
   --error-muted: #fef2f2;
 
   /* Grammatical gender — der / die / das / plural */
-  --der: #2563eb;
+  --der: #1d4ed8;
   --der-muted: #eff6ff;
-  --die: #be123c;
-  --die-muted: #fff1f2;
-  --das: #047857;
-  --das-muted: #ecfdf5;
+  --die: #be185d;
+  --die-muted: #fdf2f8;
+  --das: #b83a0a;
+  --das-muted: #fff7ed;
   --plural: #b45309;
   --plural-muted: #fffbeb;
 
@@ -171,10 +173,10 @@
 
   --der: #7fb0ff;
   --der-muted: rgba(127, 176, 255, 0.14);
-  --die: #fb7185;
-  --die-muted: rgba(251, 113, 133, 0.14);
-  --das: #34d399;
-  --das-muted: rgba(52, 211, 153, 0.14);
+  --die: #f472b6;
+  --die-muted: rgba(244, 114, 182, 0.14);
+  --das: #fb923c;
+  --das-muted: rgba(251, 146, 60, 0.14);
   --plural: #fbbf24;
   --plural-muted: rgba(251, 191, 36, 0.14);
 

@@ -1,4 +1,4 @@
-<div align="center">
+{<div align="center">
 
 # Deutsch. — Learn German
 
@@ -28,8 +28,8 @@ The product is organised around the CEFR ladder — **A1 → A2 → B1 → B2** 
 | Lessons | 31 | 14 | — | — |
 | Vocabulary items | 272 | 104 | — | — |
 | Exercises | 190 | 107 | — | — |
-| Reading texts | 2 | 3 | — | — |
-| Conversations | 34 | 27 | — | — |
+| Reading texts | 17 | 18 | — | — |
+| Conversations | 40 | 41 | — | — |
 | Grammar rules authored (of the 70-rule roadmap) | 16 / 16 | 18 / 18 | 0 / 17 | 0 / 19 |
 
 B1 and B2 are **planned, not yet authored**; the app shows them as “coming soon”. All figures are computed from the content in `src/data`.
@@ -40,7 +40,8 @@ B1 and B2 are **planned, not yet authored**; the app shows them as “coming soo
 - **Grammar section** — rules taught as concept → rule → structure → examples → exceptions → common mistakes → practice, with colour-coded sentence structures and diagrams.
 - **Exercise engine** — one data-driven engine for eight exercise types: multiple choice, fill-in-the-blank, word ordering, matching, translation, true/false, listening and vocabulary recall, each with validation and explanatory feedback.
 - **Pronunciation** — any German word or phrase can be played in `de-DE` through a replaceable speech-service abstraction (browser `SpeechSynthesis` today, an external TTS provider tomorrow, with no UI changes). Voice quality depends on the German voices installed on the learner's device.
-- **Texts & conversations with audio** — one tab per level lists its reading texts and conversations. Each opens as a page with a German title, a cover, the text and a floating audio player: play/pause, a seek bar over the sentences, replay, speed (the same setting as in Settings) and a switch for the Arabic translation. Tap any sentence or line to start reading from it; the one being read is highlighted.
+- **Texts & conversations with audio** — one tab per level lists its reading texts and conversations — the dialogues that belong to a lesson, followed by longer standalone conversations about everyday situations (a phone call, the pharmacy, a hotel, the town hall). Each opens as a page with a German title, a cover, the text and a floating audio player: play/pause, a seek bar over the sentences, replay, speed (the same setting as in Settings) and a switch for the Arabic translation. Tap any sentence or line to start reading from it; the one being read is highlighted.
+- **Grammar hints in the texts** — forms that make a learner ask “why?” carry three small dots underneath: contractions (**zur** Arbeit, **im** Büro, **ins** Kino), the Dativ after a preposition (nach **dem** Frühstück, mit **meinen** Kollegen), “einen” for a masculine object, “des” in the Genitiv, “in die Stadt” after a verb of movement, and fixed phrases such as *nach Hause* / *zu Hause*. Hovering a marked phrase (or tapping it on a touch screen) shows a short Arabic reason with the formula (“zu + der → zur”) and, when the vocabulary knows the noun, its article (“das Frühstück”); keyboard users get all hints of a sentence on focus, and screen readers read them as the sentence's description. The detector (`src/lib/grammarHints.ts`, rules in `src/data/grammarHints.ts`) is deliberately conservative: a form that could be explained in more than one way (such as “den” after a two-way preposition) gets no hint rather than a doubtful one. It can be switched off in Settings or with the “تلميحات القواعد” button on a story page.
 - **Dictation of your own text** (“تدريب على نصّي”) — paste any German text, see it cut into short parts (sentence by sentence, short phrases that break at commas, conjunctions and prepositions, or your own lines), listen to each part, then type it letter by letter. A soft tick answers every right letter, a low tone every wrong one, a chime ends each part and a short fanfare ends the text; the sounds can be switched off. Texts are saved in the browser with their best accuracy and speed. The same typing screen powers the dictation of lesson texts.
 - **Spaced-repetition review** — a five-box Leitner system (1 / 3 / 7 / 16 / 35 days): a correct answer moves a word up a box, a wrong one sends it back to box 0. Any word on the vocabulary page can be added to review by hand.
 - **Better practice sessions** — after a set of exercises the learner sees what they got wrong, with the right answer and a link back to the lesson that teaches it, and can replay just those mistakes (practice only: the replay never changes the lesson result, the statistics or the review boxes). Number keys choose an option, Enter continues, Space replays the audio. Short feedback sounds for right and wrong answers are synthesised with Web Audio (no audio files) and can be switched off.
@@ -262,7 +263,7 @@ Notes:
 - Author **B1** and **B2** content (modules, lessons, vocabulary, exercises).
 - Finish the grammar roadmap: 34 of 70 rules are authored (all of A1 and A2); the B1 and B2 rules remain.
 - Load each level's curriculum on demand — it is currently bundled into the main chunk (see lesson 7 below).
-- Add more reading texts (five so far: two in A1, three in A2) and real illustrations for story covers — a story's `image` field is already supported; without one, the cover shows a waveform.
+- Add more reading texts (thirty-five so far: seventeen in A1, eighteen in A2) and real illustrations for story covers — a story's `image` field is already supported; without one, the cover shows a waveform.
 - Evaluate an external TTS provider behind the existing `SpeechService` interface, and pre-generate audio for the core content so every learner hears the same voice (needs a provider whose licence allows storing the audio).
 - Grow the vocabulary towards the Goethe word lists (A1 is about 650 words, A2 about 650 more; the app has 401), and let a learner add words from their own texts to the spaced-repetition review.
 - Optional sync between devices (needs a backend and accounts; until then, export and import).

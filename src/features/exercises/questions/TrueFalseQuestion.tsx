@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { ArticleText } from '@/components/ui'
 import type { TrueFalseExercise } from '@/types'
 
 import { OptionButton } from '../OptionButton'
@@ -26,7 +27,7 @@ export function TrueFalseQuestion({ exercise, onAnswer }: Props) {
   return (
     <div className="space-y-3">
       <p dir="ltr" lang="de" className="display-de text-start text-2xl font-medium text-ink">
-        {exercise.statementDe}
+        <ArticleText text={exercise.statementDe} />
       </p>
       <div className="grid grid-cols-2 gap-2" dir="rtl">
         {choices.map((choice) => {

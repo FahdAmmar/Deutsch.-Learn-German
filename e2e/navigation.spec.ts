@@ -7,7 +7,7 @@ const ROUTES: ReadonlyArray<{ path: string; heading: RegExp | string }> = [
   { path: '/levels/a1?tab=stories', heading: /الألمانية/ },
   { path: '/levels/a1/texts/a1-read-01', heading: 'Ich stelle mich vor' },
   { path: '/levels/a1/texts/dialogue-wohnung-informell', heading: 'Im Wohnzimmer' },
-  { path: '/levels/a2/texts/dialogue-wohnung-formell', heading: 'Die Wohnungsbesichtigung' },
+  { path: '/levels/a2/texts/dialogue-wohnungssuche-formell', heading: 'Die Wohnungsbesichtigung' },
   { path: '/lessons/a2/adjektivdeklination', heading: 'Adjektivdeklination' },
   { path: '/lessons/a1/essen-und-trinken', heading: 'Essen und Trinken' },
   { path: '/grammar', heading: 'القواعد' },

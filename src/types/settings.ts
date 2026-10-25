@@ -30,6 +30,10 @@ export interface UserPreferences {
   highContrast: boolean
   /** Whether the pronunciation hint (syllable split) is shown on vocabulary cards. */
   showPronunciationHints: boolean
+  /** Whether stories mark forms like "zur Arbeit" or "dem Frühstück" with dots that explain the grammar on hover. */
+  showGrammarHints: boolean
+  /** Whether a story shows its title and play / pause / previous / next buttons on the lock screen and to media keys. */
+  lockScreenControls: boolean
   /** Exercises to answer each day; drives the daily-goal ring. */
   dailyGoal: number
   /** Whether the first-run welcome step has been completed or skipped. */
@@ -57,6 +61,8 @@ export const DEFAULT_PREFERENCES: UserPreferences = {
   textScale: 'normal',
   highContrast: false,
   showPronunciationHints: true,
+  showGrammarHints: true,
+  lockScreenControls: true,
   dailyGoal: 10,
   onboardingDone: false,
 }

@@ -1,6 +1,6 @@
 import { BookmarkCheck, BookmarkPlus } from 'lucide-react'
 
-import { Badge, articleToTone } from '@/components/ui'
+import { ArticleText, Badge, articleToTone } from '@/components/ui'
 import { GermanWord } from '@/features/pronunciation/GermanWord'
 import { cn } from '@/lib/cn'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -73,7 +73,9 @@ export function VocabularyCard({ item, saved = false, onToggleSaved }: Vocabular
 
       {item.plural ? (
         <p dir="ltr" className="text-sm text-ink-faint">
-          Plural: <span lang="de" className="font-medium text-ink-muted">die {item.plural}</span>
+          Plural: <span lang="de" className="font-medium text-ink-muted">
+            <ArticleText text={`die ${item.plural}`} />
+          </span>
         </p>
       ) : item.numberUse ? (
         <p dir="rtl" className="text-sm text-ink-faint">
@@ -90,7 +92,7 @@ export function VocabularyCard({ item, saved = false, onToggleSaved }: Vocabular
       {item.example ? (
         <div className="mt-auto space-y-1 border-t border-border pt-3">
           <p dir="ltr" lang="de" className="text-start text-[0.95rem] text-ink">
-            {item.example.de}
+            <ArticleText text={item.example.de} />
           </p>
           <p dir="rtl" className="text-sm leading-7 text-ink-muted">
             {item.example.ar}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-import { Button } from '@/components/ui'
+import { Button, SpecialCharsBar } from '@/components/ui'
+import { useInsertAtCaret } from '@/hooks/useInsertAtCaret'
 import type { TranslationExercise } from '@/types'
 import { isAnswerAccepted } from '@/utils/text'
 
@@ -13,6 +14,7 @@ export function TranslationQuestion({ exercise, onAnswer }: Props) {
   const [value, setValue] = useState('')
   const [checked, setChecked] = useState(false)
   const [correct, setCorrect] = useState(false)
+  const { ref: answerRef, insert } = useInsertAtCaret<HTMLTextAreaElement>(value, setValue)
 
   const sourceIsGerman = exercise.direction === 'de-to-ar'
   const answerDir = sourceIsGerman ? 'rtl' : 'ltr'
@@ -31,6 +33,7 @@ export function TranslationQuestion({ exercise, onAnswer }: Props) {
         {exercise.sourceText}
       </p>
       <textarea
+        ref={answerRef}
         value={value}
         onChange={(event) => setValue(event.target.value)}
         disabled={checked}
@@ -41,6 +44,7 @@ export function TranslationQuestion({ exercise, onAnswer }: Props) {
         placeholder={sourceIsGerman ? 'اكتب الترجمة بالعربية' : 'Schreib die Übersetzung auf Deutsch'}
         className="w-full resize-none rounded-md border-2 border-border-strong bg-surface-sunken p-3.5 text-base outline-none focus-visible:border-accent disabled:opacity-70"
       />
+      {!sourceIsGerman && !checked ? <SpecialCharsBar onInsert={insert} /> : null}
       {checked && !correct ? (
         <p dir={answerDir} className="text-sm text-ink-muted">
           <span className="text-ink-faint">إجابة مقترحة: </span>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Volume2 } from 'lucide-react'
 
+import { ArticleText } from '@/components/ui'
 import { useSpeech } from '@/hooks/useSpeech'
 import type { ListeningExercise } from '@/types'
 
@@ -51,7 +52,9 @@ export function ListeningQuestion({ exercise, onAnswer }: Props) {
           }
           return (
             <OptionButton key={option} onClick={() => handleSelect(index)} disabled={selected !== null} state={state}>
-              <span lang="de">{option}</span>
+              <span lang="de">
+                <ArticleText text={option} />
+              </span>
             </OptionButton>
           )
         })}

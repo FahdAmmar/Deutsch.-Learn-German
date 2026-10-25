@@ -47,7 +47,12 @@ Before calling any phase complete: `typecheck && lint && test && build`.
   `DictationSource`, so lesson stories and the learner's own texts share it),
   mytext (the learner's own texts: `lib/myText/split.ts` cuts a text into parts,
   `validate.ts` checks input and storage), story quizzes (`lib/storyQuiz.ts` builds exercises
-  from a story's own sentences for the existing `ExerciseRunner`); study
+  from a story's own sentences for the existing `ExerciseRunner`), grammarHints
+  (the dotted markers + hover popup under forms like "zur Arbeit"; the detector
+  is pure logic in `lib/grammarHints.ts` with its rules and Arabic notes in
+  `data/grammarHints.ts` — add a form there, never in JSX; stay conservative: an
+  ambiguous form gets no hint; `HintedSentenceButton` keeps a sentence one
+  button, the markers are plain spans inside it); study
   and decisions in `docs/sentencestep-study.md`
 - `pages/` + `routes/router.tsx` — routed pages (lazy-loaded); they
   compose features rather than containing feature logic themselves.
@@ -65,7 +70,11 @@ Before calling any phase complete: `typecheck && lint && test && build`.
 - `services/sound/` — feedback-sound abstraction (key / correct / wrong / complete),
   Web Audio implementation; use it through `hooks/useSound`, which honours the setting
 - `data/a1/`, `data/a2/` (`b1/`/`b2/` next) — curriculum content as typed
-  data, aggregated per level via `index.ts`; never JSX. `data/curriculum.ts`
+  data, aggregated per level via `index.ts`; never JSX. Besides the modules,
+  a level has `reading/` (one file per reading text) and `conversations/`
+  (standalone situational `Dialogue`s that belong to no lesson; they follow the
+  lesson dialogues in `getDialoguesForLevel`). Dialogue and reading ids must be
+  unique across *all* levels — the quiz and dictation stores key by id alone. `data/curriculum.ts`
   is a **lazy per-level registry**: each level is its own chunk, fetched on
   first need. `lib/curriculum.ts` stays synchronous and reads what is loaded,
   so a screen that uses it must sit under `<CurriculumGate>` (see

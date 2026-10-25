@@ -1,7 +1,7 @@
-import { Languages, Pause, Play, Rabbit, RotateCcw, Turtle } from 'lucide-react'
+import { Languages, Pause, Play, Rabbit, Repeat, Repeat1, RotateCcw, Turtle } from 'lucide-react'
 
 import { cn } from '@/lib/cn'
-import type { StoryPlayer } from '@/hooks/useStoryPlayer'
+import type { LoopMode, StoryPlayer } from '@/hooks/useStoryPlayer'
 
 import { formatSpeed, nextSpeed } from './speedPresets'
 
@@ -11,6 +11,20 @@ interface AudioPlayerBarProps {
   total: number
   showTranslations: boolean
   onToggleTranslations: () => void
+}
+
+const LOOP_LABEL_AR: Record<LoopMode, string> = {
+  off: 'إيقاف',
+  sentence: 'الجملة',
+  range: 'مقطع',
+}
+
+/** What the learner should do next, or which passage is repeating — spoken to screen readers as a status too. */
+function loopHint(player: StoryPlayer): string | null {
+  if (player.loop !== 'range') return null
+  if (!player.range) return 'اضغط على أول جملة في المقطع'
+  if (player.awaitingRangeEnd) return 'اضغط على آخر جملة في المقطع'
+  return `المقطع المكرَّر: الجمل ${player.range.start + 1}–${player.range.end + 1}`
 }
 
 const iconButton =
@@ -25,6 +39,9 @@ export function AudioPlayerBar({ player, total, showTranslations, onToggleTransl
   const playing = player.status === 'playing'
   const percent = Math.round(player.progress * 1000) / 10
   const SpeedIcon = player.rate > 1 ? Rabbit : Turtle
+  const LoopIcon = player.loop === 'sentence' ? Repeat1 : Repeat
+  const loopActive = player.loop !== 'off'
+  const hint = loopHint(player)
 
   return (
     <div
@@ -38,6 +55,27 @@ export function AudioPlayerBar({ player, total, showTranslations, onToggleTransl
           {!player.isSupported ? 'النطق الصوتي غير مدعوم في هذا المتصفح.' : 'تعذّر تشغيل الصوت. جرّب مرة أخرى.'}
         </p>
       ) : null}
+
+      <div dir="rtl" className="mb-2 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onClick={player.cycleLoop}
+          disabled={!player.isSupported}
+          aria-label={`التكرار: ${LOOP_LABEL_AR[player.loop]}. اضغط للتغيير`}
+          className={cn(
+            'inline-flex h-10 items-center gap-2 rounded-full border px-3.5 text-sm font-semibold shadow-sm transition-colors disabled:pointer-events-none disabled:opacity-45',
+            loopActive ? 'border-accent bg-accent-muted text-accent' : 'border-border bg-surface text-ink-muted hover:text-ink',
+          )}
+        >
+          <LoopIcon size={16} aria-hidden="true" />
+          <span>التكرار: {LOOP_LABEL_AR[player.loop]}</span>
+        </button>
+        {hint ? (
+          <p role="status" className="rounded-full bg-surface px-3 py-1.5 text-sm text-ink-muted ring-1 ring-border">
+            {hint}
+          </p>
+        ) : null}
+      </div>
 
       <div className="flex items-center gap-1.5 rounded-xl border border-border bg-surface/95 p-2 shadow-lg backdrop-blur sm:gap-3 sm:p-2.5">
         <button

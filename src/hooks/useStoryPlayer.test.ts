@@ -1,10 +1,10 @@
 import { act, renderHook } from '@testing-library/react'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { useSettingsStore } from '@/store/settingsStore'
 import type { StorySegment } from '@/types'
 
-import { useStoryPlayer } from './useStoryPlayer'
+import { LOOP_GAP_MS, nextLoopMode, segmentAfter, useStoryPlayer } from './useStoryPlayer'
 
 interface SpeakCall {
   text: string
@@ -191,5 +191,179 @@ describe('useStoryPlayer', () => {
 
     unmount()
     expect(speech.stop).toHaveBeenCalled()
+  })
+})
+
+describe('useStoryPlayer — repeating', () => {
+  beforeEach(() => {
+    speech.calls.length = 0
+    speech.supported = true
+    speech.stop.mockClear()
+    useSettingsStore.getState().resetToDefaults()
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  const spokenTexts = () => speech.calls.map((call) => call.text)
+  const finishSegment = () => act(() => lastCall().options.onEnd?.())
+  const waitForGap = () => act(() => vi.advanceTimersByTime(LOOP_GAP_MS))
+
+  it('moves through off → sentence → range → off', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    expect(result.current.loop).toBe('off')
+
+    act(() => result.current.cycleLoop())
+    expect(result.current.loop).toBe('sentence')
+    act(() => result.current.cycleLoop())
+    expect(result.current.loop).toBe('range')
+    act(() => result.current.cycleLoop())
+    expect(result.current.loop).toBe('off')
+  })
+
+  it('says the same sentence again after a short pause, over and over', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.seek(1))
+    act(() => result.current.play())
+
+    finishSegment()
+    expect(spokenTexts()).toEqual(['Zwei.'])
+    waitForGap()
+    expect(spokenTexts()).toEqual(['Zwei.', 'Zwei.'])
+
+    finishSegment()
+    waitForGap()
+    expect(spokenTexts()).toEqual(['Zwei.', 'Zwei.', 'Zwei.'])
+    expect(result.current).toMatchObject({ status: 'playing', index: 1 })
+  })
+
+  it('does not repeat once the learner pauses during the pause', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.play())
+
+    finishSegment()
+    act(() => result.current.pause())
+    waitForGap()
+
+    expect(spokenTexts()).toEqual(['Eins.'])
+    expect(result.current.status).toBe('paused')
+  })
+
+  it('reads the next sentence instead when the repeat is switched off', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.play())
+    act(() => result.current.cycleLoop()) // range
+    act(() => result.current.cycleLoop()) // off
+
+    finishSegment()
+    expect(spokenTexts()).toEqual(['Eins.', 'Zwei.'])
+  })
+
+  it('goes round a passage chosen with two taps', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.cycleLoop())
+    expect(result.current).toMatchObject({ loop: 'range', range: null, awaitingRangeEnd: false })
+
+    act(() => result.current.selectSegment(1))
+    expect(result.current).toMatchObject({ range: { start: 1, end: 1 }, awaitingRangeEnd: true })
+    expect(spokenTexts()).toEqual(['Zwei.'])
+
+    act(() => result.current.selectSegment(3))
+    expect(result.current).toMatchObject({ range: { start: 1, end: 3 }, awaitingRangeEnd: false })
+    expect(spokenTexts()).toEqual(['Zwei.', 'Zwei.'])
+
+    finishSegment()
+    expect(lastCall().text).toBe('Drei.')
+    finishSegment()
+    expect(lastCall().text).toBe('Vier.')
+
+    finishSegment() // the last sentence of the passage: back to its first, after the pause
+    expect(lastCall().text).toBe('Vier.')
+    waitForGap()
+    expect(lastCall().text).toBe('Zwei.')
+    expect(result.current.index).toBe(1)
+  })
+
+  it('takes the two taps in either order', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.cycleLoop())
+
+    act(() => result.current.selectSegment(2))
+    act(() => result.current.selectSegment(0))
+
+    expect(result.current.range).toEqual({ start: 0, end: 2 })
+    expect(lastCall().text).toBe('Eins.')
+  })
+
+  it('starts a new passage on the third tap, and forgets the passage when range mode is left', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.cycleLoop())
+    act(() => result.current.selectSegment(0))
+    act(() => result.current.selectSegment(1))
+    act(() => result.current.selectSegment(3))
+
+    expect(result.current).toMatchObject({ range: { start: 3, end: 3 }, awaitingRangeEnd: true })
+
+    act(() => result.current.cycleLoop())
+    expect(result.current).toMatchObject({ loop: 'off', range: null, awaitingRangeEnd: false })
+  })
+
+  it('plays a passage from its first sentence when play is pressed outside it', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+    act(() => result.current.cycleLoop())
+    act(() => result.current.cycleLoop())
+    act(() => result.current.selectSegment(2))
+    act(() => result.current.selectSegment(3))
+    act(() => result.current.pause())
+    act(() => result.current.seek(0))
+
+    act(() => result.current.play())
+
+    expect(lastCall().text).toBe('Drei.')
+  })
+
+  it('still starts reading from a tapped sentence when no passage is being chosen', () => {
+    const { result } = renderHook(() => useStoryPlayer(SEGMENTS))
+
+    act(() => result.current.selectSegment(2))
+
+    expect(lastCall().text).toBe('Drei.')
+    expect(result.current).toMatchObject({ status: 'playing', index: 2, range: null })
+  })
+})
+
+describe('segmentAfter', () => {
+  it('goes on to the next segment, and stops after the last', () => {
+    expect(segmentAfter(0, 4, 'off', null)).toBe(1)
+    expect(segmentAfter(3, 4, 'off', null)).toBeNull()
+  })
+
+  it('repeats the same segment in sentence mode', () => {
+    expect(segmentAfter(2, 4, 'sentence', null)).toBe(2)
+  })
+
+  it('goes round a passage and ignores a missing one', () => {
+    const range = { start: 1, end: 2 }
+    expect(segmentAfter(1, 4, 'range', range)).toBe(2)
+    expect(segmentAfter(2, 4, 'range', range)).toBe(1)
+    expect(segmentAfter(0, 4, 'range', range)).toBe(1)
+    expect(segmentAfter(3, 4, 'range', range)).toBe(1)
+    expect(segmentAfter(3, 4, 'range', null)).toBeNull()
+  })
+})
+
+describe('nextLoopMode', () => {
+  it('cycles through every mode and back', () => {
+    expect(nextLoopMode('off')).toBe('sentence')
+    expect(nextLoopMode('sentence')).toBe('range')
+    expect(nextLoopMode('range')).toBe('off')
   })
 })

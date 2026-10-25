@@ -20,9 +20,10 @@ import { module17Freizeit } from './module-17-freizeit'
 import { module18Kleidung } from './module-18-kleidung'
 import { module19EssenTrinken } from './module-19-essen-trinken'
 import { module20Haeufigkeit } from './module-20-haeufigkeit'
+import { a1Conversations } from './conversations'
 import { a1ReadingTexts } from './reading'
 
-export { a1ReadingTexts }
+export { a1Conversations, a1ReadingTexts }
 
 export const a1Modules: Module[] = [
   module01Grundlagen,

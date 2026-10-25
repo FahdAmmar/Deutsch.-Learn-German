@@ -1,5 +1,6 @@
 import { Volume2, VolumeX } from 'lucide-react'
 
+import { ArticleText } from '@/components/ui/ArticleText'
 import { cn } from '@/lib/cn'
 import { GERMAN_LOCALE } from '@/services/speech'
 import { useSpeech } from '@/hooks/useSpeech'
@@ -54,7 +55,9 @@ export function GermanWord({
           className,
         )}
       >
-        <span lang="de">{word}</span>
+        <span lang="de">
+          <ArticleText text={word} />
+        </span>
         {showIcon &&
           (isSupported ? (
             <Volume2 size={iconSizes[size]} aria-hidden="true" className={cn('shrink-0 text-accent', isSpeaking && 'animate-pulse')} />

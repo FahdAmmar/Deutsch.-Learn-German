@@ -1,7 +1,7 @@
 import { ArrowLeft, Headphones, Keyboard, Rabbit, Turtle, Volume2 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState, type ChangeEvent, type CompositionEvent, type KeyboardEvent, type ReactNode } from 'react'
 
-import { ProgressBar, Switch } from '@/components/ui'
+import { ProgressBar, SpecialCharsBar, Switch } from '@/components/ui'
 import { formatSpeed, nextSpeed } from '@/features/stories/speedPresets'
 import { useDictation } from '@/hooks/useDictation'
 import { isArabicScript } from '@/lib/dictation/engine'
@@ -14,7 +14,6 @@ import type { DictationSource, FinishedDictationRun, PracticeStage } from '@/typ
 
 import { ChunkRail, MAX_RAIL_PARTS } from './ChunkRail'
 import { formatPercent } from './format'
-import { SpecialCharsBar } from './SpecialCharsBar'
 import { TypingLine } from './TypingLine'
 
 /** What a text is called on screen: the lines of a story are sentences, the parts of the learner's own text are parts. */

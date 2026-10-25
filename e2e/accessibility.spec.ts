@@ -6,7 +6,7 @@ const PAGES = [
   '/lessons/a2/adjektivdeklination',
   '/levels/a1?tab=stories',
   '/levels/a1/texts/a1-read-01',
-  '/levels/a2/texts/dialogue-wohnung-formell',
+  '/levels/a2/texts/dialogue-wohnungssuche-formell',
   '/grammar',
   '/grammar/a2/25-adjektivdeklination',
   '/vocabulary',

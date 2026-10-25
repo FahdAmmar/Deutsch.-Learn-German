@@ -1,7 +1,7 @@
 import { Scissors, Volume2 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 
-import { EmptyState } from '@/components/ui'
+import { ArticleText, EmptyState } from '@/components/ui'
 import { useSpeech } from '@/hooks/useSpeech'
 import { cn } from '@/lib/cn'
 import { countWords } from '@/lib/myText/split'
@@ -52,7 +52,7 @@ export function ChunkPreview({ chunks }: ChunkPreviewProps) {
               <span className="tnum mt-1 grid size-6 shrink-0 place-items-center rounded-full bg-surface-sunken text-xs font-bold text-ink-muted">{index + 1}</span>
               <div className="min-w-0 flex-1 space-y-2">
                 <p lang="de" className="display-de text-start text-lg leading-snug font-medium text-ink [overflow-wrap:anywhere]">
-                  {chunk}
+                  <ArticleText text={chunk} />
                 </p>
                 <div aria-hidden="true" className="h-1 rounded-full bg-surface-sunken">
                   <div className="h-full rounded-full bg-accent/70" style={{ width: `${(counts[index] / longest) * 100}%` }} />

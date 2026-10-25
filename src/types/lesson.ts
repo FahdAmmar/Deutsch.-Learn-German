@@ -67,4 +67,11 @@ export interface LevelCurriculum {
   modules: Module[]
   /** Standalone bilingual reading passages for this level (the "Reading" tab). Always present, empty until authored. */
   readingTexts: ReadingText[]
+  /**
+   * Standalone conversations: longer, situational dialogues that belong to no
+   * single lesson (at the pharmacy, a phone call, registering at the town
+   * hall). They appear after the lesson conversations in the level's "texts &
+   * conversations" tab. Always present, empty until authored.
+   */
+  conversations: Dialogue[]
 }

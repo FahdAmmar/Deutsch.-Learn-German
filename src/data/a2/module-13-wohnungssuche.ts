@@ -92,7 +92,7 @@ export const lessonWohnungssuche: Lesson = {
   ],
   dialogues: [
     {
-      id: 'dialogue-wohnung-informell',
+      id: 'dialogue-wohnungssuche-informell',
       level: 'A2',
       moduleId: 'a2-m13',
       lessonId: 'a2-m13-l01',
@@ -107,7 +107,7 @@ export const lessonWohnungssuche: Lesson = {
       ],
     },
     {
-      id: 'dialogue-wohnung-formell',
+      id: 'dialogue-wohnungssuche-formell',
       level: 'A2',
       moduleId: 'a2-m13',
       lessonId: 'a2-m13-l01',

@@ -43,6 +43,8 @@ export default function SettingsPage() {
   const setTextScale = useSettingsStore((state) => state.setTextScale)
   const setHighContrast = useSettingsStore((state) => state.setHighContrast)
   const setShowPronunciationHints = useSettingsStore((state) => state.setShowPronunciationHints)
+  const setShowGrammarHints = useSettingsStore((state) => state.setShowGrammarHints)
+  const setLockScreenControls = useSettingsStore((state) => state.setLockScreenControls)
   const setDailyGoal = useSettingsStore((state) => state.setDailyGoal)
 
   const resetProgress = useProgressStore((state) => state.resetProgress)
@@ -209,6 +211,22 @@ export default function SettingsPage() {
           description="عرض تقطيع المقاطع تحت الكلمة في بطاقات المفردات."
           checked={settings.showPronunciationHints}
           onChange={setShowPronunciationHints}
+        />
+
+        <SettingRow
+          id="grammar-hints-switch"
+          title="تلميحات القواعد في النصوص"
+          description="ثلاث نقاط صغيرة تحت عبارات مثل dem Frühstück أو zur Arbeit. مرّر المؤشر عليها أو المسها لتعرف السبب النحوي باختصار."
+          checked={settings.showGrammarHints}
+          onChange={setShowGrammarHints}
+        />
+
+        <SettingRow
+          id="lock-screen-controls-switch"
+          title="أزرار التحكم على شاشة القفل"
+          description="أثناء قراءة قصة تظهر عناوينها وأزرار التشغيل والإيقاف والجملة السابقة والتالية على شاشة القفل ولوحة مفاتيح الوسائط. لا تعمل في كل المتصفحات، وقد تتوقف القراءة عند قفل الشاشة في بعض الأجهزة."
+          checked={settings.lockScreenControls ?? true}
+          onChange={setLockScreenControls}
         />
       </SettingsSection>
 

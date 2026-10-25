@@ -1,6 +1,6 @@
 import { Volume2 } from 'lucide-react'
 
-import { Badge, Card } from '@/components/ui'
+import { ArticleText, Badge, Card } from '@/components/ui'
 import { useSpeech } from '@/hooks/useSpeech'
 import { cn } from '@/lib/cn'
 import { GERMAN_LOCALE } from '@/services/speech'
@@ -52,7 +52,9 @@ function DialogueBubble({ line }: { line: Dialogue['lines'][number] }) {
           className="display-de inline-flex items-start gap-2 text-start text-[1.05rem] font-medium text-ink hover:text-accent"
         >
           <Volume2 size={16} className={cn('mt-1 shrink-0 text-accent', isSpeaking && 'animate-pulse')} aria-hidden="true" />
-          {line.de}
+          <span>
+            <ArticleText text={line.de} />
+          </span>
         </button>
         <p dir="rtl" className="text-[0.95rem] leading-7 text-ink-muted">
           {line.ar}

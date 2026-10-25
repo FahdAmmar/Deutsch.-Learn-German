@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import { ArticleText } from '@/components/ui'
 import type { MultipleChoiceExercise } from '@/types'
 
 import { OptionButton } from '../OptionButton'
@@ -23,7 +24,7 @@ export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
     <div className="space-y-3">
       {exercise.questionDe ? (
         <p dir="ltr" lang="de" className="display-de text-start text-2xl font-medium text-ink">
-          {exercise.questionDe}
+          <ArticleText text={exercise.questionDe} />
         </p>
       ) : null}
       <div className="space-y-2" dir={isArabic ? 'rtl' : 'ltr'}>
@@ -43,7 +44,7 @@ export function MultipleChoiceQuestion({ exercise, onAnswer }: Props) {
               state={state}
               dir={isArabic ? 'rtl' : undefined}
             >
-              <span lang={isArabic ? 'ar' : 'de'}>{option}</span>
+              <span lang={isArabic ? 'ar' : 'de'}>{isArabic ? option : <ArticleText text={option} />}</span>
             </OptionButton>
           )
         })}

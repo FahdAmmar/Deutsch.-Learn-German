@@ -116,6 +116,38 @@
   unicode-bidi: isolate;
 }
 
+/*
+ * A grammar hint: three small dots under a phrase such as "zur Arbeit" or
+ * "dem Frühstück" (see features/grammarHints). The phrase stays on one line so
+ * the dots always sit under all of it, and the dots are drawn, not typed, so
+ * they are never read out or copied with the text.
+ */
+@utility hint-dots {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: help;
+  border-radius: 0.25em;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0.1em;
+    width: 1.05em;
+    height: 0.22em;
+    translate: -50% 0;
+    background: radial-gradient(circle closest-side, currentColor 98%, transparent) 0 0 / 0.35em 0.22em repeat-x;
+    color: var(--color-accent);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
 /* Counters, percentages and lesson numbers should not jitter as they change */
 @utility tnum {
   font-variant-numeric: tabular-nums;

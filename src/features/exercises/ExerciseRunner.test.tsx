@@ -33,6 +33,9 @@ const QUESTION_2: VocabRecallExercise = {
   explanationAr: '"der Tisch" تعني "الطاولة".',
 }
 
+/** The German question is one paragraph with its articles in coloured spans, so match the paragraph's whole text. */
+const questionText = (text: string) => screen.getByText((_, element) => element?.tagName === 'P' && element.textContent === text)
+
 describe('ExerciseRunner', () => {
   beforeEach(() => {
     useProgressStore.getState().resetProgress()
@@ -61,7 +64,7 @@ describe('ExerciseRunner', () => {
     await user.click(screen.getByRole('button', { name: 'التالي' }))
 
     // Second question should now be showing.
-    expect(screen.getByText('der Tisch')).toBeInTheDocument()
+    expect(questionText('der Tisch')).toBeInTheDocument()
   })
 
   it('records a vocabulary review when a vocab-recall question is answered and advanced', async () => {
@@ -175,7 +178,7 @@ describe('ExerciseRunner', () => {
       expect(screen.getByRole('status')).toHaveTextContent('إجابة صحيحة')
 
       await user.keyboard('{Enter}')
-      expect(screen.getByText('der Tisch')).toBeInTheDocument()
+      expect(questionText('der Tisch')).toBeInTheDocument()
     })
 
     it('ignores number keys while the learner is typing in a field', async () => {
