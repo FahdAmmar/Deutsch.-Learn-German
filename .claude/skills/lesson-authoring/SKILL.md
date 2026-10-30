@@ -58,6 +58,47 @@ actually say — not a grammatically-valid-but-unnatural sentence assembled
 to demonstrate a rule in isolation. When in doubt about whether a sentence
 is natural, say so rather than presenting it as settled.
 
+## What is authored and what is derived
+
+Two things are written by hand; everything else the learner practises is derived from them, so it can
+never disagree with what the lesson teaches.
+
+- **Vocabulary and examples** (`vocabulary`, `examples`) are the source of truth. For a vocabulary-themed
+  lesson, use the one-line constructors in `src/data/a2/wortschatz/builders.ts` (`noun`, `nounNoPlural`,
+  `nounPluralOnly`, `verb`, `adjective`, `adverb`, `phrase`) and `defineTheme`.
+- **Translation tasks** live in `src/data/translationTasks.ts`, keyed by lesson id. German word order is
+  flexible and du/Sie are both right for an Arabic "you", so a task must list **every** answer a native
+  speaker would accept — the time phrase first or after the verb, `Ich möchte …` and `Ich hätte gern …`, the
+  du, ihr and Sie forms. Never take a translation task from an example sentence: its Arabic is
+  meaning-based and would reject correct answers. Keep it short, inside the lesson's grammar, and add a
+  `noteAr` where the learner is likely to stumble (`halb vier` is 3:30). ae/oe/ue/ss spellings are accepted
+  automatically.
+- **Derived exercises** come from `src/data/lessonPractice.ts` and are added to every A1 and A2 lesson by
+  `withPractice`: two vocabulary-recall questions, one listening question and, where a task exists, one
+  translation. Their ids contain `-gen-`. A vocabulary-themed lesson also gets matching, three article
+  questions, fill-in-the-blank and word ordering from `vocabularyThemeExercises`. Do not hand-write these
+  kinds again; write a better word list or example instead.
+
+A word with a stem change needs `present` (`fahren` → `fahre, fährst, fährt, fahren, fahrt, fahren`).
+For a separable verb store the Präteritum **without** the prefix (`hob`, not `hob ab`) and give
+`separablePrefix`; a reflexive verb is stored with its pronoun (`sich anmelden`).
+
+## Checks that run on all German text
+
+`src/data/germanQuality.test.ts` reads every sentence in the curriculum and fails on: a known noun written
+with a small letter, an article that cannot belong to the noun directly after it (`das Termin`, `zur Arzt`),
+a vocabulary example that does not contain its own word, and unclean text. These catch slips a reader
+skims over; they do not replace the review. Two rules follow from them:
+
+- Write the example sentence **for the word it illustrates**, using the word itself — not a compound
+  (`Rückenschmerzen` is not an example of `Rücken`).
+- If a finding is a real homograph (a lower-case word that is also a verb form, such as `reise`), add the
+  word to `LOWERCASE_ALLOWED` in that test **with a reason**; do not rewrite correct German to satisfy it.
+
+Vocabulary lessons must not use a construction the learner has not met. `src/data/paths/a2.ts` places the
+lessons, and `src/lib/learningPath.test.ts` asserts the order of the dependencies that matter (reflexive
+verbs before the lessons that use them).
+
 ## Before marking a lesson done
 
 See `checklist.md` in this skill folder.

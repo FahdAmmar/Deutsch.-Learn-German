@@ -13,6 +13,10 @@ UX consistency → accessibility → maintainable architecture → performance �
 visual polish. Never let a visual-polish comment outrank a correctness or
 accessibility one.
 
+Method: follow the `code-review-and-quality` skill (the five axes, change sizing, and its
+structural remedies) and the `verification-before-completion` skill (no "passes" claim without
+running the command). The priority order above and the project checks below take precedence.
+
 Check for:
 
 - **TypeScript**: no `any`, no unnecessary `as` casts, domain types used

@@ -33,10 +33,12 @@ playwright-report/
 !.env.example
 CLAUDE.local.md
 .claude/settings.local.json
-.zip 
-zip
-
 
 # Stale agent worktrees (a copy of src/ that must never ship)
 .kilo/
-.vscode 
+
+# Project archives (never commit uploads/exports of the project itself)
+*.zip
+
+# Vercel CLI link + local build output (created by `vercel link` / `vercel build`)
+.vercel

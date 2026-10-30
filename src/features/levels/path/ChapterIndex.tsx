@@ -8,11 +8,15 @@ interface ChapterIndexProps {
   progress: readonly ChapterProgress[]
 }
 
-/** Table of contents for the level: a sticky column on wide screens, a scrolling strip on narrow ones. */
+/**
+ * Table of contents for the level: a sticky column on wide screens, a scrolling strip on narrow ones.
+ * The strip is `relative` on purpose: the `sr-only` text inside each chip is absolutely positioned, and without a
+ * positioned scroll container it escapes the strip and widens the whole page (a sideways-scrolling level page).
+ */
 export function ChapterIndex({ chapters, progress }: ChapterIndexProps) {
   return (
     <nav aria-label="فصول المستوى" className="lg:sticky lg:top-24 lg:self-start">
-      <ol className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+      <ol className="relative -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:none] lg:mx-0 lg:flex-col lg:gap-0.5 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
         {chapters.map(({ chapter }, index) => {
           const state = progress[index]
           const isCurrent = state.state === 'current'

@@ -195,7 +195,8 @@ describe('vocabulary integrity', () => {
     for (const verb of verbs) {
       const prefix = verb.verb?.separablePrefix
       if (!prefix) continue
-      expect(verb.word.startsWith(prefix), `${verb.id}: infinitive`).toBe(true)
+      // A reflexive verb is stored with its pronoun ("sich anmelden"); the prefix belongs to the infinitive after it.
+      expect(verb.word.replace(/^sich /, '').startsWith(prefix), `${verb.id}: infinitive`).toBe(true)
       expect(verb.verb?.partizip?.startsWith(prefix), `${verb.id}: Partizip II`).toBe(true)
     }
   })

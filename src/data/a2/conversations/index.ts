@@ -14,6 +14,8 @@ import { conversationAmFlughafen } from './conversation-11-am-flughafen'
 import { conversationArzttermin } from './conversation-12-arzttermin'
 import { conversationZuckerfest } from './conversation-13-zuckerfest'
 import { conversationGesternImBuero } from './conversation-14-gestern-im-buero'
+import { conversationImHotel } from './conversation-15-im-hotel'
+import { conversationAufDerBank } from './conversation-16-auf-der-bank'
 
 /**
  * Standalone A2 conversations: situations from daily life that belong to no
@@ -35,4 +37,6 @@ export const a2Conversations: Dialogue[] = [
   conversationArzttermin, // m12 Beim Arzt
   conversationBeimBuergeramt, // m13 Wohnungssuche
   conversationZuckerfest, // m14 Feste und Feiern
+  conversationImHotel, // m15 Themenwortschatz: Urlaub und Hotel
+  conversationAufDerBank, // m15 Themenwortschatz: Geld und Bank
 ]

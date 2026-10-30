@@ -15,6 +15,8 @@ interface CurriculumGateProps {
   levels?: readonly CEFRLevel[]
   /** Name of a route param holding the level (e.g. `level`); only that level is loaded. An invalid value loads nothing so the page can show its own not-found. */
   levelParam?: string
+  /** With `levelParam`: also load every level below it, for a screen that looks words up across levels (A2 builds on A1). */
+  includeLowerLevels?: boolean
   children: ReactNode
 }
 
@@ -23,11 +25,17 @@ function parseLevel(value: string | undefined): CEFRLevel | undefined {
   return CEFR_LEVELS.find((level) => level === upper)
 }
 
+function requiredForParam(level: CEFRLevel | undefined, includeLowerLevels: boolean | undefined): CEFRLevel[] {
+  if (!level) return []
+  if (!includeLowerLevels) return [level]
+  return LEVELS_WITH_CONTENT.filter((each) => CEFR_LEVELS.indexOf(each) <= CEFR_LEVELS.indexOf(level))
+}
+
 /** Holds a screen back until the curriculum it reads synchronously has been fetched. */
-export function CurriculumGate({ levels, levelParam, children }: CurriculumGateProps) {
+export function CurriculumGate({ levels, levelParam, includeLowerLevels, children }: CurriculumGateProps) {
   const params = useParams()
   const fromParam = levelParam ? parseLevel(params[levelParam]) : undefined
-  const required = levelParam ? (fromParam ? [fromParam] : []) : (levels ?? LEVELS_WITH_CONTENT)
+  const required = levelParam ? requiredForParam(fromParam, includeLowerLevels) : (levels ?? LEVELS_WITH_CONTENT)
   const { status, retry } = useCurriculumLevels(required)
 
   if (status === 'ready') return <>{children}</>

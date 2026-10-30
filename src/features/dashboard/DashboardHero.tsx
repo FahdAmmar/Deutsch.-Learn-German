@@ -26,7 +26,7 @@ export function DashboardHero({ level, completedLessons, totalLessons, continueL
       <div aria-hidden="true" className="pointer-events-none absolute -start-24 -top-24 h-72 w-72 rounded-full bg-accent/25 blur-3xl" />
       <div className="relative grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
         <div className="space-y-4">
-          <p className="font-heading inline-flex items-center gap-2 rounded-full bg-on-primary-container/15 px-3 py-1 text-xs font-bold tracking-[0.08em]">
+          <p className="font-heading inline-flex items-center gap-2 rounded-full bg-on-primary-container/10 px-3 py-1 text-xs font-bold tracking-[0.08em]">
             <span dir="ltr">{level}</span>
             <span dir="ltr" lang="de" className="font-medium tracking-normal">
               {info.titleDe}

@@ -13,7 +13,7 @@ interface LevelPathProps {
 /** A level as an ordered path of chapters: an index beside (or above) the chapters themselves. */
 export function LevelPath({ chapters, progress, completedLessonIds, resumeLessonId }: LevelPathProps) {
   return (
-    <div dir="rtl" className="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+    <div dir="rtl" className="grid grid-cols-1 gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
       <ChapterIndex chapters={chapters} progress={progress} />
       <div className="space-y-12">
         {chapters.map((entry, index) => (

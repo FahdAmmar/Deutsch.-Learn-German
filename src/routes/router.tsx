@@ -15,6 +15,7 @@ import {
   MyTextPage,
   MyTextPracticePage,
   WeakWordsPage,
+  HardWordsPage,
   PronunciationPage,
   StoryQuizPage,
   PlacementTestPage,
@@ -40,6 +41,15 @@ function withAllLevels(element: React.ReactNode) {
 }
 
 /** A page scoped to the level in its URL: only that level's content is fetched. */
+/** The route's level plus the levels below it: a text of A2 reuses A1 words, which its word list looks up. */
+function withRouteLevelAndBelow(element: React.ReactNode) {
+  return withSuspense(
+    <CurriculumGate levelParam="level" includeLowerLevels>
+      {element}
+    </CurriculumGate>,
+  )
+}
+
 function withRouteLevel(element: React.ReactNode) {
   return withSuspense(<CurriculumGate levelParam="level">{element}</CurriculumGate>)
 }
@@ -58,7 +68,7 @@ export const router = createBrowserRouter([
           { path: 'dashboard', element: withAllLevels(<DashboardPage />) },
           { path: 'levels', element: withAllLevels(<LevelsPage />) },
           { path: 'levels/:level', element: withRouteLevel(<LevelDetailPage />) },
-          { path: 'levels/:level/texts/:itemId', element: withRouteLevel(<StoryPage />) },
+          { path: 'levels/:level/texts/:itemId', element: withRouteLevelAndBelow(<StoryPage />) },
           { path: 'levels/:level/texts/:itemId/diktat', element: withRouteLevel(<DictationPage />) },
           { path: 'levels/:level/texts/:itemId/quiz', element: withAllLevels(<StoryQuizPage />) },
           // The learner's own texts need no curriculum data, so no gate.
@@ -74,6 +84,7 @@ export const router = createBrowserRouter([
           { path: 'pronunciation', element: withSuspense(<PronunciationPage />) },
           { path: 'practice', element: withAllLevels(<PracticePage />) },
           { path: 'review', element: withAllLevels(<ReviewPage />) },
+          { path: 'review/hard-words', element: withAllLevels(<HardWordsPage />) },
           { path: 'progress', element: withAllLevels(<ProgressPage />) },
           { path: 'settings', element: withSuspense(<SettingsPage />) },
           { path: '*', element: withSuspense(<NotFoundPage />) },

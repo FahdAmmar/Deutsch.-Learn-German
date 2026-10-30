@@ -17,6 +17,7 @@ import type { Story } from '@/types'
 import { AudioPlayerBar } from './AudioPlayerBar'
 import { StoryBody } from './StoryBody'
 import { StoryCover } from './StoryCover'
+import { StoryWords } from './StoryWords'
 
 interface StoryViewProps {
   story: Story
@@ -125,6 +126,8 @@ export function StoryView({ story }: StoryViewProps) {
         range={player.loop === 'range' ? player.range : null}
         onPlayFrom={player.selectSegment}
       />
+
+      <StoryWords story={story} />
 
       <AudioPlayerBar
         player={player}

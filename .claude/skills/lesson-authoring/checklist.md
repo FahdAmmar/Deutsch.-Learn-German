@@ -32,5 +32,13 @@ Run through this before considering a lesson (new or edited) complete.
 - [ ] `ordering.correctOrder` is a valid permutation of `words`
 - [ ] Module is registered in its level's `index.ts` and in
       `src/data/curriculum.ts`
-- [ ] `npm run typecheck`, `npm run test -- contentIntegrity`, and
-      `npm run lint` all pass
+- [ ] The lesson is placed in the level's learning path (`src/data/paths/`);
+      the path test fails if a lesson is missing or placed twice
+- [ ] A translation task for the lesson is in `src/data/translationTasks.ts`
+      with every acceptable answer (word order, du/Sie, synonyms)
+- [ ] Each vocabulary example contains the word it illustrates, and every
+      verb with a stem change has `present`
+- [ ] A new module has at least one standalone conversation in the level's
+      `conversations/` folder
+- [ ] `npm run typecheck`, `npm run test -- contentIntegrity germanQuality
+      lessonPractice`, and `npm run lint` all pass

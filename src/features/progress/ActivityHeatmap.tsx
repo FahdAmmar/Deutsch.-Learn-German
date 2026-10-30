@@ -42,7 +42,7 @@ export function ActivityHeatmap({ stats }: ActivityHeatmapProps) {
 
   return (
     <div className="space-y-3">
-      <div ref={scrollerRef} dir="ltr" className="overflow-x-auto pb-1">
+      <div ref={scrollerRef} dir="ltr" role="region" aria-label="خريطة النشاط اليومي" tabIndex={0} className="overflow-x-auto pb-1">
         <div className="flex w-max gap-2" aria-hidden="true">
           <div className="grid grid-rows-7 gap-[3px] pe-1 text-[0.65rem] leading-none text-ink-faint">
             {ROW_LABELS_AR.map((label, row) => (

@@ -153,3 +153,25 @@ describe('progressStore', () => {
     })
   })
 })
+
+describe('saveVocabulary', () => {
+  beforeEach(() => {
+    useProgressStore.getState().resetProgress()
+  })
+
+  it('adds several words at once, once each', () => {
+    useProgressStore.getState().saveVocabulary(['voc-1', 'voc-2', 'voc-1'])
+    expect(useProgressStore.getState().savedVocabularyIds).toEqual(['voc-1', 'voc-2'])
+  })
+
+  it('never removes a word that is already saved (unlike toggleSavedVocabulary)', () => {
+    useProgressStore.getState().toggleSavedVocabulary('voc-1')
+    useProgressStore.getState().saveVocabulary(['voc-1', 'voc-3'])
+    expect(useProgressStore.getState().savedVocabularyIds).toEqual(['voc-1', 'voc-3'])
+  })
+
+  it('does nothing for an empty list', () => {
+    useProgressStore.getState().saveVocabulary([])
+    expect(useProgressStore.getState().savedVocabularyIds).toEqual([])
+  })
+})

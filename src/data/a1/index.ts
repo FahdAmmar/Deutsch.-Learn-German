@@ -1,5 +1,7 @@
 import type { Module } from '@/types'
 
+import { moduleWithPractice } from '../lessonPractice'
+
 import { module01Grundlagen } from './module-01-grundlagen'
 import { module02Alltag } from './module-02-alltag'
 import { module03Grundgrammatik } from './module-03-grundgrammatik'
@@ -25,7 +27,7 @@ import { a1ReadingTexts } from './reading'
 
 export { a1Conversations, a1ReadingTexts }
 
-export const a1Modules: Module[] = [
+const authoredA1Modules: Module[] = [
   module01Grundlagen,
   module02Alltag,
   module03Grundgrammatik,
@@ -47,3 +49,9 @@ export const a1Modules: Module[] = [
   module19EssenTrinken,
   module20Haeufigkeit,
 ]
+
+/**
+ * The level's modules as authored, plus the practice derived from each lesson's own vocabulary and
+ * examples (listening, recall, translation — see `../lessonPractice.ts`). Everything else reads this list.
+ */
+export const a1Modules: Module[] = authoredA1Modules.map(moduleWithPractice)

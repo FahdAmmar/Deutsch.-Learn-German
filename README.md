@@ -1,4 +1,4 @@
-{<div align="center">
+<div align="center">
 
 # Deutsch. — Learn German
 
@@ -24,15 +24,15 @@ The product is organised around the CEFR ladder — **A1 → A2 → B1 → B2** 
 
 | | A1 | A2 | B1 | B2 |
 | --- | :---: | :---: | :---: | :---: |
-| Modules | 20 | 14 | — | — |
-| Lessons | 31 | 14 | — | — |
-| Vocabulary items | 272 | 104 | — | — |
-| Exercises | 190 | 107 | — | — |
+| Modules | 20 | 15 | — | — |
+| Lessons | 32 | 27 | — | — |
+| Vocabulary items | 297 | 438 | — | — |
+| Exercises | 316 | 304 | — | — |
 | Reading texts | 17 | 18 | — | — |
-| Conversations | 40 | 41 | — | — |
+| Conversations | 40 | 43 | — | — |
 | Grammar rules authored (of the 70-rule roadmap) | 16 / 16 | 18 / 18 | 0 / 17 | 0 / 19 |
 
-B1 and B2 are **planned, not yet authored**; the app shows them as “coming soon”. All figures are computed from the content in `src/data`.
+B1 and B2 are **planned, not yet authored**; the app shows them as “coming soon”. The figures come from the content in `src/data` (the test count from the last full run).
 
 ## Features
 
@@ -54,6 +54,9 @@ B1 and B2 are **planned, not yet authored**; the app shows them as “coming soo
 - **Learning a text in stages** — your own text moves from copying it, to cloze (half the words are given), to first letters only, to typing it from memory; passing a stage (90 %) moves it up, and a pass from memory schedules a review after 1, 3, 7, 14 and 30 days. Texts due for review come first.
 - **Voice picker** — choose the German voice lessons are read with (automatic best match by default, favourites, a preview button for each voice).
 - **Placement test** — built from the real curriculum exercises and routed only into levels that have content.
+- **Words from the texts** — every reading text and conversation lists the curriculum words it contains, with an article-coloured card and a button that puts a word (or all of them) into spaced review. Only curated vocabulary is offered, so each meaning, article and plural has been checked.
+- **Hard words** — a list read from your existing progress (words you keep getting wrong in reviews, recall questions and dictation) with a practice session on exactly those; a word leaves the list by itself once your answers turn right.
+- **Themed A2 vocabulary** — thirteen vocabulary lessons (work, money and post, food, housing, transport, health, school, leisure, nature, offices and forms, feelings, time, travel) woven into the A2 learning path.
 - **Progress tracking** — completed lessons, accuracy, vocabulary progress, activity log and a learning streak, stored locally in the browser. Progress, statistics, your own texts, dictation results and spelling weak spots can be exported and imported (validated with Zod); an older file never wipes a part it does not carry.
 - **Insight, not gamification** — a daily goal ring, a 20-week activity heatmap, accuracy by exercise type and by topic, and the spread of reviewed words across the Leitner boxes. A first-run welcome card sets the daily goal and the starting point.
 - **Search** (Ctrl/⌘ + K or “/”) across lessons, grammar rules, vocabulary and texts, matching German and Arabic with or without the article, umlauts and vowel marks. Lazy-loaded so it never inflates the first load.
@@ -237,7 +240,7 @@ You can also put `DEV_PORT=4000` in `.env`.
 ## Quality
 
 - **Type safety:** strict TypeScript across the app, tests and tooling config.
-- **Unit and component tests:** 927 tests in 99 files, including a smoke test for *every* lesson and content-integrity suites over the curriculum and the grammar rules.
+- **Unit and component tests:** 1,175 tests in 120 files, including a smoke test for *every* lesson and content-integrity suites over the curriculum and the grammar rules.
 - **End-to-end:** Playwright tests on desktop and mobile viewports — every route renders without horizontal overflow, unknown routes show the 404 page, lessons and grammar rules link to each other, the new features have journey tests, and **axe-core WCAG 2.1 AA audits** cover both light and dark themes, also with high contrast and large text.
 - **CI:** GitHub Actions runs typecheck, lint, tests and build on every push and pull request, then the Playwright suite.
 
@@ -256,7 +259,9 @@ Notes:
 
 - Deploy at the **root of a domain**. The PWA manifest uses absolute paths (`start_url: /dashboard`); hosting under a sub-path needs Vite's `base` option and manifest changes.
 - Hashed files in `/assets` are cached for a year; `sw.js` and the manifest are always revalidated so users receive updates.
-- No Content-Security-Policy is set yet. The app loads Google Fonts and an inline theme bootstrap script, so a CSP needs a hash for that script — a worthwhile hardening step.
+- `vercel.json` sets a strict Content-Security-Policy (no external hosts, no `unsafe-eval`). The inline theme bootstrap script in `index.html` is allowed by its SHA-256 hash; if you edit that script, `src/test/deployConfig.test.ts` fails and prints the new hash to copy into `vercel.json`. Any external service you add later (analytics, remote fonts) must be added to the policy.
+- Zod runs with `jitless` (`src/lib/zodConfig.ts`) so the policy never needs `unsafe-eval`.
+- `package.json` pins `engines.node` to `22.x`. Vercel maps open-ended ranges such as `>=20` to the newest Node major, so a single major keeps builds on the version the project is tested on.
 
 ## Roadmap
 

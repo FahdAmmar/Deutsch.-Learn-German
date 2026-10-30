@@ -114,7 +114,14 @@ Never trade correctness for a visual effect.
 - Rules (path-scoped, auto-load on matching files): `code-style.md`,
   `testing.md`, `content-conventions.md` in `.claude/rules/`
 - Commands: `/review`, `/fix-issue`, `/new-lesson`
-- Skill (auto-loads when authoring `src/data/` content): `lesson-authoring`
+- Skills (`.claude/skills/`, see its `README.md` for when to use each): `lesson-authoring`
+  (auto-loads when authoring `src/data/` content), plus engineering skills
+  (`code-review-and-quality`, `test-driven-development`, `debugging-and-error-recovery`,
+  `incremental-implementation`, `frontend-ui-engineering`, `performance-optimization`,
+  `security-and-hardening`, `source-driven-development`), behaviour skills
+  (`karpathy-guidelines`, `verification-before-completion`, `full-output-enforcement`) and design
+  skills (`frontend-design`, `design-taste-frontend-v1`, `redesign-existing-projects`). Project rules
+  always win over a skill.
 - Subagents: `code-reviewer`, `security-auditor`, `content-auditor`
 - A `PreToolUse` hook (`.claude/hooks/validate-bash.sh`) blocks a short
   list of destructive Bash patterns (`rm -rf /`, forced pushes, …)

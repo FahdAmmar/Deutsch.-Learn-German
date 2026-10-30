@@ -15,6 +15,8 @@ interface ProgressActions {
   recordVocabularyReview: (vocabularyId: string, correct: boolean) => void
   /** Adds a word to spaced review by hand, or removes it again if it was added. */
   toggleSavedVocabulary: (vocabularyId: string) => void
+  /** Adds several words to spaced review at once; words already saved are left as they are (never toggled off). */
+  saveVocabulary: (vocabularyIds: readonly string[]) => void
   /**
    * Forgets a set of lessons and their vocabulary history — the "start this level over" action.
    * Streak, other levels, hand-saved words and the lifetime statistics are left alone.
@@ -160,6 +162,14 @@ export const useProgressStore = create<ProgressStore>()(
               ? saved.filter((id) => id !== vocabularyId)
               : [...saved, vocabularyId],
           }
+        })
+      },
+
+      saveVocabulary: (vocabularyIds) => {
+        set((state) => {
+          const saved = state.savedVocabularyIds ?? []
+          const added = vocabularyIds.filter((id, position) => !saved.includes(id) && vocabularyIds.indexOf(id) === position)
+          return added.length === 0 ? {} : { savedVocabularyIds: [...saved, ...added] }
         })
       },
 
