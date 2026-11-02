@@ -28,7 +28,7 @@ export function RuleSectionNav({ items }: RuleSectionNavProps) {
   return (
     <nav
       aria-label="أقسام الدرس"
-      className="sticky top-16 z-10 overflow-hidden rounded-lg border border-border bg-surface/90 shadow-sm backdrop-blur"
+      className="print:hidden sticky top-16 z-10 overflow-hidden rounded-lg border border-border bg-surface/90 shadow-sm backdrop-blur"
     >
       <ul className="flex gap-1 overflow-x-auto p-1.5 [scrollbar-width:none]">
         {items.map((item) => {

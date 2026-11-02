@@ -4,6 +4,8 @@ import { CEFR_LEVELS, EXERCISE_TYPES } from '@/types'
 
 import { sanitizeStoredTexts } from './myText/validate'
 import { spellingProgressSchema } from './spellingSchema'
+import { sanitizeExamResults } from './exam/resultSchema'
+import { sanitizeWritingDrafts } from './writing/draftSchema'
 
 const lessonProgressSchema = z.object({
   lessonId: z.string(),
@@ -92,6 +94,16 @@ export const backupExtrasSchema = z.object({
   grammar: z.record(z.string(), grammarRuleProgressSchema).optional(),
   storyQuiz: z.record(z.string(), storyQuizProgressSchema).optional(),
   spelling: spellingProgressSchema.optional(),
+  // Drafts of the guided writing tasks; each goes through the same validator as storage, so one damaged entry loses only itself.
+  writing: z
+    .record(z.string(), z.unknown())
+    .transform((entries) => sanitizeWritingDrafts(entries))
+    .optional(),
+  // Results of the exam-style sets, validated the same way.
+  exam: z
+    .record(z.string(), z.unknown())
+    .transform((entries) => sanitizeExamResults(entries))
+    .optional(),
 })
 
 export type BackupExtras = z.infer<typeof backupExtrasSchema>

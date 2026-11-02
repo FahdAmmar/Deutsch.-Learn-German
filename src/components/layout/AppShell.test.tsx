@@ -1,7 +1,7 @@
 import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 
 import { AppShell } from './AppShell'
 
@@ -18,6 +18,13 @@ function renderShell() {
 }
 
 describe('AppShell search', () => {
+  // The dialog is loaded on first use (`React.lazy`). The first import of its module graph is transformed by Vite and
+  // takes seconds on a busy machine, longer than the 1 s `findByRole` waits: warm it up here so the tests below
+  // measure the search opening, not a cold import.
+  beforeAll(async () => {
+    await import('@/features/search/SearchDialog')
+  }, 60_000)
+
   it('opens search from the header button and closes it with Escape', async () => {
     const user = userEvent.setup()
     renderShell()

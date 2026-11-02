@@ -1,12 +1,14 @@
-import { Check, EqualApproximately, Mic, Minus, Square, X } from 'lucide-react'
+import { Mic, Square } from 'lucide-react'
 
 import { Button, Card } from '@/components/ui'
 import { cn } from '@/lib/cn'
-import { verdictFor, type SpeechComparison, type WordStatus } from '@/lib/pronunciation/compare'
+import { verdictFor, type SpeechComparison } from '@/lib/pronunciation/compare'
 import type { RecognitionErrorCode } from '@/services/recognition'
 import type { PronunciationItem } from '@/data/pronunciation'
 
 import { GermanWord } from './GermanWord'
+import { RECOGNITION_ERROR_AR, VERDICT_AR } from './messages'
+import { WordComparison } from './WordComparison'
 
 export interface DrillOutcome {
   comparison: SpeechComparison
@@ -26,30 +28,6 @@ interface PronunciationDrillCardProps {
   error?: RecognitionErrorCode
   onStart: () => void
   onStop: () => void
-}
-
-const VERDICT_AR = {
-  good: 'ممتاز! نطقك مطابق للمطلوب.',
-  almost: 'قريب جداً. راجع الكلمات الموسومة وأعد المحاولة.',
-  again: 'حاول مرة أخرى بتمهّل، وابدأ بالاستماع إلى النطق.',
-} as const
-
-const ERROR_AR: Record<RecognitionErrorCode, string> = {
-  unsupported: 'متصفحك لا يدعم التعرّف على الكلام.',
-  'not-allowed': 'لم يُسمح باستخدام الميكروفون. فعّل الإذن من إعدادات المتصفح ثم حاول مجدداً.',
-  'no-microphone': 'لم يُعثر على ميكروفون في هذا الجهاز.',
-  'no-speech': 'لم أسمع شيئاً. اقترب من الميكروفون وحاول مجدداً.',
-  network: 'يحتاج التعرّف على الكلام إلى اتصال بالإنترنت.',
-  aborted: '',
-  unknown: 'تعذّر التعرّف على الكلام. حاول مرة أخرى.',
-}
-
-/** Each word carries its status in words and in an icon, so the result never depends on colour alone. */
-const WORD_STATUS: Record<WordStatus, { label: string; icon: typeof Check; className: string }> = {
-  match: { label: 'صحيحة', icon: Check, className: 'bg-success-muted text-success' },
-  close: { label: 'قريبة', icon: EqualApproximately, className: 'bg-accent-muted text-ink' },
-  wrong: { label: 'مختلفة', icon: X, className: 'bg-error-muted text-error' },
-  missing: { label: 'لم تُسمع', icon: Minus, className: 'bg-surface-sunken text-ink-muted' },
 }
 
 export function PronunciationDrillCard({
@@ -94,13 +72,13 @@ export function PronunciationDrillCard({
           </div>
         ) : null}
 
-        {error && ERROR_AR[error] ? (
+        {error && RECOGNITION_ERROR_AR[error] ? (
           <p
             role="alert"
             dir="rtl"
             className="rounded-md border border-error/40 bg-error-muted p-3 text-sm leading-7 text-error"
           >
-            {ERROR_AR[error]}
+            {RECOGNITION_ERROR_AR[error]}
           </p>
         ) : null}
 
@@ -110,36 +88,7 @@ export function PronunciationDrillCard({
               {VERDICT_AR[verdict]}{' '}
               <span className="tnum text-ink-muted">({Math.round(outcome.comparison.score * 100)}٪)</span>
             </p>
-            <ul dir="ltr" className="flex flex-wrap gap-2">
-              {outcome.comparison.words.map((entry, index) => {
-                const status = WORD_STATUS[entry.status]
-                const Icon = status.icon
-                return (
-                  <li
-                    key={`${entry.word}-${index}`}
-                    lang="de"
-                    className={cn(
-                      'flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-base font-medium',
-                      status.className,
-                    )}
-                  >
-                    <Icon size={14} strokeWidth={2.8} aria-hidden="true" />
-                    <span>{entry.word}</span>
-                    <span dir="rtl" lang="ar" className="text-xs font-normal">
-                      {status.label}
-                    </span>
-                  </li>
-                )
-              })}
-            </ul>
-            {outcome.comparison.extra.length > 0 ? (
-              <p className="text-sm text-ink-muted">
-                كلمات زائدة سُمعت:{' '}
-                <span dir="ltr" lang="de">
-                  {outcome.comparison.extra.join(' ')}
-                </span>
-              </p>
-            ) : null}
+            <WordComparison comparison={outcome.comparison} missingLabel="لم تُسمع" extraLabel="كلمات زائدة سُمعت" />
             <p className="text-sm text-ink-muted">
               ما فهمه البرنامج:{' '}
               <span dir="ltr" lang="de" className="text-ink">

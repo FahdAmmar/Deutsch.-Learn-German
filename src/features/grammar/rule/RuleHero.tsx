@@ -49,7 +49,7 @@ export function RuleHero({ rule, onStart }: RuleHeroProps) {
             <RichText text={rule.taglineAr} />
           </p>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 print:hidden">
             <Button onClick={onStart} icon={<ArrowDown size={16} aria-hidden="true" />} iconPosition="end">
               ابدأ الدرس
             </Button>

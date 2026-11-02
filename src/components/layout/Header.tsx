@@ -14,7 +14,7 @@ interface HeaderProps {
 
 export function Header({ onOpenSearch }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-surface-glass px-4 backdrop-blur md:px-10">
+    <header className="print:hidden sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-surface-glass px-4 backdrop-blur md:px-10">
       <Brand className="md:hidden [&>div>span:last-child]:hidden" />
       <div className="flex flex-1 items-center gap-2.5">
         <LevelChip />

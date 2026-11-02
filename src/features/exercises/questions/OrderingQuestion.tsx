@@ -3,7 +3,10 @@ import { X } from 'lucide-react'
 
 import { Button } from '@/components/ui'
 import { cn } from '@/lib/cn'
+import { isOrderCorrect } from '@/lib/orderingCheck'
 import type { OrderingExercise } from '@/types'
+
+import { SentenceStructure } from '../SentenceStructure'
 
 interface Props {
   exercise: OrderingExercise
@@ -29,7 +32,7 @@ export function OrderingQuestion({ exercise, onAnswer }: Props) {
 
   function handleCheck() {
     if (checked || !isComplete) return
-    const isCorrect = placed.every((wordIndex, position) => wordIndex === exercise.correctOrder[position])
+    const isCorrect = isOrderCorrect(exercise, placed)
     setChecked(true)
     setCorrect(isCorrect)
     onAnswer(isCorrect)
@@ -88,6 +91,11 @@ export function OrderingQuestion({ exercise, onAnswer }: Props) {
             {exercise.correctOrder.map((i) => exercise.words[i]).join(' ')}
           </span>
         </p>
+      ) : null}
+
+      {/* Once the sentence is built, the parts are named — where the exercise says what they are. */}
+      {checked && exercise.roles ? (
+        <SentenceStructure chunks={exercise.correctOrder.map((index) => ({ text: exercise.words[index], role: exercise.roles![index] }))} />
       ) : null}
 
       {!checked ? (

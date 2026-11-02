@@ -1,4 +1,5 @@
-import { Target } from 'lucide-react'
+import { CalendarCheck, Target } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { Card } from '@/components/ui'
 import { answersOn } from '@/lib/stats'
@@ -58,6 +59,13 @@ export function DailyGoalCard() {
               ? `حقّقت هدف اليوم${answered > goal ? ` وزدت عليه بـ ${answered - goal}` : ''}. أحسنت!`
               : `باقٍ ${goal - answered} سؤالاً لتحقيق هدف اليوم.`}
           </p>
+          <Link
+            to="/practice?session=daily"
+            className="mt-1 inline-flex h-9 items-center gap-1.5 rounded-md border border-border-strong px-3.5 text-sm font-semibold text-ink transition-colors hover:bg-surface-sunken"
+          >
+            <CalendarCheck size={16} aria-hidden="true" />
+            {reached ? 'جلسة إضافية' : 'ابدأ جلسة اليوم'}
+          </Link>
         </div>
       </div>
     </Card>

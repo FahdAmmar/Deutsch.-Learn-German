@@ -11,7 +11,7 @@ export function OfflineBanner() {
     <p
       role="status"
       dir="rtl"
-      className="flex items-center justify-center gap-2 bg-plum-muted px-4 py-2 text-center text-sm font-medium text-ink"
+      className="print:hidden flex items-center justify-center gap-2 bg-plum-muted px-4 py-2 text-center text-sm font-medium text-ink"
     >
       <WifiOff size={16} className="shrink-0" aria-hidden="true" />
       أنت غير متصل بالإنترنت. ما حمّلته سابقاً ما زال يعمل، وبعض أصوات النطق قد لا تتوفر.

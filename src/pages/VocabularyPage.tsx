@@ -1,8 +1,8 @@
-import { Brain, Search } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { Brain, Download, Search } from 'lucide-react'
+import { useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 
-import { Button, EmptyState, LevelTabs, PageHeader } from '@/components/ui'
+import { Button, EmptyState, LevelTabs, PageHeader, PrintButton } from '@/components/ui'
 import {
   DEFAULT_FILTERS,
   filterVocabulary,
@@ -11,9 +11,12 @@ import {
   type VocabularyFilters,
 } from '@/features/vocabulary/filters'
 import { VocabularyCard } from '@/features/vocabulary/VocabularyCard'
+import { ankiDeckText, ankiFileName } from '@/lib/ankiExport'
 import { cn } from '@/lib/cn'
 import { getLessonById, getLevelsWithContent, getVocabularyForLevel } from '@/lib/curriculum'
 import { useProgressStore } from '@/store/progressStore'
+import { downloadTextFile } from '@/utils/download'
+import { todayKey } from '@/utils/date'
 import { CEFR_LEVELS } from '@/types'
 import type { CEFRLevel, VocabularyItem } from '@/types'
 
@@ -65,15 +68,19 @@ export default function VocabularyPage() {
     setFilters((previous) => ({ ...previous, ...patch }))
   }
 
-  function handleToggleSaved(item: VocabularyItem) {
-    toggleSavedVocabulary(item.id)
+  /** Exactly the words on screen: the level, the topic and the other filters the learner has set. */
+  function exportToAnki() {
+    downloadTextFile(ankiFileName(level, todayKey()), ankiDeckText(visibleItems), 'text/plain;charset=utf-8')
   }
+
+  // Stable identity, so the memoised cards that did not change are not re-rendered when one word is saved.
+  const handleToggleSaved = useCallback((item: VocabularyItem) => toggleSavedVocabulary(item.id), [toggleSavedVocabulary])
 
   return (
     <div className="space-y-8 pb-6">
       <PageHeader title="المفردات" description="تصفّح مفردات كل مستوى، مصنّفة حسب الموضوع. تُعرض الأسماء مع أداة التعريف لأنها تُحفظ معاً." />
 
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 print:hidden">
         <LevelTabs
           value={level}
           onChange={(next) => {
@@ -96,7 +103,7 @@ export default function VocabularyPage() {
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 print:hidden">
         {categories.length > 1 ? (
           <ChipRow label="تصفية حسب الموضوع">
             <Chip label="كل المواضيع" active={filters.category === 'all'} onClick={() => update({ category: 'all' })} />
@@ -142,8 +149,13 @@ export default function VocabularyPage() {
             </select>
           </label>
 
+          <Button size="sm" variant="outline" onClick={exportToAnki} disabled={visibleItems.length === 0} icon={<Download size={16} aria-hidden="true" />} className="print:hidden">
+            تصدير إلى Anki
+          </Button>
+          <PrintButton label="طباعة القائمة" />
+
           {savedCount > 0 ? (
-            <Link to="/review">
+            <Link to="/review" className="print:hidden">
               <Button size="sm" variant="outline" icon={<Brain size={16} aria-hidden="true" />}>
                 راجع الكلمات المحفوظة
               </Button>
@@ -157,7 +169,7 @@ export default function VocabularyPage() {
           {allItems.length === 0 ? 'اختر مستوى آخر لتصفّح مفرداته.' : 'جرّب كلمة أخرى أو خفّف التصفية.'}
         </EmptyState>
       ) : (
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 print:grid-cols-2">
           {visibleItems.map((item) => (
             <VocabularyCard key={item.id} item={item} saved={savedIds.has(item.id)} onToggleSaved={handleToggleSaved} />
           ))}

@@ -1,26 +1,40 @@
 import {
   ArrowRight,
+  AudioLines,
+  Blocks,
+  CalendarCheck,
   CalendarDays,
   Clock,
   Coins,
+  ClipboardCheck,
   Dumbbell,
   Hash,
   ListOrdered,
   MessagesSquare,
+  PenLine,
   Scale,
   Shuffle,
   Tags,
   Target,
   Workflow,
 } from 'lucide-react'
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Button, EmptyState, LevelTabs, PageHeader } from '@/components/ui'
+import { getExamSetsForLevel } from '@/data/exam'
+import { getWritingTasksForLevel } from '@/data/writing'
 import { ExerciseRunner } from '@/features/exercises/ExerciseRunner'
+import { buildCompoundDrill, getCompoundsForLevel } from '@/features/practice/compoundDrill'
+import { CompoundsReference } from '@/features/practice/CompoundsReference'
+import { buildDailySession } from '@/features/practice/dailySession'
+import { GrammarPracticeGroup } from '@/features/practice/GrammarPracticeGroup'
 import { GenderRulesReference } from '@/features/practice/GenderRulesReference'
+import { buildMinimalPairDrill, getMinimalPairsForLevel } from '@/features/practice/minimalPairDrill'
 import { buildRegisterDrill } from '@/features/practice/registerDrill'
 import { RegisterReference } from '@/features/practice/RegisterReference'
 import { ModeCard } from '@/features/practice/ModeCard'
+import { PracticeGroup } from '@/features/practice/PracticeGroup'
 import { buildArticleDrill, buildWeakSpotSession, findWeakModules, SESSION_SIZE } from '@/features/practice/sessions'
 import { buildGeneratedDrill, isGeneratedKindAvailable, type GeneratedKind } from '@/features/practice/generatedDrills'
 import { buildPluralDrill, buildVerbDrill, countPluralQuestions, countVerbs } from '@/features/practice/wordDrills'
@@ -33,6 +47,7 @@ import {
   getVocabularyForLevel,
 } from '@/lib/curriculum'
 import { useProgressStore } from '@/store/progressStore'
+import { useSettingsStore } from '@/store/settingsStore'
 import { useStatsStore } from '@/store/statsStore'
 import type { CEFRLevel, Exercise } from '@/types'
 import { shuffle } from '@/utils/shuffle'
@@ -42,13 +57,37 @@ interface ActiveSession {
   exercises: Exercise[]
 }
 
+/** "5 كلمات للمراجعة · 3 من نقاط ضعفك · 2 جديدة": what today's session is made of, leaving out the parts that are empty. */
+function dailyBreakdown(daily: { due: number; weak: number; fresh: number; exercises: readonly unknown[] }): string | undefined {
+  const parts = [
+    daily.due > 0 ? `${daily.due} للمراجعة` : null,
+    daily.weak > 0 ? `${daily.weak} من نقاط ضعفك` : null,
+    daily.fresh > 0 ? `${daily.fresh} جديدة` : null,
+  ].filter((part) => part !== null)
+  return parts.length > 0 ? `${daily.exercises.length} سؤالاً: ${parts.join(' · ')}` : undefined
+}
+
 export default function PracticePage() {
   const currentLevel = useProgressStore((state) => state.currentLevel)
   const byModule = useStatsStore((state) => state.byModule)
+  const dailyGoal = useSettingsStore((state) => state.settings.dailyGoal)
+  const lessons = useProgressStore((state) => state.lessons)
+  const vocabulary = useProgressStore((state) => state.vocabulary)
+  const savedVocabularyIds = useProgressStore((state) => state.savedVocabularyIds)
   const [level, setLevel] = useState<CEFRLevel>(currentLevel)
-  const [session, setSession] = useState<ActiveSession | null>(null)
+  const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const levelExercises = useMemo(() => getLessonsForLevel(level).flatMap((lesson) => lesson.exercises), [level])
+  // Today's session is planned up front so the card can say what is in it; it is replanned only when what it is made from changes.
+  const daily = useMemo(
+    () => buildDailySession({ progress: { lessons, vocabulary, savedVocabularyIds }, byModule, goal: dailyGoal, levelExercises }),
+    [lessons, vocabulary, savedVocabularyIds, byModule, dailyGoal, levelExercises],
+  )
+  // The dashboard links here with ?session=daily: start it at once, and drop the parameter so going back does not restart it.
+  const [session, setSession] = useState<ActiveSession | null>(() =>
+    searchParams.get('session') === 'daily' && daily.exercises.length > 0 ? { title: 'جلسة اليوم', exercises: daily.exercises } : null,
+  )
   const nounCount = useMemo(() => getVocabularyForLevel(level).filter((item) => item.article).length, [level])
   // A2 builds on A1, so the word drills of a level draw on that level and the ones below it.
   const cumulative = useMemo(() => getCumulativeVocabulary(level), [level])
@@ -60,6 +99,8 @@ export default function PracticePage() {
     }),
     [cumulative],
   )
+  const pairCount = getMinimalPairsForLevel(level).length
+  const compoundCount = getCompoundsForLevel(level).length
   const weakTopics = useMemo(
     () =>
       findWeakModules(byModule)
@@ -67,6 +108,11 @@ export default function PracticePage() {
         .filter((module) => module !== undefined),
     [byModule],
   )
+
+  function startDaily() {
+    setSession({ title: 'جلسة اليوم', exercises: daily.exercises })
+    if (searchParams.has('session')) setSearchParams({}, { replace: true })
+  }
 
   function startMixed() {
     setSession({
@@ -87,6 +133,14 @@ export default function PracticePage() {
       title: 'تخمين الأداة من شكل الكلمة',
       exercises: buildGenderDrill(cumulative),
     })
+  }
+
+  function startCompounds() {
+    setSession({ title: 'الكلمات المركّبة', exercises: buildCompoundDrill(level) })
+  }
+
+  function startMinimalPairs() {
+    setSession({ title: 'أزواج صوتية', exercises: buildMinimalPairDrill(level) })
   }
 
   function startRegister() {
@@ -156,6 +210,15 @@ export default function PracticePage() {
       ) : (
         <div className="space-y-10">
           <PracticeGroup title="جلسات عامة" description="أسئلة من دروس المستوى، أو من المواضيع التي أخطأت فيها.">
+            <ModeCard
+              icon={CalendarCheck}
+              title="جلسة اليوم"
+              description="كل ما تحتاجه اليوم في جلسة واحدة: كلمات حان وقت مراجعتها، ثم أسئلة من المواضيع التي أخطأت فيها، ثم أسئلة جديدة من دروس مستواك."
+              meta={dailyBreakdown(daily)}
+              actionLabel="ابدأ جلسة اليوم"
+              onStart={startDaily}
+              disabledReason={daily.exercises.length === 0 ? 'لا توجد أسئلة كافية لتكوين جلسة. اختر مستوى فيه دروس.' : undefined}
+            />
             <ModeCard
               icon={Shuffle}
               title="جلسة مختلطة"
@@ -227,6 +290,27 @@ export default function PracticePage() {
               actionLabel="ابدأ التدريب"
               onStart={startRegister}
             />
+            <ModeCard
+              icon={Blocks}
+              title="الكلمات المركّبة"
+              description="Haus + Tür = ؟ الأداة تتبع الجزء الأخير. ركّب الكلمة من جزأيها واختر أداتها، وتعلّم متى يُضاف حرف رابط."
+              meta={`${compoundCount} كلمة مركّبة`}
+              actionLabel="ابدأ التدريب"
+              onStart={startCompounds}
+            />
+          </PracticeGroup>
+
+ <GrammarPracticeGroup level={level} onStart={(title, exercises) => setSession({ title, exercises })} />
+
+          <PracticeGroup title="النطق والاستماع" description="درّب أذنك على الأصوات التي لا تفرّق بينها العربية.">
+            <ModeCard
+              icon={AudioLines}
+              title="أزواج صوتية"
+              description="schon أم schön؟ Tür أم Tier؟ استمع إلى كلمة واحدة من زوج، ثم اختر ما سمعته. بعدها تجد في صفحة النطق الأزواج كلها مع شرح كل صوت."
+              meta={`${pairCount} زوجاً في ${level}`}
+              actionLabel="ابدأ التدريب"
+              onStart={startMinimalPairs}
+            />
           </PracticeGroup>
 
           <PracticeGroup title="الأرقام والوقت" description="أسئلة جديدة في كل مرة، لا تنتهي: استمع، واقرأ، واكتب.">
@@ -269,30 +353,32 @@ export default function PracticePage() {
             />
           </PracticeGroup>
 
+          <PracticeGroup title="الكتابة والامتحان" description="اكتب نصّاً في موقف حقيقي، أو جرّب القراءة والاستماع بأسلوب الامتحان.">
+            <ModeCard
+              icon={PenLine}
+              title="الكتابة الموجّهة"
+              description="رسالة إلى صديق، أو بريد رسمي، أو بطاقة بريدية: موقف ونقاط محدّدة، وفحص للتحية والخاتمة والنقاط، ونموذج جواب."
+              meta={`${getWritingTasksForLevel(level).length} مهام في ${level}`}
+              actionLabel="افتح مهام الكتابة"
+              onStart={() => navigate('/practice/writing')}
+            />
+            <ModeCard
+              icon={ClipboardCheck}
+              title="تدريب بنمط الامتحان"
+              description="نصوص وتسجيلات في أسلوب مهام الامتحانات، بعدّاد وقت اختياري وتشغيلين فقط لكل تسجيل، وتصحيح تلقائي مع شرح كل سؤال."
+              meta={`${getExamSetsForLevel(level).length} مجموعات في ${level}`}
+              actionLabel="افتح التدريب"
+              onStart={() => navigate('/practice/exam')}
+            />
+          </PracticeGroup>
+
           <div className="space-y-3">
             <GenderRulesReference />
+            <CompoundsReference />
             <RegisterReference />
           </div>
         </div>
       )}
     </div>
-  )
-}
-
-interface PracticeGroupProps {
-  title: string
-  description: string
-  children: ReactNode
-}
-
-function PracticeGroup({ title, description, children }: PracticeGroupProps) {
-  return (
-    <section className="space-y-4">
-      <div dir="rtl" className="space-y-1">
-        <h2 className="font-sans text-xl font-bold text-ink">{title}</h2>
-        <p className="text-ink-muted">{description}</p>
-      </div>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{children}</div>
-    </section>
   )
 }

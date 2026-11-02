@@ -33,6 +33,7 @@ uncertain grammar as settled fact.
 | `npm run lint`         | oxlint                      |
 | `npm run test`         | Vitest, single run          |
 | `npm run test:watch`   | Vitest watch mode           |
+| `npm run check:size`   | Gzip budget per JS chunk (run after `build`; CI does) |
 
 Before calling any phase complete: `typecheck && lint && test && build`.
 
@@ -53,7 +54,29 @@ Before calling any phase complete: `typecheck && lint && test && build`.
   `data/grammarHints.ts` — add a form there, never in JSX; stay conservative: an
   ambiguous form gets no hint; `HintedSentenceButton` keeps a sentence one
   button, the markers are plain spans inside it); study
-  and decisions in `docs/sentencestep-study.md`
+  and decisions in `docs/sentencestep-study.md`; writing (guided Schreiben tasks, `/practice/writing`:
+  content in `data/writing/`, `lib/writing/check.ts` looks for greeting, closing, points and length —
+  patterns are written without umlauts and only ever *help*, a miss can be confirmed by hand; the test
+  requires every model answer to pass its own check); exam (exam-style Lesen/Hören sets, `/practice/exam`:
+  content in `data/exam/`, marking in `lib/exam/score.ts`, no feedback until submit; the texts are written
+  for this app, never copied from an exam); minimal pairs (`data/minimalPairs.ts`, drill in
+  `features/practice/minimalPairDrill.ts`, reference on the pronunciation page) and compound nouns
+  (`data/compounds.ts`, drill in `features/practice/compoundDrill.ts`) — both are data whose integrity a test checks
+  ; case and ending drills (`lib/generators/cases.ts` holds the article and ending tables, each cell pinned by a
+  test; `data/caseDrill.ts` the nouns and the sentence *frames* — a frame names the noun groups it makes sense
+  with, never combine a verb and a noun at random; drills in `features/practice/caseDrill.ts` and
+  `adjectiveDrill.ts`); word order (`data/wordOrder.ts` sentences written part by part with a role each, drill in
+  `features/practice/wordOrderDrill.ts`; an `OrderingExercise` may carry `roles` — the built sentence is then
+  shown as named blocks — and `acceptedOrders` — put every order German allows there, a test checks the verb's
+  place in each); collocations and word families (`data/collocations.ts`, `data/wordFamilies.ts`, with drills
+  beside the others; a word family appears at a level only with the members that level has met); today's session
+  (`features/practice/dailySession.ts`: due words, then weak spots, then new questions); role-play (`lib/rolePlay.ts`
+  is the logic, `features/roleplay/` the screen, route `/levels/:level/texts/:itemId/rollenspiel`); shadowing in
+  the stories (`features/stories/ShadowingPanel.tsx`, reuses the pronunciation card); Anki export
+  (`lib/ankiExport.ts`) and printing (`lib/printPrep.ts` + `hooks/usePrintFriendly.ts`, the `print:` variants and
+  `styles/print.css`). `npm run report:content` (`lib/contentReport.ts`) counts what each level holds and lists
+  gaps; with `--strict` it exits 1 on any gap. `src/test/axe.ts` runs axe's structural rules in jsdom (contrast
+  is held by `styles/tokens.test.ts` and `exercises/orderRoles.test.ts`, and by the e2e audits)
 - `pages/` + `routes/router.tsx` — routed pages (lazy-loaded); they
   compose features rather than containing feature logic themselves.
   Pages are loaded with `lib/lazyWithReload` (a stale tab reloads once, never in
@@ -62,11 +85,15 @@ Before calling any phase complete: `typecheck && lint && test && build`.
   must be handled there, not only in `ErrorBoundary`
 - `store/` — Zustand stores (`progressStore`, `statsStore` (answer
   statistics for the heatmap, daily goal and accuracy views), `settingsStore`,
-  `themeStore`, `grammarProgressStore`, `dictationStore`, `storyQuizStore`, `myTextStore`); read through
-  selectors, never one giant store
+  `themeStore`, `grammarProgressStore`, `dictationStore`, `storyQuizStore`, `myTextStore`, `writingStore`,
+  `examStore` (both are in the backup file), `backupReminderStore` (this device only, deliberately not in the
+  backup)); read through selectors, never one giant store. Anything a learner produces and that should survive a
+  device change must be added to `store/backup.ts` and the extras schema in `lib/progressExportSchema.ts`
 - `services/speech/` — TTS abstraction (`types.ts` interface,
   `browserSpeechService.ts` implementation, `voices.ts` voice choice) so a provider can be swapped
-  later without touching the UI
+  later without touching the UI. `recordedSpeechService.ts` plays recorded audio for the texts that have one and
+  hands the rest to the browser voice; it is off unless the build sets `VITE_RECORDED_AUDIO=true`
+  (`docs/recorded-audio.md`)
 - `services/sound/` — feedback-sound abstraction (key / correct / wrong / complete),
   Web Audio implementation; use it through `hooks/useSound`, which honours the setting
 - `data/a1/`, `data/a2/` (`b1/`/`b2/` next) — curriculum content as typed
@@ -85,6 +112,8 @@ Before calling any phase complete: `typecheck && lint && test && build`.
   `lib/learningPath.ts` resolves it, and `getNextLesson` and the dashboard's
   "continue" follow it. Levels without a path fall back to module order.
   A test fails if any A1 lesson is missing from the path
+- `docs/level-alignment.md` — lessons that practise a topic the grammar roadmap places at a higher level;
+  `data/grammar/levelAlignment.test.ts` pins the list, so a new mismatch fails the suite
 - `types/` — domain types: `lesson`, `exercise`, `grammar`, `vocabulary`,
   `dialogue`, `cefr`, `progress`, `settings`
 - `lib/` — `curriculum.ts`, `srs.ts` (Leitner spaced repetition),

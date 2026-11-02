@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { PageHeader } from '@/components/ui'
 import { PRONUNCIATION_GROUPS } from '@/data/pronunciation'
+import { MinimalPairsSection } from '@/features/pronunciation/MinimalPairsSection'
 import { PronunciationDrillCard, type DrillOutcome } from '@/features/pronunciation/PronunciationDrillCard'
 import { useSpeechRecognition } from '@/hooks/useSpeechRecognition'
 import { bestComparison } from '@/lib/pronunciation/compare'
@@ -92,6 +93,8 @@ export default function PronunciationPage() {
           </div>
         </section>
       ))}
+
+      <MinimalPairsSection />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { ArrowLeft, ClipboardCheck, Clock, Ellipsis, Keyboard, MessagesSquare, BookOpenText } from 'lucide-react'
+import { ArrowLeft, BookOpenText, ClipboardCheck, Clock, Drama, Ellipsis, Keyboard, MessagesSquare } from 'lucide-react'
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -15,6 +15,7 @@ import { useSettingsStore } from '@/store/settingsStore'
 import type { Story } from '@/types'
 
 import { AudioPlayerBar } from './AudioPlayerBar'
+import { ShadowingPanel } from './ShadowingPanel'
 import { StoryBody } from './StoryBody'
 import { StoryCover } from './StoryCover'
 import { StoryWords } from './StoryWords'
@@ -99,6 +100,15 @@ export function StoryView({ story }: StoryViewProps) {
             <Keyboard size={18} aria-hidden="true" />
             <span dir="rtl">إملاء حرفًا بحرف</span>
           </Link>
+          {!isReading ? (
+            <Link
+              to={`/levels/${story.level.toLowerCase()}/texts/${story.id}/rollenspiel`}
+              className="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-5 text-[0.95rem] font-semibold text-ink transition-colors hover:bg-surface-sunken"
+            >
+              <Drama size={18} aria-hidden="true" />
+              <span dir="rtl">تمثيل الأدوار</span>
+            </Link>
+          ) : null}
           {hasGrammarHints ? (
             <button
               type="button"
@@ -126,6 +136,8 @@ export function StoryView({ story }: StoryViewProps) {
         range={player.loop === 'range' ? player.range : null}
         onPlayFrom={player.selectSegment}
       />
+
+      <ShadowingPanel story={story} onBeforeListen={player.pause} />
 
       <StoryWords story={story} />
 

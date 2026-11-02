@@ -48,6 +48,20 @@ export default defineConfig(({ mode }) => {
           // the per-level lesson chunks — so the whole SPA opens offline after
           // a first successful visit.
           globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+          // Recorded audio (see docs/recorded-audio.md) is not precached: it can be large. Each file is kept the first time
+          // it is played, so a text heard once also plays offline afterwards.
+          runtimeCaching: [
+            {
+              urlPattern: ({ url }) => /\/audio\/.+\.(mp3|ogg|wav|m4a)$/i.test(url.pathname),
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'german-recordings',
+                rangeRequests: true,
+                expiration: { maxEntries: 600, maxAgeSeconds: 60 * 60 * 24 * 90 },
+                cacheableResponse: { statuses: [200] },
+              },
+            },
+          ],
         },
       }),
     ],

@@ -1,4 +1,9 @@
 import '@testing-library/jest-dom/vitest'
+import { configure } from '@testing-library/react'
+
+// `findBy*` and `waitFor` give up after 1 s by default. A whole page rendered in jsdom on a busy machine needs longer
+// than that without anything being wrong; a failing assertion still fails, only after the longer wait.
+configure({ asyncUtilTimeout: 10_000 })
 
 // jsdom has no native matchMedia implementation. Several modules (notably
 // themeStore) call it at import time to resolve the initial theme, so a

@@ -48,12 +48,32 @@ export interface FillBlankExercise extends ExerciseBase {
   hint?: string
 }
 
+/** The part a chunk plays in a sentence, for exercises that show the structure of the sentence once it is built. */
+export const ORDER_ROLES = [
+  'subject',
+  'verb',
+  'verb-end',
+  'object',
+  'time',
+  'manner',
+  'place',
+  'question-word',
+  'conjunction',
+  'other',
+] as const
+
+export type OrderRole = (typeof ORDER_ROLES)[number]
+
 export interface OrderingExercise extends ExerciseBase {
   type: 'ordering'
   /** Words/chunks in scrambled order as shown to the learner. */
   words: string[]
   /** The correct order, as indices into `words`. */
   correctOrder: number[]
+  /** Other orders that are just as correct (a time phrase before or after a place), as indices into `words`. */
+  acceptedOrders?: number[][]
+  /** The role of each entry of `words`, same length and order. When present, the built sentence is shown with its parts named. */
+  roles?: OrderRole[]
 }
 
 export interface MatchingPair {

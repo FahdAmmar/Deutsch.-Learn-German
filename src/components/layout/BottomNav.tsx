@@ -22,7 +22,7 @@ const itemClasses =
 export function BottomNav({ onOpenMore }: BottomNavProps) {
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-30 flex h-16 items-stretch border-t border-border bg-surface/95 backdrop-blur md:hidden"
+      className="print:hidden fixed inset-x-0 bottom-0 z-30 flex h-16 items-stretch border-t border-border bg-surface/95 backdrop-blur md:hidden"
       aria-label="التنقل السريع"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)', height: 'calc(4rem + env(safe-area-inset-bottom))' }}
     >

@@ -1,4 +1,5 @@
 import { BookmarkCheck, BookmarkPlus } from 'lucide-react'
+import { memo } from 'react'
 
 import { ArticleText, Badge, articleToTone } from '@/components/ui'
 import { GermanWord } from '@/features/pronunciation/GermanWord'
@@ -35,8 +36,11 @@ interface VocabularyCardProps {
   onToggleSaved?: (item: VocabularyItem) => void
 }
 
-/** A word with its article (colour-coded), Arabic meaning and one example — the article is learned together with the noun. */
-export function VocabularyCard({ item, saved = false, onToggleSaved }: VocabularyCardProps) {
+/**
+ * A word with its article (colour-coded), Arabic meaning and one example — the article is learned together with the noun.
+ * Memoised: a level lists hundreds of these, and saving one word must not re-render all the others.
+ */
+export const VocabularyCard = memo(function VocabularyCard({ item, saved = false, onToggleSaved }: VocabularyCardProps) {
   const showHint = useSettingsStore((state) => state.settings.showPronunciationHints)
 
   return (
@@ -55,7 +59,7 @@ export function VocabularyCard({ item, saved = false, onToggleSaved }: Vocabular
               aria-label={`${saved ? 'إزالة من المراجعة' : 'أضف إلى المراجعة'}: ${item.article ? `${item.article} ` : ''}${item.word}`}
               onClick={() => onToggleSaved(item)}
               className={cn(
-                'flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-surface-sunken',
+                'flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-surface-sunken print:hidden',
                 saved ? 'text-accent' : 'text-ink-faint',
               )}
             >
@@ -101,4 +105,4 @@ export function VocabularyCard({ item, saved = false, onToggleSaved }: Vocabular
       ) : null}
     </div>
   )
-}
+})

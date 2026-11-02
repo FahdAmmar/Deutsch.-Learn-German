@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 
-import { RailRule } from '@/components/ui'
+import { PrintButton, RailRule } from '@/components/ui'
 import { useGrammarProgressStore } from '@/store/grammarProgressStore'
 import type { GrammarRule } from '@/types'
 
@@ -19,9 +19,10 @@ interface GrammarRuleViewProps {
   rule: GrammarRule
 }
 
-function FixedSection({ id, kicker, title, children }: { id: string; kicker: string; title: string; children: React.ReactNode }) {
+function FixedSection({ id, kicker, title, children, interactive = false }: { id: string; kicker: string; title: string; children: React.ReactNode; interactive?: boolean }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-40 space-y-5">
+    // An interactive section (flip cards, a quiz) has nothing to print, so it stays off the paper.
+    <section id={id} aria-labelledby={`${id}-title`} className={`scroll-mt-40 space-y-5 ${interactive ? 'print:hidden' : ''}`}>
       <header className="space-y-2">
         <p dir="ltr" className="font-mono text-xs font-bold tracking-wider text-ink-faint uppercase">
           {kicker}
@@ -62,6 +63,9 @@ export function GrammarRuleView({ rule }: GrammarRuleViewProps) {
       <article dir="rtl" lang="ar" className="min-w-0 space-y-10 pb-12">
         <RuleHero rule={rule} onStart={startLesson} />
         <RuleSectionNav items={navItems} />
+        <div className="flex justify-start print:hidden">
+          <PrintButton label="طباعة القاعدة" />
+        </div>
 
         {rule.sections.map((section, index) => (
           <div key={section.id} className="space-y-10">
@@ -70,12 +74,12 @@ export function GrammarRuleView({ rule }: GrammarRuleViewProps) {
           </div>
         ))}
 
-        <FixedSection id="review" kicker="Wiederholung / مراجعة سريعة" title="مراجعة سريعة — اضغط لقلب كل بطاقة">
+        <FixedSection interactive id="review" kicker="Wiederholung / مراجعة سريعة" title="مراجعة سريعة — اضغط لقلب كل بطاقة">
           <FlashcardGrid cards={rule.flashcards} />
         </FixedSection>
         <RailRule />
 
-        <FixedSection id="quiz" kicker="Abschlusstest / الاختبار الختامي" title={`الاختبار الختامي — ${rule.termDe}`}>
+        <FixedSection interactive id="quiz" kicker="Abschlusstest / الاختبار الختامي" title={`الاختبار الختامي — ${rule.termDe}`}>
           <RuleQuiz rule={rule} />
         </FixedSection>
         <RailRule />
@@ -86,10 +90,12 @@ export function GrammarRuleView({ rule }: GrammarRuleViewProps) {
 
         <LessonsForRule lessons={getLessonsForGrammarRule(rule.number)} />
 
-        <RuleNeighborNav number={rule.number} />
+        <div className="print:hidden">
+          <RuleNeighborNav number={rule.number} />
+        </div>
       </article>
 
-      <aside className="hidden lg:block">
+      <aside className="hidden lg:block print:hidden">
         <RuleIndex level={rule.level} currentNumber={rule.number} />
       </aside>
     </div>

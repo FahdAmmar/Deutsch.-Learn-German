@@ -55,7 +55,7 @@ export function MobileDrawer({ open, onClose }: MobileDrawerProps) {
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="القائمة">
+    <div className="print:hidden fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="القائمة">
       <button
         type="button"
         aria-label="إغلاق القائمة"

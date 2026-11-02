@@ -1,0 +1,35 @@
+/*
+ * The page on paper: no menus, no side margin for the sidebar, and nothing split across two sheets where
+ * it can be helped. What to hide is decided element by element with Tailwind's `print:hidden`; this file
+ * holds only what a utility class cannot say.
+ */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  html,
+  body {
+    background: #fff;
+  }
+
+  /* A card, a table row and a list item stay whole. */
+  li,
+  tr,
+  figure,
+  details > div > * {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  /* Colour is kept where the page uses it to teach (der, die, das); it is not stripped to grey. */
+  * {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

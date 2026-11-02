@@ -60,7 +60,7 @@ export function GermanWord({
         </span>
         {showIcon &&
           (isSupported ? (
-            <Volume2 size={iconSizes[size]} aria-hidden="true" className={cn('shrink-0 text-accent', isSpeaking && 'animate-pulse')} />
+            <Volume2 size={iconSizes[size]} aria-hidden="true" className={cn('shrink-0 text-accent print:hidden', isSpeaking && 'animate-pulse')} />
           ) : (
             <VolumeX size={iconSizes[size]} aria-hidden="true" />
           ))}

@@ -1,3 +1,4 @@
+import { BackupReminderCard } from '@/features/dashboard/BackupReminderCard'
 import { ContinueLearningCard } from '@/features/dashboard/ContinueLearningCard'
 import { DashboardHero } from '@/features/dashboard/DashboardHero'
 import { RecentActivityList } from '@/features/dashboard/RecentActivityList'
@@ -61,6 +62,7 @@ export default function DashboardPage() {
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <ContinueLearningCard lesson={continueLesson} />
         <div className="space-y-4">
+          <BackupReminderCard />
           <DailyGoalCard />
           <ReviewReminderCard dueCount={dueVocabCount} />
           <VocabularyReviewCard summary={vocabSummary} />

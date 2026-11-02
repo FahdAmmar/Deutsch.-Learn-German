@@ -9,7 +9,9 @@ import { getLessonsForLevel, getVocabularyForLevel, getLevelsWithContent } from 
 import { cn } from '@/lib/cn'
 import { loadLevel } from '@/data/curriculum'
 import { parseProgressBackup, type ProgressBackup } from '@/lib/progressExport'
-import { applyBackup, createBackupJson, describeExtras } from '@/store/backup'
+import { applyBackup, describeExtras } from '@/store/backup'
+import { downloadBackup } from '@/store/backupDownload'
+import { useBackupReminderStore } from '@/store/backupReminderStore'
 import { useProgressStore } from '@/store/progressStore'
 import { useSettingsStore } from '@/store/settingsStore'
 import { useStatsStore } from '@/store/statsStore'
@@ -48,6 +50,7 @@ export default function SettingsPage() {
   const setDailyGoal = useSettingsStore((state) => state.setDailyGoal)
 
   const resetProgress = useProgressStore((state) => state.resetProgress)
+  const lastExportAt = useBackupReminderStore((state) => state.lastExportAt)
   const resetLessons = useProgressStore((state) => state.resetLessons)
   const resetStats = useStatsStore((state) => state.resetStats)
   const [confirmingReset, setConfirmingReset] = useState(false)
@@ -81,19 +84,6 @@ export default function SettingsPage() {
     })
     setResetLevelChoice(null)
     setLevelResetDone(level)
-  }
-
-  function handleExport() {
-    const json = createBackupJson()
-    const blob = new Blob([json], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `learn-german-progress-${todayKey()}.json`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
   }
 
   async function handleFileSelected(event: React.ChangeEvent<HTMLInputElement>) {
@@ -255,10 +245,13 @@ export default function SettingsPage() {
         <div dir="rtl" className="space-y-4">
           <p className="max-w-[60ch] text-ink-muted">
             تقدّمك وإحصاءاتك ونصوصك الخاصة محفوظة حالياً في هذا المتصفح فقط. صدّر نسخة احتياطية قبل مسح بيانات المتصفح، أو لنقل
-            كل ذلك إلى جهاز آخر.
+            كل ذلك إلى جهاز آخر. وتشمل النسخة كتاباتك ونتائج تدريب الامتحان ونقاط ضعفك في الإملاء أيضاً.
+          </p>
+          <p className="tnum text-sm text-ink-faint">
+            {lastExportAt === null ? 'لم تنزّل نسخة احتياطية من هذا الجهاز بعد.' : `آخر نسخة نزّلتها: ${todayKey(new Date(lastExportAt))}`}
           </p>
           <div className="flex flex-wrap gap-3">
-            <Button variant="outline" onClick={handleExport} icon={<Download size={17} aria-hidden="true" />}>
+            <Button variant="outline" onClick={downloadBackup} icon={<Download size={17} aria-hidden="true" />}>
               تصدير التقدّم
             </Button>
             <Button

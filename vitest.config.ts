@@ -18,5 +18,11 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     css: true,
+    // Many tests render a whole page in jsdom (a level of vocabulary is hundreds of cards) or click through a whole
+    // test, and a full run uses every core. On a loaded or modest machine the same test takes 5–10x longer than it does
+    // alone (about 2 s alone, 15 s+ under load): that is a slow machine, not a bug, and a hung test still fails, just
+    // later. `asyncUtilTimeout` (the wait of `findBy*` / `waitFor`) is raised in `src/test/setup.ts` for the same reason.
+    testTimeout: 60_000,
+    hookTimeout: 60_000,
   },
 })

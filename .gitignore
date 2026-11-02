@@ -42,3 +42,6 @@ CLAUDE.local.md
 
 # Vercel CLI link + local build output (created by `vercel link` / `vercel build`)
 .vercel
+
+# Working files of the recorded-audio scripts (docs/recorded-audio.md)
+audio-work
