@@ -89,6 +89,11 @@ export function getDialoguesForLevel(level: CEFRLevel): Dialogue[] {
   return [...lessonDialogues, ...(getLevelCurriculum(level)?.conversations ?? [])]
 }
 
+/** The standalone situational conversations of a level — the ones that belong to no lesson. */
+export function getStandaloneConversationsForLevel(level: CEFRLevel): Dialogue[] {
+  return getLevelCurriculum(level)?.conversations ?? []
+}
+
 /** Standalone bilingual reading texts for a level (the "Reading" tab), in curriculum order. */
 export function getReadingTextsForLevel(level: CEFRLevel): ReadingText[] {
   return getLevelCurriculum(level)?.readingTexts ?? []

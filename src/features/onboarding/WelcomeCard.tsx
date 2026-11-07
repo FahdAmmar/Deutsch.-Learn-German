@@ -55,7 +55,7 @@ export function WelcomeCard() {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          <Button size="lg" onClick={() => finish('/levels/a1', 'A1')}>
+          <Button size="lg" onClick={() => finish('/levels', 'A1')}>
             ابدأ من الصفر (A1)
           </Button>
           <Button size="lg" variant="outline" onClick={() => finish('/placement-test')} icon={<ClipboardCheck size={18} aria-hidden="true" />}>

@@ -13,6 +13,8 @@ import { Sidebar } from './Sidebar'
 
 // Loaded the first time search is opened, so it adds nothing to the initial bundle.
 const SearchDialog = lazyWithReload(() => import('@/features/search/SearchDialog'))
+// The study plan panel is loaded the first time it is opened, together with the curriculum it lists.
+const PlanDrawer = lazyWithReload(() => import('@/features/levels/PlanDrawer'))
 
 export function AppShell() {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -20,6 +22,9 @@ export function AppShell() {
   const [searchOpen, setSearchOpen] = useState(false)
   const openSearch = useCallback(() => setSearchOpen(true), [])
   const closeSearch = useCallback(() => setSearchOpen(false), [])
+  const [planOpen, setPlanOpen] = useState(false)
+  const openPlan = useCallback(() => setPlanOpen(true), [])
+  const closePlan = useCallback(() => setPlanOpen(false), [])
   useSearchShortcut(openSearch)
   usePrintFriendly()
 
@@ -33,7 +38,7 @@ export function AppShell() {
       </a>
       <Sidebar />
       <div className="flex min-h-dvh flex-col md:ps-72 print:ps-0">
-        <Header onOpenSearch={openSearch} />
+        <Header onOpenSearch={openSearch} onOpenPlan={openPlan} />
         <OfflineBanner />
         <main id="main" className="flex-1 px-4 pt-6 pb-28 md:px-10 md:pt-8 md:pb-12 print:p-0">
           <div className="mx-auto w-full max-w-6xl">
@@ -43,6 +48,11 @@ export function AppShell() {
       </div>
       <BottomNav onOpenMore={() => setDrawerOpen(true)} />
       <MobileDrawer open={drawerOpen} onClose={closeDrawer} />
+      {planOpen ? (
+        <Suspense fallback={null}>
+          <PlanDrawer onClose={closePlan} />
+        </Suspense>
+      ) : null}
       {searchOpen ? (
         <Suspense fallback={null}>
           <SearchDialog onClose={closeSearch} />

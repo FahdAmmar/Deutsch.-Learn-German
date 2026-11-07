@@ -29,7 +29,7 @@ export function Switch({ checked, onChange, label, id }: SwitchProps) {
     >
       <span
         className={cn(
-          'absolute h-5 w-5 rounded-full transition-all',
+          'absolute h-5 w-5 rounded-full transition-colors',
           checked ? 'end-1 bg-accent-foreground' : 'start-1 bg-ink-faint',
         )}
       />

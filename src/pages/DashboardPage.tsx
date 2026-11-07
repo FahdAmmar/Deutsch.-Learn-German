@@ -1,9 +1,7 @@
 import { BackupReminderCard } from '@/features/dashboard/BackupReminderCard'
 import { ContinueLearningCard } from '@/features/dashboard/ContinueLearningCard'
-import { DashboardHero } from '@/features/dashboard/DashboardHero'
 import { RecentActivityList } from '@/features/dashboard/RecentActivityList'
 import { RecommendedLessons } from '@/features/dashboard/RecommendedLessons'
-import { ReviewReminderCard } from '@/features/dashboard/ReviewReminderCard'
 import {
   getContinueLearningLesson,
   getLevelProgressSummary,
@@ -11,12 +9,11 @@ import {
   getWeeklyActivity,
 } from '@/features/dashboard/selectors'
 import { SpecialLetters } from '@/features/dashboard/SpecialLetters'
-import { StatTiles } from '@/features/dashboard/StatTiles'
-import { VocabularyReviewCard } from '@/features/dashboard/VocabularyReviewCard'
+import { ProgressStrip } from '@/features/dashboard/ProgressStrip'
+import { TodayPanel } from '@/features/dashboard/TodayPanel'
 import { WeeklyActivityChart } from '@/features/dashboard/WeeklyActivityChart'
 import { shouldShowOnboarding } from '@/features/onboarding/shouldShowOnboarding'
 import { WelcomeCard } from '@/features/onboarding/WelcomeCard'
-import { DailyGoalCard } from '@/features/progress/DailyGoalCard'
 import { getDueVocabulary } from '@/features/review/selectors'
 import { getPathLessons } from '@/lib/learningPath'
 import { useProgressStore } from '@/store/progressStore'
@@ -41,15 +38,14 @@ export default function DashboardPage() {
     <div className="space-y-8 pb-6">
       {shouldShowOnboarding(onboardingDone, progress) ? <WelcomeCard /> : null}
 
-      <DashboardHero
+      <TodayPanel
         level={progress.currentLevel}
-        completedLessons={levelSummary.completedLessons}
-        totalLessons={levelSummary.totalLessons}
-        continueLesson={continueLesson}
         hasStarted={levelSummary.completedLessons > 0 || progress.activity.length > 0}
+        continueLesson={continueLesson}
+        dueCount={dueVocabCount}
       />
 
-      <StatTiles
+      <ProgressStrip
         level={progress.currentLevel}
         levelRatio={levelSummary.ratio}
         completedLessons={levelSummary.completedLessons}
@@ -59,15 +55,9 @@ export default function DashboardPage() {
         streakDays={progress.streakDays}
       />
 
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
-        <ContinueLearningCard lesson={continueLesson} />
-        <div className="space-y-4">
-          <BackupReminderCard />
-          <DailyGoalCard />
-          <ReviewReminderCard dueCount={dueVocabCount} />
-          <VocabularyReviewCard summary={vocabSummary} />
-        </div>
-      </div>
+      <BackupReminderCard />
+
+      <ContinueLearningCard lesson={continueLesson} />
 
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <WeeklyActivityChart days={weeklyActivity} />

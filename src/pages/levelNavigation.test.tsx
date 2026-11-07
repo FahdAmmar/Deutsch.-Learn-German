@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it } from 'vitest'
@@ -18,127 +18,157 @@ function renderWithRoutes(initialPath: string) {
   )
 }
 
-describe('level navigation', () => {
+const planList = () => screen.getByRole('navigation', { name: 'خطة الدراسة من A1 إلى A2' })
+
+describe('the study plan page', () => {
   beforeEach(() => {
     useProgressStore.getState().resetProgress()
   })
 
-  it('lists all four CEFR levels on the overview page, in order, as a track and as level cards', () => {
+  it('is one list for A1 and A2, with a heading for each level and a button for each chapter', () => {
     renderWithRoutes('/levels')
 
-    const track = screen.getByRole('list', { name: 'مراحل المسار' })
-    expect(Array.from(track.querySelectorAll('li')).map((item) => item.textContent?.slice(0, 2))).toEqual(['A1', 'A2', 'B1', 'B2'])
-    expect(screen.getAllByRole('article')).toHaveLength(4)
+    const list = within(planList())
+    expect(list.getByRole('heading', { name: 'الألمانية للمبتدئين' })).toBeInTheDocument()
+    expect(list.getAllByRole('heading', { level: 3 })).toHaveLength(2)
+    // 10 chapters in A1 and 9 in A2, each a toggle.
+    expect(list.getAllByRole('button').filter((button) => button.hasAttribute('aria-expanded'))).toHaveLength(19)
+    // No second level of maps: no tabs, no track, no level cards.
+    expect(screen.queryByRole('tab')).not.toBeInTheDocument()
+    expect(screen.queryByRole('list', { name: 'مراحل المسار' })).not.toBeInTheDocument()
   })
 
-  it('opens the current level up to list its chapters, linking to each one', () => {
+  it('numbers the chapters straight through: the first chapter of A2 is the eleventh', () => {
     renderWithRoutes('/levels')
 
-    const chapters = screen.getByRole('heading', { name: 'فصول المستوى' }).parentElement!
-    expect(chapters.querySelectorAll('a')).toHaveLength(7)
-    expect(screen.getByRole('link', { name: /Buchstaben und Zahlen/ })).toHaveAttribute('href', '/levels/a1#chapter-buchstaben-zahlen')
+    const chapters = within(planList()).getAllByRole('button').filter((button) => button.hasAttribute('aria-expanded') && button.textContent !== null)
+    expect(chapters[0]).toHaveTextContent('البداية')
+    expect(chapters[10]).toHaveTextContent('المقارنة والحكي')
+    expect(chapters[10]).toHaveTextContent('11')
   })
 
-  it('marks levels without content yet as coming soon', () => {
+  it('opens only the chapter to continue with, and the learner opens the others', async () => {
+    const user = userEvent.setup()
     renderWithRoutes('/levels')
-    // A2/B1/B2 have no modules yet in this codebase.
-    expect(screen.getAllByText('قريباً').length).toBeGreaterThan(0)
+
+    const list = within(planList())
+    expect(list.getByRole('link', { name: /Begrüßungen/ })).toBeInTheDocument()
+    expect(list.queryByRole('link', { name: /Alphabet/ })).not.toBeInTheDocument()
+
+    await user.click(list.getByRole('button', { name: /الحروف والأرقام/ }))
+    expect(list.getByRole('link', { name: /Alphabet/ })).toHaveAttribute('href', '/lessons/a1/alphabet')
   })
 
-  it('renders A1 as an ordered path of chapters with its lessons', () => {
-    renderWithRoutes('/levels/a1')
+  it('lists every step of A1 and A2 — lessons, grammar rules, texts and conversations — once opened all', async () => {
+    const user = userEvent.setup()
+    renderWithRoutes('/levels')
 
-    expect(screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)).toEqual([
-      'البداية',
-      'الحروف والأرقام',
-      'الأيام والوقت',
-      'أساس القواعد',
-      'عالمي',
-      'الأفعال وبناء الجملة',
-      'مواقف الحياة اليومية',
-    ])
-    expect(screen.getByText('Begrüßungen')).toBeInTheDocument()
-    expect(screen.getByText('Alphabet')).toBeInTheDocument()
-    expect(screen.getByText('Wochentage und Monate')).toBeInTheDocument()
-    expect(screen.getByText('Uhrzeit')).toBeInTheDocument()
+    await user.click(within(planList()).getByRole('button', { name: 'فتح الكل' }))
+    const links = within(planList()).getAllByRole('link')
+    const hrefs = links.map((link) => link.getAttribute('href') ?? '')
+    // A1: 34 lessons, 16 rules, 17 texts, 6 conversations; A2: 30, 18, 18, 19.
+    expect(hrefs.filter((href) => href.startsWith('/lessons/'))).toHaveLength(34 + 30)
+    expect(hrefs.filter((href) => href.startsWith('/grammar/'))).toHaveLength(16 + 18)
+    expect(hrefs.filter((href) => href.includes('/texts/'))).toHaveLength(17 + 6 + 18 + 19)
+    expect(new Set(hrefs).size).toBe(hrefs.length)
+    expect(within(planList()).getByRole('button', { name: 'طيّ الكل' })).toBeInTheDocument()
   })
 
-  it('teaches letters, then days and time, then the grammar foundation, in that order', () => {
-    renderWithRoutes('/levels/a1')
+  it('puts lessons, rules, texts and conversations of a chapter in learning order, each named by its kind', async () => {
+    const user = userEvent.setup()
+    renderWithRoutes('/levels')
 
-    const titles = screen.getAllByRole('link').map((link) => link.textContent ?? '')
-    const position = (title: string) => titles.findIndex((text) => text.includes(title))
-    expect(position('Alphabet')).toBeLessThan(position('Wochentage und Monate'))
-    expect(position('Wochentage und Monate')).toBeLessThan(position('Uhrzeit'))
-    expect(position('Uhrzeit')).toBeLessThan(position('Personalpronomen'))
-    expect(position('Personalpronomen')).toBeLessThan(position('Akkusativ'))
+    const list = within(planList())
+    await user.click(list.getByRole('button', { name: /الأفعال وبناء الجملة/ }))
+    const group = document.getElementById('plan-chapter-verben-saetze')!
+    const rows = Array.from(group.querySelectorAll('ol > li > a')).map((link) => link.textContent ?? '')
+    const at = (title: string) => rows.findIndex((text) => text.includes(title))
+    // Modal verbs → their rule → a conversation full of modal verbs → negation → its rule → a text that needs kein.
+    expect(at('Modalverben')).toBeGreaterThan(-1)
+    expect(at('Modalverben')).toBeLessThan(at('Am Telefon'))
+    expect(at('Am Telefon')).toBeLessThan(at('Negation'))
+    expect(at('Negation')).toBeLessThan(at('Unser Hund Max'))
+    for (const kind of ['درس', 'قاعدة', 'نص', 'محادثة']) expect(group.textContent).toContain(kind)
   })
 
-  it('links a lesson to the grammar rule it practises', () => {
-    renderWithRoutes('/levels/a1')
+  it('offers to start at the first step, and continues from the first step not done', () => {
+    renderWithRoutes('/levels')
+    expect(screen.getByRole('link', { name: 'ابدأ' })).toHaveAttribute('href', '/lessons/a1/begruessungen')
+  })
 
-    expect(screen.getAllByRole('link', { name: /Akkusativ/ }).some((link) => link.getAttribute('href')?.startsWith('/grammar/a1/'))).toBe(true)
+  it('continues the plan from the first step not done and marks it as next', () => {
+    for (const lessonId of ['a1-m01-l01', 'a1-m01-l02', 'a1-m01-l06']) {
+      useProgressStore.getState().completeLesson({ lessonId, moduleId: 'a1-m01', level: 'A1', accuracy: 1 })
+    }
+    renderWithRoutes('/levels')
+
+    // The first chapter is done; the plan goes on with the Alphabet, in the chapter that is now open.
+    expect(screen.getByRole('link', { name: 'تابع' })).toHaveAttribute('href', '/lessons/a1/alphabet')
+    expect(within(planList()).getByRole('link', { name: /Alphabet/ })).toHaveTextContent('التالي')
+    // The finished chapter is folded away; its mark says so.
+    expect(within(planList()).queryByRole('link', { name: /Begrüßungen/ })).not.toBeInTheDocument()
+  })
+
+  it('says which steps are done', () => {
+    useProgressStore.getState().completeLesson({ lessonId: 'a1-m01-l01', moduleId: 'a1-m01', level: 'A1', accuracy: 1 })
+    renderWithRoutes('/levels')
+
+    expect(within(planList()).getByRole('link', { name: /Begrüßungen/ })).toHaveTextContent('مكتمل')
+  })
+
+  it('says that B1 and B2 are on their way, and offers the placement test', () => {
+    renderWithRoutes('/levels')
+    expect(screen.getByText(/B1 وB2 قيد الإعداد/)).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'ابدأ اختبار تحديد المستوى' })).toHaveAttribute('href', '/placement-test')
+  })
+})
+
+describe('level addresses', () => {
+  beforeEach(() => {
+    useProgressStore.getState().resetProgress()
+  })
+
+  it('leads /levels/a1 — which used to be the level path — to the plan', () => {
+    renderWithRoutes('/levels/a1')
+    expect(screen.getByRole('heading', { name: /الخطة الشاملة/ })).toBeInTheDocument()
+    expect(planList()).toBeInTheDocument()
   })
 
   it('redirects to /levels when given an invalid level slug', () => {
     renderWithRoutes('/levels/z9')
-
-    expect(screen.getByRole('heading', { name: /مسار التعلّم والمستويات/ })).toBeInTheDocument()
-    expect(screen.queryByText('Wochentage und Monate')).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /الخطة الشاملة/ })).toBeInTheDocument()
   })
 
-  it('shows a coming-soon message for a valid level with no modules', () => {
+  it('leads a level without content to the plan, which says it is coming', () => {
     renderWithRoutes('/levels/b1')
     expect(screen.getByText(/قيد الإعداد/)).toBeInTheDocument()
   })
 
-  it('renders the module and lesson list for A2 now that it has content', () => {
-    renderWithRoutes('/levels/a2')
-    expect(screen.getByText(/Vergleiche/)).toBeInTheDocument()
-    expect(screen.getByText('Komparativ und Superlativ')).toBeInTheDocument()
+  it('shows a coming-soon message for the texts of a level with none', () => {
+    renderWithRoutes('/levels/b1?tab=stories')
+    expect(screen.getByText(/محتوى هذا المستوى قيد الإعداد/)).toBeInTheDocument()
+  })
+})
+
+describe('the texts & conversations library of a level', () => {
+  beforeEach(() => {
+    useProgressStore.getState().resetProgress()
   })
 
-  it('offers only the Lessons and Texts & conversations tabs — there is no Grammar tab', () => {
-    renderWithRoutes('/levels/a1')
-
-    const tabs = screen.getAllByRole('tab').map((tab) => tab.textContent?.trim())
-    expect(tabs).toEqual(['الدروس', 'نصوص ومحادثات'])
-    expect(screen.queryByRole('tab', { name: 'القواعد' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('tab', { name: 'محادثة' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('tab', { name: 'نصوص للقراءة' })).not.toBeInTheDocument()
-  })
-
-  it('defaults to the Lessons tab and switches to the combined texts & conversations tab', async () => {
-    const user = userEvent.setup()
-    renderWithRoutes('/levels/a1')
-
-    // Lessons tab is the default view.
-    expect(screen.getByText('Begrüßungen')).toBeInTheDocument()
-
-    await user.click(screen.getByRole('tab', { name: 'نصوص ومحادثات' }))
-    expect(screen.queryByText('Begrüßungen')).not.toBeInTheDocument()
-    // Reading texts and conversations are listed together, as links to their own pages.
-    expect(screen.getByRole('heading', { name: /نصوص للقراءة/ })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: /محادثات/ })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Ich stelle mich vor/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a1\/texts\/.+/))
-    expect(screen.getByRole('link', { name: /Im Wohnzimmer/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a1\/texts\/dialogue-wohnung-informell$/))
-
-    await user.click(screen.getByRole('tab', { name: 'الدروس' }))
-    expect(screen.getByText('Begrüßungen')).toBeInTheDocument()
-  })
-
-  it('opens the texts & conversations tab straight from ?tab=stories', () => {
+  it('lists reading texts and conversations together, as links to their own pages', () => {
     renderWithRoutes('/levels/a1?tab=stories')
 
-    expect(screen.getByRole('tab', { name: 'نصوص ومحادثات' })).toHaveAttribute('aria-selected', 'true')
+    expect(screen.getByRole('heading', { name: /نصوص ومحادثات/, level: 1 })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /نصوص للقراءة/ })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /محادثات/, level: 2 })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Ich stelle mich vor/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a1\/texts\/.+/))
+    expect(screen.getByRole('link', { name: /Im Wohnzimmer/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a1\/texts\/dialogue-wohnung-informell$/))
     expect(screen.getByRole('link', { name: /Mein Tag/ })).toBeInTheDocument()
   })
 
-  it('lists A2 texts and conversations too', async () => {
-    const user = userEvent.setup()
-    renderWithRoutes('/levels/a2')
+  it('lists A2 texts and conversations too', () => {
+    renderWithRoutes('/levels/a2?tab=stories')
 
-    await user.click(screen.getByRole('tab', { name: 'نصوص ومحادثات' }))
     expect(screen.getByRole('link', { name: /Zwei Wohnungen im Vergleich/ })).toHaveAttribute('href', expect.stringMatching(/^\/levels\/a2\/texts\//))
     expect(screen.getByRole('link', { name: /Mein Wochenende/ })).toBeInTheDocument()
   })

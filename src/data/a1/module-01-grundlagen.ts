@@ -1,5 +1,7 @@
 import type { Lesson } from '@/types'
 
+import { lessonFragewoerter } from './lesson-fragewoerter'
+
 export const lessonBegruessungen: Lesson = {
   id: 'a1-m01-l01',
   slug: 'begruessungen',
@@ -521,5 +523,6 @@ export const module01Grundlagen = {
     lessonAlphabet,
     lessonZahlen,
     lessonPersonalpronomen,
+    lessonFragewoerter,
   ],
 }

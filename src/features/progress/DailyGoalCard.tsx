@@ -2,20 +2,15 @@ import { CalendarCheck, Target } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { Card } from '@/components/ui'
-import { answersOn } from '@/lib/stats'
-import { useSettingsStore } from '@/store/settingsStore'
-import { useStatsStore } from '@/store/statsStore'
+
+import { useDailyGoalProgress } from './useDailyGoalProgress'
 
 const RADIUS = 42
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
 /** Today's questions against the daily goal, as a ring with the numbers beside it (the ring alone would say nothing to a screen reader). */
 export function DailyGoalCard() {
-  const goal = useSettingsStore((state) => state.settings.dailyGoal)
-  const days = useStatsStore((state) => state.days)
-  const answered = answersOn({ days, byType: {}, byModule: {} })
-  const reached = answered >= goal
-  const ratio = Math.min(answered / goal, 1)
+  const { goal, answered, reached, ratio } = useDailyGoalProgress()
 
   return (
     <Card>

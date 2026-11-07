@@ -24,12 +24,13 @@ The product is organised around the CEFR ladder — **A1 → A2 → B1 → B2** 
 
 | | A1 | A2 | B1 | B2 |
 | --- | :---: | :---: | :---: | :---: |
-| Modules | 20 | 15 | — | — |
-| Lessons | 32 | 27 | — | — |
-| Vocabulary items | 297 | 438 | — | — |
-| Exercises | 316 | 304 | — | — |
+| Modules | 20 | 18 | — | — |
+| Lessons | 34 | 30 | — | — |
+| Vocabulary items | 316 | 459 | — | — |
+| Exercises | 340 | 341 | — | — |
 | Reading texts | 17 | 18 | — | — |
-| Conversations | 40 | 43 | — | — |
+| Conversations | 40 | 52 | — | — |
+| Plan chapters (A1 → A2 as one plan, see `docs/learning-plan.md`) | 10 | 9 | — | — |
 | Grammar rules authored (of the 70-rule roadmap) | 16 / 16 | 18 / 18 | 0 / 17 | 0 / 19 |
 
 B1 and B2 are **planned, not yet authored**; the app shows them as “coming soon”. The figures come from the content in `src/data` (the test count from the last full run).

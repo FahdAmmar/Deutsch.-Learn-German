@@ -31,3 +31,7 @@ export const MODULE_FORMS: ArabicCountForms = { one: 'وحدة واحدة', two:
 export const CHAPTER_FORMS: ArabicCountForms = { one: 'فصل واحد', two: 'فصلان', few: 'فصول', many: 'فصلاً' }
 export const WORD_FORMS: ArabicCountForms = { one: 'كلمة واحدة', two: 'كلمتان', few: 'كلمات', many: 'كلمة' }
 export const DAY_FORMS: ArabicCountForms = { one: 'يوم واحد', two: 'يومان', few: 'أيام', many: 'يوماً' }
+export const RULE_FORMS: ArabicCountForms = { one: 'قاعدة واحدة', two: 'قاعدتان', few: 'قواعد', many: 'قاعدة' }
+export const TEXT_FORMS: ArabicCountForms = { one: 'نص واحد', two: 'نصان', few: 'نصوص', many: 'نصاً' }
+export const CONVERSATION_FORMS: ArabicCountForms = { one: 'محادثة واحدة', two: 'محادثتان', few: 'محادثات', many: 'محادثة' }
+export const STEP_FORMS: ArabicCountForms = { one: 'خطوة واحدة', two: 'خطوتان', few: 'خطوات', many: 'خطوة' }

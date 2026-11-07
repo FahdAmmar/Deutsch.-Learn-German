@@ -44,12 +44,47 @@ the lesson to continue); everything else stays quiet.
 - Tab lists use arrow keys, in the reading direction (`tabsHelpers.ts`).
 - Arabic number agreement goes through `utils/arabicCount.ts` (1 / 2 / 3–10 / 11+ forms).
 
+## Dashboard: today's plan
+
+The dashboard answers one question — what should I do now? — and keeps everything else quiet.
+
+- **One loud block.** `TodayPanel` is the navy panel. When today's session holds words to keep or topics to
+  strengthen, it leads: what the session is made of (from `dailySessionParts`) and one way to start it. Until
+  then — a first visit, or only new questions left — the next lesson leads, because questions from a lesson the
+  learner has not met are not a way to begin. Flashcard review and the placement test are secondary and appear
+  only when they apply (words due; a learner who has not started).
+- **Numbers are type.** `ProgressStrip` states level, lessons, words and streak as four figures in a
+  description list — no tiles, no icon plates. Each figure is shown once on this screen.
+- **Below the fold, in order:** the next lesson (`ContinueLearningCard`), the week and recent activity, the next
+  lessons on the path, and the special letters. The full record lives on the progress page.
+- The session plan and the daily-goal figures come from `useDailySessionPlan` and `useDailyGoalProgress`, the
+  same source the practice page and the goal card read, so the dashboard never states a different number from
+  the screen it links to.
+
+## Navigation
+
+The sidebar and the mobile drawer share one grouped list (`nav-items.ts`): today, **learn** (levels, grammar,
+vocabulary), **practise** (review, reading, exercises, pronunciation, my texts), and the learner's own record
+(progress, settings). A lesson keeps "Levels" lit, since a lesson belongs to a level. No item changes its
+destination as the learner progresses, except reading, which opens the texts of the current level; the next
+lesson is the dashboard's call to action rather than a menu item. Labels are one or two words. The phone's bottom
+bar holds today, levels, grammar and exercises, and the rest sits behind "More".
+
+## Focus and German text
+
+- A panel that is navy in light mode draws its own focus ring in the panel's foreground colour: the global ring
+  is navy and would disappear on it.
+- German text is never transformed to upper case. CSS upper-casing turns `ß` into `SS` and writes `ich` as `ICH`
+  in a conjugation table, which teaches the wrong form. Labels that need emphasis use weight or size.
+
 ## Level page: the learning path
 
-A level is shown as an ordered path of **chapters** (`src/data/paths/`), not as a list of
-modules. Each chapter opens with a small interactive illustration that previews what it
-teaches (`features/levels/path/ChapterVisual.tsx`): tappable letters, a week strip with a
-2:30 clock, a colour-coded sentence, or a model phrase. Lessons sit on the chapter's rail and
-link straight to the grammar rules they practise. Numbering is allowed here because the
-chapters really are a sequence. On wide screens the chapter index is a sticky column; on
-narrow screens it becomes a scrolling strip.
+The study plan is **one list**. A1 and A2 are one sequence (`src/data/paths/`): every lesson, grammar rule,
+reading text and conversation, in the order they are to be studied, in a single outline
+(`features/levels/PlanSidelist.tsx`). It is the whole of `/levels` — beside it only the step to continue
+with — and the same list opens as a drawer from the header button «خطة الدراسة» on any page, marking the
+step you are on. Chapters only group the list and open or close like an accordion: there is no map, no
+tiles, no illustration and no second level of navigation. Chapters are numbered straight through (A2
+carries on where A1 stops). Each step is named in words by its kind (درس / قاعدة / نص / محادثة), never by icon
+or colour alone, and the done and "next" marks are text for a screen reader too. At the end of a lesson,
+a rule and a text the "next step in the plan" card says what comes next.

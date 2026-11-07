@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test'
 
 const PAGES = [
   '/dashboard',
+  '/levels',
   '/lessons/a2/adjektivdeklination',
   '/levels/a1?tab=stories',
   '/levels/a1/texts/a1-read-01',

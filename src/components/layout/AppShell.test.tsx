@@ -1,4 +1,4 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeAll, describe, expect, it } from 'vitest'
@@ -55,6 +55,35 @@ describe('AppShell search', () => {
     await user.click(document.body)
     await user.keyboard('/')
     expect(await screen.findByRole('dialog', { name: 'بحث' })).toBeInTheDocument()
+  })
+})
+
+describe('AppShell study plan', () => {
+  beforeAll(async () => {
+    await import('@/features/levels/PlanDrawer')
+  }, 60_000)
+
+  it('opens the whole A1 → A2 plan from the header button, on any page, and closes it with Escape', async () => {
+    const user = userEvent.setup()
+    renderShell()
+
+    await user.click(screen.getByRole('button', { name: /خطة الدراسة/ }))
+    const dialog = await screen.findByRole('dialog', { name: 'خطة الدراسة' })
+    expect(within(dialog).getByRole('navigation', { name: 'خطة الدراسة من A1 إلى A2' })).toBeInTheDocument()
+    expect(within(dialog).getByRole('link', { name: /Begrüßungen/ })).toBeInTheDocument()
+
+    await user.keyboard('{Escape}')
+    expect(screen.queryByRole('dialog', { name: 'خطة الدراسة' })).not.toBeInTheDocument()
+  })
+
+  it('closes after a step is chosen', async () => {
+    const user = userEvent.setup()
+    renderShell()
+
+    await user.click(screen.getByRole('button', { name: /خطة الدراسة/ }))
+    const dialog = await screen.findByRole('dialog', { name: 'خطة الدراسة' })
+    await user.click(within(dialog).getByRole('link', { name: /Begrüßungen/ }))
+    expect(screen.queryByRole('dialog', { name: 'خطة الدراسة' })).not.toBeInTheDocument()
   })
 })
 

@@ -1,12 +1,23 @@
 import type { CEFRLevel } from './cefr'
 
 /**
- * Which illustration opens a chapter. Each one is a small interactive piece
- * that previews what the chapter teaches (tappable letters, a week strip and
- * clock, a colour-coded sentence). `phrase` shows one model sentence and
- * `none` shows nothing (used for levels whose path is derived from modules).
+ * One stop on the plan. A chapter is not only lessons: a grammar rule, a
+ * reading text and a conversation each have their place in the order, so the
+ * learner meets a rule right after the lesson that needs it and reads the
+ * text once the rule behind it is known.
+ *
+ * - `lesson`: a lesson id (`a1-m03-l01`)
+ * - `rule`: a grammar-roadmap rule number (`data/grammar/roadmap.ts`)
+ * - `reading`: a reading text id (`a1-read-01`)
+ * - `conversation`: a standalone conversation id (`dialogue-a1-am-telefon`)
  */
-export type ChapterVisualKind = 'letters' | 'time' | 'sentence' | 'phrase' | 'none'
+export type PathStep =
+  | { kind: 'lesson'; id: string }
+  | { kind: 'rule'; number: number }
+  | { kind: 'reading'; id: string }
+  | { kind: 'conversation'; id: string }
+
+export type PathStepKind = PathStep['kind']
 
 export interface PathChapter {
   id: string
@@ -14,11 +25,11 @@ export interface PathChapter {
   titleDe: string
   /** One line, in Arabic: what the learner can do once the chapter is finished. */
   goalAr: string
-  visual: ChapterVisualKind
-  /** Model sentence for the `phrase` visual. */
-  sample?: { de: string; ar: string }
-  /** Lessons in learning order. Lessons themselves stay in their modules; this only sequences them. */
-  lessonIds: string[]
+  /**
+   * Everything the chapter holds, in learning order. Lessons, rules and stories stay where they are
+   * authored; this only sequences them.
+   */
+  steps: PathStep[]
 }
 
 export interface LevelPath {

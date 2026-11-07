@@ -95,9 +95,14 @@ skims over; they do not replace the review. Two rules follow from them:
 - If a finding is a real homograph (a lower-case word that is also a verb form, such as `reise`), add the
   word to `LOWERCASE_ALLOWED` in that test **with a reason**; do not rewrite correct German to satisfy it.
 
-Vocabulary lessons must not use a construction the learner has not met. `src/data/paths/a2.ts` places the
-lessons, and `src/lib/learningPath.test.ts` asserts the order of the dependencies that matter (reflexive
-verbs before the lessons that use them).
+Vocabulary lessons must not use a construction the learner has not met. `src/data/paths/a1.ts` and `a2.ts`
+place the lessons — together with the grammar rules, reading texts and conversations — on one plan, and
+`src/lib/learningPath.test.ts` asserts the order of the dependencies that matter (reflexive verbs before the
+lessons that use them, a text after the rule it leans on).
+
+**A new lesson must be placed on the plan**: add `lesson('<id>')` to the chapter that needs it, right where its
+topic and prerequisites fit, and put its grammar rule (if the roadmap has one) straight after it. The plan test
+fails if a lesson is missing or placed twice.
 
 ## Before marking a lesson done
 

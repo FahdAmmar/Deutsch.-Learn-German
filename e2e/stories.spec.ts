@@ -1,21 +1,32 @@
 import { expect, test } from '@playwright/test'
 
-test.describe('level page tabs', () => {
+test.describe('level addresses', () => {
   for (const level of ['a1', 'a2']) {
-    test(`${level.toUpperCase()} has only Lessons and Texts & conversations — no Grammar tab`, async ({ page }) => {
+    test(`/levels/${level} leads to the one study plan`, async ({ page }) => {
       await page.goto(`/levels/${level}`)
-      const tabs = page.getByRole('tab')
-      await expect(tabs).toHaveText(['الدروس', 'نصوص ومحادثات'])
-      await expect(page.getByRole('tab', { name: 'القواعد' })).toHaveCount(0)
+      await expect(page).toHaveURL(/\/levels$/)
+      await expect(page.getByRole('navigation', { name: 'خطة الدراسة من A1 إلى A2' })).toBeVisible()
+      await expect(page.getByRole('tab')).toHaveCount(0)
     })
   }
 })
 
+test.describe('the study plan', () => {
+  test('opens from the header on any page and lists A1 and A2 in one list', async ({ page }) => {
+    await page.goto('/lessons/a1/alphabet')
+    await page.getByRole('button', { name: /خطة الدراسة/ }).click()
+    const dialog = page.getByRole('dialog', { name: 'خطة الدراسة' })
+    await expect(dialog.getByRole('navigation', { name: 'خطة الدراسة من A1 إلى A2' })).toBeVisible()
+    // The step being read is marked.
+    await expect(dialog.getByRole('link', { current: 'step' })).toContainText('Alphabet')
+    await page.keyboard.press('Escape')
+    await expect(dialog).toHaveCount(0)
+  })
+})
+
 test.describe('texts & conversations', () => {
-  test('a text opens from the list and the back link returns to the same tab', async ({ page }) => {
-    await page.goto('/levels/a1')
-    await page.getByRole('tab', { name: 'نصوص ومحادثات' }).click()
-    await expect(page).toHaveURL(/tab=stories/)
+  test('a text opens from the library and the back link returns to it', async ({ page }) => {
+    await page.goto('/levels/a1?tab=stories')
 
     await page.getByRole('link', { name: /Mein Tag/ }).click()
     await expect(page).toHaveURL(/\/levels\/a1\/texts\/a1-read-02$/)
@@ -24,7 +35,7 @@ test.describe('texts & conversations', () => {
 
     await page.getByRole('link', { name: /نصوص ومحادثات A1/ }).click()
     await expect(page).toHaveURL(/\/levels\/a1\?tab=stories$/)
-    await expect(page.getByRole('tab', { name: 'نصوص ومحادثات' })).toHaveAttribute('aria-selected', 'true')
+    await expect(page.getByRole('heading', { name: /نصوص ومحادثات/, level: 1 })).toBeVisible()
   })
 
   test('a conversation opens from the A2 list', async ({ page }) => {

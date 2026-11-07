@@ -8,7 +8,7 @@ import {
   getNextLesson,
   getVocabularyForLevel,
 } from './curriculum'
-import { getLevelChapters } from './learningPath'
+import { getLevelChapters, getPathLessons } from './learningPath'
 
 describe('curriculum helpers (against real A1 data)', () => {
   it('returns all authored A1 modules in order', () => {
@@ -78,8 +78,7 @@ describe('curriculum helpers (against real A1 data)', () => {
   })
 
   it('returns undefined when asking for the lesson after the very last one', () => {
-    const modules = getModulesForLevel('A1')
-    const lastLesson = modules.at(-1)!.lessons.at(-1)!
+    const lastLesson = getPathLessons('A1').at(-1)!
     expect(getNextLesson(lastLesson.id)).toBeUndefined()
   })
 

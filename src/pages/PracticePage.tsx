@@ -27,7 +27,9 @@ import { getWritingTasksForLevel } from '@/data/writing'
 import { ExerciseRunner } from '@/features/exercises/ExerciseRunner'
 import { buildCompoundDrill, getCompoundsForLevel } from '@/features/practice/compoundDrill'
 import { CompoundsReference } from '@/features/practice/CompoundsReference'
-import { buildDailySession } from '@/features/practice/dailySession'
+import { dailySessionParts } from '@/features/practice/dailySession'
+import type { DailySession } from '@/features/practice/dailySession'
+import { useDailySessionPlan } from '@/features/practice/useDailySessionPlan'
 import { GrammarPracticeGroup } from '@/features/practice/GrammarPracticeGroup'
 import { GenderRulesReference } from '@/features/practice/GenderRulesReference'
 import { buildMinimalPairDrill, getMinimalPairsForLevel } from '@/features/practice/minimalPairDrill'
@@ -47,7 +49,6 @@ import {
   getVocabularyForLevel,
 } from '@/lib/curriculum'
 import { useProgressStore } from '@/store/progressStore'
-import { useSettingsStore } from '@/store/settingsStore'
 import { useStatsStore } from '@/store/statsStore'
 import type { CEFRLevel, Exercise } from '@/types'
 import { shuffle } from '@/utils/shuffle'
@@ -57,33 +58,22 @@ interface ActiveSession {
   exercises: Exercise[]
 }
 
-/** "5 كلمات للمراجعة · 3 من نقاط ضعفك · 2 جديدة": what today's session is made of, leaving out the parts that are empty. */
-function dailyBreakdown(daily: { due: number; weak: number; fresh: number; exercises: readonly unknown[] }): string | undefined {
-  const parts = [
-    daily.due > 0 ? `${daily.due} للمراجعة` : null,
-    daily.weak > 0 ? `${daily.weak} من نقاط ضعفك` : null,
-    daily.fresh > 0 ? `${daily.fresh} جديدة` : null,
-  ].filter((part) => part !== null)
+/** "10 سؤالاً: 5 للمراجعة · 3 من نقاط ضعفك · 2 جديدة": what today's session is made of, leaving out the parts that are empty. */
+function dailyBreakdown(daily: DailySession): string | undefined {
+  const parts = dailySessionParts(daily)
   return parts.length > 0 ? `${daily.exercises.length} سؤالاً: ${parts.join(' · ')}` : undefined
 }
 
 export default function PracticePage() {
   const currentLevel = useProgressStore((state) => state.currentLevel)
   const byModule = useStatsStore((state) => state.byModule)
-  const dailyGoal = useSettingsStore((state) => state.settings.dailyGoal)
-  const lessons = useProgressStore((state) => state.lessons)
-  const vocabulary = useProgressStore((state) => state.vocabulary)
-  const savedVocabularyIds = useProgressStore((state) => state.savedVocabularyIds)
   const [level, setLevel] = useState<CEFRLevel>(currentLevel)
   const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
 
   const levelExercises = useMemo(() => getLessonsForLevel(level).flatMap((lesson) => lesson.exercises), [level])
-  // Today's session is planned up front so the card can say what is in it; it is replanned only when what it is made from changes.
-  const daily = useMemo(
-    () => buildDailySession({ progress: { lessons, vocabulary, savedVocabularyIds }, byModule, goal: dailyGoal, levelExercises }),
-    [lessons, vocabulary, savedVocabularyIds, byModule, dailyGoal, levelExercises],
-  )
+  // Today's session is planned up front so the card can say what is in it.
+  const daily = useDailySessionPlan(level)
   // The dashboard links here with ?session=daily: start it at once, and drop the parameter so going back does not restart it.
   const [session, setSession] = useState<ActiveSession | null>(() =>
     searchParams.get('session') === 'daily' && daily.exercises.length > 0 ? { title: 'جلسة اليوم', exercises: daily.exercises } : null,

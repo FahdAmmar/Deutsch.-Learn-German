@@ -10,6 +10,7 @@ export const LESSON_GRAMMAR_LINKS: Readonly<Record<string, readonly number[]>> =
   // A1
   'a1-m01-l02': [3, 5],
   'a1-m01-l05': [1],
+  'a1-m01-l06': [5],
   'a1-m03-l01': [2],
   'a1-m03-l02': [2],
   'a1-m03-l03': [3],

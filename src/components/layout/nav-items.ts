@@ -1,8 +1,8 @@
 import type { LucideIcon } from 'lucide-react'
-import { BookOpen, BookText, CirclePlay, Languages, Layers, LayoutDashboard, ListChecks, Mic, PenLine, Route, Settings, TrendingUp } from 'lucide-react'
+import { BookOpen, BookText, Languages, Layers, LayoutDashboard, ListChecks, Mic, PenLine, Route, Settings, TrendingUp } from 'lucide-react'
 
 /** Items whose destination depends on the learner's progress rather than being a fixed route. */
-export type DynamicDestination = 'continue-lesson' | 'reading'
+export type DynamicDestination = 'reading'
 
 export interface NavItem {
   id: string
@@ -13,18 +13,51 @@ export interface NavItem {
   dynamic?: DynamicDestination
 }
 
-/** The primary navigation, in the order of the DeutschWelt design. */
-export const NAV_ITEMS: NavItem[] = [
-  { id: 'dashboard', to: '/dashboard', labelAr: 'لوحة التعلّم', icon: LayoutDashboard },
-  { id: 'levels', to: '/levels', labelAr: 'مسار التعلّم والمستويات', icon: Route },
-  { id: 'lesson', dynamic: 'continue-lesson', labelAr: 'درس تفاعلي', icon: CirclePlay },
-  { id: 'grammar', to: '/grammar', labelAr: 'قواعد الألمانية', icon: BookOpen },
-  { id: 'vocabulary', to: '/vocabulary', labelAr: 'بنك المفردات', icon: Languages },
-  { id: 'review', to: '/review', labelAr: 'بطاقات الاستذكار', icon: Layers },
-  { id: 'reading', dynamic: 'reading', labelAr: 'تدريب القراءة', icon: BookText },
-  { id: 'my-text', to: '/my-text', labelAr: 'تدريب على نصّي', icon: PenLine },
-  { id: 'pronunciation', to: '/pronunciation', labelAr: 'تدريب النطق', icon: Mic },
-  { id: 'practice', to: '/practice', labelAr: 'التمارين والاختبارات', icon: ListChecks },
-  { id: 'progress', to: '/progress', labelAr: 'إحصائيات التقدّم', icon: TrendingUp },
-  { id: 'settings', to: '/settings', labelAr: 'الإعدادات', icon: Settings },
+export interface NavGroup {
+  id: string
+  /** The group's heading. A group without one is set apart by a rule instead. */
+  labelAr?: string
+  items: NavItem[]
+}
+
+/**
+ * The primary navigation, grouped by what the learner is doing: today's plan, learning something new, practising
+ * what was learned, and looking back. The next lesson is not an item of its own — it is the dashboard's call to
+ * action — so no item changes its destination as the learner progresses, except reading, which opens the
+ * texts of the current level.
+ */
+export const NAV_GROUPS: NavGroup[] = [
+  {
+    id: 'today',
+    items: [{ id: 'dashboard', to: '/dashboard', labelAr: 'اليوم', icon: LayoutDashboard }],
+  },
+  {
+    id: 'learn',
+    labelAr: 'تعلّم',
+    items: [
+      { id: 'levels', to: '/levels', labelAr: 'المستويات', icon: Route },
+      { id: 'grammar', to: '/grammar', labelAr: 'القواعد', icon: BookOpen },
+      { id: 'vocabulary', to: '/vocabulary', labelAr: 'المفردات', icon: Languages },
+    ],
+  },
+  {
+    id: 'practice',
+    labelAr: 'تدريب',
+    items: [
+      { id: 'review', to: '/review', labelAr: 'المراجعة', icon: Layers },
+      { id: 'reading', dynamic: 'reading', labelAr: 'القراءة', icon: BookText },
+      { id: 'practice', to: '/practice', labelAr: 'التمارين', icon: ListChecks },
+      { id: 'pronunciation', to: '/pronunciation', labelAr: 'النطق', icon: Mic },
+      { id: 'my-text', to: '/my-text', labelAr: 'نصوصي', icon: PenLine },
+    ],
+  },
+  {
+    id: 'me',
+    items: [
+      { id: 'progress', to: '/progress', labelAr: 'التقدّم', icon: TrendingUp },
+      { id: 'settings', to: '/settings', labelAr: 'الإعدادات', icon: Settings },
+    ],
+  },
 ]
+
+export const NAV_ITEMS: NavItem[] = NAV_GROUPS.flatMap((group) => group.items)

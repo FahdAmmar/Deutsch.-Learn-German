@@ -1,5 +1,6 @@
 import type { Lesson } from '@/types'
 
+import { lessonDatum } from './lesson-datum'
 import { lessonWochentage } from './lesson-wochentage'
 
 export const lessonFamilie: Lesson = {
@@ -346,5 +347,5 @@ export const module02Alltag = {
   title: 'Alltag',
   titleAr: 'الحياة اليومية',
   order: 2,
-  lessons: [lessonFamilie, lessonBerufe, lessonTagesablauf, lessonUhrzeit, lessonWochentage],
+  lessons: [lessonFamilie, lessonBerufe, lessonTagesablauf, lessonUhrzeit, lessonWochentage, lessonDatum],
 }

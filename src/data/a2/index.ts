@@ -17,6 +17,9 @@ import { module12BeimArzt } from './module-12-beim-arzt'
 import { module13Wohnungssuche } from './module-13-wohnungssuche'
 import { module14FesteUndFeiern } from './module-14-feste-und-feiern'
 import { module15Wortschatz } from './module-15-wortschatz'
+import { module16HoeflicheBitten } from './module-16-hoefliche-bitten'
+import { module17Zeitangaben } from './module-17-zeitangaben'
+import { module18VerbenMitPraepositionen } from './module-18-verben-mit-praepositionen'
 
 const authoredA2Modules: Module[] = [
   module01Vergleiche,
@@ -34,6 +37,9 @@ const authoredA2Modules: Module[] = [
   module13Wohnungssuche,
   module14FesteUndFeiern,
   module15Wortschatz,
+  module16HoeflicheBitten,
+  module17Zeitangaben,
+  module18VerbenMitPraepositionen,
 ]
 
 /**

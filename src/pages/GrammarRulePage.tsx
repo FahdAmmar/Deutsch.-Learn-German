@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { Button } from '@/components/ui'
 import { GrammarRuleView } from '@/features/grammar/rule/GrammarRuleView'
+import { NextInPlan } from '@/features/levels/NextInPlan'
 import { RuleNeighborNav } from '@/features/grammar/rule/RuleNeighborNav'
 import { useGrammarRule } from '@/features/grammar/rule/useGrammarRule'
 import { CEFR_LEVELS } from '@/types'
@@ -43,5 +44,12 @@ export default function GrammarRulePage() {
     )
   }
 
-  return <GrammarRuleView rule={state.rule} />
+  return (
+    <>
+      <GrammarRuleView rule={state.rule} />
+      <div dir="rtl" className="mx-auto mt-8 max-w-4xl">
+        <NextInPlan stepKey={`rule:${entry.number}`} />
+      </div>
+    </>
+  )
 }

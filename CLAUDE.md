@@ -70,7 +70,8 @@ Before calling any phase complete: `typecheck && lint && test && build`.
   shown as named blocks — and `acceptedOrders` — put every order German allows there, a test checks the verb's
   place in each); collocations and word families (`data/collocations.ts`, `data/wordFamilies.ts`, with drills
   beside the others; a word family appears at a level only with the members that level has met); today's session
-  (`features/practice/dailySession.ts`: due words, then weak spots, then new questions); role-play (`lib/rolePlay.ts`
+  (`features/practice/dailySession.ts`: due words, then weak spots, then new questions; the practice page and the
+  dashboard's `TodayPanel` both read it through `useDailySessionPlan`); role-play (`lib/rolePlay.ts`
   is the logic, `features/roleplay/` the screen, route `/levels/:level/texts/:itemId/rollenspiel`); shadowing in
   the stories (`features/stories/ShadowingPanel.tsx`, reuses the pronunciation card); Anki export
   (`lib/ankiExport.ts`) and printing (`lib/printPrep.ts` + `hooks/usePrintFriendly.ts`, the `print:` variants and
@@ -107,11 +108,26 @@ Before calling any phase complete: `typecheck && lint && test && build`.
   so a screen that uses it must sit under `<CurriculumGate>` (see
   `routes/router.tsx`), and tests get every level from `test/setup.ts`. A new
   level = a loader in `LEVEL_SOURCES`
-- `data/paths/` — the learning order of a level as chapters of lesson ids
-  (A1 is hand-sequenced: letters → days & time → grammar foundation → …);
-  `lib/learningPath.ts` resolves it, and `getNextLesson` and the dashboard's
-  "continue" follow it. Levels without a path fall back to module order.
-  A test fails if any A1 lesson is missing from the path
+- `data/paths/` — **the plan**: A1 and A2 are one sequence of chapters (numbered straight through, A2 carries
+  on at the number after A1's last). A chapter holds *steps* of four kinds, in learning order: a lesson
+  (`lesson('a1-m03-l01')`), a grammar rule (`rule(3)`, the roadmap number), a reading text
+  (`reading('a1-read-02')`) and a standalone conversation (`conversation('dialogue-a1-am-telefon')`);
+  the builders are in `paths/steps.ts`. A rule follows the lesson that introduces it; a text or conversation
+  comes after the grammar it leans on and beside the topic it is about. `lib/learningPath.ts` resolves the
+  steps (`getLevelChapters`, `getNextPlanStep`, `getResumeStep`, `getChapterProgress`); a step's identity
+  across the lesson, grammar and story progress stores is `stepKey` (`lesson:<id>`, `rule:<n>`, `story:<id>`),
+  and `lib/planProgress.ts` says when each counts as done (lesson completed, rule quiz passed, text quiz
+  ≥ 70 % or dictation finished). `getNextLesson` and the dashboard's "continue" still follow the lessons of the
+  plan. Levels without a path fall back to module order. `lib/learningPath.test.ts` fails if a lesson, a rule
+  of the level, a reading text or a standalone conversation is missing from (or twice on) the plan, and pins
+  *why* each text sits after the lessons and rules it needs — adding content means placing it on the plan
+- `features/levels/` — the plan's UI. `PlanSidelist` is THE list: every lesson, rule, text and conversation of A1 → A2 in
+  one outline (chapters only open and close; no map, tiles or second level of navigation). It is the page of
+  `/levels` (beside it: the step to continue with) and the drawer `PlanDrawer`, opened from the header's
+  «خطة الدراسة» button on any page (it marks the step of the page you are on, via `activeStepKey`). `usePlan`
+  gives the plan with the learner's place in it, `usePlanCompletion` joins the three progress stores,
+  `NextInPlan` is the "next step" card at the end of a lesson, a rule and a text. `/levels/:level?tab=stories`
+  is only the texts-and-conversations library of a level; `/levels/:level` alone leads to `/levels`
 - `docs/level-alignment.md` — lessons that practise a topic the grammar roadmap places at a higher level;
   `data/grammar/levelAlignment.test.ts` pins the list, so a new mismatch fails the suite
 - `types/` — domain types: `lesson`, `exercise`, `grammar`, `vocabulary`,
@@ -149,8 +165,10 @@ Never trade correctness for a visual effect.
   `incremental-implementation`, `frontend-ui-engineering`, `performance-optimization`,
   `security-and-hardening`, `source-driven-development`), behaviour skills
   (`karpathy-guidelines`, `verification-before-completion`, `full-output-enforcement`) and design
-  skills (`frontend-design`, `design-taste-frontend-v1`, `redesign-existing-projects`). Project rules
-  always win over a skill.
+  and motion skills (`frontend-design`, `design-taste-frontend-v1`, `redesign-existing-projects`, `impeccable`,
+  `design-taste-frontend`, `hallmark`, and the `emil-design-eng` / `animate` / `*-animations` family). `impeccable`,
+  `design-taste-frontend` and `hallmark` ship scripts: none runs without the user's approval of that exact command.
+  `.claude/**` is excluded from `npm run lint` and `npm test`. Project rules always win over a skill.
 - Subagents: `code-reviewer`, `security-auditor`, `content-auditor`
 - A `PreToolUse` hook (`.claude/hooks/validate-bash.sh`) blocks a short
   list of destructive Bash patterns (`rm -rf /`, forced pushes, …)

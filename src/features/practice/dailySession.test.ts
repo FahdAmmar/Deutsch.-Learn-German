@@ -4,7 +4,7 @@ import { getLessonsForLevel, getModulesForLevel } from '@/lib/curriculum'
 import { MIN_ATTEMPTS } from './sessions'
 import type { ProgressState } from '@/types'
 
-import { buildDailySession, DAILY_MAX, DAILY_MIN, dailySessionSize } from './dailySession'
+import { buildDailySession, DAILY_MAX, DAILY_MIN, dailySessionParts, dailySessionSize } from './dailySession'
 
 const lessons = getLessonsForLevel('A1')
 const levelExercises = lessons.flatMap((lesson) => lesson.exercises)
@@ -71,5 +71,16 @@ describe('buildDailySession', () => {
   it('is as short as the level allows when there are few questions', () => {
     const session = buildDailySession({ progress: noProgress, byModule: {}, goal: 10, levelExercises: levelExercises.slice(0, 3) })
     expect(session.exercises).toHaveLength(3)
+  })
+})
+
+describe('dailySessionParts', () => {
+  it('names each part of the session, in the order the session is played', () => {
+    expect(dailySessionParts({ due: 5, weak: 3, fresh: 2 })).toEqual(['5 للمراجعة', '3 من نقاط ضعفك', '2 جديدة'])
+  })
+
+  it('leaves out the parts that are empty', () => {
+    expect(dailySessionParts({ due: 0, weak: 3, fresh: 0 })).toEqual(['3 من نقاط ضعفك'])
+    expect(dailySessionParts({ due: 0, weak: 0, fresh: 0 })).toEqual([])
   })
 })

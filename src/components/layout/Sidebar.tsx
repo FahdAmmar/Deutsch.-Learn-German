@@ -16,7 +16,7 @@ function LevelFooter() {
 
   return (
     <Link
-      to={`/levels/${currentLevel.toLowerCase()}`}
+      to="/levels"
       className="block space-y-2 border-t border-border bg-bg-alt p-4 transition-colors hover:bg-surface-sunken"
     >
       <div className="flex items-baseline justify-between gap-2">

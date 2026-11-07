@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import { useProgressStore } from '@/store/progressStore'
 import { CEFR_LEVEL_INFO } from '@/types'
 
-/** The learner's current CEFR level as a pill in the top bar; leads to the level path. */
+/** The learner's current CEFR level as a pill in the top bar; leads to the study plan. */
 export function LevelChip() {
   const currentLevel = useProgressStore((state) => state.currentLevel)
 
   return (
     <Link
-      to={`/levels/${currentLevel.toLowerCase()}`}
+      to="/levels"
       className="font-heading inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm font-bold text-primary transition-colors hover:border-border-strong"
       aria-label={`مستواك الحالي ${currentLevel}: ${CEFR_LEVEL_INFO[currentLevel].titleAr}`}
     >

@@ -1,5 +1,7 @@
 import { X } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
+
+import { useDialogFocus } from '@/hooks/useDialogFocus'
 
 import { Brand } from './Brand'
 import { NavList } from './NavList'
@@ -10,47 +12,9 @@ interface MobileDrawerProps {
   onClose: () => void
 }
 
-const FOCUSABLE = 'a[href], button:not(:disabled), [tabindex]:not([tabindex="-1"])'
-
 export function MobileDrawer({ open, onClose }: MobileDrawerProps) {
   const panelRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (!open) return
-
-    const opener = document.activeElement as HTMLElement | null
-    const panel = panelRef.current
-    panel?.querySelector<HTMLElement>(FOCUSABLE)?.focus()
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        onClose()
-        return
-      }
-      // Keep keyboard focus inside the dialog while it is open.
-      if (event.key !== 'Tab' || !panel) return
-      const focusable = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE))
-      if (focusable.length === 0) return
-      const first = focusable[0]
-      const last = focusable[focusable.length - 1]
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault()
-        last.focus()
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault()
-        first.focus()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    document.body.style.overflow = 'hidden'
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
-      opener?.focus?.()
-    }
-  }, [open, onClose])
+  useDialogFocus(open, panelRef, onClose)
 
   if (!open) return null
 

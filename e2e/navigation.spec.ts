@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test'
 
 const ROUTES: ReadonlyArray<{ path: string; heading: RegExp | string }> = [
   { path: '/dashboard', heading: /مرحباً/ },
-  { path: '/levels', heading: 'المستويات' },
-  { path: '/levels/a2', heading: /المستوى/ },
+  { path: '/levels', heading: /الخطة الشاملة/ },
+  { path: '/levels/a2', heading: /الخطة الشاملة/ },
   { path: '/levels/a1?tab=stories', heading: /الألمانية/ },
   { path: '/levels/a1/texts/a1-read-01', heading: 'Ich stelle mich vor' },
   { path: '/levels/a1/texts/dialogue-wohnung-informell', heading: 'Im Wohnzimmer' },

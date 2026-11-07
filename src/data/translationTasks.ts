@@ -67,9 +67,33 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
     de: ['Es ist halb vier.', 'Es ist drei Uhr dreißig.'],
     noteAr: 'انتبه: halb vier تعني 3:30 وليس 4:30، لأن الألمانية تعدّ «نصف الساعة الرابعة».',
   },
+  'a1-m01-l06': {
+    ar: 'ما اسمك؟ وأين تسكن؟',
+    de: [
+      'Wie heißt du? Und wo wohnst du?',
+      'Wie heißt du? Wo wohnst du?',
+      'Wie ist dein Name? Und wo wohnst du?',
+      'Wie ist dein Name? Wo wohnst du?',
+      'Wie heißen Sie? Und wo wohnen Sie?',
+      'Wie heißen Sie? Wo wohnen Sie?',
+      'Wie ist Ihr Name? Und wo wohnen Sie?',
+      'Wie ist Ihr Name? Wo wohnen Sie?',
+    ],
+    noteAr: 'السؤال بكلمة استفهام: الفعل ثانياً مباشرة بعدها (wo wohnst du).',
+  },
   'a1-m02-l05': {
     ar: 'دورة الألمانية يوم الاثنين.',
     de: ['Der Deutschkurs ist am Montag.'],
+  },
+  'a1-m02-l06': {
+    ar: 'عيد ميلادي في الخامس من مارس.',
+    de: [
+      'Mein Geburtstag ist am fünften März.',
+      'Ich habe am fünften März Geburtstag.',
+      'Mein Geburtstag ist am 5. März.',
+      'Ich habe am 5. März Geburtstag.',
+    ],
+    noteAr: 'بعد am نضيف -n إلى الترتيبي: am fünften.',
   },
   'a1-m03-l01': {
     ar: 'هي طبيبة وهو مهندس.',
@@ -235,6 +259,21 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
       'Wissen Sie, wieviel das kostet?',
     ],
     noteAr: 'في السؤال غير المباشر يذهب الفعل إلى النهاية: …wie viel das kostet.',
+  },
+  'a2-m16-l01': {
+    ar: 'هل يمكنكم مساعدتي من فضلكم؟',
+    de: ['Könnten Sie mir bitte helfen?', 'Könnten Sie mir helfen?', 'Würden Sie mir bitte helfen?', 'Könntest du mir bitte helfen?', 'Würdest du mir bitte helfen?'],
+    noteAr: 'الطلب المهذّب: Könnten/Würden + الضمير، والمصدر في النهاية.',
+  },
+  'a2-m17-l01': {
+    ar: 'أسكن في برلين منذ ثلاث سنوات.',
+    de: ['Ich wohne seit drei Jahren in Berlin.', 'Seit drei Jahren wohne ich in Berlin.', 'Ich lebe seit drei Jahren in Berlin.', 'Seit drei Jahren lebe ich in Berlin.'],
+    noteAr: 'seit + Dativ مع المضارع للأمر المستمر.',
+  },
+  'a2-m18-l01': {
+    ar: 'أنتظر الحافلة.',
+    de: ['Ich warte auf den Bus.'],
+    noteAr: 'warten auf + Akkusativ.',
   },
   'a2-m10-l01': {
     ar: 'أدّخر المال لكي أشتري سيارة.',

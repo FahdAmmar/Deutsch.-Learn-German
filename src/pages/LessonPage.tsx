@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import {
   AlertTriangle,
-  ArrowLeft,
   BookOpen,
   Check,
   CheckCircle2,
@@ -35,7 +34,8 @@ import { GermanWord } from '@/features/pronunciation/GermanWord'
 import { GrammarTopicCard } from '@/features/grammar/GrammarTopicCard'
 import { RelatedGrammarRules } from '@/features/grammar/links/RelatedGrammarRules'
 import { FlipVocabularyCard } from '@/features/vocabulary/FlipVocabularyCard'
-import { getLesson, getModuleById, getNextLesson } from '@/lib/curriculum'
+import { NextInPlan } from '@/features/levels/NextInPlan'
+import { getLesson, getModuleById } from '@/lib/curriculum'
 import { getGrammarRulesForLesson } from '@/lib/grammarLinks'
 import { useProgressStore } from '@/store/progressStore'
 import { useSettingsStore } from '@/store/settingsStore'
@@ -83,7 +83,6 @@ export default function LessonPage() {
 
   const relatedRules = useMemo(() => (lesson ? getGrammarRulesForLesson(lesson.id) : []), [lesson])
 
-  const nextLesson = lesson ? getNextLesson(lesson.id) : undefined
   const module = lesson ? getModuleById(lesson.moduleId) : undefined
 
   if (!lessonId || !level || !lesson) {
@@ -130,9 +129,9 @@ export default function LessonPage() {
       {/* Lesson header */}
       <header dir="rtl" className="space-y-4 pb-6">
         <nav aria-label="مسار الصفحة" className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-muted">
-          <Link to={`/levels/${lesson.level.toLowerCase()}`} className="inline-flex items-center gap-2 hover:text-ink">
+          <Link to="/levels" className="inline-flex items-center gap-2 hover:text-ink">
             <LevelMark level={lesson.level} size="sm" />
-            <span className="font-semibold">كل دروس المستوى</span>
+            <span className="font-semibold">الخطة الشاملة</span>
           </Link>
           {module ? (
             <>
@@ -330,17 +329,7 @@ export default function LessonPage() {
                       <Check size={28} strokeWidth={3} aria-hidden="true" />
                     </span>
                     <p className="font-sans text-xl font-bold text-ink">أحسنت! لقد أكملت هذا الدرس.</p>
-                    {nextLesson ? (
-                      <Link to={`/lessons/${nextLesson.level.toLowerCase()}/${nextLesson.slug}`}>
-                        <Button size="lg" icon={<ArrowLeft size={18} aria-hidden="true" />} iconPosition="end">
-                          الانتقال إلى الدرس التالي: {nextLesson.titleAr}
-                        </Button>
-                      </Link>
-                    ) : (
-                      <Link to={`/levels/${lesson.level.toLowerCase()}`}>
-                        <Button variant="outline">العودة إلى قائمة الدروس</Button>
-                      </Link>
-                    )}
+                    <NextInPlan stepKey={`lesson:${lesson.id}`} />
                   </>
                 ) : (
                   <>

@@ -13,7 +13,7 @@ function renderCard() {
     <MemoryRouter initialEntries={['/dashboard']}>
       <Routes>
         <Route path="/dashboard" element={<WelcomeCard />} />
-        <Route path="/levels/a1" element={<p>صفحة A1</p>} />
+        <Route path="/levels" element={<p>صفحة A1</p>} />
         <Route path="/placement-test" element={<p>اختبار المستوى</p>} />
       </Routes>
     </MemoryRouter>,

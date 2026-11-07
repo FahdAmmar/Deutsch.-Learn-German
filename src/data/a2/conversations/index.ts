@@ -16,6 +16,9 @@ import { conversationZuckerfest } from './conversation-13-zuckerfest'
 import { conversationGesternImBuero } from './conversation-14-gestern-im-buero'
 import { conversationImHotel } from './conversation-15-im-hotel'
 import { conversationAufDerBank } from './conversation-16-auf-der-bank'
+import { conversationHilfeVomNachbarn } from './conversation-17-hilfe-vom-nachbarn'
+import { conversationImFitnessstudio } from './conversation-18-im-fitnessstudio'
+import { conversationPruefungsstress } from './conversation-19-pruefungsstress'
 
 /**
  * Standalone A2 conversations: situations from daily life that belong to no
@@ -39,4 +42,7 @@ export const a2Conversations: Dialogue[] = [
   conversationZuckerfest, // m14 Feste und Feiern
   conversationImHotel, // m15 Themenwortschatz: Urlaub und Hotel
   conversationAufDerBank, // m15 Themenwortschatz: Geld und Bank
+  conversationHilfeVomNachbarn, // m16 Höfliche Bitten
+  conversationImFitnessstudio, // m17 Zeitangaben
+  conversationPruefungsstress, // m18 Verben mit Präpositionen
 ]

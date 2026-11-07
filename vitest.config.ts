@@ -13,8 +13,9 @@ export default defineConfig({
   },
   test: {
     environment: 'jsdom',
-    // Playwright specs live in e2e/ and run via `npm run test:e2e`.
-    exclude: ['e2e/**', 'node_modules/**', 'dist/**', '.kilo/**'],
+    // Playwright specs live in e2e/ and run via `npm run test:e2e`. `.claude/**` holds third-party skills that
+    // ship their own test files; those are not this app's tests.
+    exclude: ['e2e/**', 'node_modules/**', 'dist/**', '.kilo/**', '.claude/**'],
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
     css: true,

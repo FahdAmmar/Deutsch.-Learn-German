@@ -12,7 +12,7 @@ export function RuleSectionView({ section, index }: { section: RuleSection; inde
   return (
     <section id={section.id} aria-labelledby={headingId} className="scroll-mt-40 space-y-5">
       <header className="max-w-3xl space-y-2">
-        <p dir="ltr" className={cn('font-mono text-xs font-bold tracking-wider uppercase', tone.text)}>
+        <p dir="ltr" className={cn('font-mono text-xs font-bold tracking-wider', tone.text)}>
           {String(index + 1).padStart(2, '0')} / {section.kickerDe}
         </p>
         <h2 id={headingId} className="text-2xl font-bold text-ink sm:text-3xl">

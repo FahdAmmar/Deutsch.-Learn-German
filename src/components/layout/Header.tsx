@@ -1,5 +1,6 @@
 import { Brand } from './Brand'
 import { LevelChip } from './LevelChip'
+import { PlanButton } from './PlanButton'
 import { SearchButton } from './SearchButton'
 import { StreakChip } from './StreakChip'
 import { ThemeToggle } from './ThemeToggle'
@@ -10,9 +11,10 @@ import { ThemeToggle } from './ThemeToggle'
  */
 interface HeaderProps {
   onOpenSearch?: () => void
+  onOpenPlan?: () => void
 }
 
-export function Header({ onOpenSearch }: HeaderProps) {
+export function Header({ onOpenSearch, onOpenPlan }: HeaderProps) {
   return (
     <header className="print:hidden sticky top-0 z-20 flex h-16 items-center gap-3 border-b border-border bg-surface-glass px-4 backdrop-blur md:px-10">
       <Brand className="md:hidden [&>div>span:last-child]:hidden" />
@@ -20,6 +22,7 @@ export function Header({ onOpenSearch }: HeaderProps) {
         <LevelChip />
         <StreakChip />
       </div>
+      {onOpenPlan ? <PlanButton onClick={onOpenPlan} /> : null}
       {onOpenSearch ? <SearchButton onClick={onOpenSearch} /> : null}
       <ThemeToggle />
     </header>

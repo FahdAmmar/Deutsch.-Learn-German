@@ -52,3 +52,12 @@ export function buildDailySession({ progress, byModule, goal, levelExercises }: 
 
   return { exercises: [...due, ...weak, ...fresh], due: due.length, weak: weak.length, fresh: fresh.length }
 }
+
+/** What today's session is made of, one phrase per non-empty part: "5 للمراجعة", "3 من نقاط ضعفك", "2 جديدة". */
+export function dailySessionParts(session: Pick<DailySession, 'due' | 'weak' | 'fresh'>): string[] {
+  return [
+    session.due > 0 ? `${session.due} للمراجعة` : null,
+    session.weak > 0 ? `${session.weak} من نقاط ضعفك` : null,
+    session.fresh > 0 ? `${session.fresh} جديدة` : null,
+  ].filter((part): part is string => part !== null)
+}

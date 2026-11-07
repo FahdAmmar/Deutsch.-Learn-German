@@ -1,5 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom'
 
+import { NextInPlan } from '@/features/levels/NextInPlan'
 import { StoryView } from '@/features/stories/StoryView'
 import { getStory } from '@/lib/stories'
 import { CEFR_LEVELS } from '@/types'
@@ -20,5 +21,12 @@ export default function StoryPage() {
   }
 
   // Keyed by story so switching stories resets the player (and silences the old audio).
-  return <StoryView key={story.id} story={story} />
+  return (
+    <>
+      <StoryView key={story.id} story={story} />
+      <div dir="rtl" className="mx-auto mt-8 max-w-3xl">
+        <NextInPlan stepKey={`story:${story.id}`} />
+      </div>
+    </>
+  )
 }

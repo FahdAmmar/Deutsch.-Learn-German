@@ -26,7 +26,7 @@ export function RuleTableView({ block }: { block: RuleTableBlock }) {
                   dir={column.lang === 'de' ? 'ltr' : 'rtl'}
                   className={cn(
                     'px-4 py-2.5 text-start font-bold',
-                    column.lang === 'de' && 'font-mono text-xs uppercase tracking-wide',
+                    column.lang === 'de' && 'font-mono text-xs tracking-wide',
                     column.tone ? TONE_CLASSES[column.tone].text : 'text-ink',
                   )}
                 >

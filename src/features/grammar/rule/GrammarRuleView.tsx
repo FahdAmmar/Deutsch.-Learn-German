@@ -24,7 +24,7 @@ function FixedSection({ id, kicker, title, children, interactive = false }: { id
     // An interactive section (flip cards, a quiz) has nothing to print, so it stays off the paper.
     <section id={id} aria-labelledby={`${id}-title`} className={`scroll-mt-40 space-y-5 ${interactive ? 'print:hidden' : ''}`}>
       <header className="space-y-2">
-        <p dir="ltr" className="font-mono text-xs font-bold tracking-wider text-ink-faint uppercase">
+        <p dir="ltr" className="font-mono text-xs font-bold tracking-wider text-ink-faint">
           {kicker}
         </p>
         <h2 id={`${id}-title`} className="text-2xl font-bold text-ink sm:text-3xl">
