@@ -61,3 +61,9 @@ export const NAV_GROUPS: NavGroup[] = [
 ]
 
 export const NAV_ITEMS: NavItem[] = NAV_GROUPS.flatMap((group) => group.items)
+
+/**
+ * The destinations the phone's bottom bar holds, in order. Everything else in {@link NAV_ITEMS} sits behind "More"
+ * (`MoreSheet`), so the two lists can never drift apart: the sheet shows exactly the items this list leaves out.
+ */
+export const MOBILE_PRIMARY_IDS: readonly string[] = ['dashboard', 'levels', 'grammar', 'practice']

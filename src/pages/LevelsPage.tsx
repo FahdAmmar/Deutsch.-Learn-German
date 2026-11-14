@@ -72,30 +72,31 @@ export default function LevelsPage() {
             <h2 id="path-stats-title" className="text-lg font-bold text-ink">
               إحصائيات الخطة
             </h2>
-            <dl className="space-y-3">
-              <div className="flex items-center gap-3 rounded-md bg-bg p-3">
+            {/* A <dl> may hold only <dt>/<dd> (optionally in <div> groups): the icon sits beside each pair, outside it. */}
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 rounded-md bg-bg p-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-md bg-accent-muted text-accent">
                   <BookCheck size={18} aria-hidden="true" />
                 </span>
-                <div>
+                <dl>
                   <dt className="text-sm text-ink-muted">خطوات الخطة المنجزة</dt>
                   <dd className="font-heading tnum text-xl font-extrabold text-ink">
                     {plan.completedSteps} <span className="text-sm font-semibold text-ink-muted">/ {plan.totalSteps}</span>
                   </dd>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-md bg-bg p-3">
+                </dl>
+              </li>
+              <li className="flex items-center gap-3 rounded-md bg-bg p-3">
                 <span className="flex h-9 w-9 items-center justify-center rounded-md bg-plum-muted text-plum">
                   <Languages size={18} aria-hidden="true" />
                 </span>
-                <div>
+                <dl>
                   <dt className="text-sm text-ink-muted">المفردات المراجَعة</dt>
                   <dd className="font-heading tnum text-xl font-extrabold text-ink">
                     {knownWords} <span className="text-sm font-semibold text-ink-muted">/ {allWords}</span>
                   </dd>
-                </div>
-              </div>
-            </dl>
+                </dl>
+              </li>
+            </ul>
           </section>
 
           <section aria-labelledby="library-title" className="space-y-3 rounded-lg border border-border bg-surface p-5 shadow-sm">
@@ -109,7 +110,7 @@ export default function LevelsPage() {
                 <li key={level.level}>
                   <Link
                     to={`/levels/${level.level.toLowerCase()}?tab=stories`}
-                    className="inline-flex items-center rounded-md border border-border bg-bg px-3 py-1.5 text-sm font-semibold text-ink transition-colors hover:border-border-strong"
+                    className="inline-flex items-center rounded-md border border-border bg-bg px-3 py-1.5 text-sm font-semibold text-ink transition-colors hover:border-border-strong pointer-coarse:py-3"
                   >
                     {CEFR_LEVEL_INFO[level.level].titleAr}
                   </Link>

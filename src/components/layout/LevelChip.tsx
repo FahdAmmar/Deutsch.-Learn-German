@@ -11,10 +11,10 @@ export function LevelChip() {
   return (
     <Link
       to="/levels"
-      className="font-heading inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm font-bold text-primary transition-colors hover:border-border-strong"
+      className="font-heading inline-flex h-11 shrink-0 items-center gap-1.5 rounded-full border border-border bg-surface px-3 text-sm font-bold text-primary transition-colors hover:border-border-strong active:bg-surface-sunken xs:gap-2 xs:px-3.5"
       aria-label={`مستواك الحالي ${currentLevel}: ${CEFR_LEVEL_INFO[currentLevel].titleAr}`}
     >
-      <GraduationCap size={16} aria-hidden="true" />
+      <GraduationCap size={16} aria-hidden="true" className="max-xs:hidden" />
       <span dir="ltr" className="tracking-[0.04em]">
         {currentLevel}
       </span>

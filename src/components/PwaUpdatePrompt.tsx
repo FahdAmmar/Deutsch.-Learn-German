@@ -23,7 +23,7 @@ export function PwaUpdatePrompt() {
       <div
         dir="rtl"
         role="status"
-        className="fixed inset-x-4 bottom-20 z-40 flex items-center justify-between gap-3 rounded-lg border border-primary/30 bg-surface p-3 shadow-lg md:inset-x-auto md:end-6 md:bottom-6 md:w-80"
+        className="fixed inset-x-4 bottom-[calc(5rem+var(--safe-b))] z-40 flex items-center justify-between gap-3 rounded-lg border border-primary/30 bg-surface p-3 shadow-lg md:inset-x-auto md:end-6 md:bottom-6 md:w-80"
       >
         <div className="flex items-center gap-2.5">
           <RefreshCw size={18} className="shrink-0 text-primary" aria-hidden="true" />
@@ -41,7 +41,7 @@ export function PwaUpdatePrompt() {
       <div
         dir="rtl"
         role="status"
-        className="fixed inset-x-4 bottom-20 z-40 flex items-center gap-2.5 rounded-lg border border-success/30 bg-surface p-3 shadow-lg md:inset-x-auto md:end-6 md:bottom-6 md:w-80"
+        className="fixed inset-x-4 bottom-[calc(5rem+var(--safe-b))] z-40 flex items-center gap-2.5 rounded-lg border border-success/30 bg-surface p-3 shadow-lg md:inset-x-auto md:end-6 md:bottom-6 md:w-80"
       >
         <WifiOff size={18} className="shrink-0 text-success" aria-hidden="true" />
         <p className="text-sm text-ink">التطبيق جاهز الآن للعمل بدون اتصال بالإنترنت.</p>

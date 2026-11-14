@@ -11,6 +11,7 @@ import {
   Hash,
   ListOrdered,
   MessagesSquare,
+  Mic,
   PenLine,
   Scale,
   Shuffle,
@@ -23,6 +24,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Button, EmptyState, LevelTabs, PageHeader } from '@/components/ui'
 import { getExamSetsForLevel } from '@/data/exam'
+import { getSpeakingTasksForLevel } from '@/data/speaking'
 import { getWritingTasksForLevel } from '@/data/writing'
 import { ExerciseRunner } from '@/features/exercises/ExerciseRunner'
 import { buildCompoundDrill, getCompoundsForLevel } from '@/features/practice/compoundDrill'
@@ -351,6 +353,14 @@ export default function PracticePage() {
               meta={`${getWritingTasksForLevel(level).length} مهام في ${level}`}
               actionLabel="افتح مهام الكتابة"
               onStart={() => navigate('/practice/writing')}
+            />
+            <ModeCard
+              icon={Mic}
+              title="تدريب المحادثة"
+              description="تحدّث من كلمات مفتاحية، أو كوّن سؤالاً من بطاقة، أو اطلب شيئاً بأدب: بصوتك أو بالكتابة، مع فحص للنقاط ونموذج تسمعه."
+              meta={`${getSpeakingTasksForLevel(level).length} مهمة في ${level}`}
+              actionLabel="افتح مهام المحادثة"
+              onStart={() => navigate('/practice/speaking')}
             />
             <ModeCard
               icon={ClipboardCheck}

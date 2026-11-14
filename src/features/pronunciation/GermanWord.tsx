@@ -50,6 +50,8 @@ export function GermanWord({
           'inline-flex items-center rounded-sm text-start font-medium text-ink',
           'hover:bg-surface-sunken disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent',
           'px-1 -mx-1 transition-colors',
+          // A finger needs 44px; the word's line is ~28px. The invisible layer grows the target, not the layout.
+          'relative pointer-coarse:before:absolute pointer-coarse:before:-inset-x-1.5 pointer-coarse:before:-inset-y-2.5',
           isSpeaking && 'bg-accent-muted',
           sizeClasses[size],
           className,

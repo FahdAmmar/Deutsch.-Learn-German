@@ -59,7 +59,7 @@ export function LessonSectionNav({ sections, variant }: LessonSectionNavProps) {
     return (
       <nav
         aria-label="أقسام الدرس"
-        className="sticky top-14 z-10 -mx-4 border-b border-border bg-bg/95 backdrop-blur lg:hidden"
+        className="sticky top-(--header-h) z-10 -mx-4 border-b border-border bg-bg/95 backdrop-blur lg:hidden"
       >
         <ul className="flex gap-2 overflow-x-auto px-4 py-2.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {sections.map((section) => (

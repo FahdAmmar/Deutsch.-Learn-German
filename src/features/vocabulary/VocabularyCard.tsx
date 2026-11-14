@@ -44,7 +44,7 @@ export const VocabularyCard = memo(function VocabularyCard({ item, saved = false
   const showHint = useSettingsStore((state) => state.settings.showPronunciationHints)
 
   return (
-    <div className="flex h-full flex-col gap-2.5 rounded-lg border border-border bg-surface p-4">
+    <div className="flex h-full flex-col gap-2.5 rounded-lg border border-border bg-surface p-4 [contain-intrinsic-size:auto_15rem] [content-visibility:auto] print:[content-visibility:visible]">
       <div className="flex items-start justify-between gap-2">
         <div dir="ltr" className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
           {item.article ? <Badge tone={articleToTone(item.article)}>{item.article}</Badge> : null}
@@ -59,7 +59,7 @@ export const VocabularyCard = memo(function VocabularyCard({ item, saved = false
               aria-label={`${saved ? 'إزالة من المراجعة' : 'أضف إلى المراجعة'}: ${item.article ? `${item.article} ` : ''}${item.word}`}
               onClick={() => onToggleSaved(item)}
               className={cn(
-                'flex h-9 w-9 items-center justify-center rounded-md transition-colors hover:bg-surface-sunken print:hidden',
+                'flex size-9 items-center justify-center rounded-md transition-colors hover:bg-surface-sunken pointer-coarse:size-11 print:hidden',
                 saved ? 'text-accent' : 'text-ink-faint',
               )}
             >

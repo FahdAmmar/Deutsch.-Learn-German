@@ -1,0 +1,187 @@
+import type { Lesson } from '@/types'
+
+/**
+ * Everyday life in Germany, Austria and Switzerland: greetings and a few words that differ, money, waste and
+ * deposit bottles, quiet times, and the registration of a new home. Statements are kept to what is generally
+ * true; where rules depend on the town or on a tenancy contract, the lesson says so.
+ */
+export const lessonAlltagDach: Lesson = {
+  id: 'a2-m22-l02',
+  slug: 'alltag-in-d-a-ch',
+  level: 'A2',
+  moduleId: 'a2-m22',
+  title: 'Alltag in Deutschland, Österreich und der Schweiz',
+  titleAr: 'الحياة اليومية في ألمانيا والنمسا وسويسرا',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'معرفة التحيات المختلفة: Moin، Servus، Grüß Gott، Grüezi',
+    'فهم Pfand وMülltrennung وسبب أهميتهما في الحياة اليومية',
+    'فهم أوقات الهدوء Nachtruhe وSonntagsruhe وHausordnung',
+    'معرفة أن التسجيل لدى البلدية (Anmeldung) واجب عند الانتقال إلى سكن جديد',
+  ],
+  explanation: [
+    {
+      titleAr: 'ثلاث دول، لغة واحدة، كلمات مختلفة',
+      bodyAr:
+        'يُسمّى المجال الناطق بالألمانية **D-A-CH** (Deutschland، Österreich، die Schweiz). التحية تختلف: **Hallo / Guten Tag** في كل مكان، و**Moin** في شمال ألمانيا، و**Servus** و**Grüß Gott** في بافاريا والنمسا، و**Grüezi** في سويسرا. وبعض الكلمات تختلف: في النمسا **Jänner** (= Januar) و**Paradeiser** (= Tomaten) و**Erdäpfel** (= Kartoffeln)، وفي سويسرا **Velo** (= Fahrrad) و**Billett** (= Fahrkarte). وفي سويسرا العملة **der Franken** وليست اليورو، ولا يُستعمل الحرف ß بل ss.',
+    },
+    {
+      titleAr: 'Pfand وMülltrennung',
+      bodyAr:
+        'عند شراء الزجاجات والعلب تدفع **Pfand** (مبلغاً تستعيده)، وفي ألمانيا غالباً **25 سنتاً** للعلب والزجاجات البلاستيكية ذات الاستعمال الواحد. تُعيد العبوة إلى آلة في السوبرماركت فتحصل على إيصال. أما **Mülltrennung** فمعناها فصل النفايات: عادةً **الورق** في الحاوية الزرقاء، و**العبوات البلاستيكية والمعدنية** في الصفراء، و**النفايات العضوية** في البنية أو الخضراء، و**الباقي (Restmüll)** في الرمادية أو السوداء، و**الزجاج** في حاويات الشارع حسب اللون. وتختلف الألوان والتفاصيل من بلدية إلى أخرى، فاسأل جيرانك أو اقرأ ورقة البلدية.',
+    },
+    {
+      titleAr: 'الهدوء: Nachtruhe وSonntagsruhe',
+      bodyAr:
+        'في كثير من البنايات تُطلب **Nachtruhe** (هدوء الليل)، وعادةً من نحو 22 مساءً إلى 6 صباحاً، وتُذكر قواعدها في **Hausordnung** (نظام البناية) الموجودة في عقد الإيجار أو في الدرج. وفي أيام الأحد والعطل الرسمية تُراعى **Sonntagsruhe**: الأعمال الصاخبة غير مرغوبة، ومعظم المحلات مغلقة في الدول الثلاث.',
+    },
+    {
+      titleAr: 'Anmeldung وKrankenkasse',
+      bodyAr:
+        'عند الانتقال إلى سكن جديد في ألمانيا يجب **تسجيل** العنوان لدى البلدية (**Anmeldung**) خلال أسبوعين تقريباً، ويحتاج هذا غالباً إلى جواز السفر وعقد الإيجار. وفي ألمانيا التأمين الصحي إلزامي، عبر **Krankenkasse** (صندوق التأمين الصحي)، وتحصل على بطاقة التأمين.',
+    },
+  ],
+  examples: [
+    { de: 'In Bayern und in Österreich sagt man „Grüß Gott“.', ar: 'في بافاريا وفي النمسا يقولون «Grüß Gott».' },
+    { de: 'In der Schweiz sagt man „Grüezi“ und bezahlt mit Franken.', ar: 'في سويسرا يقولون «Grüezi» ويدفعون بالفرنك.' },
+    { de: 'In Österreich heißen Tomaten oft „Paradeiser“.', ar: 'في النمسا يُسمّى الطماطم غالباً «Paradeiser».' },
+    { de: 'In der Schweiz sagt man „Velo“ statt „Fahrrad“.', ar: 'في سويسرا يقولون «Velo» بدل «Fahrrad».' },
+    { de: 'Für die Flasche bekomme ich Pfand zurück.', ar: 'أستعيد مبلغ الرهن عن الزجاجة.' },
+    { de: 'Wir trennen den Müll: Papier, Plastik, Glas und Bio.', ar: 'نفصل النفايات: ورق وبلاستيك وزجاج وعضوي.' },
+    { de: 'Am Sonntag sind die meisten Geschäfte geschlossen.', ar: 'يوم الأحد تكون معظم المحلات مغلقة.' },
+    { de: 'Nach zweiundzwanzig Uhr gilt in vielen Häusern Nachtruhe.', ar: 'بعد العاشرة مساءً يسود الهدوء في كثير من البنايات.' },
+    { de: 'Nach dem Umzug muss man sich bei der Stadt anmelden.', ar: 'بعد الانتقال يجب أن يسجّل المرء نفسه لدى البلدية.' },
+    { de: 'In Deutschland braucht man eine Krankenversicherung.', ar: 'في ألمانيا يحتاج المرء إلى تأمين صحي.' },
+  ],
+  vocabulary: [
+    { id: 'voc-dach-pfand', word: 'Pfand', article: 'das', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'مبلغ الرهن المسترد على العبوة', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Auf der Flasche ist Pfand.', ar: 'على الزجاجة مبلغ رهن.' } },
+    { id: 'voc-dach-muelltrennung', word: 'Mülltrennung', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'فصل النفايات', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Die Mülltrennung ist in Deutschland wichtig.', ar: 'فصل النفايات مهم في ألمانيا.' } },
+    { id: 'voc-dach-altpapier', word: 'Altpapier', article: 'das', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'الورق المستعمل', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Das Altpapier kommt in die blaue Tonne.', ar: 'الورق المستعمل يوضع في الحاوية الزرقاء.' } },
+    { id: 'voc-dach-restmuell', word: 'Restmüll', article: 'der', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'النفايات المتبقية', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Der Restmüll kommt in die graue Tonne.', ar: 'النفايات المتبقية في الحاوية الرمادية.' } },
+    { id: 'voc-dach-tonne', word: 'Tonne', article: 'die', plural: 'Tonnen', partOfSpeech: 'noun', meaningAr: 'حاوية النفايات (البرميل)', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Die Tonne steht vor dem Haus.', ar: 'الحاوية أمام البيت.' } },
+    { id: 'voc-dach-sonntagsruhe', word: 'Sonntagsruhe', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'هدوء يوم الأحد', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Am Sonntag gilt die Sonntagsruhe.', ar: 'يوم الأحد يُراعى هدوء الأحد.' } },
+    { id: 'voc-dach-nachtruhe', word: 'Nachtruhe', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'هدوء الليل', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Ab zweiundzwanzig Uhr gilt die Nachtruhe.', ar: 'بعد العاشرة مساءً يسود هدوء الليل.' } },
+    { id: 'voc-dach-hausordnung', word: 'Hausordnung', article: 'die', plural: 'Hausordnungen', partOfSpeech: 'noun', meaningAr: 'نظام البناية', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Die Hausordnung hängt im Treppenhaus.', ar: 'نظام البناية معلّق في الدرج.' } },
+    { id: 'voc-dach-anmeldung', word: 'Anmeldung', article: 'die', plural: 'Anmeldungen', partOfSpeech: 'noun', meaningAr: 'التسجيل (لدى البلدية أو الدورة)', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Die Anmeldung beim Amt dauert nicht lange.', ar: 'التسجيل لدى الدائرة لا يستغرق وقتاً طويلاً.' } },
+    { id: 'voc-dach-krankenkasse', word: 'Krankenkasse', article: 'die', plural: 'Krankenkassen', partOfSpeech: 'noun', meaningAr: 'صندوق التأمين الصحي', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Meine Krankenkasse schickt mir eine Karte.', ar: 'صندوق التأمين الصحي يرسل لي بطاقة.' } },
+    { id: 'voc-dach-franken', word: 'Franken', article: 'der', plural: 'Franken', partOfSpeech: 'noun', meaningAr: 'الفرنك السويسري', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'In der Schweiz bezahlt man mit Franken.', ar: 'في سويسرا يدفع المرء بالفرنك.' } },
+    { id: 'voc-dach-gruess-gott', word: 'Grüß Gott!', partOfSpeech: 'phrase', meaningAr: 'مرحباً (بافاريا والنمسا)', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'In Bayern sagt man „Grüß Gott“.', ar: 'في بافاريا يقولون «Grüß Gott».' } },
+    { id: 'voc-dach-servus', word: 'Servus!', partOfSpeech: 'phrase', meaningAr: 'مرحباً / إلى اللقاء (جنوب ألمانيا والنمسا)', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'Servus! Wie geht es dir?', ar: 'مرحباً! كيف حالك؟' } },
+    { id: 'voc-dach-gruezi', word: 'Grüezi!', partOfSpeech: 'phrase', meaningAr: 'مرحباً (سويسرا)', level: 'A2', category: 'Alltag in D-A-CH', example: { de: 'In Zürich sagt man „Grüezi“.', ar: 'في زيورخ يقولون «Grüezi».' } },
+  ],
+  exercises: [
+    {
+      id: 'ex-dach-1',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'كيف تُحيّي غالباً في سويسرا؟',
+      questionDe: '',
+      options: ['Grüezi', 'Moin', 'Servus', 'Tschüss'],
+      correctIndex: 0,
+      explanationAr: 'Grüezi هي التحية السويسرية المعتادة.',
+    },
+    {
+      id: 'ex-dach-2',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'في أي بلد يدفع المرء بالفرنك؟',
+      questionDe: '',
+      options: ['die Schweiz', 'Österreich', 'Deutschland', 'Italien'],
+      correctIndex: 0,
+      explanationAr: 'سويسرا لها عملتها: der Franken. أما ألمانيا والنمسا فتستعملان اليورو.',
+    },
+    {
+      id: 'ex-dach-3',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'ما معنى Pfand؟',
+      questionDe: '',
+      options: ['مبلغ تستعيده عند إعادة الزجاجة أو العلبة', 'ضريبة على النفايات', 'رسوم المواصلات', 'عقوبة على الضجيج'],
+      correctIndex: 0,
+      optionLanguage: 'ar',
+      explanationAr: 'Pfand مبلغ تدفعه مع العبوة وتسترده عند إعادتها.',
+    },
+    {
+      id: 'ex-dach-4',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'In Deutschland sind die meisten Geschäfte am Sonntag geöffnet.',
+      isTrue: false,
+      explanationAr: 'خطأ. يوم الأحد تكون معظم المحلات مغلقة (Sonntagsruhe).',
+    },
+    {
+      id: 'ex-dach-5',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Nach einem Umzug meldet man die neue Wohnung bei der Stadt an.',
+      isTrue: true,
+      explanationAr: 'صحيح. هذه هي الـ Anmeldung.',
+    },
+    {
+      id: 'ex-dach-6',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'أين يُوضع الورق عادةً في معظم المدن الألمانية؟',
+      questionDe: '',
+      options: ['in die blaue Tonne', 'in die gelbe Tonne', 'in die braune Tonne', 'in die graue Tonne'],
+      correctIndex: 0,
+      explanationAr: 'الورق (Altpapier) عادةً في الحاوية الزرقاء. وقد تختلف الألوان من بلدية إلى أخرى.',
+    },
+    {
+      id: 'ex-dach-7',
+      type: 'ordering',
+      level: 'A2',
+      promptAr: 'رتّب الكلمات',
+      words: ['Flasche', 'bringe', 'Ich', 'die', 'zurück'],
+      correctOrder: [2, 1, 3, 0, 4],
+      explanationAr: 'Ich bringe die Flasche zurück. zurückbringen فعل منفصل.',
+    },
+    {
+      id: 'ex-dach-8',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل التحية',
+      sentenceDe: 'In Österreich sagt man oft „Servus“ oder „Grüß ___“.',
+      acceptedAnswers: ['Gott'],
+      hint: 'Grüß …',
+      explanationAr: 'Grüß Gott: تحية جنوب ألمانيا والنمسا.',
+    },
+    {
+      id: 'ex-dach-9',
+      type: 'matching',
+      level: 'A2',
+      promptAr: 'طابق كل كلمة بمعناها',
+      pairs: [
+        { de: 'das Pfand', ar: 'مبلغ مسترد على العبوة' },
+        { de: 'die Nachtruhe', ar: 'وقت الهدوء الليلي' },
+        { de: 'die Hausordnung', ar: 'نظام البناية' },
+        { de: 'die Anmeldung', ar: 'تسجيل الإقامة' },
+      ],
+      explanationAr: 'كلمات تحتاجها في أي بناية سكنية.',
+    },
+    {
+      id: 'ex-dach-10',
+      type: 'translation',
+      level: 'A2',
+      promptAr: 'ترجم إلى الألمانية',
+      direction: 'ar-to-de',
+      sourceText: 'يوم الأحد معظم المحلات مغلقة.',
+      acceptedAnswers: ['Am Sonntag sind die meisten Geschäfte geschlossen.', 'Sonntags sind die meisten Geschäfte geschlossen.'],
+      explanationAr: 'Am Sonntag sind die meisten Geschäfte geschlossen.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'In der Schweiz bezahlt man mit Euro.',
+      correct: 'In der Schweiz bezahlt man mit Franken.',
+      explanationAr: 'سويسرا لا تستعمل اليورو بل الفرنك السويسري.',
+    },
+    {
+      wrong: 'Ich werfe die Pfandflasche in den Müll.',
+      correct: 'Ich bringe die Pfandflasche zum Supermarkt zurück.',
+      explanationAr: 'إذا رميتها في القمامة خسرت مبلغ الرهن. تُعاد العبوات إلى آلة الإرجاع.',
+    },
+  ],
+}

@@ -1,4 +1,5 @@
 import type { Lesson, Module } from '@/types'
+import { lessonDieserWelcher } from './lesson-dieser-welcher'
 
 export const lessonKleidung: Lesson = {
   id: 'a1-m18-l01',
@@ -259,5 +260,5 @@ export const module18Kleidung: Module = {
   title: 'Kleidung',
   titleAr: 'الملابس',
   order: 18,
-  lessons: [lessonKleidung],
+  lessons: [lessonKleidung, lessonDieserWelcher],
 }

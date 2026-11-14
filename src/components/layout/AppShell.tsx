@@ -7,7 +7,7 @@ import { lazyWithReload } from '@/lib/lazyWithReload'
 
 import { BottomNav } from './BottomNav'
 import { Header } from './Header'
-import { MobileDrawer } from './MobileDrawer'
+import { MoreSheet } from './MoreSheet'
 import { OfflineBanner } from './OfflineBanner'
 import { Sidebar } from './Sidebar'
 
@@ -17,8 +17,8 @@ const SearchDialog = lazyWithReload(() => import('@/features/search/SearchDialog
 const PlanDrawer = lazyWithReload(() => import('@/features/levels/PlanDrawer'))
 
 export function AppShell() {
-  const [drawerOpen, setDrawerOpen] = useState(false)
-  const closeDrawer = useCallback(() => setDrawerOpen(false), [])
+  const [moreOpen, setMoreOpen] = useState(false)
+  const closeMore = useCallback(() => setMoreOpen(false), [])
   const [searchOpen, setSearchOpen] = useState(false)
   const openSearch = useCallback(() => setSearchOpen(true), [])
   const closeSearch = useCallback(() => setSearchOpen(false), [])
@@ -40,14 +40,14 @@ export function AppShell() {
       <div className="flex min-h-dvh flex-col md:ps-72 print:ps-0">
         <Header onOpenSearch={openSearch} onOpenPlan={openPlan} />
         <OfflineBanner />
-        <main id="main" className="flex-1 px-4 pt-6 pb-28 md:px-10 md:pt-8 md:pb-12 print:p-0">
+        <main id="main" className="flex-1 pt-5 pr-[max(1rem,var(--safe-r))] pb-[calc(6rem+var(--safe-b))] pl-[max(1rem,var(--safe-l))] md:px-10 md:pt-8 md:pb-12 print:p-0">
           <div className="mx-auto w-full max-w-6xl">
             <Outlet />
           </div>
         </main>
       </div>
-      <BottomNav onOpenMore={() => setDrawerOpen(true)} />
-      <MobileDrawer open={drawerOpen} onClose={closeDrawer} />
+      <BottomNav onOpenMore={() => setMoreOpen(true)} />
+      <MoreSheet open={moreOpen} onClose={closeMore} />
       {planOpen ? (
         <Suspense fallback={null}>
           <PlanDrawer onClose={closePlan} />

@@ -67,9 +67,15 @@ export const lessonWochentage: Lesson = {
       bodyAr:
         'في الألمانية تُكتب كل الأسماء بحرف كبير في أولها، وأسماء الأيام والشهور أسماء. فنكتب Montag وMai، وليس montag أو mai. العربية لا تعرف الحروف الكبيرة، فيحتاج هذا الأمر إلى انتباه خاص.',
     },
+    {
+      titleAr: 'montags وdienstags: كل يوم اثنين وكل يوم ثلاثاء',
+      bodyAr:
+        'للتكرار الأسبوعي نضيف **-s** إلى اسم اليوم ونكتبه **بحرف صغير** لأنه ظرف: **montags، dienstags، mittwochs، donnerstags، freitags، samstags، sonntags**. معناها «كل يوم اثنين» وهكذا، وهي تساوي jeden Montag: **Der Deutschkurs ist montags und mittwochs.** (الدورة كل اثنين وكل أربعاء). أمّا **am Montag** فتعني يوماً واحداً محدداً: **Am Montag habe ich einen Termin.**',
+    },
   ],
   examples: [
     { de: 'Welcher Tag ist heute?', ar: 'أي يوم اليوم؟' },
+    { de: 'Der Deutschkurs ist montags und mittwochs.', ar: 'دورة الألمانية كل اثنين وكل أربعاء.' },
     { de: 'Heute ist Mittwoch.', ar: 'اليوم هو الأربعاء.' },
     { de: 'Der Deutschkurs ist am Montag.', ar: 'دورة الألمانية يوم الاثنين.' },
     { de: 'Samstag und Sonntag sind das Wochenende.', ar: 'السبت والأحد هما عطلة نهاية الأسبوع.' },
@@ -77,6 +83,7 @@ export const lessonWochentage: Lesson = {
     { de: 'Wann ist dein Geburtstag? — Im März.', ar: 'متى عيد ميلادك؟ — في مارس.' },
   ],
   vocabulary: [
+    { id: 'voc-wochentage-montags', word: 'montags', partOfSpeech: 'adverb', meaningAr: 'كل يوم اثنين', level: 'A1', category: 'الزمن', example: { de: 'Der Deutschkurs ist montags und mittwochs.', ar: 'دورة الألمانية كل اثنين وكل أربعاء.' } },
     ...DAYS.map(([key, word, meaningAr, plural, de, ar]) => ({
       id: `voc-wochentage-${key}`,
       word,

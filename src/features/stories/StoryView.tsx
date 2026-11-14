@@ -47,7 +47,7 @@ export function StoryView({ story }: StoryViewProps) {
       <header className="space-y-4">
         <Link
           to={`/levels/${story.level.toLowerCase()}?tab=stories`}
-          className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted hover:text-ink"
+          className="inline-flex items-center gap-2 text-sm font-medium text-ink-muted hover:text-ink pointer-coarse:min-h-11"
         >
           <ArrowLeft size={16} aria-hidden="true" />
           <span dir="rtl">نصوص ومحادثات {story.level}</span>

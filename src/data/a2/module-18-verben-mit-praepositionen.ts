@@ -41,6 +41,11 @@ export const lessonVerbenMitPraepositionen: Lesson = {
       bodyAr:
         'للسؤال عن شخص نضع حرف الجر قبل كلمة الاستفهام: **Auf wen** wartest du؟ — Auf meinen Bruder. **An wen** denkst du؟ **Mit wem** sprichst du؟ (مع mit نستعمل wem لأنها Dativ). أما السؤال عن الأشياء بصيغة worauf وwofür فمستوى لاحق.',
     },
+    {
+      titleAr: 'darauf وdarüber وdafür: كلمة تحلّ محل الشيء (للفهم فقط)',
+      bodyAr:
+        'حين يكون المقصود **شيئاً** لا شخصاً، تُستبدل عبارة «حرف الجر + الاسم» بكلمة واحدة تبدأ بـ **da-** (أو **dar-** قبل حرف علة): **Ich warte auf den Bus. → Ich warte darauf.** و**Wir sprechen über das Problem. → Wir sprechen darüber.** و**Ich freue mich auf die Ferien. → Ich freue mich darauf.** و**Ich interessiere mich für Sport. → Ich interessiere mich dafür.** أمّا مع **الأشخاص** فنكرر حرف الجر مع الضمير: Ich warte auf ihn. في هذا المستوى يكفيك أن **تفهمها** إذا سمعتها أو قرأتها، وأن تعرف أنها تشير إلى ما سبق ذكره.',
+    },
   ],
   grammarTopics: [
     {

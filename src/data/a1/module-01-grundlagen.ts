@@ -1,6 +1,10 @@
 import type { Lesson } from '@/types'
 
 import { lessonFragewoerter } from './lesson-fragewoerter'
+import { lessonImKurs } from './lesson-im-kurs'
+import { lessonFormularNachricht } from './lesson-formular-nachricht'
+import { lessonLaender } from './lesson-laender'
+import { lessonZahlen100 } from './lesson-zahlen-100'
 
 export const lessonBegruessungen: Lesson = {
   id: 'a1-m01-l01',
@@ -524,5 +528,9 @@ export const module01Grundlagen = {
     lessonZahlen,
     lessonPersonalpronomen,
     lessonFragewoerter,
+    lessonLaender,
+    lessonImKurs,
+    lessonZahlen100,
+    lessonFormularNachricht,
   ],
 }

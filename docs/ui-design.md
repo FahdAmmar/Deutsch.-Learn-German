@@ -63,12 +63,42 @@ The dashboard answers one question — what should I do now? — and keeps every
 
 ## Navigation
 
-The sidebar and the mobile drawer share one grouped list (`nav-items.ts`): today, **learn** (levels, grammar,
+The sidebar and the phone's "More" sheet share one grouped list (`nav-items.ts`): today, **learn** (levels, grammar,
 vocabulary), **practise** (review, reading, exercises, pronunciation, my texts), and the learner's own record
 (progress, settings). A lesson keeps "Levels" lit, since a lesson belongs to a level. No item changes its
 destination as the learner progresses, except reading, which opens the texts of the current level; the next
 lesson is the dashboard's call to action rather than a menu item. Labels are one or two words. The phone's bottom
-bar holds today, levels, grammar and exercises, and the rest sits behind "More".
+bar holds today, levels, grammar and exercises (`MOBILE_PRIMARY_IDS`), and the rest sits behind "More".
+
+## Phones
+
+Designed for 320–430px first; the rules below keep it that way.
+
+- **Nothing is wider than the screen.** A page wider than the viewport makes mobile browsers zoom the whole page
+  out and shoves the fixed bottom bar off the edge. The top bar is sized so its parts sum to less than 320px: on a
+  phone it holds the brand tile, the level, the streak and two 44px icon buttons (study plan, search); the German
+  wordmark joins from `sm`, the theme switch from `md`. Every `grid` without `grid-cols-*` is one `minmax(0, 1fr)`
+  column (a base-layer rule in `index.css`): an `auto` track grows to its widest item and was the cause of the
+  11–36px overflow the dashboard and the study plan had at 320px.
+- **Bottom bar, then "More".** The current item sits on a filled pill — a shape as well as a colour. A dot on
+  "More" says there are words due for review. "More" is a bottom sheet (`MoreSheet`), not a side drawer: the
+  controls are where the thumb is. It holds the destinations the bar has no room for, the learner's place in their
+  level, and the theme as three visible options (`ThemeSegmented`), not a button that cycles. It closes on the
+  backdrop, its close button, Escape, or after a link. There is no drag handle: a handle promises a swipe, and
+  none is implemented.
+- **44px targets on a touch screen.** `pointer-coarse:` raises `Button` size `sm`, level tabs and the section rails
+  to 44px; a transparent `::before` layer extends the hit area of switches and of German words that speak when
+  tapped, without moving the text. Fingers are not mice: the same controls stay compact under a pointer.
+- **Fields are at least 16px** on a touch screen (an unlayered rule in `index.css`), or iOS Safari zooms the page
+  into the field and never zooms back. Zoom itself is left on.
+- **Safe areas.** `viewport-fit=cover` plus `--safe-t/r/b/l`. Insets are physical (a notch is left or right
+  whatever the text direction), so they use `pl`/`pr`, not `ps`/`pe`.
+- **Sticky things sit under the top bar with `top-(--header-h)`**, never a hard-coded number: the bar is 57px on a
+  phone and 65px from `md`, and a wrong offset leaves a strip the page scrolls through, or slides under the bar.
+- **Long lists skip off-screen work.** Vocabulary cards use `content-visibility: auto`, except when printing. Their
+  secondary tools (sort, export, print) sit behind an "Options" button on a phone so the first card is on the
+  first screen.
+- **No text under 12px.** No hover-only information. A control answers the finger on press (`:active`).
 
 ## Focus and German text
 

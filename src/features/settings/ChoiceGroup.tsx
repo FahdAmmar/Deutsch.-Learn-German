@@ -29,7 +29,7 @@ export function ChoiceGroup<T extends string | number>({ label, value, options, 
             'flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-md border-2 px-2 py-2 text-sm font-semibold transition-colors',
             value === option.value
               ? 'border-accent bg-accent-muted text-ink'
-              : 'border-border text-ink-muted hover:border-border-strong hover:text-ink',
+              : 'border-border bg-surface text-ink-muted hover:border-border-strong hover:text-ink',
           )}
         >
           <span className="tnum">{option.label}</span>

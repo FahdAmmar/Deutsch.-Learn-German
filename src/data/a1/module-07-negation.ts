@@ -1,4 +1,5 @@
 import type { Lesson, Module } from '@/types'
+import { lessonJaNeinDoch } from './lesson-ja-nein-doch'
 
 export const lessonNegation: Lesson = {
   id: 'a1-m07-l01',
@@ -261,5 +262,5 @@ export const module07Negation: Module = {
   title: 'Negation',
   titleAr: 'النفي',
   order: 7,
-  lessons: [lessonNegation],
+  lessons: [lessonNegation, lessonJaNeinDoch],
 }

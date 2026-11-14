@@ -1,4 +1,5 @@
 import type { Lesson, Module } from '@/types'
+import { lessonKleineWoerter } from './lesson-kleine-woerter'
 
 /**
  * Polite requests and wishes. The forms könnte / würde / hätte are the Konjunktiv II, which the roadmap teaches
@@ -268,5 +269,5 @@ export const module16HoeflicheBitten: Module = {
   title: 'Höfliche Bitten und Wünsche',
   titleAr: 'الطلبات المهذّبة',
   order: 16,
-  lessons: [lessonHoeflicheBitten],
+  lessons: [lessonHoeflicheBitten, lessonKleineWoerter],
 }

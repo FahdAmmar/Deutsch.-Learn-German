@@ -145,6 +145,21 @@ const COMES_AFTER: ReadonlyArray<readonly [step: string, after: readonly string[
   ['story:dialogue-a1-im-hotel', ['lesson:a1-m01-l04', 'lesson:a1-m02-l04'], 'room numbers and breakfast times'],
   ['story:dialogue-a1-anmeldung-deutschkurs', ['rule:11', 'rule:13', 'lesson:a1-m01-l03'], 'können Sie, füllen Sie aus; spelling a name'],
   ['lesson:a1-m16-l01', ['rule:13'], 'directions are given in the Imperativ'],
+  ['lesson:a1-m01-l07', ['lesson:a1-m01-l06'], 'Woher kommst du? comes first; the answer needs the countries'],
+  ['story:dialogue-a1-im-deutschkurs', ['lesson:a1-m01-l08'], 'the classroom phrases it practises'],
+  ['lesson:a1-m01-l09', ['lesson:a1-m01-l04'], 'hundreds and thousands build on the numbers up to 99'],
+  ['lesson:a1-m01-l10', ['lesson:a1-m01-l03', 'lesson:a1-m01-l09'], 'a form needs the alphabet (spelling) and the numbers (phone, postcode)'],
+  ['story:dialogue-a1-telefonnummer', ['lesson:a1-m01-l09', 'lesson:a1-m01-l10'], 'reading a phone number and an e-mail address aloud'],
+  ['lesson:a1-m06-l02', ['lesson:a1-m06-l01', 'rule:11'], 'nicht müssen / nicht dürfen only make sense once the modal verbs are known'],
+  ['story:dialogue-a1-verabredung', ['lesson:a1-m06-l02', 'rule:11'], 'wollen wir, du musst nicht, du darfst nicht'],
+  ['lesson:a1-m14-l02', ['lesson:a1-m14-l01'], 'quantities follow the shopping lesson'],
+  ['story:dialogue-a1-im-supermarkt', ['lesson:a1-m14-l02', 'lesson:a1-m01-l09'], 'ein Kilo, zweihundert Gramm, the price'],
+  ['lesson:a1-m21-l01', ['lesson:a1-m11-l01', 'rule:9'], 'zum / zur / ins and Gibt es hier einen …?: prepositions and the Akkusativ'],
+  ['lesson:a1-m21-l04', ['lesson:a1-m02-l03'], 'the parts of the day extend the day told by the clock'],
+  ['lesson:a1-m21-l05', ['lesson:a1-m10-l01', 'lesson:a1-m11-l01'], 'fährt … ab, steigt um: separable verbs; mit dem Bus: the prepositions'],
+  ['lesson:a1-m21-l06', ['lesson:a1-m10-l01'], 'aussehen is a separable verb'],
+  ['story:dialogue-a1-am-fahrkartenschalter', ['lesson:a1-m21-l05', 'lesson:a1-m01-l09'], 'tickets, platforms and prices'],
+  ['story:dialogue-a1-auf-der-post', ['lesson:a1-m21-l01', 'rule:13', 'lesson:a1-m14-l02'], 'legen Sie: the Imperativ; weights and prices'],
   ['lesson:a1-m02-l06', ['lesson:a1-m02-l05'], 'the date builds on days and months'],
   ['lesson:a1-m02-l04', ['lesson:a1-m02-l06'], 'the date comes before the clock'],
   // A2
@@ -173,6 +188,18 @@ const COMES_AFTER: ReadonlyArray<readonly [step: string, after: readonly string[
   ['story:dialogue-a2-beim-buergeramt', ['lesson:a2-m09-l01', 'lesson:a2-m15-l10'], 'ob ich verheiratet bin; the forms lesson'],
   ['story:dialogue-a2-am-informationsschalter', ['lesson:a2-m09-l01', 'lesson:a2-m15-l05'], 'indirect questions; the transport vocabulary'],
   ['story:dialogue-a2-am-flughafen', ['lesson:a2-m11-l01'], 'travel vocabulary'],
+  ['lesson:a2-m22-l01', ['rule:17', 'rule:18', 'rule:31'], 'recognising the Präteritum builds on the Perfekt and on war / hatte'],
+  ['lesson:a2-m20-l01', ['rule:29'], 'deshalb is contrasted with weil, so the weil clause comes first'],
+  ['lesson:a2-m20-l02', ['lesson:a2-m16-l01', 'rule:29'], 'könnten / würde (polite requests) and the dass clause'],
+  ['story:dialogue-a2-wochenende-planen', ['lesson:a2-m20-l01', 'lesson:a2-m20-l02'], 'deshalb, trotzdem, wir könnten, du solltest'],
+  ['lesson:a2-m19-l01', ['rule:19', 'rule:20', 'rule:21'], 'Dativ verbs follow the Akkusativ / Dativ rules and the position prepositions'],
+  ['lesson:a2-m19-l02', ['lesson:a2-m09-l01', 'rule:29'], 'wissen + ob / wo / dass needs the indirect questions and the dass clause'],
+  ['story:dialogue-a2-neue-wohnung', ['lesson:a2-m19-l01', 'lesson:a2-m19-l02'], 'gefällt mir, gehört, passt; kennst du, ich weiß nicht, wie sie heißt'],
+  ['lesson:a2-m21-l01', ['lesson:a2-m05-l01'], 'N-Deklination follows the adjective endings'],
+  ['lesson:a2-m21-l02', ['lesson:a2-m05-l01'], 'the Dativ endings follow the Nominativ and Akkusativ endings'],
+  ['story:dialogue-a2-neue-kollegen', ['lesson:a2-m21-l01', 'lesson:a2-m21-l02'], 'den Kollegen, dem neuen Kollegen, mit dem freundlichen Team'],
+  ['lesson:a2-m22-l02', ['lesson:a2-m13-l01', 'lesson:a2-m15-l04'], 'the new home: Anmeldung and Hausordnung follow the flat-hunting lessons'],
+  ['story:dialogue-a2-im-treppenhaus', ['lesson:a2-m22-l02'], 'Pfand, Tonne, Anmeldung, Nachtruhe'],
   ['story:dialogue-a2-im-hotel', ['lesson:a2-m15-l13'], 'the hotel vocabulary'],
   ['story:dialogue-a2-arzttermin', ['lesson:a2-m12-l01', 'rule:29'], 'weil; the doctor lesson'],
   ['story:dialogue-a2-treffen-absagen', ['lesson:a2-m12-l01', 'rule:22', 'rule:29'], 'weil ich Fieber habe; interessiert sich'],
@@ -239,12 +266,16 @@ describe('the order of the plan', () => {
 
 describe('next lesson on the path', () => {
   it('follows the path, not module order', () => {
-    expect(getNextLesson('a1-m01-l04')?.id).toBe('a1-m02-l05')
+    expect(getNextLesson('a1-m01-l04')?.id).toBe('a1-m01-l09')
+    expect(getNextLesson('a1-m01-l09')?.id).toBe('a1-m01-l10')
+    expect(getNextLesson('a1-m01-l10')?.id).toBe('a1-m02-l05')
     expect(getNextLesson('a1-m02-l05')?.id).toBe('a1-m02-l06')
     expect(getNextLesson('a1-m02-l06')?.id).toBe('a1-m02-l04')
     expect(getNextLesson('a1-m02-l04')?.id).toBe('a1-m02-l03')
-    expect(getNextLesson('a1-m02-l03')?.id).toBe('a1-m01-l05')
-    expect(getNextLesson('a2-m04-l01')?.id).toBe('a2-m15-l12')
+    expect(getNextLesson('a1-m02-l03')?.id).toBe('a1-m21-l04')
+    expect(getNextLesson('a1-m21-l04')?.id).toBe('a1-m01-l05')
+    expect(getNextLesson('a2-m04-l01')?.id).toBe('a2-m22-l01')
+    expect(getNextLesson('a2-m22-l01')?.id).toBe('a2-m15-l12')
     expect(getNextLesson('a2-m15-l10')?.id).toBe('a2-m03-l01')
   })
 
@@ -334,7 +365,19 @@ describe('getResumeStep', () => {
 
   it('goes to the first step not done, whatever its kind', () => {
     const chapters = getLevelChapters('A1')
-    const done = new Set(['lesson:a1-m01-l01', 'lesson:a1-m01-l02', 'lesson:a1-m01-l06', 'lesson:a1-m01-l03', 'lesson:a1-m01-l04'])
+    const done = new Set([
+      'lesson:a1-m01-l01',
+      'lesson:a1-m01-l02',
+      'lesson:a1-m01-l06',
+      'lesson:a1-m01-l07',
+      'lesson:a1-m01-l08',
+      'story:dialogue-a1-im-deutschkurs',
+      'lesson:a1-m01-l03',
+      'lesson:a1-m01-l04',
+      'lesson:a1-m01-l09',
+      'lesson:a1-m01-l10',
+      'story:dialogue-a1-telefonnummer',
+    ])
     // The next step in chapter 2 is the text, not the next lesson.
     expect(getResumeStep(chapters, done)?.key).toBe('story:a1-read-01')
   })

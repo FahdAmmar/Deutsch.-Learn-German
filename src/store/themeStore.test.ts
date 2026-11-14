@@ -67,4 +67,23 @@ describe('themeStore', () => {
 
     expect(useThemeStore.getState().resolvedTheme).toBe('dark')
   })
+
+  it('points every theme-color tag at the theme shown, even when the OS prefers the other one', () => {
+    for (const media of ['(prefers-color-scheme: light)', '(prefers-color-scheme: dark)']) {
+      const tag = document.createElement('meta')
+      tag.setAttribute('name', 'theme-color')
+      tag.setAttribute('media', media)
+      document.head.append(tag)
+    }
+    const colors = () => [...document.querySelectorAll('meta[name="theme-color"]')].map((tag) => tag.getAttribute('content'))
+
+    mockMatchMedia(false) // the OS is light, the learner picks dark
+    useThemeStore.getState().setPreference('dark')
+    expect(colors()).toEqual(['#101216', '#101216'])
+
+    useThemeStore.getState().setPreference('light')
+    expect(colors()).toEqual(['#f8fafc', '#f8fafc'])
+
+    document.querySelectorAll('meta[name="theme-color"]').forEach((tag) => tag.remove())
+  })
 })

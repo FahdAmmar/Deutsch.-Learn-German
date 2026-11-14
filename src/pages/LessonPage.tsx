@@ -19,6 +19,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { Badge, Button, Card, InlineMarkup } from '@/components/ui'
 import { ExerciseRunner } from '@/features/exercises/ExerciseRunner'
 import { ComparisonLadder } from '@/features/grammar/ComparisonLadder'
+import { CanDoList } from '@/features/lessons/CanDoList'
 import { CommonMistakesList } from '@/features/lessons/CommonMistakesList'
 import { DialogueDisplay } from '@/features/lessons/DialogueDisplay'
 import { ExampleSentence } from '@/features/lessons/ExampleSentence'
@@ -183,6 +184,7 @@ export default function LessonPage() {
                 ))}
               </ul>
             </Card>
+            <CanDoList lessonId={lesson.id} />
           </section>
 
           {/* Explanation: Arabic prose that explains the German concept */}

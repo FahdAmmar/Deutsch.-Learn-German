@@ -22,6 +22,8 @@ import { module17Freizeit } from './module-17-freizeit'
 import { module18Kleidung } from './module-18-kleidung'
 import { module19EssenTrinken } from './module-19-essen-trinken'
 import { module20Haeufigkeit } from './module-20-haeufigkeit'
+import { module21Themenwortschatz } from './module-21-themenwortschatz'
+import { module22AlltagVerstehen } from './module-22-alltag-verstehen'
 import { a1Conversations } from './conversations'
 import { a1ReadingTexts } from './reading'
 
@@ -48,6 +50,8 @@ const authoredA1Modules: Module[] = [
   module18Kleidung,
   module19EssenTrinken,
   module20Haeufigkeit,
+  module21Themenwortschatz,
+  module22AlltagVerstehen,
 ]
 
 /**

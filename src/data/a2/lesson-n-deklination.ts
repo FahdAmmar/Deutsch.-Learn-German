@@ -1,0 +1,177 @@
+import type { Lesson } from '@/types'
+
+/**
+ * The N-Deklination: a small group of masculine nouns (mostly people) that add -n / -en in every case except
+ * the Nominativ singular. The A2 vocabulary already contains Kollege, Kunde, Nachbar and Patient, so the learner
+ * meets "den Kollegen" long before the roadmap names the rule; this lesson names it once, at A2, as a pattern.
+ */
+export const lessonNDeklination: Lesson = {
+  id: 'a2-m21-l01',
+  slug: 'n-deklination',
+  level: 'A2',
+  moduleId: 'a2-m21',
+  title: 'N-Deklination',
+  titleAr: 'أسماء مذكّرة تأخذ -n / -en: den Kollegen، dem Kunden',
+  estimatedMinutes: 20,
+  objectivesAr: [
+    'معرفة أن بعض الأسماء المذكرة تأخذ -n أو -en في كل الحالات ما عدا Nominativ المفرد',
+    'إعراب أشهر هذه الأسماء: Kollege، Kunde، Nachbar، Junge، Student، Patient، Mensch',
+    'تجنّب الخطأ الشائع: den Kollege وdem Kunde',
+    'عدم تعميم القاعدة على كل المذكّر: den Lehrer بلا -n',
+  ],
+  explanation: [
+    {
+      titleAr: 'مجموعة صغيرة من المذكّر',
+      bodyAr:
+        'أغلب الأسماء المذكرة لا تتغير في Akkusativ وDativ: der Lehrer → den Lehrer → dem Lehrer. لكن مجموعة صغيرة (غالباً أشخاص) تأخذ **-n أو -en** في كل الحالات **ما عدا Nominativ المفرد**: **der Kollege → den Kollegen → dem Kollegen → des Kollegen**. اسمها **N-Deklination**. والجمع يشبه المفرد المتغير: die Kollegen.',
+    },
+    {
+      titleAr: 'أشهر الأسماء',
+      bodyAr:
+        'احفظ هذه: **der Kollege، der Kunde، der Junge، der Nachbar (-n)، der Student، der Patient، der Polizist، der Tourist، der Mensch، der Herr (-n، والجمع Herren)**. القاعدة العملية: مذكّر + يدل على إنسان (أو حيوان) وينتهي غالباً بـ -e أو -ent أو -ist أو -ant. أما المؤنث فلا يتغير: die Kollegin → der Kollegin.',
+    },
+    {
+      titleAr: 'متى تضيف -n؟',
+      bodyAr:
+        'اسأل: هل هو **فاعل** (Nominativ مفرد)؟ إذن بلا -n: **Der Kollege kommt.** أي حالة أخرى؟ إذن -n/-en: **Ich kenne den Kollegen. Ich helfe dem Kunden. Das ist das Auto des Studenten.** ولا تعمّم: **Ich frage den Lehrer** (بلا -n) لأن Lehrer ليس من هذه المجموعة.',
+    },
+  ],
+  examples: [
+    { de: 'Der Kollege kommt gleich.', ar: 'الزميل سيأتي حالاً.' },
+    { de: 'Ich kenne den Kollegen nicht.', ar: 'لا أعرف الزميل.' },
+    { de: 'Der Verkäufer hilft dem Kunden.', ar: 'البائع يساعد الزبون.' },
+    { de: 'Ich sehe den Jungen im Park.', ar: 'أرى الولد في الحديقة.' },
+    { de: 'Der Arzt spricht mit dem Patienten.', ar: 'الطبيب يتحدث مع المريض.' },
+    { de: 'Wir kennen den Nachbarn gut.', ar: 'نعرف الجار جيداً.' },
+    { de: 'Das ist das Auto des Kollegen.', ar: 'هذه سيارة الزميل.' },
+    { de: 'Ich kenne viele Menschen hier.', ar: 'أعرف أناساً كثيرين هنا.' },
+    { de: 'Ich frage den Lehrer.', ar: 'أسأل المعلّم.' },
+  ],
+  vocabulary: [
+    { id: 'voc-ndekl-kollege', word: 'Kollege', article: 'der', plural: 'Kollegen', partOfSpeech: 'noun', meaningAr: 'الزميل (في العمل)', level: 'A2', category: 'N-Deklination', example: { de: 'Ich kenne den Kollegen nicht.', ar: 'لا أعرف الزميل.' } },
+    { id: 'voc-ndekl-kunde', word: 'Kunde', article: 'der', plural: 'Kunden', partOfSpeech: 'noun', meaningAr: 'الزبون', level: 'A2', category: 'N-Deklination', example: { de: 'Der Verkäufer hilft dem Kunden.', ar: 'البائع يساعد الزبون.' } },
+    { id: 'voc-ndekl-nachbar', word: 'Nachbar', article: 'der', plural: 'Nachbarn', partOfSpeech: 'noun', meaningAr: 'الجار', level: 'A2', category: 'N-Deklination', example: { de: 'Wir kennen den Nachbarn gut.', ar: 'نعرف الجار جيداً.' } },
+    { id: 'voc-ndekl-patient', word: 'Patient', article: 'der', plural: 'Patienten', partOfSpeech: 'noun', meaningAr: 'المريض', level: 'A2', category: 'N-Deklination', example: { de: 'Der Arzt spricht mit dem Patienten.', ar: 'الطبيب يتحدث مع المريض.' } },
+    { id: 'voc-ndekl-junge', word: 'Junge', article: 'der', plural: 'Jungen', partOfSpeech: 'noun', meaningAr: 'الولد', level: 'A2', category: 'N-Deklination', example: { de: 'Ich sehe den Jungen im Park.', ar: 'أرى الولد في الحديقة.' } },
+    { id: 'voc-ndekl-mensch', word: 'Mensch', article: 'der', plural: 'Menschen', partOfSpeech: 'noun', meaningAr: 'الإنسان', level: 'A2', category: 'N-Deklination', example: { de: 'Jeder Mensch braucht Freunde.', ar: 'كل إنسان يحتاج إلى أصدقاء.' } },
+    { id: 'voc-ndekl-polizist', word: 'Polizist', article: 'der', plural: 'Polizisten', partOfSpeech: 'noun', meaningAr: 'الشرطي', level: 'A2', category: 'N-Deklination', example: { de: 'Ich frage den Polizisten nach dem Weg.', ar: 'أسأل الشرطي عن الطريق.' } },
+    { id: 'voc-ndekl-tourist', word: 'Tourist', article: 'der', plural: 'Touristen', partOfSpeech: 'noun', meaningAr: 'السائح', level: 'A2', category: 'N-Deklination', example: { de: 'Der Tourist fotografiert den Dom.', ar: 'السائح يصوّر الكاتدرائية.' } },
+  ],
+  exercises: [
+    {
+      id: 'ex-ndekl-1',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الصحيح',
+      questionDe: 'Ich kenne den ___.',
+      options: ['Kollege', 'Kollegen', 'Kolleges', 'Kollegens'],
+      correctIndex: 1,
+      explanationAr: 'Kollege من N-Deklination، وفي Akkusativ يصبح den Kollegen.',
+    },
+    {
+      id: 'ex-ndekl-2',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل (der Kunde في Dativ)',
+      sentenceDe: 'Ich helfe dem ___.',
+      acceptedAnswers: ['Kunden'],
+      hint: 'der Kunde',
+      explanationAr: 'dem Kunden: الاسم يأخذ -n في Dativ.',
+    },
+    {
+      id: 'ex-ndekl-3',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'أيّ اسم من هذه من N-Deklination؟',
+      questionDe: '',
+      options: ['der Lehrer', 'der Student', 'das Kind', 'die Frau'],
+      correctIndex: 1,
+      explanationAr: 'der Student → den Studenten. أما der Lehrer فلا يتغير: den Lehrer.',
+    },
+    {
+      id: 'ex-ndekl-4',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Man sagt: Ich sehe den Junge.',
+      isTrue: false,
+      explanationAr: 'خطأ. نقول Ich sehe den Jungen (N-Deklination).',
+    },
+    {
+      id: 'ex-ndekl-5',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل (der Nachbar في Akkusativ)',
+      sentenceDe: 'Wir kennen den ___ gut.',
+      acceptedAnswers: ['Nachbarn'],
+      hint: 'der Nachbar',
+      explanationAr: 'Nachbar يأخذ -n: den Nachbarn.',
+    },
+    {
+      id: 'ex-ndekl-6',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اختر الصحيح',
+      questionDe: 'Ich sehe den ___ im Park.',
+      options: ['Jungen', 'Junge', 'Junges', 'Jungens'],
+      correctIndex: 0,
+      explanationAr: 'der Junge → den Jungen.',
+    },
+    {
+      id: 'ex-ndekl-7',
+      type: 'ordering',
+      level: 'A2',
+      promptAr: 'رتّب الكلمات',
+      words: ['nicht', 'Kollegen', 'Ich', 'den', 'kenne'],
+      correctOrder: [2, 4, 3, 1, 0],
+      explanationAr: 'Ich kenne den Kollegen nicht.',
+    },
+    {
+      id: 'ex-ndekl-8',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل (der Student في Genitiv)',
+      sentenceDe: 'Das ist das Auto des ___.',
+      acceptedAnswers: ['Studenten'],
+      hint: 'der Student',
+      explanationAr: 'des Studenten: في Genitiv أيضاً -en.',
+    },
+    {
+      id: 'ex-ndekl-9',
+      type: 'translation',
+      level: 'A2',
+      promptAr: 'ترجم إلى الألمانية',
+      direction: 'ar-to-de',
+      sourceText: 'أنا أعرف الزميل.',
+      acceptedAnswers: ['Ich kenne den Kollegen.', 'Ich kenne meinen Kollegen.'],
+      explanationAr: 'Ich kenne den Kollegen.',
+    },
+    {
+      id: 'ex-ndekl-10',
+      type: 'translation',
+      level: 'A2',
+      promptAr: 'ترجم إلى الألمانية',
+      direction: 'ar-to-de',
+      sourceText: 'أنا أساعد الزبون.',
+      acceptedAnswers: ['Ich helfe dem Kunden.', 'Ich helfe einem Kunden.'],
+      explanationAr: 'Ich helfe dem Kunden.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Ich kenne den Kollege.',
+      correct: 'Ich kenne den Kollegen.',
+      explanationAr: 'Kollege من N-Deklination: في كل الحالات غير Nominativ المفرد يأخذ -n.',
+    },
+    {
+      wrong: 'Ich helfe dem Kunde.',
+      correct: 'Ich helfe dem Kunden.',
+      explanationAr: 'dem Kunden: الاسم يأخذ -n بعد dem.',
+    },
+    {
+      wrong: 'Ich frage den Lehrern.',
+      correct: 'Ich frage den Lehrer.',
+      explanationAr: 'لا نعمّم القاعدة: Lehrer ليس من هذه المجموعة، فلا يأخذ -n في المفرد.',
+    },
+  ],
+}

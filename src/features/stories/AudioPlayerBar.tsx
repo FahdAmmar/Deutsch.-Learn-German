@@ -28,7 +28,7 @@ function loopHint(player: StoryPlayer): string | null {
 }
 
 const iconButton =
-  'grid size-10 shrink-0 place-items-center rounded-full text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink disabled:pointer-events-none disabled:opacity-45'
+  'grid size-10 shrink-0 place-items-center rounded-full pointer-coarse:size-11 text-ink-muted transition-colors hover:bg-surface-sunken hover:text-ink disabled:pointer-events-none disabled:opacity-45'
 
 /**
  * The floating audio bar: play/pause, a seek bar over the story's sentences,
@@ -63,7 +63,7 @@ export function AudioPlayerBar({ player, total, showTranslations, onToggleTransl
           disabled={!player.isSupported}
           aria-label={`التكرار: ${LOOP_LABEL_AR[player.loop]}. اضغط للتغيير`}
           className={cn(
-            'inline-flex h-10 items-center gap-2 rounded-full border px-3.5 text-sm font-semibold shadow-sm transition-colors disabled:pointer-events-none disabled:opacity-45',
+            'inline-flex h-10 items-center gap-2 rounded-full border px-3.5 pointer-coarse:h-11 text-sm font-semibold shadow-sm transition-colors disabled:pointer-events-none disabled:opacity-45',
             loopActive ? 'border-accent bg-accent-muted text-accent' : 'border-border bg-surface text-ink-muted hover:text-ink',
           )}
         >
@@ -120,7 +120,7 @@ export function AudioPlayerBar({ player, total, showTranslations, onToggleTransl
           type="button"
           onClick={() => player.setRate(nextSpeed(player.rate))}
           aria-label={`سرعة القراءة ${formatSpeed(player.rate)}. اضغط للتغيير`}
-          className="tnum inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full bg-surface-sunken px-2.5 text-sm font-semibold text-ink transition-colors hover:bg-border sm:px-3"
+          className="tnum inline-flex h-10 pointer-coarse:h-11 shrink-0 items-center gap-1.5 rounded-full bg-surface-sunken px-2.5 text-sm font-semibold text-ink transition-colors hover:bg-border sm:px-3"
         >
           <SpeedIcon size={16} className="text-accent" aria-hidden="true" />
           {formatSpeed(player.rate)}

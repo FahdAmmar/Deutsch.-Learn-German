@@ -1,4 +1,4 @@
-import { Brain, Download, Search } from 'lucide-react'
+import { Brain, ChevronDown, Download, Search, SlidersHorizontal } from 'lucide-react'
 import { useCallback, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 
@@ -45,6 +45,8 @@ export default function VocabularyPage() {
   const levelFromLink = CEFR_LEVELS.find((candidate) => candidate === searchParams.get('level')?.toUpperCase())
   const [level, setLevel] = useState<CEFRLevel>(levelFromLink ?? currentLevel)
   const [filters, setFilters] = useState<VocabularyFilters>({ ...DEFAULT_FILTERS, query: searchParams.get('q') ?? '' })
+  // On a phone the secondary tools (sort, export, print) sit behind one "options" button; from `md` up they are always shown.
+  const [toolsOpen, setToolsOpen] = useState(false)
 
   const allItems = useMemo(() => getVocabularyForLevel(level), [level])
   const categories = useMemo(() => Array.from(new Set(allItems.map((item) => item.category))), [allItems])
@@ -131,32 +133,46 @@ export default function VocabularyPage() {
         </ChipRow>
       </div>
 
-      <div dir="rtl" className="flex flex-wrap items-center justify-between gap-3">
-        <p role="status" className="text-sm text-ink-muted">
-          {visibleItems.length} من {allItems.length} كلمة
-        </p>
+      <div dir="rtl" className="space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <p role="status" className="tnum text-sm text-ink-muted">
+            {visibleItems.length} من {allItems.length} كلمة
+          </p>
+          <Button
+            size="sm"
+            variant="outline"
+            aria-expanded={toolsOpen}
+            aria-controls="vocabulary-tools"
+            onClick={() => setToolsOpen((open) => !open)}
+            icon={<SlidersHorizontal size={16} aria-hidden="true" />}
+            className="md:hidden print:hidden"
+          >
+            خيارات
+            <ChevronDown size={16} aria-hidden="true" className={cn('transition-transform duration-200', toolsOpen && 'rotate-180')} />
+          </Button>
+        </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          <label className="flex items-center gap-2 text-sm text-ink-muted">
+        <div id="vocabulary-tools" className={cn('grid-cols-2 gap-3 md:flex md:flex-wrap md:items-center print:hidden', toolsOpen ? 'grid' : 'hidden md:flex')}>
+          <label className="col-span-2 flex items-center justify-between gap-3 text-sm text-ink-muted md:col-span-1 md:justify-start">
             الترتيب
             <select
               value={filters.sort}
               onChange={(event) => update({ sort: event.target.value === 'alphabetical' ? 'alphabetical' : 'lesson' })}
-              className="h-10 rounded-md border-2 border-border bg-surface px-2 text-sm text-ink outline-none focus-visible:border-accent"
+              className="h-11 min-w-0 flex-1 rounded-md border-2 border-border bg-surface px-2 text-sm text-ink outline-none focus-visible:border-accent md:h-10 md:flex-none"
             >
               <option value="lesson">حسب ترتيب الدروس</option>
               <option value="alphabetical">أبجدياً (A → Z)</option>
             </select>
           </label>
 
-          <Button size="sm" variant="outline" onClick={exportToAnki} disabled={visibleItems.length === 0} icon={<Download size={16} aria-hidden="true" />} className="print:hidden">
+          <Button size="sm" variant="outline" onClick={exportToAnki} disabled={visibleItems.length === 0} icon={<Download size={16} aria-hidden="true" />}>
             تصدير إلى Anki
           </Button>
           <PrintButton label="طباعة القائمة" />
 
           {savedCount > 0 ? (
-            <Link to="/review" className="print:hidden">
-              <Button size="sm" variant="outline" icon={<Brain size={16} aria-hidden="true" />}>
+            <Link to="/review" className="col-span-2 md:col-span-1">
+              <Button size="sm" variant="outline" icon={<Brain size={16} aria-hidden="true" />} className="w-full md:w-auto">
                 راجع الكلمات المحفوظة
               </Button>
             </Link>
@@ -199,7 +215,7 @@ function Chip({ label, active, onClick, latin = false }: { label: string; active
       aria-pressed={active}
       onClick={onClick}
       className={cn(
-        'shrink-0 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors',
+        'shrink-0 rounded-full px-4 py-2 text-sm whitespace-nowrap transition-colors pointer-coarse:py-3',
         active ? 'bg-ink font-semibold text-bg' : 'bg-surface-sunken font-medium text-ink-muted hover:text-ink',
       )}
     >

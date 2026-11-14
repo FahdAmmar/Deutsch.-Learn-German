@@ -28,7 +28,7 @@ export function LetterTile({ letter, active, disabled, onPress }: LetterTileProp
       <span lang="de" className="display-de text-xl leading-none">
         {letter.glyph}
       </span>
-      <span lang="de" className={cn('mt-1 text-[0.72rem] leading-none', letter.kind === 'letter' ? 'text-ink-muted' : 'text-marker-foreground')}>
+      <span lang="de" className={cn('mt-1 text-xs leading-none', letter.kind === 'letter' ? 'text-ink-muted' : 'text-marker-foreground')}>
         {letter.name}
       </span>
     </button>

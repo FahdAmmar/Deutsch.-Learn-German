@@ -54,14 +54,15 @@ export function WelcomeCard() {
           />
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          <Button size="lg" onClick={() => finish('/levels', 'A1')}>
+        {/* On a phone the three actions stack at full width: the primary one first, each an easy thumb target. */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <Button size="lg" className="w-full sm:w-auto" onClick={() => finish('/levels', 'A1')}>
             ابدأ من الصفر (A1)
           </Button>
-          <Button size="lg" variant="outline" onClick={() => finish('/placement-test')} icon={<ClipboardCheck size={18} aria-hidden="true" />}>
+          <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => finish('/placement-test')} icon={<ClipboardCheck size={18} aria-hidden="true" />}>
             حدّد مستواي باختبار قصير
           </Button>
-          <Button variant="ghost" onClick={() => finish('/dashboard')}>
+          <Button variant="ghost" className="w-full sm:w-auto" onClick={() => finish('/dashboard')}>
             تخطّي
           </Button>
         </div>

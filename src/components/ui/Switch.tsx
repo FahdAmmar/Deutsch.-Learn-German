@@ -12,6 +12,8 @@ interface SwitchProps {
  * utilities rather than a `translateX` transform, so it lands on the
  * correct physical side automatically in both LTR and RTL without any
  * direction-specific overrides.
+ *
+ * The visible track is 28px high, so a transparent `before` layer extends the tappable area to 48px.
  */
 export function Switch({ checked, onChange, label, id }: SwitchProps) {
   return (
@@ -23,7 +25,7 @@ export function Switch({ checked, onChange, label, id }: SwitchProps) {
       aria-label={label}
       onClick={() => onChange(!checked)}
       className={cn(
-        'relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors',
+        'relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors before:absolute before:-inset-x-1 before:-inset-y-2.5',
         checked ? 'bg-accent' : 'border-2 border-border-strong bg-surface-sunken',
       )}
     >

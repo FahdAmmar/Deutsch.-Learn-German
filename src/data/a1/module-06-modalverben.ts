@@ -1,5 +1,7 @@
 import type { Lesson, Module } from '@/types'
 
+import { lessonMuessenDuerfen } from './lesson-muessen-duerfen'
+
 export const lessonModalverben: Lesson = {
   id: 'a1-m06-l01',
   slug: 'modalverben',
@@ -319,5 +321,5 @@ export const module06Modalverben: Module = {
   title: 'Modalverben',
   titleAr: 'الأفعال الشرطية',
   order: 6,
-  lessons: [lessonModalverben],
+  lessons: [lessonModalverben, lessonMuessenDuerfen],
 }

@@ -10,7 +10,9 @@ const KB = 1024
 
 /** First matching rule wins. `pattern` is matched against the file name without its hash. */
 export const BUDGETS = [
-  { name: 'level data (a1, a2, b1, b2)', pattern: /^(a1|a2|b1|b2)$/, maxKb: 110 },
+  // Raised from 110 to 145 on purpose, with the content that needed it: 12 more A1 lessons (one of them a module of
+  // six vocabulary themes), 8 more A2 lessons, 10 more conversations. A1 and A2 were 112.8 and 117.5 kB gzip.
+  { name: 'level data (a1, a2, b1, b2)', pattern: /^(a1|a2|b1|b2)$/, maxKb: 145 },
   { name: 'react vendor', pattern: /^vendor-react$/, maxKb: 100 },
   { name: 'other vendor code', pattern: /^vendor$/, maxKb: 48 },
   { name: 'app entry', pattern: /^index$/, maxKb: 28 },

@@ -35,6 +35,7 @@ export function SpeakableGerman({ text, tone, showIcon = true, className }: Spea
       aria-label={`الاستماع إلى نطق: ${plain}`}
       className={cn(
         'inline-flex items-center gap-1.5 rounded-sm text-start font-de transition-colors',
+        'relative pointer-coarse:before:absolute pointer-coarse:before:-inset-x-1.5 pointer-coarse:before:-inset-y-2.5',
         'hover:bg-primary-muted disabled:cursor-default disabled:hover:bg-transparent',
         isSpeaking && 'bg-primary-muted',
         className,

@@ -64,7 +64,7 @@ export function SentenceStructureDiagram({ tokens, ar }: SentenceStructureDiagra
             >
               {token.text}
             </span>
-            <span dir="rtl" className="text-[11px] leading-none text-ink-faint">
+            <span dir="rtl" className="text-xs leading-none text-ink-faint">
               {token.role}
             </span>
           </div>

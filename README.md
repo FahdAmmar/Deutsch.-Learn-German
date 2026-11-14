@@ -24,12 +24,12 @@ The product is organised around the CEFR ladder — **A1 → A2 → B1 → B2** 
 
 | | A1 | A2 | B1 | B2 |
 | --- | :---: | :---: | :---: | :---: |
-| Modules | 20 | 18 | — | — |
-| Lessons | 34 | 30 | — | — |
-| Vocabulary items | 316 | 459 | — | — |
-| Exercises | 340 | 341 | — | — |
+| Modules | 22 | 22 | — | — |
+| Lessons | 53 | 45 | — | — |
+| Vocabulary items | 610 | 602 | — | — |
+| Exercises | 566 | 548 | — | — |
 | Reading texts | 17 | 18 | — | — |
-| Conversations | 40 | 52 | — | — |
+| Conversations | 48 | 56 | — | — |
 | Plan chapters (A1 → A2 as one plan, see `docs/learning-plan.md`) | 10 | 9 | — | — |
 | Grammar rules authored (of the 70-rule roadmap) | 16 / 16 | 18 / 18 | 0 / 17 | 0 / 19 |
 
@@ -44,6 +44,9 @@ B1 and B2 are **planned, not yet authored**; the app shows them as “coming soo
 - **Texts & conversations with audio** — one tab per level lists its reading texts and conversations — the dialogues that belong to a lesson, followed by longer standalone conversations about everyday situations (a phone call, the pharmacy, a hotel, the town hall). Each opens as a page with a German title, a cover, the text and a floating audio player: play/pause, a seek bar over the sentences, replay, speed (the same setting as in Settings) and a switch for the Arabic translation. Tap any sentence or line to start reading from it; the one being read is highlighted.
 - **Grammar hints in the texts** — forms that make a learner ask “why?” carry three small dots underneath: contractions (**zur** Arbeit, **im** Büro, **ins** Kino), the Dativ after a preposition (nach **dem** Frühstück, mit **meinen** Kollegen), “einen” for a masculine object, “des” in the Genitiv, “in die Stadt” after a verb of movement, and fixed phrases such as *nach Hause* / *zu Hause*. Hovering a marked phrase (or tapping it on a touch screen) shows a short Arabic reason with the formula (“zu + der → zur”) and, when the vocabulary knows the noun, its article (“das Frühstück”); keyboard users get all hints of a sentence on focus, and screen readers read them as the sentence's description. The detector (`src/lib/grammarHints.ts`, rules in `src/data/grammarHints.ts`) is deliberately conservative: a form that could be explained in more than one way (such as “den” after a two-way preposition) gets no hint rather than a doubtful one. It can be switched off in Settings or with the “تلميحات القواعد” button on a story page.
 - **Dictation of your own text** (“تدريب على نصّي”) — paste any German text, see it cut into short parts (sentence by sentence, short phrases that break at commas, conjunctions and prepositions, or your own lines), listen to each part, then type it letter by letter. A soft tick answers every right letter, a low tone every wrong one, a chime ends each part and a short fanfare ends the text; the sounds can be switched off. Texts are saved in the browser with their best accuracy and speed. The same typing screen powers the dictation of lesson texts.
+- **“I can …” statements** — every lesson opens with what the learner can actually do afterwards, in the manner of the CEFR can-do descriptors (`src/data/canDo.ts`; a test makes sure no lesson is left without any).
+- **Chapter reviews and a final test per level** — a link under each chapter of the plan draws twelve questions from that chapter's own exercises, spread across its lessons; each level ends with a thirty-question test drawn from as many of its lessons as fit. Nothing is invented: every question already has its explanation, and the answers feed the same statistics (`src/lib/chapterReview.ts`).
+- **Speaking practice** (`/practice/speaking`) — three kinds of task: talk from cue words, ask a question from a topic card, make a polite request. The learner speaks (browser speech recognition) or types, the page reports which required points were found and which were not (never “wrong”: it can only say what it did not find), and a model answer can be heard and compared. The tasks are written for this app, not copied from an exam.
 - **Spaced-repetition review** — a five-box Leitner system (1 / 3 / 7 / 16 / 35 days): a correct answer moves a word up a box, a wrong one sends it back to box 0. Any word on the vocabulary page can be added to review by hand.
 - **Better practice sessions** — after a set of exercises the learner sees what they got wrong, with the right answer and a link back to the lesson that teaches it, and can replay just those mistakes (practice only: the replay never changes the lesson result, the statistics or the review boxes). Number keys choose an option, Enter continues, Space replays the audio. Short feedback sounds for right and wrong answers are synthesised with Web Audio (no audio files) and can be switched off.
 - **Practice that fits what German makes hard** — beside the mixed session and “my weak spots”: drills for the article (der / die / das), for guessing the article from a noun's ending (only the nouns a rule really explains, with the exceptions listed), for plurals (wrong options are built from the other plural patterns and never a real word), and for verb forms (present with stem changes, haben or sein in the Perfekt, Partizip II, and the Präteritum from A2). Every noun carries its plural and every verb its Perfekt and Präteritum forms; every one of the 401 words has a bilingual example sentence.
@@ -70,7 +73,7 @@ B1 and B2 are **planned, not yet authored**; the app shows them as “coming soo
 - **Search** (Ctrl/⌘ + K or “/”) across lessons, grammar rules, vocabulary and texts, matching German and Arabic with or without the article, umlauts and vowel marks. Lazy-loaded so it never inflates the first load.
 - **Bilingual typography done right** — Arabic is RTL, German is LTR, and quoted German inside Arabic prose is isolated so punctuation never jumps sides.
 - **Light / dark / system themes** with design tokens and WCAG AA contrast, plus a text-size setting (100 / 112 / 125 %) and a high-contrast mode.
-- **Responsive, mobile-first** — bottom navigation on phones, sidebar on desktop, touch targets ≥ 44 px, reduced-motion support.
+- **Responsive, mobile-first** — on phones a compact top bar, a bottom bar for the four everyday destinations and a "More" bottom sheet for the rest (with a three-way theme choice); a sidebar on desktop. Touch targets ≥ 44 px on touch screens, fields never under 16 px (no iOS zoom), safe-area aware, reduced-motion support. See [docs/ui-design.md](docs/ui-design.md#phones).
 - **Installable PWA** — service worker with offline support, an update prompt and an offline notice. Fonts are self-hosted, so the first paint never waits on a third party.
 
 ## Screenshots
@@ -250,7 +253,7 @@ You can also put `DEV_PORT=4000` in `.env`.
 ## Quality
 
 - **Type safety:** strict TypeScript across the app, tests and tooling config.
-- **Unit and component tests:** 1,437 tests in 149 files, including a smoke test for *every* lesson and content-integrity suites over the curriculum and the grammar rules.
+- **Unit and component tests:** 1,701 tests in 167 files, including a smoke test for *every* lesson and content-integrity suites over the curriculum and the grammar rules.
 - **End-to-end:** Playwright tests on desktop and mobile viewports — every route renders without horizontal overflow, unknown routes show the 404 page, lessons and grammar rules link to each other, the new features have journey tests, and **axe-core WCAG 2.1 AA audits** cover both light and dark themes, also with high contrast and large text.
 - **CI:** GitHub Actions runs typecheck, lint, tests and build on every push and pull request, then the Playwright suite.
 

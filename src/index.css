@@ -18,6 +18,59 @@
     color-scheme: light dark;
     /* Anchored sections must clear the sticky header / section rail */
     scroll-padding-top: 7rem;
+    /* The phone baseline: no grey flash on tap (every control has its own :active state), no font inflation in landscape */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  :root {
+    /*
+     * Notch, rounded corners and home indicator. They are 0 unless the viewport meta says `viewport-fit=cover`
+     * (index.html does), and physical by nature: a notch is on the left or right whatever the text direction.
+     */
+    --safe-t: env(safe-area-inset-top, 0px);
+    --safe-r: env(safe-area-inset-right, 0px);
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --safe-l: env(safe-area-inset-left, 0px);
+
+    /*
+     * The sticky top bar's full height (its 1px border included): 56px + the notch on a phone, 64px from `md` up
+     * where the sidebar takes the brand. Anything that sticks beneath the bar uses `top-(--header-h)`, so it can
+     * never leave a gap the page scrolls through, or slide under the bar.
+     */
+    --header-h: calc(3.5rem + var(--safe-t) + 1px);
+  }
+
+  @media (min-width: 48rem) {
+    :root {
+      --header-h: calc(4rem + 1px);
+    }
+  }
+
+  /* Taps fire at once (no double-tap-zoom wait) on everything that is a control */
+  a,
+  button,
+  summary,
+  label,
+  input,
+  select,
+  textarea,
+  [role='button'],
+  [role='tab'],
+  [role='switch'],
+  [role='radio'] {
+    touch-action: manipulation;
+  }
+
+  /*
+   * A `grid` with no `grid-cols-*` has one implicit column sized `auto`, and an `auto` track grows to its widest
+   * item's min-content. On a 320px phone that made the dashboard and the study plan 11–36px wider than the screen,
+   * which makes mobile browsers zoom the whole page out. One flexible column that may shrink to 0 is what every
+   * such grid meant. This sits in the base layer, so any explicit `grid-cols-*` / `lg:grid-cols-*` still wins.
+   */
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   html.dark {
@@ -95,6 +148,32 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * Touch rules. Unlayered on purpose: they must win over utility classes such as `text-sm` on a field.
+ *
+ * - iOS Safari zooms the page into any field whose text is under 16px and never zooms back out, so a field is never
+ *   smaller than that on a touch screen. (Zoom itself stays allowed — turning it off is an accessibility failure.)
+ * - A control answers the finger on press, not on release: a short dip while it is held.
+ */
+@media (pointer: coarse) {
+  input:not([type='checkbox'], [type='radio'], [type='range']),
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
+
+  /* A slider's thumb is small; the input's own box is what a finger has to hit */
+  input[type='range'] {
+    min-height: 2.75rem;
+  }
+
+  button:not(:disabled):active,
+  [role='button']:active,
+  a[href]:active {
+    transition-duration: 60ms;
   }
 }
 
@@ -188,5 +267,18 @@
   }
   80% {
     transform: translateX(0.04em);
+  }
+}
+
+/* The phone's "More" sheet rises from the bottom edge; its backdrop fades in. */
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
 }

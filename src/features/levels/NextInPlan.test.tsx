@@ -35,7 +35,7 @@ describe('NextInPlan', () => {
   })
 
   it('says when the next step opens a new chapter', () => {
-    renderNext('lesson:a1-m01-l06')
+    renderNext('story:dialogue-a1-im-deutschkurs')
     expect(screen.getByText(/فصل جديد: الحروف والأرقام/)).toBeInTheDocument()
   })
 

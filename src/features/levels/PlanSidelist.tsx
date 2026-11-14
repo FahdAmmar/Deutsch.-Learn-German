@@ -1,4 +1,4 @@
-import { Check, ChevronDown } from 'lucide-react'
+import { Check, ChevronDown, ClipboardCheck } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -134,6 +134,17 @@ function ChapterGroup({ entry, number, completed, open, onToggle, completedKeys,
               />
             ))}
           </ol>
+          {entry.lessons.length > 0 ? (
+            <Link
+              to={`/levels/${entry.level.toLowerCase()}/review/${chapter.id}`}
+              onClick={onNavigate}
+              className="ms-1.5 mt-1 inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm font-semibold text-primary hover:bg-surface-sunken pointer-coarse:py-3"
+            >
+              <ClipboardCheck size={15} aria-hidden="true" />
+              مراجعة هذا الفصل
+              <span className="sr-only"> ({chapter.titleAr})</span>
+            </Link>
+          ) : null}
         </div>
       ) : null}
     </li>
@@ -177,7 +188,7 @@ export function PlanSidelist({ activeKey, onNavigate, className }: PlanSidelistP
           <button
             type="button"
             onClick={() => setOpen(allOpen ? new Set() : new Set(allChapterIds))}
-            className="font-semibold text-primary underline-offset-4 hover:underline"
+            className="relative pointer-coarse:before:absolute pointer-coarse:before:-inset-x-2 pointer-coarse:before:-inset-y-3 font-semibold text-primary underline-offset-4 hover:underline"
           >
             {allOpen ? 'طيّ الكل' : 'فتح الكل'}
           </button>
@@ -214,6 +225,14 @@ export function PlanSidelist({ activeKey, onNavigate, className }: PlanSidelistP
               />
             ))}
           </ol>
+          <Link
+            to={`/levels/${level.level.toLowerCase()}/abschlusstest`}
+            onClick={onNavigate}
+            className="mx-2.5 mt-2 flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm font-semibold text-ink transition-colors hover:border-border-strong pointer-coarse:py-3"
+          >
+            <ClipboardCheck size={16} aria-hidden="true" />
+            الاختبار الختامي لمستوى {level.level}
+          </Link>
         </section>
       ))}
     </nav>

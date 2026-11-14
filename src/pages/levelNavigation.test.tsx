@@ -66,10 +66,10 @@ describe('the study plan page', () => {
     await user.click(within(planList()).getByRole('button', { name: 'فتح الكل' }))
     const links = within(planList()).getAllByRole('link')
     const hrefs = links.map((link) => link.getAttribute('href') ?? '')
-    // A1: 34 lessons, 16 rules, 17 texts, 6 conversations; A2: 30, 18, 18, 19.
-    expect(hrefs.filter((href) => href.startsWith('/lessons/'))).toHaveLength(34 + 30)
+    // Lessons: A1 53 and A2 45 (vocabulary themes included); rules: 16 and 18; texts and conversations as listed.
+    expect(hrefs.filter((href) => href.startsWith('/lessons/'))).toHaveLength(53 + 45)
     expect(hrefs.filter((href) => href.startsWith('/grammar/'))).toHaveLength(16 + 18)
-    expect(hrefs.filter((href) => href.includes('/texts/'))).toHaveLength(17 + 6 + 18 + 19)
+    expect(hrefs.filter((href) => href.includes('/texts/'))).toHaveLength(17 + 12 + 18 + 23)
     expect(new Set(hrefs).size).toBe(hrefs.length)
     expect(within(planList()).getByRole('button', { name: 'طيّ الكل' })).toBeInTheDocument()
   })
@@ -97,16 +97,16 @@ describe('the study plan page', () => {
   })
 
   it('continues the plan from the first step not done and marks it as next', () => {
-    for (const lessonId of ['a1-m01-l01', 'a1-m01-l02', 'a1-m01-l06']) {
+    for (const lessonId of ['a1-m01-l01', 'a1-m01-l02', 'a1-m01-l06', 'a1-m01-l07']) {
       useProgressStore.getState().completeLesson({ lessonId, moduleId: 'a1-m01', level: 'A1', accuracy: 1 })
     }
     renderWithRoutes('/levels')
 
-    // The first chapter is done; the plan goes on with the Alphabet, in the chapter that is now open.
-    expect(screen.getByRole('link', { name: 'تابع' })).toHaveAttribute('href', '/lessons/a1/alphabet')
-    expect(within(planList()).getByRole('link', { name: /Alphabet/ })).toHaveTextContent('التالي')
-    // The finished chapter is folded away; its mark says so.
-    expect(within(planList()).queryByRole('link', { name: /Begrüßungen/ })).not.toBeInTheDocument()
+    // The first chapter is half done; the plan goes on with the classroom phrases, in the chapter that is open.
+    expect(screen.getByRole('link', { name: 'تابع' })).toHaveAttribute('href', '/lessons/a1/im-deutschkurs')
+    expect(within(planList()).getByRole('link', { name: /Im Deutschkurs/ })).toHaveTextContent('التالي')
+    // The chapter being worked on stays open.
+    expect(within(planList()).getByRole('link', { name: /Begrüßungen/ })).toBeInTheDocument()
   })
 
   it('says which steps are done', () => {

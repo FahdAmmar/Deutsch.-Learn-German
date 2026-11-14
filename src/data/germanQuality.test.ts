@@ -7,9 +7,10 @@ import { CEFR_LEVELS } from '@/types'
 /**
  * Lower-case words that are legitimately written small although they look like a noun of the vocabulary:
  * forms of verbs the vocabulary does not list (stellen, reisen) and a time expression that the
- * orthography allows in both cases (viertel nach zwei). Add to this list only with a reason.
+ * orthography allows in both cases (viertel nach zwei), and the direction adverb "links" (Wegbeschreibung), which
+ * is also spelled like the plural "Links" of der Link (a1-m21-l07). Add to this list only with a reason.
  */
-const LOWERCASE_ALLOWED = new Set(['stellen', 'stelle', 'reise', 'viertel'])
+const LOWERCASE_ALLOWED = new Set(['stellen', 'stelle', 'reise', 'viertel', 'links'])
 
 interface Source {
   where: string

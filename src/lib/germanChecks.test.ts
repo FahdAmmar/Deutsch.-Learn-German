@@ -16,6 +16,8 @@ const vocabulary: VocabularyItem[] = [
   item({ word: 'Auto', partOfSpeech: 'noun', article: 'das', plural: 'Autos' }),
   item({ word: 'Eltern', partOfSpeech: 'noun', article: 'die', numberUse: 'only' }),
   item({ word: 'Reise', partOfSpeech: 'noun', article: 'die', plural: 'Reisen' }),
+  item({ word: 'Kollege', partOfSpeech: 'noun', article: 'der', plural: 'Kollegen' }),
+  item({ word: 'Nachbar', partOfSpeech: 'noun', article: 'der', plural: 'Nachbarn' }),
   item({ word: 'reisen', partOfSpeech: 'verb', verb: { praeteritum: 'reiste', partizip: 'gereist', auxiliary: 'sein' } }),
   item({ word: 'essen', partOfSpeech: 'verb', verb: { present: ['esse', 'isst', 'isst', 'essen', 'esst', 'essen'], praeteritum: 'aß', partizip: 'gegessen', auxiliary: 'haben' } }),
   item({ word: 'aufstehen', partOfSpeech: 'verb', verb: { praeteritum: 'stand', partizip: 'aufgestanden', auxiliary: 'sein', separablePrefix: 'auf' } }),
@@ -61,6 +63,15 @@ describe('checkArticleAgreement', () => {
     expect(articleErrors('Die Farbe meines Autos gefällt mir.')).toEqual([])
   })
 
+  it('accepts a weak (N-Deklination) masculine noun in the singular after den, dem, einen and des', () => {
+    for (const sentence of ['Ich kenne den Kollegen.', 'Ich helfe dem Kollegen.', 'Ich sehe einen Nachbarn.', 'Das ist das Auto des Kollegen.', 'Das sind meine Kollegen.']) {
+      expect(articleErrors(sentence), sentence).toEqual([])
+    }
+    // The extra reading is masculine only: a weak noun is still not neuter or feminine.
+    expect(articleErrors('Ich kenne das Kollegen.')).toEqual(['das Kollegen'])
+    expect(articleErrors('Ich kenne die Kollege.')).toEqual(['die Kollege'])
+  })
+
   it('accepts a plural-only noun with its plural article', () => {
     expect(articleErrors('Die Eltern sind da.')).toEqual([])
     expect(articleErrors('Das Eltern sind da.')).toEqual(['Das Eltern'])
@@ -97,6 +108,12 @@ describe('findLowercaseNouns', () => {
 })
 
 describe('verbForms', () => {
+  it('includes the plural of the Präteritum (saßen, brachten)', () => {
+    const forms = verbForms(item({ word: 'sitzen', partOfSpeech: 'verb', verb: { praeteritum: 'saß', partizip: 'gesessen', auxiliary: 'haben' } }))
+    expect(forms).toContain('saßen')
+    expect(verbForms(item({ word: 'bringen', partOfSpeech: 'verb', verb: { praeteritum: 'brachte', partizip: 'gebracht', auxiliary: 'haben' } }))).toContain('brachten')
+  })
+
   it('lists present, Präteritum, Partizip II, imperative and zu-infinitive spellings', () => {
     const forms = verbForms(vocabulary.find((entry) => entry.word === 'aufstehen') as VocabularyItem)
     expect(forms).toEqual(expect.arrayContaining(['aufstehen', 'stehe', 'stehst', 'steht', 'stand', 'aufgestanden', 'aufzustehen']))

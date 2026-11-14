@@ -1,5 +1,7 @@
 import type { Lesson, Module } from '@/types'
 
+import { lessonMengen } from './lesson-mengen'
+
 export const lessonEinkaufen: Lesson = {
   id: 'a1-m14-l01',
   slug: 'einkaufen-und-pluralbildung',
@@ -232,5 +234,5 @@ export const module14Einkaufen: Module = {
   title: 'Einkaufen',
   titleAr: 'التسوّق',
   order: 14,
-  lessons: [lessonEinkaufen],
+  lessons: [lessonEinkaufen, lessonMengen],
 }

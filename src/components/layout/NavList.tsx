@@ -50,7 +50,7 @@ export function NavList({ onNavigate }: NavListProps) {
                 {item.labelAr}
               </span>
               {item.id === 'levels' ? (
-                <span dir="ltr" className="font-heading rounded bg-plum-muted px-1.5 py-0.5 text-[0.7rem] font-extrabold tracking-[0.08em] text-plum">
+                <span dir="ltr" className="font-heading rounded bg-plum-muted px-1.5 py-0.5 text-xs font-extrabold tracking-[0.08em] text-plum">
                   {currentLevel}
                 </span>
               ) : null}

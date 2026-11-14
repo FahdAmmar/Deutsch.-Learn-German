@@ -118,6 +118,12 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
     hintAr: 'der Tisch = الطاولة',
     noteAr: 'der Tisch مذكّر، فيصبح في حالة المفعول به einen Tisch.',
   },
+  'a1-m03-l06': {
+    ar: 'أنا جائع، لكن ليس عندي مال.',
+    de: ["Ich habe Hunger, aber ich habe kein Geld.", "Ich habe Hunger, aber kein Geld."],
+    hintAr: 'استعمل aber',
+    noteAr: 'بعد aber يبقى ترتيب الجملة عادياً.',
+  },
   'a1-m04-l01': {
     ar: 'المصباح على الرف.',
     de: ['Die Lampe steht auf dem Regal.', 'Die Lampe ist auf dem Regal.'],
@@ -134,6 +140,12 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
     ar: 'ليس لدي وقت.',
     de: ['Ich habe keine Zeit.'],
     noteAr: 'الاسم المسبوق بأداة تنكير أو بلا أداة يُنفى بـ kein، وليس بـ nicht.',
+  },
+  'a1-m07-l02': {
+    ar: 'بلى، أنا جائع.',
+    de: ["Doch, ich habe Hunger.", "Doch, ich bin hungrig."],
+    hintAr: 'جواب عن سؤال منفي',
+    noteAr: 'doch = بلى، ولا تُتبع بجملة منفية.',
   },
   'a1-m08-l01': {
     ar: 'أين حقيبتك؟',
@@ -190,6 +202,12 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
     ar: 'أرتدي اليوم سترة زرقاء.',
     de: ['Ich trage heute eine blaue Jacke.', 'Heute trage ich eine blaue Jacke.'],
   },
+  'a1-m18-l02': {
+    ar: 'أشتري هذا البلوفر.',
+    de: ["Ich kaufe diesen Pullover.", "Ich nehme diesen Pullover."],
+    hintAr: 'der Pullover ← مفعول به',
+    noteAr: 'المذكر في المفعول به: diesen.',
+  },
   'a1-m19-l01': {
     ar: 'أريد حساءً وسلطة، من فضلك.',
     de: [
@@ -206,6 +224,58 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
     de: ['Wir tanzen manchmal am Wochenende.', 'Am Wochenende tanzen wir manchmal.', 'Manchmal tanzen wir am Wochenende.'],
   },
 
+  // The A1 Themenwortschatz lessons (module a1-m21)
+  'a1-m21-l01': {
+    ar: 'أذهب إلى البنك ثم إلى البريد.',
+    de: ['Ich gehe zur Bank und dann zur Post.', 'Ich gehe zur Bank und danach zur Post.', 'Ich gehe zuerst zur Bank und dann zur Post.'],
+    noteAr: 'للأماكن التي تقصدها لإنجاز عمل نقول zu: zur Bank، zur Post.',
+  },
+  'a1-m21-l02': {
+    ar: 'أشرب الشاي كل صباح.',
+    de: ['Ich trinke jeden Morgen Tee.', 'Jeden Morgen trinke ich Tee.', 'Ich trinke morgens Tee.', 'Morgens trinke ich Tee.'],
+    noteAr: 'الشاي هنا مادة عامة، فلا نضع أداة: Tee.',
+  },
+  'a1-m21-l03': {
+    ar: 'مادتي المفضلة هي الأحياء.',
+    de: ['Mein Lieblingsfach ist Biologie.'],
+  },
+  'a1-m21-l04': {
+    ar: 'غداً صباحاً عندي موعد.',
+    de: ['Morgen früh habe ich einen Termin.', 'Ich habe morgen früh einen Termin.'],
+    noteAr: 'morgen (غداً) بحرف صغير، وبعده früh.',
+  },
+  'a1-m21-l05': {
+    ar: 'أذهب إلى العمل بالحافلة.',
+    de: ['Ich fahre mit dem Bus zur Arbeit.', 'Mit dem Bus fahre ich zur Arbeit.'],
+    noteAr: 'بعد mit تأتي حالة Dativ: mit dem Bus.',
+  },
+  'a1-m21-l06': {
+    ar: 'أخي طويل وله لحية.',
+    de: ['Mein Bruder ist groß und hat einen Bart.', 'Mein Bruder ist groß und er hat einen Bart.'],
+    noteAr: 'sein للصفة (ist groß) وhaben للجزء (hat einen Bart).',
+  },
+  'a1-m21-l07': {
+    ar: 'سأكتب لك رسالة بريد إلكتروني.',
+    de: ['Ich schreibe dir eine E-Mail.', 'Ich schreibe dir eine Mail.', 'Ich maile dir.'],
+    noteAr: 'dir = لك (Dativ)، وeine E-Mail هي الشيء المكتوب.',
+  },
+  'a1-m21-l08': {
+    ar: 'تهانينا بعيد ميلادك!',
+    de: ['Herzlichen Glückwunsch zum Geburtstag!', 'Alles Gute zum Geburtstag!'],
+    noteAr: 'zum Geburtstag = بمناسبة عيد الميلاد.',
+  },
+
+  'a1-m22-l01': {
+    ar: 'يوم الأحد يكون البنك مغلقاً.',
+    de: ['Am Sonntag ist die Bank geschlossen.', 'Die Bank ist am Sonntag geschlossen.', 'Die Bank hat am Sonntag geschlossen.'],
+    noteAr: 'geschlossen = مغلق، وضدّها geöffnet = مفتوح.',
+  },
+  'a1-m22-l02': {
+    ar: 'من فضلك أعد الاتصال بي.',
+    de: ['Bitte ruf mich zurück.', 'Ruf mich bitte zurück.', 'Bitte rufen Sie mich zurück.', 'Rufen Sie mich bitte zurück.'],
+    hintAr: 'zurückrufen فعل منفصل',
+    noteAr: 'ruf للصديق (du) وrufen Sie لمن تخاطبه بصيغة الاحترام، وzurück في آخر الجملة.',
+  },
   // ── A2 ──────────────────────────────────────────────────────────────────
   'a2-m01-l01': {
     ar: 'في الشتاء يكون الجو أبرد منه في الصيف.',
@@ -264,6 +334,44 @@ export const TRANSLATION_TASKS: Readonly<Record<string, TranslationTask>> = {
     ar: 'هل يمكنكم مساعدتي من فضلكم؟',
     de: ['Könnten Sie mir bitte helfen?', 'Könnten Sie mir helfen?', 'Würden Sie mir bitte helfen?', 'Könntest du mir bitte helfen?', 'Würdest du mir bitte helfen?'],
     noteAr: 'الطلب المهذّب: Könnten/Würden + الضمير، والمصدر في النهاية.',
+  },
+  'a2-m03-l02': {
+    ar: 'عندما كنتُ طفلاً، كان عندي كلب.',
+    de: ["Als ich Kind war, hatte ich einen Hund.", "Als ich ein Kind war, hatte ich einen Hund."],
+    hintAr: 'مرة واحدة في الماضي ← als',
+    noteAr: 'الفعل في آخر الجملة الفرعية، ثم الفعل مباشرة في الجملة الرئيسية.',
+  },
+  'a2-m16-l02': {
+    ar: 'تعال لزيارتنا!',
+    de: ["Komm doch mal vorbei!", "Komm doch mal bei uns vorbei!", "Kommt doch mal vorbei!", "Kommen Sie doch mal vorbei!"],
+    noteAr: 'doch وmal تجعلان الدعوة ودّية.',
+  },
+  'a2-m20-l03': {
+    ar: 'أبقى في البيت لأنني مريض.',
+    de: ["Ich bleibe zu Hause, weil ich krank bin.", "Ich bleibe zu Hause, denn ich bin krank.", "Weil ich krank bin, bleibe ich zu Hause."],
+    hintAr: 'weil أو denn',
+    noteAr: 'weil ← الفعل في الآخر، denn ← الفعل ثانياً.',
+  },
+  'a2-m21-l03': {
+    ar: 'في أيّ غرفة تسكن؟',
+    de: ["In welchem Zimmer wohnst du?", "In welchem Zimmer wohnen Sie?"],
+    hintAr: 'in + أين؟ ← Dativ',
+    noteAr: 'das Zimmer ← welchem.',
+  },
+  'a2-m21-l04': {
+    ar: 'الطبيبة تعمل في عيادة.',
+    de: ['Die Ärztin arbeitet in einer Praxis.', 'Die Ärztin arbeitet in der Praxis.'],
+    noteAr: 'نضيف -in لمؤنث المهنة، وقد يتغيّر حرف العلة: Arzt ← Ärztin.',
+  },
+  'a2-m22-l03': {
+    ar: 'يبدأ الحفل الموسيقي في الساعة السابعة مساءً.',
+    de: ['Das Konzert beginnt um 19 Uhr.', 'Das Konzert fängt um 19 Uhr an.', 'Das Konzert beginnt um sieben Uhr.', 'Das Konzert fängt um sieben Uhr an.'],
+    noteAr: 'beginnen غير منفصل، وanfangen منفصل: fängt … an.',
+  },
+  'a2-m22-l04': {
+    ar: 'قطار برلين ملغى اليوم.',
+    de: ['Der Zug nach Berlin fällt heute aus.', 'Heute fällt der Zug nach Berlin aus.'],
+    noteAr: 'ausfallen فعل منفصل: البادئة aus في آخر الجملة.',
   },
   'a2-m17-l01': {
     ar: 'أسكن في برلين منذ ثلاث سنوات.',

@@ -20,9 +20,10 @@ const variantClasses: Record<ButtonVariant, string> = {
   danger: 'bg-error text-error-foreground hover:brightness-110 active:brightness-95',
 }
 
-// md and lg meet the 44px touch-target guideline; sm is for dense, secondary actions only.
+// md and lg meet the 44px touch-target guideline. sm is for dense, secondary actions: 36px under a mouse, but it
+// grows to 44px on a touch screen (`pointer-coarse`), where a finger needs the room.
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3.5 text-sm gap-1.5',
+  sm: 'h-9 px-3.5 text-sm gap-1.5 pointer-coarse:h-11',
   md: 'h-11 px-5 text-[0.95rem] gap-2',
   lg: 'h-13 px-7 text-base gap-2.5',
 }

@@ -31,7 +31,7 @@ export function ExamplesView({ block }: { block: ExamplesBlock }) {
                     <span
                       dir="ltr"
                       className={cn(
-                        'inline-block rounded-full px-2.5 py-0.5 font-mono text-[11px] font-bold',
+                        'inline-block rounded-full px-2.5 py-0.5 font-mono text-xs font-bold',
                         TONE_CLASSES[tone].soft,
                       )}
                     >

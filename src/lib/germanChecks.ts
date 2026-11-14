@@ -64,6 +64,13 @@ export function buildNounIndex(vocabulary: readonly VocabularyItem[]): NounIndex
     }
     add(item.word, { article: item.article, plural: false })
     for (const form of pluralForms(item.plural)) add(form, { article: 'die', plural: true })
+    // N-Deklination: a masculine noun whose plural is the singular plus -n / -en (der Kollege, die Kollegen)
+    // also stands in the singular after den / dem / einen …: "den Kollegen", "mit einem Kunden".
+    if (item.article === 'der') {
+      for (const form of pluralForms(item.plural)) {
+        if (form === `${item.word}n` || form === `${item.word}en`) add(form, { article: 'der', plural: false })
+      }
+    }
     if (item.article !== 'die') {
       add(`${item.word}s`, { article: item.article, plural: false, genitive: true })
       add(`${item.word}es`, { article: item.article, plural: false, genitive: true })
@@ -219,7 +226,12 @@ export function verbForms(item: VocabularyItem): string[] {
   const infinitive = item.word.trim().split(/\s+/).find((part) => part !== 'sich') ?? item.word
   const present = presentForms(item)
   const forms = new Set<string>([infinitive, ...present, parsed.verb])
-  if (item.verb?.praeteritum) forms.add(item.verb.praeteritum)
+  if (item.verb?.praeteritum) {
+    // The plural of the Präteritum is the same stem plus -en (saß → saßen) or -n after -e (brachte → brachten).
+    const past = item.verb.praeteritum
+    forms.add(past)
+    forms.add(past.endsWith('e') ? `${past}n` : `${past}en`)
+  }
   if (item.verb?.partizip) forms.add(item.verb.partizip)
   // du-imperative: the ich-form without its final e (lerne → lern), plus the e-form itself and the ihr-form.
   const ich = present[0]

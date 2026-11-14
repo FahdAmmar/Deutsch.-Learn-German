@@ -22,7 +22,7 @@ export function RuleHero({ rule, onStart }: RuleHeroProps) {
     <header className="space-y-6">
       <Link
         to="/grammar"
-        className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink"
+        className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-muted hover:text-ink pointer-coarse:min-h-11"
       >
         <ArrowRight size={16} aria-hidden="true" />
         خارطة القواعد

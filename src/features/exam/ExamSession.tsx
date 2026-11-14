@@ -122,7 +122,7 @@ export function ExamSession({ examSet, onExit }: ExamSessionProps) {
     <div className="space-y-6">
       <div
         dir="rtl"
-        className="sticky top-2 z-10 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface/95 px-4 py-3 backdrop-blur"
+        className="sticky top-[calc(var(--header-h)+0.5rem)] z-10 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface/95 px-4 py-3 backdrop-blur"
       >
         <p className="tnum text-sm font-semibold text-ink">
           أجبتَ عن {answeredCount} من {items.length}

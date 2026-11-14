@@ -56,7 +56,7 @@ export function DailyGoalCard() {
           </p>
           <Link
             to="/practice?session=daily"
-            className="mt-1 inline-flex h-9 items-center gap-1.5 rounded-md border border-border-strong px-3.5 text-sm font-semibold text-ink transition-colors hover:bg-surface-sunken"
+            className="mt-1 inline-flex h-9 items-center gap-1.5 rounded-md border border-border-strong px-3.5 pointer-coarse:h-11 text-sm font-semibold text-ink transition-colors hover:bg-surface-sunken"
           >
             <CalendarCheck size={16} aria-hidden="true" />
             {reached ? 'جلسة إضافية' : 'ابدأ جلسة اليوم'}

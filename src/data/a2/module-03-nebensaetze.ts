@@ -1,4 +1,5 @@
 import type { Lesson, Module } from '@/types'
+import { lessonWennAlsWann } from './lesson-wenn-als-wann'
 
 export const lessonNebensaetze: Lesson = {
   id: 'a2-m03-l01',
@@ -257,5 +258,5 @@ export const module03Nebensaetze: Module = {
   title: 'Nebensätze',
   titleAr: 'الجمل الفرعية',
   order: 3,
-  lessons: [lessonNebensaetze],
+  lessons: [lessonNebensaetze, lessonWennAlsWann],
 }

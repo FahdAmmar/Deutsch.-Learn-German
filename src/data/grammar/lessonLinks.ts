@@ -36,6 +36,8 @@ export const LESSON_GRAMMAR_LINKS: Readonly<Record<string, readonly number[]>> =
   'a2-m01-l01': [26],
   'a2-m02-l01': [18],
   'a2-m03-l01': [28, 29],
+  'a2-m03-l02': [29],
+  'a2-m20-l03': [28],
   'a2-m04-l01': [22, 23],
   'a2-m05-l01': [25],
   'a2-m06-l01': [33],

@@ -19,6 +19,10 @@ import { conversationAufDerBank } from './conversation-16-auf-der-bank'
 import { conversationHilfeVomNachbarn } from './conversation-17-hilfe-vom-nachbarn'
 import { conversationImFitnessstudio } from './conversation-18-im-fitnessstudio'
 import { conversationPruefungsstress } from './conversation-19-pruefungsstress'
+import { conversationNeueWohnung } from './conversation-20-neue-wohnung'
+import { conversationWochenendePlanen } from './conversation-21-wochenende-planen'
+import { conversationNeueKollegen } from './conversation-22-neue-kollegen'
+import { conversationImTreppenhaus } from './conversation-23-im-treppenhaus'
 
 /**
  * Standalone A2 conversations: situations from daily life that belong to no
@@ -45,4 +49,8 @@ export const a2Conversations: Dialogue[] = [
   conversationHilfeVomNachbarn, // m16 Höfliche Bitten
   conversationImFitnessstudio, // m17 Zeitangaben
   conversationPruefungsstress, // m18 Verben mit Präpositionen
+  conversationNeueWohnung, // m19 Besondere Verben
+  conversationWochenendePlanen, // m20 Meinung, Rat und Begründung
+  conversationNeueKollegen, // m21 Nomen und Adjektive
+  conversationImTreppenhaus, // m22 Lesen und Leben in D-A-CH
 ]

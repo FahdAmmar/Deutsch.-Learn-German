@@ -1,4 +1,5 @@
 import type { Lesson } from '@/types'
+import { lessonUndOderAber } from './lesson-und-oder-aber'
 
 export const lessonSein: Lesson = {
   id: 'a1-m03-l01',
@@ -606,5 +607,5 @@ export const module03Grundgrammatik = {
   title: 'Grundgrammatik',
   titleAr: 'القواعد الأساسية',
   order: 3,
-  lessons: [lessonSein, lessonHaben, lessonRegelmaessigeVerben, lessonArtikel, lessonAkkusativ],
+  lessons: [lessonSein, lessonHaben, lessonRegelmaessigeVerben, lessonArtikel, lessonAkkusativ, lessonUndOderAber],
 }

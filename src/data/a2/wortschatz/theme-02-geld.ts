@@ -25,6 +25,11 @@ export const lessonGeld: Lesson = defineTheme({
       bodyAr:
         '«abheben» (يسحب) و«einzahlen» (يودع) فعلان منفصلان: «Ich hebe Geld ab» و«Ich zahle Geld ein»، والبادئة تذهب إلى آخر الجملة. أما «überweisen» (يحوّل) و«verschicken» (يرسل) فغير منفصلين: «Ich überweise die Miete». وتُصاغ كل الأفعال بـ haben في الـ Perfekt: «Ich habe Geld abgehoben».',
     },
+    {
+      titleAr: 'النسبة المئوية والخصم',
+      bodyAr:
+        'الرمز **%** يُقرأ **Prozent**: 20 % = **zwanzig Prozent**، وبعد الرقم لا يتغيّر الجمع. نقول: **Die Jacke ist zwanzig Prozent billiger.** (الجاكيت أرخص بعشرين بالمئة). و**Rabatt** هو الخصم الذي تحصل عليه، أمّا **Ermäßigung** فتخفيض لفئة معينة مثل الأطفال والطلاب.',
+    },
   ],
   examples: [
     { de: 'Ich hebe hundert Euro ab.', ar: 'أسحب مئة يورو.' },
@@ -45,6 +50,7 @@ export const lessonGeld: Lesson = defineTheme({
     noun('der', 'Preis', 'Preise', 'السعر', 'Der Preis steht auf dem Schild.', 'السعر مكتوب على اللافتة.'),
     noun('das', 'Angebot', 'Angebote', 'العرض (التخفيض)', 'Diese Woche gibt es ein Angebot für Obst.', 'هذا الأسبوع يوجد عرض على الفاكهة.'),
     noun('der', 'Rabatt', 'Rabatte', 'الخصم', 'Mit der Karte bekomme ich Rabatt.', 'أحصل على خصم بهذه البطاقة.'),
+    noun('das', 'Prozent', 'Prozent', 'بالمئة (النسبة المئوية)', 'Das Angebot ist zwanzig Prozent billiger.', 'العرض أرخص بعشرين بالمئة.'),
     noun('die', 'Quittung', 'Quittungen', 'الإيصال', 'Kann ich bitte eine Quittung haben?', 'هل يمكنني الحصول على إيصال من فضلك؟'),
     noun('die', 'Überweisung', 'Überweisungen', 'التحويل المصرفي', 'Die Überweisung dauert zwei Tage.', 'يستغرق التحويل يومين.'),
     noun('die', 'Briefmarke', 'Briefmarken', 'طابع البريد', 'Ich brauche eine Briefmarke.', 'أحتاج إلى طابع بريد.'),

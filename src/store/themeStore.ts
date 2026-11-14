@@ -23,9 +23,17 @@ function getSystemTheme(): ResolvedTheme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
+/** The page background of each theme (`--color-bg` in tokens.css), shown by the browser behind the status bar. */
+const BROWSER_CHROME_COLOR: Record<ResolvedTheme, string> = { light: '#f8fafc', dark: '#101216' }
+
 function applyThemeToDocument(theme: ResolvedTheme): void {
   if (typeof document === 'undefined') return
   document.documentElement.classList.toggle('dark', theme === 'dark')
+  // index.html declares two `theme-color` tags keyed to the OS setting. The learner can choose a theme the OS is not
+  // using, so both are pointed at the theme actually shown: the status bar and address bar then match the page.
+  for (const tag of document.querySelectorAll('meta[name="theme-color"]')) {
+    tag.setAttribute('content', BROWSER_CHROME_COLOR[theme])
+  }
 }
 
 export const useThemeStore = create<ThemeState>()(

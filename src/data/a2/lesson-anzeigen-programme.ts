@@ -1,0 +1,190 @@
+import type { Lesson } from '@/types'
+
+/**
+ * Reading the printed texts the Goethe-Zertifikat A2 reading part uses: event programmes, correspondence and
+ * advertisements. Flat adverts are already taught in `module-13-wohnungssuche.ts` (Zi., KM, WM, qm), so this lesson
+ * takes the other advert types: a job advert, an event programme and the small "Suche / Biete" ad.
+ * It teaches a reading routine (headline, numbers, keywords) and the vocabulary these texts share.
+ */
+export const lessonAnzeigenProgramme: Lesson = {
+  id: 'a2-m22-l03',
+  slug: 'anzeigen-und-programme',
+  level: 'A2',
+  moduleId: 'a2-m22',
+  title: 'Anzeigen und Veranstaltungsprogramme lesen',
+  titleAr: 'قراءة الإعلانات وبرامج الفعاليات',
+  estimatedMinutes: 28,
+  objectivesAr: [
+    'قراءة إعلان وظيفة واستخراج الدوام والخبرة المطلوبة وطريقة التقديم',
+    'قراءة برنامج فعاليات واستخراج الموعد والمكان والسعر والتخفيض',
+    'فهم الإعلان الصغير Suche / Biete',
+    'الإجابة عن أسئلة الفهم بالبحث عن الكلمة المفتاحية بدل قراءة كل شيء',
+  ],
+  explanation: [
+    {
+      titleAr: 'ثلاث خطوات للقراءة السريعة',
+      bodyAr:
+        'في امتحان القراءة تتعامل مع نصوص مليئة بالتفاصيل، فاتبع ترتيباً ثابتاً: **أولاً** اقرأ السؤال، **ثانياً** ابحث في النص عن **الأرقام والتواريخ** المرتبطة بالسؤال، **ثالثاً** اقرأ الجملة المحيطة بها فقط. لا تتوقف عند كلمة لا تعرفها ما دام الجواب في مكان آخر. وانتبه إلى أن النص قد يذكر معلومتين متقاربتين (مثلاً سعر عادي وسعر مخفّض)، والسؤال يطلب إحداهما.',
+    },
+    {
+      titleAr: 'إعلان الوظيفة: Stellenanzeige',
+      bodyAr:
+        'مثال: **Verkäufer/in gesucht. Teilzeit, 20 Stunden pro Woche. Beginn: ab sofort. Bewerbung per E-Mail.** كلمة **gesucht** = مطلوب. والصيغة **Verkäufer/in** تعني **Verkäufer oder Verkäuferin** (الوظيفة للرجل والمرأة معاً). **Teilzeit** = دوام جزئي، و**Vollzeit** = دوام كامل، و**ab sofort** = من الآن / فوراً، و**Erfahrung** = خبرة. وللتقديم تقرأ **Bewerbung per E-Mail** أي أن التقديم يكون بالبريد الإلكتروني.',
+    },
+    {
+      titleAr: 'برنامج الفعاليات: Veranstaltungsprogramm',
+      bodyAr:
+        'مثال: **Stadtfest, Samstag, 14. Juni. Beginn: 11 Uhr. Eintritt frei. Konzert: 19 Uhr, Karte 8 €, ermäßigt 5 €. Führung durch die Altstadt: 14 Uhr, Treffpunkt am Rathaus.** هنا **Eintritt frei** = الدخول مجاني، و**ermäßigt** = بسعر مخفّض (للأطفال أو الطلاب مثلاً) والاسم **Ermäßigung**، و**Führung** = جولة بصحبة مرشد، و**Treffpunkt** = مكان اللقاء. وكل بند في البرنامج له ساعته، فاربط كل ساعة بالفعالية التي بجانبها.',
+    },
+    {
+      titleAr: 'الإعلان الصغير: Suche / Biete',
+      bodyAr:
+        'في الجرائد واللوحات تجد **Suche …** (أبحث عن) و**Biete …** (أعرض). مثال: **Suche Nachhilfe in Mathe, zweimal pro Woche.** (أبحث عن دروس تقوية في الرياضيات مرتين في الأسبوع) و**Biete Gitarrenunterricht für fünfzehn Euro pro Stunde.** (أقدّم دروس غيتار بخمسة عشر يورو للساعة). هذه الإعلانات تحذف الضمير **ich** والأداة لتختصر، وتنتهي غالباً بـ **Tel.** أو بعنوان بريد.',
+    },
+  ],
+  examples: [
+    { de: 'Verkäufer/in gesucht – Teilzeit, zwanzig Stunden pro Woche.', ar: 'مطلوب بائع أو بائعة – دوام جزئي عشرون ساعة في الأسبوع.' },
+    { de: 'Wir suchen ab sofort eine Verkäuferin.', ar: 'نبحث من الآن عن بائعة.' },
+    { de: 'Sie haben Erfahrung im Verkauf? Dann bewerben Sie sich bei uns.', ar: 'هل لديك خبرة في البيع؟ إذن قدّم طلبك عندنا.' },
+    { de: 'Das Stadtfest beginnt am Samstag um 11 Uhr.', ar: 'يبدأ مهرجان المدينة يوم السبت في الساعة الحادية عشرة.' },
+    { de: 'Der Eintritt ist frei.', ar: 'الدخول مجاني.' },
+    { de: 'Die Eintrittskarte kostet acht Euro, ermäßigt fünf Euro.', ar: 'تذكرة الدخول بثمانية يورو، وبخمسة يورو بسعر مخفّض.' },
+    { de: 'Kinder und Studenten zahlen weniger.', ar: 'الأطفال والطلاب يدفعون أقل.' },
+    { de: 'Die Führung durch die Altstadt beginnt um 14 Uhr am Rathaus.', ar: 'تبدأ الجولة في المدينة القديمة في الساعة الثانية ظهراً عند البلدية.' },
+    { de: 'Suche Nachhilfe in Mathe, zweimal pro Woche.', ar: 'أبحث عن دروس تقوية في الرياضيات مرتين في الأسبوع.' },
+    { de: 'Biete Gitarrenunterricht für fünfzehn Euro pro Stunde.', ar: 'أعرض دروس غيتار بخمسة عشر يورو للساعة.' },
+  ],
+  vocabulary: [
+    { id: 'voc-anzeigen-stellenanzeige', word: 'Stellenanzeige', article: 'die', plural: 'Stellenanzeigen', partOfSpeech: 'noun', meaningAr: 'إعلان وظيفة', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Ich lese die Stellenanzeige in der Zeitung.', ar: 'أقرأ إعلان الوظيفة في الجريدة.' } },
+    { id: 'voc-anzeigen-teilzeit', word: 'Teilzeit', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'دوام جزئي', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Meine Schwester arbeitet in Teilzeit.', ar: 'أختي تعمل بدوام جزئي.' } },
+    { id: 'voc-anzeigen-vollzeit', word: 'Vollzeit', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'دوام كامل', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Er arbeitet in Vollzeit bei einer Bank.', ar: 'يعمل بدوام كامل في بنك.' } },
+    { id: 'voc-anzeigen-gesucht', word: 'gesucht', partOfSpeech: 'adjective', meaningAr: 'مطلوب (في إعلان)', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Im Café ist ein Kellner gesucht.', ar: 'في المقهى مطلوب نادل.' } },
+    { id: 'voc-anzeigen-ab-sofort', word: 'ab sofort', partOfSpeech: 'phrase', meaningAr: 'من الآن / فوراً', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Die Stelle ist ab sofort frei.', ar: 'الوظيفة شاغرة من الآن.' } },
+    { id: 'voc-anzeigen-veranstaltung', word: 'Veranstaltung', article: 'die', plural: 'Veranstaltungen', partOfSpeech: 'noun', meaningAr: 'فعالية / حدث', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Die Veranstaltung beginnt um 19 Uhr.', ar: 'تبدأ الفعالية في الساعة السابعة مساءً.' } },
+    { id: 'voc-anzeigen-programm', word: 'Programm', article: 'das', plural: 'Programme', partOfSpeech: 'noun', meaningAr: 'البرنامج', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Das Programm hängt am Eingang.', ar: 'البرنامج معلّق عند المدخل.' } },
+    { id: 'voc-anzeigen-eintrittskarte', word: 'Eintrittskarte', article: 'die', plural: 'Eintrittskarten', partOfSpeech: 'noun', meaningAr: 'تذكرة دخول', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Ich kaufe zwei Eintrittskarten für das Konzert.', ar: 'أشتري تذكرتي دخول للحفل الموسيقي.' } },
+    { id: 'voc-anzeigen-ermaessigung', word: 'Ermäßigung', article: 'die', plural: 'Ermäßigungen', partOfSpeech: 'noun', meaningAr: 'تخفيض', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Studenten bekommen eine Ermäßigung.', ar: 'الطلاب يحصلون على تخفيض.' } },
+    { id: 'voc-anzeigen-fuehrung', word: 'Führung', article: 'die', plural: 'Führungen', partOfSpeech: 'noun', meaningAr: 'جولة بصحبة مرشد', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Die Führung dauert eine Stunde.', ar: 'تستغرق الجولة ساعة.' } },
+    { id: 'voc-anzeigen-treffpunkt', word: 'Treffpunkt', article: 'der', plural: 'Treffpunkte', partOfSpeech: 'noun', meaningAr: 'مكان اللقاء', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Der Treffpunkt ist vor dem Museum.', ar: 'مكان اللقاء أمام المتحف.' } },
+    { id: 'voc-anzeigen-nachhilfe', word: 'Nachhilfe', article: 'die', numberUse: 'none', partOfSpeech: 'noun', meaningAr: 'دروس تقوية', level: 'A2', category: 'الإعلانات والبرامج', example: { de: 'Mein Sohn braucht Nachhilfe in Mathe.', ar: 'ابني يحتاج دروس تقوية في الرياضيات.' } },
+  ],
+  exercises: [
+    {
+      id: 'ex-anzeigen-1',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اقرأ الإعلان ثم أجب',
+      questionDe: 'Verkäufer/in gesucht. Teilzeit, 20 Stunden pro Woche. Beginn: ab sofort. Bewerbung per E-Mail. – Wie viele Stunden pro Woche arbeitet man?',
+      options: ['Zehn Stunden', 'Zwanzig Stunden', 'Dreißig Stunden', 'Vierzig Stunden'],
+      correctIndex: 1,
+      explanationAr: 'Teilzeit، 20 Stunden pro Woche = عشرون ساعة في الأسبوع.',
+    },
+    {
+      id: 'ex-anzeigen-2',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اقرأ الإعلان ثم أجب',
+      questionDe: 'Verkäufer/in gesucht. Teilzeit, 20 Stunden pro Woche. Beginn: ab sofort. Bewerbung per E-Mail. – Wann beginnt die Arbeit?',
+      options: ['Nächsten Monat.', 'Ab sofort.', 'Im Sommer.', 'Das steht nicht im Text.'],
+      correctIndex: 1,
+      explanationAr: 'Beginn: ab sofort = تبدأ الوظيفة من الآن.',
+    },
+    {
+      id: 'ex-anzeigen-3',
+      type: 'true-false',
+      level: 'A2',
+      promptAr: 'صح أم خطأ؟',
+      statementDe: 'Bei „Verkäufer/in gesucht“ sucht die Firma nur einen Mann.',
+      isTrue: false,
+      explanationAr: 'خطأ. Verkäufer/in تعني Verkäufer oder Verkäuferin، فالوظيفة لرجل أو امرأة.',
+    },
+    {
+      id: 'ex-anzeigen-4',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اقرأ البرنامج ثم أجب',
+      questionDe: 'Stadtfest, Samstag, 14. Juni. Beginn: 11 Uhr. Eintritt frei. Konzert: 19 Uhr, Karte 8 €, ermäßigt 5 €. – Was kostet das Konzert ermäßigt?',
+      options: ['Nichts.', 'Fünf Euro.', 'Acht Euro.', 'Elf Euro.'],
+      correctIndex: 1,
+      explanationAr: 'ermäßigt 5 € = بسعر مخفّض خمسة يورو، أمّا 8 € فهو السعر العادي.',
+    },
+    {
+      id: 'ex-anzeigen-5',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اقرأ البرنامج ثم أجب',
+      questionDe: 'Stadtfest, Samstag, 14. Juni. Beginn: 11 Uhr. Eintritt frei. Konzert: 19 Uhr, Karte 8 €, ermäßigt 5 €. – Was ist kostenlos?',
+      options: ['Das Konzert.', 'Der Eintritt zum Stadtfest.', 'Die Karte für Kinder.', 'Alles.'],
+      correctIndex: 1,
+      explanationAr: 'Eintritt frei يخص الدخول إلى المهرجان، أمّا الحفل الموسيقي فله بطاقة.',
+    },
+    {
+      id: 'ex-anzeigen-6',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'ماذا تعني العبارة؟',
+      questionDe: 'ab sofort',
+      options: ['من الآن / فوراً', 'بعد سنة', 'يوم الأحد فقط', 'ليس الآن'],
+      optionLanguage: 'ar',
+      correctIndex: 0,
+      explanationAr: 'sofort = فوراً، وab sofort = اعتباراً من الآن.',
+    },
+    {
+      id: 'ex-anzeigen-7',
+      type: 'multiple-choice',
+      level: 'A2',
+      promptAr: 'اقرأ الإعلان ثم أجب',
+      questionDe: 'Suche Nachhilfe in Mathe, zweimal pro Woche. – Was sucht die Person?',
+      options: ['Jemanden, der Mathe erklärt.', 'Eine Wohnung.', 'Ein Fahrrad.', 'Eine Arbeit als Verkäufer.'],
+      correctIndex: 0,
+      explanationAr: 'Nachhilfe = دروس تقوية، فالشخص يبحث عمّن يشرح له الرياضيات.',
+    },
+    {
+      id: 'ex-anzeigen-8',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل بالكلمة المناسبة',
+      sentenceDe: 'Kinder zahlen weniger: Sie bekommen eine ___.',
+      acceptedAnswers: ['Ermäßigung', 'Ermaessigung'],
+      hint: 'تخفيض',
+      explanationAr: 'Ermäßigung = تخفيض في السعر.',
+    },
+    {
+      id: 'ex-anzeigen-9',
+      type: 'fill-blank',
+      level: 'A2',
+      promptAr: 'أكمل بالكلمة المناسبة',
+      sentenceDe: 'Die ___ durch die Altstadt beginnt um 14 Uhr.',
+      acceptedAnswers: ['Führung', 'Fuehrung'],
+      hint: 'جولة بصحبة مرشد',
+      explanationAr: 'Führung = جولة بصحبة مرشد، وهي من بنود برامج الفعاليات.',
+    },
+    {
+      id: 'ex-anzeigen-10',
+      type: 'matching',
+      level: 'A2',
+      promptAr: 'طابق الكلمة الألمانية مع معناها',
+      pairs: [
+        { de: 'die Teilzeit', ar: 'دوام جزئي' },
+        { de: 'die Vollzeit', ar: 'دوام كامل' },
+        { de: 'die Ermäßigung', ar: 'تخفيض' },
+        { de: 'die Führung', ar: 'جولة بصحبة مرشد' },
+        { de: 'der Treffpunkt', ar: 'مكان اللقاء' },
+        { de: 'die Veranstaltung', ar: 'فعالية' },
+      ],
+      explanationAr: 'هذه الكلمات تتكرر في إعلانات الوظائف وبرامج الفعاليات.',
+    },
+  ],
+  commonMistakes: [
+    {
+      wrong: 'Das Konzert beginnt um 19 Uhr an.',
+      correct: 'Das Konzert beginnt um 19 Uhr.',
+      explanationAr: 'beginnen فعل غير منفصل فلا تُضف an. أمّا anfangen فمنفصل: Das Konzert fängt um 19 Uhr an.',
+    },
+    {
+      wrong: 'Der Eintritt kostet frei.',
+      correct: 'Der Eintritt ist frei.',
+      explanationAr: 'نقول ist frei (مجاني) ولا نقول kostet frei. وللسعر نقول kostet acht Euro.',
+    },
+  ],
+}

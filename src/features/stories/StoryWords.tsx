@@ -74,7 +74,7 @@ export function StoryWords({ story }: StoryWordsProps) {
                   aria-pressed={manually}
                   aria-label={manually ? `إزالة ${word.item.word} من المراجعة` : `إضافة ${word.item.word} إلى المراجعة`}
                   onClick={() => toggleSavedVocabulary(word.ids[0])}
-                  className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-border-strong text-ink-muted transition-colors hover:bg-surface hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent-muted aria-pressed:text-accent"
+                  className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-border-strong pointer-coarse:size-11 text-ink-muted transition-colors hover:bg-surface hover:text-ink aria-pressed:border-accent aria-pressed:bg-accent-muted aria-pressed:text-accent"
                 >
                   {manually ? <BookmarkCheck size={18} aria-hidden="true" /> : <BookmarkPlus size={18} aria-hidden="true" />}
                 </button>

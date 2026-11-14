@@ -20,6 +20,10 @@ import { module15Wortschatz } from './module-15-wortschatz'
 import { module16HoeflicheBitten } from './module-16-hoefliche-bitten'
 import { module17Zeitangaben } from './module-17-zeitangaben'
 import { module18VerbenMitPraepositionen } from './module-18-verben-mit-praepositionen'
+import { module19BesondereVerben } from './module-19-besondere-verben'
+import { module20MeinungRatBegruendung } from './module-20-meinung-rat-begruendung'
+import { module21NomenUndAdjektive } from './module-21-nomen-und-adjektive'
+import { module22LesenUndLeben } from './module-22-lesen-und-leben'
 
 const authoredA2Modules: Module[] = [
   module01Vergleiche,
@@ -40,6 +44,10 @@ const authoredA2Modules: Module[] = [
   module16HoeflicheBitten,
   module17Zeitangaben,
   module18VerbenMitPraepositionen,
+  module19BesondereVerben,
+  module20MeinungRatBegruendung,
+  module21NomenUndAdjektive,
+  module22LesenUndLeben,
 ]
 
 /**
