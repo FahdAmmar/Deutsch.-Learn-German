@@ -14,6 +14,9 @@ export const lessonLaender: Lesson = {
   title: 'Länder, Nationalitäten und Sprachen',
   titleAr: 'الدول والجنسيات واللغات',
   estimatedMinutes: 22,
+  taglineAr:
+    'من أين أنت، وأين تسكن، وما جنسيتك ولغتك: الدول والجنسيات واللغات في جمل جاهزة.',
+  heroExample: { de: 'Ich komme aus Syrien.', ar: 'أنا من سوريا.' },
   objectivesAr: [
     'قول البلد الذي أتيت منه والبلد الذي تسكن فيه: Ich komme aus … / Ich wohne in …',
     'معرفة الدول التي لها أداة تعريف (der Irak، die Türkei) وحفظها مع عبارتها كاملة',
@@ -22,34 +25,209 @@ export const lessonLaender: Lesson = {
   ],
   explanation: [
     {
+      icon: 'globe',
+      kickerDe: 'aus oder in?',
+      tone: 'accent',
       titleAr: 'من أين أنت؟ — aus + البلد',
       bodyAr:
-        'نسأل **Woher kommst du؟** (من أين أنت؟) ونجيب بـ **Ich komme aus** + اسم البلد: Ich komme aus Syrien. وللسكن نستخدم **in**: Ich wohne in Deutschland. لاحظ أن "من" العربية تقابل **aus** وليس von: لا نقول Ich komme von Syrien. ويجوز أيضاً أن نقول Ich bin aus Syrien، فهي جملة صحيحة وشائعة في الحديث اليومي.',
+        'نسأل [[Woher kommst du?]] ونجيب بـ [[Ich komme aus]] + اسم البلد. وللسكن نستخدم [[in]]. لاحظ أن «من» العربية تقابل [[aus]] وليس [[von]].',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: الأصل أم السكن؟',
+          modes: [
+            {
+              labelAr: 'الأصل',
+              captionAr: 'من أين أتيت: aus.',
+              parts: [
+                { text: 'Ich komme', tone: 'primary' },
+                { text: 'aus', tone: 'accent' },
+                { text: 'Syrien', tone: 'highlight' },
+              ],
+            },
+            {
+              labelAr: 'السكن',
+              captionAr: 'أين تسكن الآن: in.',
+              parts: [
+                { text: 'Ich wohne', tone: 'primary' },
+                { text: 'in', tone: 'highlight' },
+                { text: 'Deutschland', tone: 'plum' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: 'aus وليس von',
+          bodyAr:
+            'لا نقول [[Ich komme von Syrien]]؛ الصحيح [[Ich komme aus Syrien]]. ويجوز أيضاً [[Ich bin aus Syrien]]، وهي جملة صحيحة وشائعة في الحديث اليومي.',
+        },
+      ],
     },
     {
+      icon: 'globe',
+      kickerDe: 'Ohne Artikel',
+      tone: 'primary',
       titleAr: 'معظم الدول بلا أداة تعريف',
       bodyAr:
-        'أغلب أسماء الدول في الألمانية تُستعمل **بدون أداة**، مثل العربية تماماً: Syrien، Ägypten، Marokko، Jordanien، Tunesien، Algerien، Libyen، Deutschland، Österreich. لا نقول die Syrien ولا das Deutschland. وتُكتب بحرف كبير دائماً.',
+        'أغلب أسماء الدول في الألمانية تُستعمل **بدون أداة**، مثل العربية تماماً، وتُكتب بحرف كبير دائماً. لا نقول [[die Syrien]] ولا [[das Deutschland]]. اضغط على أي بطاقة لتسمع الاسم.',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 3,
+          tone: 'primary',
+          items: [
+            { mark: 'SY', de: 'Syrien', ar: 'سوريا' },
+            { mark: 'EG', de: 'Ägypten', ar: 'مصر' },
+            { mark: 'MA', de: 'Marokko', ar: 'المغرب' },
+            { mark: 'JO', de: 'Jordanien', ar: 'الأردن' },
+            { mark: 'TN', de: 'Tunesien', ar: 'تونس' },
+            { mark: 'DZ', de: 'Algerien', ar: 'الجزائر' },
+            { mark: 'LY', de: 'Libyen', ar: 'ليبيا' },
+            { mark: 'DE', de: 'Deutschland', ar: 'ألمانيا' },
+            { mark: 'AT', de: 'Österreich', ar: 'النمسا' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'globe',
+      kickerDe: 'Mit Artikel',
+      tone: 'plum',
       titleAr: 'دول لها أداة: احفظ العبارة كاملة',
       bodyAr:
-        'بعض الدول لها أداة تعريف ولا بد من حفظها مع الاسم: **der Irak، der Libanon، der Sudan، der Jemen، die Türkei، die Schweiz**. وبعد aus وin تتغيّر الأداة قليلاً: **aus dem Irak / im Irak** (im = in dem)، **aus dem Libanon / im Libanon**، **aus der Türkei / in der Türkei**، **aus der Schweiz / in der Schweiz**. هذا التغيّر اسمه حالة Dativ وستتعلمها لاحقاً، فلا تحلّله الآن: احفظ العبارات الأربع كما هي، مثلما تحفظ "صباح الخير".',
+        'بعض الدول لها أداة تعريف ولا بد من حفظها مع الاسم. وبعد [[aus]] و[[in]] تتغيّر الأداة قليلاً؛ هذا التغيّر اسمه حالة Dativ وستتعلمها لاحقاً، فلا تحلّله الآن: احفظ العبارات كما هي، مثلما تحفظ «صباح الخير».',
+      blocks: [
+        {
+          kind: 'table',
+          wrap: true,
+          captionAr: 'الدول التي لها أداة',
+          columns: [
+            { header: 'Land', lang: 'de', tone: 'primary' },
+            { header: 'Woher?', lang: 'de', tone: 'accent' },
+            { header: 'Wo?', lang: 'de', tone: 'highlight' },
+            { header: 'المعنى', lang: 'ar' },
+          ],
+          rows: [
+            ['der Irak', 'aus dem Irak', 'im Irak', 'العراق'],
+            ['der Libanon', 'aus dem Libanon', 'im Libanon', 'لبنان'],
+            ['der Sudan', 'aus dem Sudan', 'im Sudan', 'السودان'],
+            ['der Jemen', 'aus dem Jemen', 'im Jemen', 'اليمن'],
+            ['die Türkei', 'aus der Türkei', 'in der Türkei', 'تركيا'],
+            ['die Schweiz', 'aus der Schweiz', 'in der Schweiz', 'سويسرا'],
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'accent',
+          icon: 'lightbulb',
+          titleAr: 'im اختصار in dem',
+          bodyAr: 'تذكّر أن [[im]] اختصار [[in dem]]، وهي الصيغة نفسها التي رأيتها في [[im Mai]] مع الشهور.',
+        },
+      ],
     },
     {
+      icon: 'sparkles',
+      kickerDe: 'Die Nationalität',
+      tone: 'highlight',
       titleAr: 'الجنسية: Ich bin Syrer / Syrerin',
       bodyAr:
-        'نقول الجنسية بعد **sein** مباشرة وبلا أداة تنكير، كما نقول المهنة: Ich bin Syrer. Er ist Ägypter. والمؤنث يُشتق غالباً بإضافة **-in** إلى المذكر: **Syrer → Syrerin، Ägypter → Ägypterin، Iraker → Irakerin، Marokkaner → Marokkanerin، Jordanier → Jordanierin**. وهناك حالات خاصة: **Türke → Türkin** (يسقط الحرف e)، و**Libanese → Libanesin**. ولا نستعمل اسم البلد في مكان الجنسية: لا نقول Ich bin Syrien.',
+        'نقول الجنسية بعد [[sein]] مباشرة وبلا أداة تنكير، كما نقول المهنة. والمؤنث يُشتق غالباً بإضافة **-in** إلى المذكر.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Ich bin', tone: 'primary' },
+            { text: 'Syrer', tone: 'accent', noteAr: 'بلا أداة' },
+          ],
+        },
+        {
+          kind: 'table',
+          wrap: true,
+          captionAr: 'المذكر والمؤنث',
+          columns: [
+            { header: 'Land', lang: 'de' },
+            { header: 'Mann', lang: 'de', tone: 'primary' },
+            { header: 'Frau', lang: 'de', tone: 'plum' },
+          ],
+          rows: [
+            ['Syrien', 'Syrer', 'Syrerin'],
+            ['Ägypten', 'Ägypter', 'Ägypterin'],
+            ['der Irak', 'Iraker', 'Irakerin'],
+            ['Marokko', 'Marokkaner', 'Marokkanerin'],
+            ['Jordanien', 'Jordanier', 'Jordanierin'],
+            ['die Türkei', 'Türke', 'Türkin'],
+            ['der Libanon', 'Libanese', 'Libanesin'],
+          ],
+          emphasisRows: [5, 6],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: 'الجنسية لا اسم البلد',
+          bodyAr:
+            'لا نستعمل اسم البلد مكان الجنسية: لا نقول [[Ich bin Syrien]]؛ نقول [[Ich bin Syrer]]. وحالتان خاصتان في المؤنث: [[Türke → Türkin]] (يسقط حرف e)، و[[Libanese → Libanesin]].',
+        },
+      ],
     },
     {
+      icon: 'message',
+      kickerDe: 'Die Sprachen',
+      tone: 'primary',
       titleAr: 'اللغات: Ich spreche Arabisch',
       bodyAr:
-        'أسماء اللغات تُكتب بحرف كبير وتُستعمل **بلا أداة** بعد sprechen وlernen: Ich spreche Arabisch. Ich lerne Deutsch. Sprechen Sie Englisch؟ ولغتك الأولى اسمها **die Muttersprache**: Meine Muttersprache ist Arabisch. وللدلالة على القليل نقول **ein bisschen**: Ich spreche ein bisschen Deutsch.',
+        'أسماء اللغات تُكتب بحرف كبير وتُستعمل **بلا أداة** بعد [[sprechen]] و[[lernen]]. ولغتك الأولى اسمها [[die Muttersprache]]. وللدلالة على القليل نقول [[ein bisschen]].',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Ich spreche', tone: 'primary' },
+            { text: 'Arabisch', tone: 'accent', noteAr: 'بلا أداة' },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Ich spreche Arabisch.', ar: 'أتكلم العربية.' },
+            { de: 'Ich lerne Deutsch.', ar: 'أتعلّم الألمانية.' },
+            { de: 'Meine Muttersprache ist Arabisch.', ar: 'لغتي الأولى هي العربية.' },
+            { de: 'Ich spreche ein bisschen Deutsch.', ar: 'أتكلم قليلاً من الألمانية.' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'compass',
+      kickerDe: 'Die Himmelsrichtungen',
+      tone: 'der',
       titleAr: 'الجهات الأربع: Norden وSüden وOsten وWesten',
       bodyAr:
-        'لتحديد مكان مدينة داخل بلد نستعمل أسماء الجهات، وكلها **مذكّرة**: **der Norden** (الشمال) و**der Süden** (الجنوب) و**der Osten** (الشرق) و**der Westen** (الغرب). ونقول **im Norden** أي «في الشمال»، ثم نذكر البلد بعد **von**: **Hamburg liegt im Norden von Deutschland.** وتجدها كثيراً على الخرائط وفي وصف المدن.',
+        'لتحديد مكان مدينة داخل بلد نستعمل أسماء الجهات، وكلها **مذكّرة**. ونقول [[im Norden]] أي «في الشمال»، ثم نذكر البلد بعد [[von]]. وتجدها كثيراً على الخرائط وفي وصف المدن.',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 4,
+          tone: 'der',
+          items: [
+            { mark: 'N', de: 'der Norden', ar: 'الشمال' },
+            { mark: 'S', de: 'der Süden', ar: 'الجنوب' },
+            { mark: 'O', de: 'der Osten', ar: 'الشرق' },
+            { mark: 'W', de: 'der Westen', ar: 'الغرب' },
+          ],
+        },
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Hamburg liegt', tone: 'primary' },
+            { text: 'im Norden', tone: 'der', noteAr: 'في الشمال' },
+            { text: 'von Deutschland', tone: 'highlight', noteAr: 'من ألمانيا' },
+          ],
+        },
+      ],
     },
   ],
   examples: [

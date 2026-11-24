@@ -74,6 +74,8 @@ export interface RuleTableBlock {
   kind: 'table'
   captionAr?: string
   columns: RuleTableColumn[]
+  /** Let cells wrap on narrow screens instead of scrolling sideways. Meant for tables with few columns. */
+  wrap?: boolean
   /** Every row must have exactly `columns.length` cells (enforced by the integrity tests). */
   rows: string[][]
   /** Indexes of rows to visually emphasise. */
@@ -155,6 +157,45 @@ export interface PracticeBlock {
   exercises: Exercise[]
 }
 
+/** One tile of a `tileGrid`: a large mark (digit, abbreviation, ordinal) over the German word and its Arabic meaning. */
+export interface TileItem {
+  /** The large symbol, e.g. `7`, `Mo`, `3.`. */
+  mark: string
+  /** The German word; it is what the tile speaks when tapped. */
+  de: string
+  ar: string
+  /** Optional German phrase in small italics, e.g. `am ersten Mai`. */
+  exampleDe?: string
+  tone?: RuleTone
+}
+
+/** A grid of tappable tiles — numbers, weekdays, months, ordinals: vocabulary that is learned as a set. */
+export interface TileGridBlock {
+  kind: 'tileGrid'
+  titleAr?: string
+  tone?: RuleTone
+  /** Columns on a wide screen; narrow screens always show fewer. Defaults to 4. */
+  columns?: 2 | 3 | 4 | 5 | 6
+  items: TileItem[]
+}
+
+/** A time the learner can tap on a `clock` block. Minutes must be a multiple of 5 (the informal way names nothing finer). */
+export interface ClockPreset {
+  /** 0–23. */
+  hour: number
+  /** 0–55, in steps of 5. */
+  minute: number
+}
+
+/** An analog clock the learner sets, with the time said both informally ("halb drei") and formally ("vierzehn Uhr dreißig"). */
+export interface ClockBlock {
+  kind: 'clock'
+  titleAr: string
+  captionAr?: string
+  /** Quick times to tap; the first one is shown when the block appears. */
+  presets: [ClockPreset, ...ClockPreset[]]
+}
+
 export type RuleBlock =
   | FormulaBlock
   | RuleBoxBlock
@@ -167,6 +208,8 @@ export type RuleBlock =
   | SentenceBlock
   | CompareBlock
   | PracticeBlock
+  | TileGridBlock
+  | ClockBlock
 
 /* ------------------------------------------------------------------ */
 /* Rule                                                                 */

@@ -13,37 +13,173 @@ export const lessonFragewoerter: Lesson = {
   title: 'Fragewörter',
   titleAr: 'كلمات الاستفهام: Wer, Was, Wo …',
   estimatedMinutes: 18,
+  taglineAr:
+    'ست كلمات استفهام تبدأ غالباً بحرف W، وطريقة واحدة لبناء السؤال، وفرق مهم بين Wo وWoher.',
+  heroExample: { de: 'Woher kommst du?', ar: 'من أين أنتَ؟' },
   objectivesAr: [
-    'معرفة كلمات الاستفهام الأساسية: Wer؟ Was؟ Wo؟ Woher؟ Wann؟ Wie؟',
+    'معرفة كلمات الاستفهام الأساسية: Wer, Was, Wo, Woher, Wann, Wie.',
     'طرح سؤال W-Frage بالترتيب الصحيح: كلمة الاستفهام ثم الفعل ثم الفاعل',
     'طرح سؤال نعم/لا بوضع الفعل في أول الجملة',
     'التمييز بين Wo (أين) وWoher (من أين) والإجابة عن كل منهما',
   ],
   explanation: [
     {
+      icon: 'message',
+      kickerDe: 'Die Fragewörter',
+      tone: 'accent',
       titleAr: 'كلمات الاستفهام (die Fragewörter)',
       bodyAr:
-        'تبدأ معظم كلمات الاستفهام الألمانية بحرف W، ولذلك تُسمّى W-Fragen. وحرف W في الألمانية يُنطق مثل "ڤ". المهم منها الآن ستّ: **Wer** (من: للأشخاص)، **Was** (ماذا / ما: للأشياء والأفعال)، **Wo** (أين: المكان الثابت)، **Woher** (من أين: أصل الشخص أو الشيء)، **Wann** (متى: الوقت)، **Wie** (كيف / ما: الطريقة والاسم والحال).',
+        'تبدأ معظم كلمات الاستفهام الألمانية بحرف W، ولذلك تُسمّى W-Fragen. ويُنطق حرف W مثل «ڤ». المهم منها الآن ستّ كلمات؛ اضغط على أي بطاقة لتسمع سؤالاً بها.',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 3,
+          items: [
+            { mark: 'Wer', de: 'Wer ist das?', ar: 'من هذا؟ — للأشخاص', tone: 'accent' },
+            { mark: 'Was', de: 'Was machst du?', ar: 'ماذا تفعل؟ — للأشياء والأفعال', tone: 'accent' },
+            { mark: 'Wo', de: 'Wo wohnst du?', ar: 'أين تسكن؟ — المكان الثابت', tone: 'primary' },
+            { mark: 'Woher', de: 'Woher kommst du?', ar: 'من أين أنت؟ — أصل الشخص', tone: 'primary' },
+            { mark: 'Wann', de: 'Wann ist der Kurs?', ar: 'متى الدورة؟ — الوقت', tone: 'highlight' },
+            { mark: 'Wie', de: 'Wie heißt du?', ar: 'ما اسمك؟ — الطريقة والاسم والحال', tone: 'highlight' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'message',
+      kickerDe: 'Die W-Frage',
+      tone: 'primary',
       titleAr: 'ترتيب سؤال W-Frage',
       bodyAr:
-        'تأتي كلمة الاستفهام أولاً، ثم الفعل مباشرة في المرتبة الثانية، ثم الفاعل: **Wo** wohnst du؟ **Woher** kommst du؟ **Was** machst du؟ لا نضيف أي كلمة بعد كلمة الاستفهام قبل الفعل. الفعل يبقى في المرتبة الثانية دائماً، كما في الجملة الخبرية.',
+        'تأتي كلمة الاستفهام أولاً، ثم الفعل مباشرة في المرتبة الثانية، ثم الفاعل. لا نضيف أي كلمة بين كلمة الاستفهام والفعل، فالفعل يبقى في المرتبة الثانية دائماً كما في الجملة الخبرية.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Wo', tone: 'accent', noteAr: 'كلمة الاستفهام' },
+            { text: 'wohnst', tone: 'primary', noteAr: 'الفعل: المرتبة 2' },
+            { text: 'du?', tone: 'highlight', noteAr: 'الفاعل' },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: '**Wo** wohnst du?', ar: 'أين تسكن؟' },
+            { de: '**Woher** kommst du?', ar: 'من أين أنت؟' },
+            { de: '**Was** machst du?', ar: 'ماذا تفعل؟' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'message',
+      kickerDe: 'Die Ja-Nein-Frage',
+      tone: 'highlight',
       titleAr: 'سؤال نعم / لا (die Ja-Nein-Frage)',
       bodyAr:
-        'العربية تبدأ السؤال بـ "هل"، أما الألمانية فليس فيها كلمة تقابلها. نضع **الفعل في أول الجملة** ويرتفع الصوت في آخرها: Wohnst du in Berlin؟ Bist du Student؟ ونجيب بـ **Ja** (نعم) أو **Nein** (لا)، ويُفضَّل أن نتبعها بجملة كاملة: "Ja, ich wohne in Berlin." أو "Nein, ich wohne in Köln."',
+        'العربية تبدأ السؤال بـ «هل»، أما الألمانية فليس فيها كلمة تقابلها: نضع **الفعل في أول الجملة** ويرتفع الصوت في آخرها.',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: أين الفعل؟',
+          modes: [
+            {
+              labelAr: 'جملة خبرية',
+              captionAr: 'الفاعل أولاً، والفعل ثانياً: جملة عادية.',
+              parts: [
+                { text: 'Du', tone: 'highlight' },
+                { text: 'wohnst', tone: 'primary' },
+                { text: 'in Berlin.' },
+              ],
+            },
+            {
+              labelAr: 'سؤال نعم / لا',
+              captionAr: 'الفعل أولاً، وبلا أي كلمة استفهام.',
+              parts: [
+                { text: 'Wohnst', tone: 'primary' },
+                { text: 'du', tone: 'highlight' },
+                { text: 'in Berlin?' },
+              ],
+            },
+            {
+              labelAr: 'سؤال W',
+              captionAr: 'كلمة الاستفهام أولاً، ثم الفعل في المرتبة الثانية.',
+              parts: [
+                { text: 'Wo', tone: 'accent' },
+                { text: 'wohnst', tone: 'primary' },
+                { text: 'du?', tone: 'highlight' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'success',
+          icon: 'check',
+          titleAr: 'نجيب بـ Ja أو Nein ثم بجملة كاملة',
+          bodyAr:
+            'نجيب بـ [[Ja]] (نعم) أو [[Nein]] (لا)، ويُفضَّل أن نتبعها بجملة كاملة: [[Ja, ich wohne in Berlin.]] أو [[Nein, ich wohne in Köln.]]',
+        },
+      ],
     },
     {
+      icon: 'compass',
+      kickerDe: 'Wo oder Woher?',
+      tone: 'plum',
       titleAr: 'Wo أم Woher؟',
       bodyAr:
-        'في العربية نقول "أين" و"من أين"، وهما في الألمانية كلمتان مختلفتان. **Wo** تسأل عن المكان الحالي: Wo wohnst du؟ — In Berlin. و**Woher** تسأل عن الأصل: Woher kommst du؟ — Aus Syrien. لاحظ أن الجواب يبدأ بحرف جر مختلف: in للمكان الحالي، وaus للأصل.',
+        'في العربية نقول «أين» و«من أين»، وهما في الألمانية كلمتان مختلفتان، والجواب يبدأ بحرف جر مختلف: [[in]] للمكان الحالي، و[[aus]] للأصل.',
+      blocks: [
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'Wo — المكان الحالي',
+              subAr: 'أين تسكن الآن؟',
+              formula: 'Wo → in …',
+              tone: 'primary',
+              items: [
+                { de: 'Wo wohnst du?', ar: 'أين تسكن؟' },
+                { de: 'In Berlin.', ar: 'في برلين.' },
+              ],
+            },
+            {
+              titleAr: 'Woher — الأصل',
+              subAr: 'من أي بلد أنت؟',
+              formula: 'Woher → aus …',
+              tone: 'plum',
+              items: [
+                { de: 'Woher kommst du?', ar: 'من أين أنت؟' },
+                { de: 'Aus Syrien.', ar: 'من سوريا.' },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
-      titleAr: 'Wie تعني أكثر من "كيف"',
+      icon: 'sparkles',
+      kickerDe: 'Wie',
+      tone: 'error',
+      titleAr: 'Wie تعني أكثر من «كيف»',
       bodyAr:
-        'في Wie heißt du؟ لا نترجم Wie بـ "كيف" حرفياً، فالمعنى "ما اسمك؟". وفي Wie geht\'s؟ تعني "كيف الحال؟". احفظ الجملتين كما هما: هما من أكثر الأسئلة استعمالاً.',
+        'لا نترجم [[Wie]] دائماً بـ «كيف» حرفياً. احفظ الجملتين كما هما، فهما من أكثر الأسئلة استعمالاً.',
+      blocks: [
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            {
+              de: 'Wie heißt du?',
+              ar: 'ما اسمك؟',
+              noteAr: 'هنا Wie تعني «ما»، وليس «كيف».',
+              badge: 'الاسم',
+            },
+            { de: "Wie geht's?", ar: 'كيف الحال؟', badge: 'الحال' },
+          ],
+        },
+      ],
     },
   ],
   examples: [

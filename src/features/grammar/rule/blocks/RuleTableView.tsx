@@ -16,7 +16,7 @@ export function RuleTableView({ block }: { block: RuleTableBlock }) {
         </figcaption>
       ) : null}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-max text-sm">
+        <table className={cn('w-full text-sm', !block.wrap && 'min-w-max')}>
           <thead>
             <tr className="border-b border-border bg-surface-muted">
               {block.columns.map((column, index) => (

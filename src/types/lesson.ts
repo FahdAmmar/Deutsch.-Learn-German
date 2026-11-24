@@ -3,6 +3,7 @@ import type { Dialogue } from './dialogue'
 import type { DiagramScene } from './diagram'
 import type { Exercise } from './exercise'
 import type { AdjectiveComparison, GrammarTopic } from './grammar'
+import type { RuleBlock, RuleTone } from './grammarRule'
 import type { ReadingText } from './reading'
 import type { VocabularyItem } from './vocabulary'
 
@@ -11,10 +12,25 @@ export interface LessonExample {
   ar: string
 }
 
+/** The small picture in the tile beside a section's heading. */
+export type LessonSectionIcon = 'hash' | 'clock' | 'calendar' | 'sparkles' | 'book' | 'message' | 'globe' | 'compass'
+
 export interface LessonSection {
   /** Heading shown for this explanation block (Arabic, since explanations are in Arabic). */
   titleAr: string
+  /** The idea in a few plain sentences. The visual `blocks` carry the detail, so keep this short. */
   bodyAr: string
+  /** Small German label above the heading, e.g. `Tageszeit`. */
+  kickerDe?: string
+  /** Accent colour of the section's kicker, icon and highlights. Defaults to `accent`. */
+  tone?: RuleTone
+  /** Picture shown in a tile beside the heading; leave out when the heading says it all. */
+  icon?: LessonSectionIcon
+  /**
+   * Visual blocks drawn under the prose (formula, table, pattern cards, examples, compare, …).
+   * They are the same typed blocks the grammar rules use, so a lesson never needs its own markup.
+   */
+  blocks?: RuleBlock[]
 }
 
 export interface PronunciationTip {
@@ -30,6 +46,10 @@ export interface Lesson {
   moduleId: string
   title: string
   titleAr: string
+  /** One sentence under the title that says what the lesson gives the learner (the hero's lead). */
+  taglineAr?: string
+  /** A single sentence the hero shows and can read aloud — the lesson in one example. */
+  heroExample?: LessonExample
   /** Concrete, learner-facing objectives, in Arabic. */
   objectivesAr: string[]
   /** Core explanation of the lesson's topic, in Arabic, referencing German examples. */

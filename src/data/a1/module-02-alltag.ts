@@ -264,6 +264,9 @@ export const lessonUhrzeit: Lesson = {
   title: 'Uhrzeit',
   titleAr: 'الوقت',
   estimatedMinutes: 18,
+  taglineAr:
+    'كيف تسأل عن الوقت وتجيب عنه: الطريقة اليومية بـ nach وvor وhalb، والطريقة الرسمية بنظام الـ24 ساعة.',
+  heroExample: { de: 'Es ist halb drei.', ar: 'الساعة الثانية والنصف (2:30).' },
   objectivesAr: [
     'السؤال عن الوقت والإجابة عنه',
     'التمييز بين الوقت الرسمي (24 ساعة) وغير الرسمي',
@@ -271,21 +274,124 @@ export const lessonUhrzeit: Lesson = {
   ],
   explanation: [
     {
+      icon: 'clock',
+      kickerDe: 'Wie spät ist es?',
+      tone: 'accent',
       titleAr: 'السؤال عن الوقت',
-      bodyAr:
-        'نسأل عن الوقت بـ"Wie spät ist es?" أو "Wie viel Uhr ist es?"، والإجابة الرسمية: "Es ist ... Uhr". في الجداول الرسمية (كالقطارات) تُستخدم صيغة الـ24 ساعة: "Es ist vierzehn Uhr dreißig" (الساعة 14:30).',
+      bodyAr: 'نسأل بإحدى صيغتين، والجواب يبدأ دائماً بـ [[Es ist …]].',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Es ist', tone: 'primary', noteAr: 'تبدأ بها الإجابة' },
+            { text: 'drei Uhr', tone: 'accent', noteAr: 'الوقت' },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Wie spät ist es?', ar: 'كم الساعة؟', badge: 'سؤال' },
+            { de: 'Wie viel Uhr ist es?', ar: 'كم الساعة؟', badge: 'سؤال' },
+          ],
+        },
+      ],
     },
     {
-      titleAr: 'استخدام "halb" — تنبيه مهم',
+      icon: 'clock',
+      kickerDe: 'Die Uhr lesen',
+      tone: 'primary',
+      titleAr: 'قراءة الساعة بطريقتين',
       bodyAr:
-        'في الألمانية، "halb" تشير إلى النصف المتبقي *قبل* الساعة القادمة وليس بعد الساعة الحالية، عكس الاستخدام الشائع في العربية أو الإنجليزية العامية: "halb drei" تعني 2:30 (النصف في طريقه إلى الثالثة) وليس 3:30. أيضاً: "viertel nach zwei" = 2:15، و"viertel vor fünf" = 4:45.',
+        'للوقت صيغتان: اليومية، وفيها [[Viertel]] و[[halb]] و[[nach]] و[[vor]]، والرسمية بنظام 24 ساعة، وتُستخدم في القطارات والإعلانات والمواعيد. غيّر الوقت على الساعة وشاهد كيف يُقال.',
+      blocks: [
+        {
+          kind: 'clock',
+          titleAr: 'اضبط الساعة',
+          captionAr: 'اختر الساعة والدقيقة أو اضغط على وقت جاهز، ثم اضغط على الجملة لتسمعها.',
+          presets: [
+            { hour: 3, minute: 30 },
+            { hour: 3, minute: 0 },
+            { hour: 3, minute: 15 },
+            { hour: 3, minute: 45 },
+            { hour: 8, minute: 10 },
+            { hour: 14, minute: 30 },
+          ],
+        },
+        {
+          kind: 'table',
+          wrap: true,
+          captionAr: 'الوقت نفسه بالصيغتين',
+          columns: [
+            { header: 'الوقت', lang: 'ar' },
+            { header: 'Im Alltag', lang: 'de', tone: 'accent' },
+            { header: 'Offiziell', lang: 'de', tone: 'primary' },
+          ],
+          rows: [
+            ['8:00', 'acht Uhr', 'acht Uhr'],
+            ['8:15', 'Viertel nach acht', 'acht Uhr fünfzehn'],
+            ['8:30', 'halb neun', 'acht Uhr dreißig'],
+            ['8:45', 'Viertel vor neun', 'acht Uhr fünfundvierzig'],
+            ['8:50', 'zehn vor neun', 'acht Uhr fünfzig'],
+          ],
+          emphasisRows: [2],
+        },
+      ],
+    },
+    {
+      icon: 'clock',
+      kickerDe: 'Achtung: halb',
+      tone: 'error',
+      titleAr: 'تنبيه مهم: halb تعني نصف الطريق إلى الساعة القادمة',
+      bodyAr:
+        'في الألمانية، [[halb]] تشير إلى النصف المتبقي قبل الساعة القادمة، لا إلى ما بعد الساعة الحالية. فـ [[halb drei]] هي 2:30 وليست 3:30.',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: انظر أي ساعة تُذكر',
+          modes: [
+            {
+              labelAr: '2:15',
+              captionAr: 'الساعة الثانية والربع: مضى ربع الساعة الثانية، فنذكر zwei.',
+              parts: [
+                { text: 'Viertel nach', tone: 'accent' },
+                { text: 'zwei', tone: 'primary' },
+              ],
+            },
+            {
+              labelAr: '2:30',
+              captionAr: 'نصف الطريق إلى الثالثة: لذلك نذكر drei لا zwei.',
+              parts: [
+                { text: 'halb', tone: 'error' },
+                { text: 'drei', tone: 'primary' },
+              ],
+            },
+            {
+              labelAr: '2:45',
+              captionAr: 'ربع ساعة قبل الثالثة: نذكر drei أيضاً.',
+              parts: [
+                { text: 'Viertel vor', tone: 'accent' },
+                { text: 'drei', tone: 'primary' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'success',
+          icon: 'check',
+          titleAr: 'قاعدة الاختيار: أي ساعة أذكر؟',
+          bodyAr:
+            'مع [[nach]] أذكر الساعة التي مضت: [[Viertel nach zwei]] = 2:15. ومع [[vor]] و[[halb]] أذكر الساعة القادمة: [[Viertel vor drei]] = 2:45، و[[halb drei]] = 2:30.',
+        },
+      ],
     },
   ],
   examples: [
     { de: 'Wie spät ist es?', ar: 'كم الساعة؟' },
     { de: 'Es ist drei Uhr.', ar: 'الساعة الثالثة.' },
     { de: 'Es ist halb drei.', ar: 'الساعة الثانية والنصف (2:30).' },
-    { de: 'Es ist viertel nach zwei.', ar: 'الساعة الثانية والربع (2:15).' },
+    { de: 'Es ist Viertel nach zwei.', ar: 'الساعة الثانية والربع (2:15).' },
     { de: 'Der Zug fährt um vierzehn Uhr fünfzehn.', ar: 'ينطلق القطار الساعة 14:15.' },
   ],
   vocabulary: [

@@ -13,37 +13,178 @@ export const lessonImKurs: Lesson = {
   title: 'Im Deutschkurs',
   titleAr: 'في دورة الألمانية: عبارات الصف',
   estimatedMinutes: 20,
+  taglineAr:
+    'الجمل التي تنقذك في الصف: متى لا تفهم، وكيف تطلب الإعادة، وكيف تسأل عن المعنى، وما يقوله المعلم.',
+  heroExample: { de: 'Noch einmal, bitte.', ar: 'مرة أخرى من فضلك.' },
   objectivesAr: [
     'قول إنك لم تفهم، وطلب الإعادة والكلام الأبطأ',
-    'السؤال عن معنى كلمة وعن كتابتها: Was bedeutet das؟ Wie schreibt man das؟',
-    'السؤال عن كلمة بالألمانية: Wie heißt das auf Deutsch؟',
+    'السؤال عن معنى كلمة وعن كتابتها: Was bedeutet das? Wie schreibt man das?',
+    'السؤال عن كلمة بالألمانية: Wie heißt das auf Deutsch?',
     'فهم أوامر المعلم الشائعة: Hören Sie. Lesen Sie. Schreiben Sie.',
   ],
   explanation: [
     {
-      titleAr: 'لم أفهم — Wie bitte؟',
+      icon: 'message',
+      kickerDe: 'Nicht verstanden',
+      tone: 'accent',
+      titleAr: 'لم أفهم: Wie bitte؟',
       bodyAr:
-        'عندما لا تسمع جيداً أو لا تفهم، قل **Wie bitte؟** (ماذا؟ / عفواً؟). وإذا فهمت الكلمات ولم تفهم المعنى: **Ich verstehe das nicht.** (أنا لا أفهم هذا). لاحظ ترتيب الجملة: الفعل في المرتبة الثانية، و**nicht** في آخرها: لا نقول Ich nicht verstehe.',
+        'عندما لا تسمع جيداً قل [[Wie bitte?]] (عفواً؟ / ماذا؟). وإذا فهمت الكلمات ولم تفهم المعنى قل [[Ich verstehe das nicht.]] (أنا لا أفهم هذا).',
+      blocks: [
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'لم أسمع جيداً',
+              subAr: 'اطلب أن يُكرَّر الكلام',
+              tone: 'accent',
+              items: [{ de: 'Wie bitte?', ar: 'عفواً؟ / ماذا؟' }],
+            },
+            {
+              titleAr: 'لم أفهم المعنى',
+              subAr: 'سمعتُ الكلمات لكن لم أفهمها',
+              tone: 'primary',
+              items: [{ de: 'Ich verstehe das nicht.', ar: 'أنا لا أفهم هذا.' }],
+            },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: 'nicht في آخر الجملة',
+          bodyAr:
+            'الفعل في المرتبة الثانية، و[[nicht]] في آخر الجملة: [[Ich verstehe das nicht.]] ولا نقول [[Ich nicht verstehe]].',
+        },
+      ],
     },
     {
+      icon: 'message',
+      kickerDe: 'Wiederholen',
+      tone: 'primary',
       titleAr: 'اطلب الإعادة والبطء',
       bodyAr:
-        'للإعادة: **Noch einmal, bitte.** (مرة أخرى من فضلك) أو بشكل مهذب **Können Sie das bitte wiederholen؟**. وللكلام الأبطأ: **Langsamer, bitte.** مع المعلم نستعمل Sie (الرسمية)، ومع زميل في الصف نقول Kannst du das wiederholen؟ احفظ هذه الجمل كما هي الآن، وستفهم بناءها عند درس الأفعال المساعدة.',
+        'مع المعلم نستعمل [[Sie]] (الرسمية)، ومع زميل في الصف نستعمل [[du]]. احفظ هذه الجمل كما هي الآن، وستفهم بناءها عند درس الأفعال المساعدة.',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: مع المعلم أم مع زميل؟',
+          modes: [
+            {
+              labelAr: 'مع المعلم',
+              captionAr: 'رسمي: Sie.',
+              parts: [
+                { text: 'Können Sie', tone: 'primary' },
+                { text: 'das bitte wiederholen?', tone: 'accent' },
+              ],
+            },
+            {
+              labelAr: 'مع زميل',
+              captionAr: 'غير رسمي: du.',
+              parts: [
+                { text: 'Kannst du', tone: 'highlight' },
+                { text: 'das wiederholen?', tone: 'accent' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'للإعادة',
+              tone: 'accent',
+              items: [
+                { de: 'Noch einmal, bitte.', ar: 'مرة أخرى من فضلك.' },
+                { de: 'Können Sie das bitte wiederholen?', ar: 'هل يمكنك أن تعيد هذا؟' },
+              ],
+            },
+            {
+              titleAr: 'للكلام الأبطأ',
+              tone: 'highlight',
+              items: [{ de: 'Langsamer, bitte.', ar: 'أبطأ من فضلك.' }],
+            },
+          ],
+        },
+      ],
     },
     {
+      icon: 'book',
+      kickerDe: 'Fragen zur Sprache',
+      tone: 'highlight',
       titleAr: 'اسأل عن المعنى والكتابة',
       bodyAr:
-        'كلمات السؤال التي تعلمتها تعمل هنا: **Was bedeutet das Wort …؟** (ما معنى كلمة …؟)، **Wie heißt das auf Deutsch؟** (ما اسم هذا بالألمانية؟)، **Wie schreibt man das؟** (كيف يُكتب هذا؟)، **Können Sie das buchstabieren؟** (هل يمكنك تهجئته؟). لاحظ: نقول Wie heißt das auf Deutsch؟ وليس Was ist das auf Deutsch؟.',
+        'كلمات السؤال التي تعلمتها تعمل هنا. والصيغة المعتادة لسؤال «ما اسم هذا بالألمانية؟» هي [[Wie heißt das auf Deutsch?]]',
+      blocks: [
+        {
+          kind: 'table',
+          wrap: true,
+          columns: [
+            { header: 'Frage', lang: 'de', tone: 'highlight' },
+            { header: 'المعنى', lang: 'ar' },
+          ],
+          rows: [
+            ['Was bedeutet das Wort …?', 'ما معنى كلمة …؟'],
+            ['Wie heißt das auf Deutsch?', 'ما اسم هذا بالألمانية؟'],
+            ['Wie schreibt man das?', 'كيف يُكتب هذا؟'],
+            ['Können Sie das buchstabieren?', 'هل يمكنك تهجئته؟'],
+          ],
+        },
+      ],
     },
     {
+      icon: 'message',
+      kickerDe: 'Mit der Lehrerin sprechen',
+      tone: 'plum',
       titleAr: 'تكلّم مع المعلم',
       bodyAr:
-        'للمشاركة: **Ich habe eine Frage.** (عندي سؤال)، **Ich brauche Hilfe.** (أحتاج مساعدة)، **Ich bin fertig.** (انتهيت)، **Ich komme zu spät.** (أتأخر / وصلت متأخراً). والاعتذار قبلها: **Entschuldigung, …**.',
+        'للمشاركة في الصف. وتُقال [[Entschuldigung, …]] قبلها للاعتذار أو لجذب الانتباه.',
+      blocks: [
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Ich habe eine Frage.', ar: 'عندي سؤال.' },
+            { de: 'Ich brauche Hilfe.', ar: 'أحتاج مساعدة.' },
+            { de: 'Ich bin fertig.', ar: 'انتهيت.' },
+            { de: 'Ich komme zu spät.', ar: 'أتأخر / وصلتُ متأخراً.' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'book',
+      kickerDe: 'Anweisungen',
+      tone: 'error',
       titleAr: 'أوامر المعلم التي ستسمعها',
       bodyAr:
-        'المعلم يتكلم معك بصيغة الأمر الرسمية: **Hören Sie.** (استمع)، **Lesen Sie.** (اقرأ)، **Schreiben Sie.** (اكتب)، **Sprechen Sie.** (تكلّم)، **Wiederholen Sie.** (أعد)، **Machen Sie Übung drei.** (قم بالتمرين الثالث)، **Öffnen Sie das Buch auf Seite zehn.** (افتح الكتاب على الصفحة 10). يكفي الآن أن تفهمها؛ وستتعلم صيغة الأمر كاملة في درس Imperativ.',
+        'يتكلم المعلم معك بصيغة الأمر الرسمية: الفعل ثم [[Sie]]. يكفي الآن أن تفهمها؛ وستتعلم صيغة الأمر كاملة في درس Imperativ.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Hören', tone: 'primary', noteAr: 'الفعل أولاً' },
+            { text: 'Sie', tone: 'accent', noteAr: 'رسمي' },
+          ],
+        },
+        {
+          kind: 'table',
+          wrap: true,
+          columns: [
+            { header: 'Anweisung', lang: 'de', tone: 'primary' },
+            { header: 'المعنى', lang: 'ar' },
+          ],
+          rows: [
+            ['Hören Sie.', 'استمع.'],
+            ['Lesen Sie.', 'اقرأ.'],
+            ['Schreiben Sie.', 'اكتب.'],
+            ['Sprechen Sie.', 'تكلّم.'],
+            ['Wiederholen Sie.', 'أعد.'],
+            ['Machen Sie Übung drei.', 'قم بالتمرين الثالث.'],
+            ['Öffnen Sie das Buch auf Seite zehn.', 'افتح الكتاب على الصفحة 10.'],
+          ],
+        },
+      ],
     },
   ],
   examples: [
@@ -200,9 +341,9 @@ export const lessonImKurs: Lesson = {
   ],
   commonMistakes: [
     {
-      wrong: 'Was ist das auf Deutsch?',
+      wrong: 'Was ist das auf Deutsch? (ترجمة حرفية)',
       correct: 'Wie heißt das auf Deutsch?',
-      explanationAr: 'لسؤال "ما اسم هذا بالألمانية؟" نستعمل Wie heißt … وليس Was ist ….',
+      explanationAr: 'الصيغة المعتادة لسؤال "ما اسم هذا بالألمانية؟" هي Wie heißt …؛ أما Was ist … فترجمة حرفية من العربية، والأفضل أن تحفظ الصيغة المعتادة.',
     },
     {
       wrong: 'Ich nicht verstehe das.',

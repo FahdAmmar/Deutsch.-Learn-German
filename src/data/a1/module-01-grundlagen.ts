@@ -14,6 +14,9 @@ export const lessonBegruessungen: Lesson = {
   title: 'Begrüßungen',
   titleAr: 'التحية',
   estimatedMinutes: 15,
+  taglineAr:
+    'عبارات التحية والوداع التي تحتاجها في أول دقيقة من أي لقاء: كيف تتغيّر بحسب الوقت، ومتى تكون رسمية ومتى ودّية.',
+  heroExample: { de: 'Guten Tag, Frau Müller!', ar: 'نهارك سعيد يا سيدة مولر!' },
   objectivesAr: [
     'التعرف على أهم عبارات التحية في اللغة الألمانية',
     'التمييز بين التحية الرسمية وغير الرسمية',
@@ -21,14 +24,150 @@ export const lessonBegruessungen: Lesson = {
   ],
   explanation: [
     {
-      titleAr: 'التحية الرسمية وغير الرسمية',
+      kickerDe: 'Tageszeit',
+      tone: 'accent',
+      titleAr: 'التحية بحسب وقت اليوم',
       bodyAr:
-        'تختلف التحية في الألمانية باختلاف الوقت من اليوم ودرجة الرسمية. "Guten Morgen" تعني صباح الخير وتُستخدم حتى حوالي العاشرة أو الحادية عشرة صباحاً. "Guten Tag" تحية رسمية تُستخدم خلال النهار مع أي شخص. "Guten Abend" تُستخدم مساءً. أما "Hallo" فهي تحية غير رسمية تصلح في أي وقت من اليوم بين الأصدقاء والمعارف.',
+        'تتبدّل التحية الألمانية مع ساعات اليوم، فاختر ما يناسب الوقت الذي تلتقي فيه بالشخص. الحدود بين الفترات تقريبية وتختلف قليلاً من منطقة لأخرى.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Guten', tone: 'primary', noteAr: 'ثابتة دائماً' },
+            { text: 'Morgen / Tag / Abend', tone: 'accent', noteAr: 'تتغيّر بحسب الوقت' },
+          ],
+        },
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'الصباح',
+              subAr: 'حتى العاشرة أو الحادية عشرة تقريباً',
+              formula: 'Guten Morgen',
+              tone: 'highlight',
+              items: [
+                { de: 'Guten Morgen!', ar: 'صباح الخير' },
+                { de: 'Guten Morgen, Herr Braun!', ar: 'صباح الخير يا سيد براون' },
+              ],
+            },
+            {
+              titleAr: 'النهار',
+              subAr: 'من منتصف الصباح حتى العصر',
+              formula: 'Guten Tag',
+              tone: 'accent',
+              items: [
+                { de: 'Guten Tag!', ar: 'نهارك سعيد' },
+                { de: 'Guten Tag, Frau Müller!', ar: 'نهارك سعيد يا سيدة مولر' },
+              ],
+            },
+            {
+              titleAr: 'المساء',
+              subAr: 'من نحو الخامسة أو السادسة مساءً',
+              formula: 'Guten Abend',
+              tone: 'plum',
+              items: [
+                { de: 'Guten Abend!', ar: 'مساء الخير' },
+                { de: 'Guten Abend, willkommen!', ar: 'مساء الخير، أهلاً بك' },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
-      titleAr: 'الوداع',
+      kickerDe: 'Förmlich oder locker',
+      tone: 'primary',
+      titleAr: 'رسمي أم غير رسمي؟',
       bodyAr:
-        '"Auf Wiedersehen" وداع رسمي يُستخدم مع الغرباء أو في العمل. "Tschüss" وداع غير رسمي بين الأصدقاء والعائلة. "Bis bald" تعني "إلى اللقاء قريباً"، و"Gute Nacht" (تصبح على خير) لا تُستخدم كتحية بل فقط عند النوم أو الانصراف ليلاً.',
+        'اختر التحية بحسب علاقتك بالشخص. [[Guten Tag]] محايدة وتناسب الجميع تقريباً، أما [[Hallo]] فغير رسمية وتصلح في أي وقت بين الأصدقاء والمعارف.',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: اللقاء نفسه بأسلوبين',
+          modes: [
+            {
+              labelAr: 'رسمي',
+              captionAr: 'مع غريب أو في العمل أو مع من هو أكبر منك: تحية بحسب الوقت، ثم اللقب واسم العائلة.',
+              parts: [
+                { text: 'Guten Tag', tone: 'primary' },
+                { text: 'Frau Müller', tone: 'accent' },
+              ],
+            },
+            {
+              labelAr: 'غير رسمي',
+              captionAr: 'مع صديق أو قريب: Hallo ثم الاسم الأول.',
+              parts: [
+                { text: 'Hallo', tone: 'highlight' },
+                { text: 'Lena', tone: 'plum' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'table',
+          wrap: true,
+          captionAr: 'السؤال عن الحال',
+          columns: [
+            { header: 'الأسلوب', lang: 'ar' },
+            { header: 'Deutsch', lang: 'de', tone: 'primary' },
+            { header: 'المعنى', lang: 'ar' },
+          ],
+          rows: [
+            ['غير رسمي', "Wie geht's?", 'كيف حالك؟'],
+            ['رسمي', 'Wie geht es Ihnen?', 'كيف حالك؟'],
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'success',
+          icon: 'check',
+          titleAr: 'عند الشك، ابدأ بـ Guten Tag',
+          bodyAr:
+            'نهاراً، إذا لم تكن متأكداً من درجة الرسمية فابدأ بـ [[Guten Tag]]؛ فهي الأسلم مع من لا تعرفه، ثم اتبع أسلوب محدّثك.',
+        },
+      ],
+    },
+    {
+      kickerDe: 'Abschied',
+      tone: 'plum',
+      titleAr: 'كيف تودّع',
+      bodyAr: 'يتغيّر الوداع بحسب درجة الرسمية، وبحسب متى تتوقع أن تلتقي بالشخص مرة أخرى.',
+      blocks: [
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'رسمي',
+              subAr: 'مع الغرباء وفي العمل',
+              tone: 'primary',
+              items: [{ de: 'Auf Wiedersehen!', ar: 'إلى اللقاء' }],
+            },
+            {
+              titleAr: 'غير رسمي',
+              subAr: 'مع الأصدقاء والعائلة',
+              tone: 'highlight',
+              items: [{ de: 'Tschüss!', ar: 'وداعاً' }],
+            },
+            {
+              titleAr: 'إلى متى؟',
+              subAr: 'تُضاف إلى أي وداع، رسمياً كان أو لا',
+              tone: 'plum',
+              items: [
+                { de: 'Bis bald!', ar: 'إلى اللقاء قريباً' },
+                { de: 'Bis morgen!', ar: 'إلى الغد' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: 'Gute Nacht ليست «مساء الخير»',
+          bodyAr:
+            'تُقال [[Gute Nacht]] عند الانصراف أو النوم فقط. للتحية عند اللقاء مساءً قل [[Guten Abend]].',
+        },
+      ],
     },
   ],
   examples: [
@@ -102,14 +241,14 @@ export const lessonBegruessungen: Lesson = {
   ],
   commonMistakes: [
     {
-      wrong: 'Guten Nacht! (عند اللقاء)',
+      wrong: 'Gute Nacht! (عند اللقاء مساءً)',
       correct: 'Guten Abend!',
       explanationAr: 'تُستخدم "Gute Nacht" فقط عند النوم أو الانصراف ليلاً، وليست تحية تُقال عند اللقاء.',
     },
     {
       wrong: 'Tschüss (في نهاية رسالة عمل رسمية)',
       correct: 'Mit freundlichen Grüßen',
-      explanationAr: 'في السياقات الرسمية يُفضَّل استخدام صيغ ختامية أكثر رسمية بدلاً من "Tschüss".',
+      explanationAr: 'تُختم الرسائل الرسمية بصيغة مكتوبة مثل "Mit freundlichen Grüßen"، ولا يناسبها "Tschüss".',
     },
   ],
 }
@@ -122,6 +261,9 @@ export const lessonSichVorstellen: Lesson = {
   title: 'Sich vorstellen',
   titleAr: 'التعريف بالنفس',
   estimatedMinutes: 15,
+  taglineAr:
+    'جمل التعريف الأولى: اسمك، ومن أين أنت، وكيف تسأل الآخرين السؤالين نفسيهما.',
+  heroExample: { de: 'Ich heiße Omar und ich komme aus Jordanien.', ar: 'اسمي عمر وأنا من الأردن.' },
   objectivesAr: [
     'تكوين جمل بسيطة للتعريف بالنفس',
     'طرح أسئلة عن الاسم وبلد المنشأ',
@@ -129,14 +271,93 @@ export const lessonSichVorstellen: Lesson = {
   ],
   explanation: [
     {
+      icon: 'message',
+      kickerDe: 'Der Name',
+      tone: 'accent',
       titleAr: 'السؤال عن الاسم',
       bodyAr:
-        'نستخدم الفعل "heißen" (يُدعى) للسؤال عن الاسم: "Wie heißt du؟" (غير رسمي) أو "Wie heißen Sie؟" (رسمي)، والإجابة تكون: "Ich heiße" + الاسم.',
+        'نستخدم الفعل [[heißen]] (يُدعى) للسؤال عن الاسم. للسؤال صيغتان بحسب درجة الرسمية، والجواب واحد: [[Ich heiße]] + الاسم.',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: السؤال نفسه بأسلوبين',
+          modes: [
+            {
+              labelAr: 'غير رسمي',
+              captionAr: 'مع صديق أو من هو في عمرك: du.',
+              parts: [
+                { text: 'Wie heißt', tone: 'accent' },
+                { text: 'du?', tone: 'highlight' },
+              ],
+            },
+            {
+              labelAr: 'رسمي',
+              captionAr: 'مع غريب أو في العمل: Sie.',
+              parts: [
+                { text: 'Wie heißen', tone: 'accent' },
+                { text: 'Sie?', tone: 'primary' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Ich heiße', tone: 'primary', noteAr: 'الجواب' },
+            { text: 'Anna', tone: 'accent', noteAr: 'اسمك' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'globe',
+      kickerDe: 'Das Land',
+      tone: 'primary',
       titleAr: 'التعريف بالبلد',
       bodyAr:
-        'للسؤال عن بلد المنشأ نقول "Woher kommst du؟" (من أين أنتَ؟)، والإجابة: "Ich komme aus" + اسم البلد. لاحظ ضرورة استخدام حرف الجر "aus" مع الفعل "kommen" في هذا السياق.',
+        'للسؤال عن بلد المنشأ نقول [[Woher kommst du?]] (من أين أنتَ؟) والجواب [[Ich komme aus]] + اسم البلد. لاحظ أننا نستخدم حرف الجر [[aus]] مع الفعل [[kommen]] في هذا السياق.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Ich komme', tone: 'primary' },
+            { text: 'aus', tone: 'accent', noteAr: 'من' },
+            { text: 'Ägypten', tone: 'highlight', noteAr: 'البلد' },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Woher kommst du?', ar: 'من أين أنتَ؟', badge: 'سؤال' },
+            { de: 'Ich komme aus Jordanien.', ar: 'أنا من الأردن.', badge: 'جواب' },
+          ],
+        },
+      ],
+    },
+    {
+      icon: 'sparkles',
+      kickerDe: 'Die Verben',
+      tone: 'plum',
+      titleAr: 'الفعلان heißen وkommen: الصيغ التي تحتاجها الآن',
+      bodyAr:
+        'يتغيّر آخر الفعل بحسب من يتكلم أو من نخاطب. هذه هي الصيغ الثلاث التي تكفيك في التعريف بالنفس، وستتعلم بقية التصريف لاحقاً.',
+      blocks: [
+        {
+          kind: 'table',
+          wrap: true,
+          columns: [
+            { header: 'Pronomen', lang: 'de' },
+            { header: 'heißen', lang: 'de', tone: 'accent' },
+            { header: 'kommen', lang: 'de', tone: 'primary' },
+          ],
+          rows: [
+            ['ich', 'heiße', 'komme'],
+            ['du', 'heißt', 'kommst'],
+            ['Sie', 'heißen', 'kommen'],
+          ],
+        },
+      ],
     },
   ],
   examples: [
@@ -292,6 +513,9 @@ export const lessonZahlen: Lesson = {
   title: 'Zahlen',
   titleAr: 'الأرقام',
   estimatedMinutes: 18,
+  taglineAr:
+    'من الصفر إلى المئة: الأرقام الأساسية أولاً، ثم القواعد التي تُبنى بها بقية الأرقام، وأخيراً الأرقام المركّبة.',
+  heroExample: { de: 'Ich bin zwanzig Jahre alt.', ar: 'عمري عشرون عاماً.' },
   objectivesAr: [
     'عد الأرقام من صفر إلى عشرين، والعشرات حتى المئة',
     'تكوين الأرقام المركبة مثل 21 و23',
@@ -299,18 +523,140 @@ export const lessonZahlen: Lesson = {
   ],
   explanation: [
     {
+      icon: 'hash',
+      kickerDe: 'Null bis zwölf',
+      tone: 'accent',
       titleAr: 'الأرقام من 0 إلى 12',
-      bodyAr: 'null، eins، zwei، drei، vier، fünf، sechs، sieben، acht، neun، zehn، elf، zwölf — أرقام أساسية لها أشكال فريدة يجب حفظها مباشرة.',
+      bodyAr:
+        'هذه الأرقام لا تجمعها قاعدة، فاحفظها كما هي؛ كل ما بعدها يُبنى منها. اضغط على أي بطاقة لتسمع نطقها.',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 5,
+          items: [
+            { mark: '0', de: 'null', ar: 'صفر' },
+            { mark: '1', de: 'eins', ar: 'واحد' },
+            { mark: '2', de: 'zwei', ar: 'اثنان' },
+            { mark: '3', de: 'drei', ar: 'ثلاثة' },
+            { mark: '4', de: 'vier', ar: 'أربعة' },
+            { mark: '5', de: 'fünf', ar: 'خمسة' },
+            { mark: '6', de: 'sechs', ar: 'ستة' },
+            { mark: '7', de: 'sieben', ar: 'سبعة' },
+            { mark: '8', de: 'acht', ar: 'ثمانية' },
+            { mark: '9', de: 'neun', ar: 'تسعة' },
+            { mark: '10', de: 'zehn', ar: 'عشرة' },
+            { mark: '11', de: 'elf', ar: 'أحد عشر', tone: 'plum' },
+            { mark: '12', de: 'zwölf', ar: 'اثنا عشر', tone: 'plum' },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'accent',
+          icon: 'lightbulb',
+          titleAr: 'eins عند العدّ فقط',
+          bodyAr:
+            'نقول [[Eins, zwei, drei …]] عند العدّ. أما قبل الاسم فيصير [[ein]]، مثل [[ein Euro]] و[[ein Uhr]].',
+        },
+      ],
     },
     {
-      titleAr: 'من 13 إلى 19',
+      icon: 'hash',
+      kickerDe: 'Dreizehn bis neunzehn',
+      tone: 'highlight',
+      titleAr: 'من 13 إلى 19: الرقم + zehn',
       bodyAr:
-        'تُبنى بإضافة "-zehn" إلى الرقم الأساسي: dreizehn (13)، vierzehn (14)، fünfzehn (15). استثناءان مهمان: sechzehn (16، تُحذف حرف s من sechs) وsiebzehn (17، تُحذف "en" من sieben).',
+        'تُبنى بإضافة [[zehn]] (عشرة) إلى الرقم الأساسي، فيُقال الرقم أولاً ثم العشرة. وفيها استثناءان يجب حفظهما.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'drei', tone: 'primary', noteAr: 'الرقم' },
+            { text: '+ zehn', tone: 'accent', noteAr: 'عشرة' },
+            { text: '= dreizehn', tone: 'success', noteAr: '13' },
+          ],
+        },
+        {
+          kind: 'tileGrid',
+          columns: 4,
+          tone: 'highlight',
+          items: [
+            { mark: '13', de: 'dreizehn', ar: 'ثلاثة عشر' },
+            { mark: '14', de: 'vierzehn', ar: 'أربعة عشر' },
+            { mark: '15', de: 'fünfzehn', ar: 'خمسة عشر' },
+            { mark: '16', de: 'sechzehn', ar: 'ستة عشر', tone: 'error' },
+            { mark: '17', de: 'siebzehn', ar: 'سبعة عشر', tone: 'error' },
+            { mark: '18', de: 'achtzehn', ar: 'ثمانية عشر' },
+            { mark: '19', de: 'neunzehn', ar: 'تسعة عشر' },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: 'استثناءان: 16 و17',
+          bodyAr:
+            '[[sechs]] تفقد حرف الـ s فتصير [[sechzehn]]، و[[sieben]] تفقد [[en]] فتصير [[siebzehn]].',
+        },
+      ],
     },
     {
-      titleAr: 'العشرات والأرقام المركبة',
+      icon: 'hash',
+      kickerDe: 'Zwanzig bis hundert',
+      tone: 'primary',
+      titleAr: 'العشرات والأرقام المركّبة',
       bodyAr:
-        'تُبنى العشرات بإضافة "-zig": zwanzig (20)، vierzig (40)... باستثناء dreißig (30، بحرف ß بدلاً من zig). أما الأرقام المركبة فتُقرأ الآحاد أولاً ثم العشرات، وتُربط بأداة "und": einundzwanzig (21) = eins + und + zwanzig.',
+        'تُبنى العشرات بإضافة [[-zig]] إلى الرقم الأساسي، إلا [[dreißig]] فتنتهي بـ [[-ßig]]. وفي بعضها تغيّر إملائي: [[zwei → zwanzig]]، [[sechs → sechzig]]، [[sieben → siebzig]].',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 5,
+          tone: 'primary',
+          items: [
+            { mark: '20', de: 'zwanzig', ar: 'عشرون' },
+            { mark: '30', de: 'dreißig', ar: 'ثلاثون', tone: 'plum' },
+            { mark: '40', de: 'vierzig', ar: 'أربعون' },
+            { mark: '50', de: 'fünfzig', ar: 'خمسون' },
+            { mark: '60', de: 'sechzig', ar: 'ستون', tone: 'plum' },
+            { mark: '70', de: 'siebzig', ar: 'سبعون', tone: 'plum' },
+            { mark: '80', de: 'achtzig', ar: 'ثمانون' },
+            { mark: '90', de: 'neunzig', ar: 'تسعون' },
+            { mark: '100', de: 'hundert', ar: 'مئة' },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'accent',
+          icon: 'lightbulb',
+          titleAr: 'الآحاد أولاً، كما في العربية',
+          bodyAr:
+            'في الأرقام المركّبة نقرأ الآحاد قبل العشرات ونربطهما بـ [[und]]: [[einundzwanzig]] = «واحد وعشرون». الترتيب نفسه الذي تعرفه من العربية.',
+        },
+        {
+          kind: 'table',
+          wrap: true,
+          captionAr: 'كيف يُبنى الرقم المركّب',
+          columns: [
+            { header: 'الرقم', lang: 'ar' },
+            { header: 'Deutsch', lang: 'de', tone: 'primary' },
+            { header: 'التحليل', lang: 'ar' },
+          ],
+          rows: [
+            ['21', 'einundzwanzig', 'ein + und + zwanzig'],
+            ['35', 'fünfunddreißig', 'fünf + und + dreißig'],
+            ['48', 'achtundvierzig', 'acht + und + vierzig'],
+            ['73', 'dreiundsiebzig', 'drei + und + siebzig'],
+            ['99', 'neunundneunzig', 'neun + und + neunzig'],
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: 'كلمة واحدة، و eins تصير ein',
+          bodyAr:
+            'يُكتب الرقم المركّب كلمة واحدة بلا مسافات، ويتحوّل [[eins]] إلى [[ein]]: [[einundzwanzig]] وليس [[einsundzwanzig]].',
+        },
+      ],
     },
   ],
   examples: [

@@ -35,6 +35,9 @@ export const lessonWochentage: Lesson = {
   title: 'Wochentage und Monate',
   titleAr: 'أيام الأسبوع والشهور',
   estimatedMinutes: 15,
+  taglineAr:
+    'الأيام السبعة والشهور الاثنا عشر، ومتى نستخدم am ومتى im، وكيف نقول «كل اثنين» بكلمة واحدة.',
+  heroExample: { de: 'Der Deutschkurs ist montags und mittwochs.', ar: 'دورة الألمانية كل اثنين وكل أربعاء.' },
   objectivesAr: [
     'تسمية أيام الأسبوع السبعة والشهور الاثني عشر بالألمانية',
     'السؤال عن اليوم والإجابة: Welcher Tag ist heute? — Heute ist …',
@@ -43,34 +46,203 @@ export const lessonWochentage: Lesson = {
   ],
   explanation: [
     {
+      icon: 'calendar',
+      kickerDe: 'Die Wochentage',
+      tone: 'accent',
       titleAr: 'أيام الأسبوع (die Wochentage)',
       bodyAr:
-        'الأيام السبعة: Montag، Dienstag، Mittwoch، Donnerstag، Freitag، Samstag، Sonntag. جميعها مذكّرة، فتقول: der Montag. تبدأ التقاويم الألمانية عادةً بيوم الاثنين، فالأسبوع يبدأ بـ Montag وينتهي بـ Sonntag. يُسمّى السبت أيضاً Sonnabend في شمال ألمانيا وشرقها، لكن Samstag هو الأكثر استخداماً عموماً. أما Samstag وSonntag معاً فهما das Wochenende (عطلة نهاية الأسبوع).',
+        'سبعة أيام، وكلها مذكّرة: [[der Montag]]. تبدأ التقاويم الألمانية عادةً بيوم الاثنين، وينتهي الأسبوع بالأحد. اضغط على أي يوم لتسمعه.',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 4,
+          items: [
+            { mark: 'Mo', de: 'Montag', ar: 'الاثنين' },
+            { mark: 'Di', de: 'Dienstag', ar: 'الثلاثاء' },
+            { mark: 'Mi', de: 'Mittwoch', ar: 'الأربعاء' },
+            { mark: 'Do', de: 'Donnerstag', ar: 'الخميس' },
+            { mark: 'Fr', de: 'Freitag', ar: 'الجمعة' },
+            { mark: 'Sa', de: 'Samstag', ar: 'السبت', tone: 'plum' },
+            { mark: 'So', de: 'Sonntag', ar: 'الأحد', tone: 'plum' },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'plum',
+          icon: 'sparkles',
+          titleAr: 'das Wochenende',
+          bodyAr:
+            'السبت والأحد معاً هما [[das Wochenende]] (عطلة نهاية الأسبوع). ويُسمّى السبت أيضاً [[Sonnabend]] في شمال ألمانيا وشرقها، لكن [[Samstag]] هو الأكثر استخداماً.',
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'Welcher Tag ist heute?',
+      tone: 'primary',
       titleAr: 'السؤال عن اليوم وموعد الشيء',
       bodyAr:
-        'نسأل عن اليوم بـ "Welcher Tag ist heute?" ونجيب "Heute ist Mittwoch.". ونسأل عن موعد حدث بـ "Wann ist …?" ونجيب بـ am ثم اليوم: "Der Kurs ist am Montag." لاحظ أننا لا نضيف كلمة "يوم" بالألمانية: نقول am Montag مباشرة.',
+        'نسأل عن اليوم بـ [[Welcher Tag ist heute?]] ونجيب [[Heute ist Mittwoch.]] ونسأل عن موعد حدث بـ [[Wann ist …?]] ونجيب بـ [[am]] ثم اليوم. لا نضيف كلمة «يوم» بالألمانية: نقول [[am Montag]] مباشرة.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Der Kurs ist', tone: 'primary' },
+            { text: 'am', tone: 'accent', noteAr: 'في' },
+            { text: 'Montag', tone: 'highlight', noteAr: 'اليوم' },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Welcher Tag ist heute?', ar: 'أي يوم اليوم؟', badge: 'سؤال' },
+            { de: 'Heute ist Mittwoch.', ar: 'اليوم هو الأربعاء.', badge: 'جواب' },
+            { de: 'Wann ist der Kurs?', ar: 'متى الدورة؟', badge: 'سؤال' },
+            { de: 'Der Kurs ist am Montag.', ar: 'الدورة يوم الاثنين.', badge: 'جواب' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'am / im',
+      tone: 'accent',
       titleAr: 'am للأيام وأجزاء اليوم، وim للشهور',
       bodyAr:
-        'am هي اختصار an dem، وim هي اختصار in dem. مع الأيام وأجزاء اليوم نستخدم am: am Montag، am Wochenende، am Mittag، am Nachmittag، am Abend. ومع الشهور نستخدم im: im Mai، im Dezember. استثناء مهم: نقول in der Nacht وليس am Nacht.',
+        '[[am]] اختصار [[an dem]]، و[[im]] اختصار [[in dem]]. نستخدم [[am]] مع الأيام وأجزاء اليوم، و[[im]] مع الشهور.',
+      blocks: [
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'am',
+              subAr: 'الأيام وأجزاء اليوم',
+              formula: 'am = an dem',
+              tone: 'accent',
+              items: [
+                { de: 'am Montag', ar: 'يوم الاثنين' },
+                { de: 'am Wochenende', ar: 'في عطلة نهاية الأسبوع' },
+                { de: 'am Mittag', ar: 'عند الظهر' },
+                { de: 'am Nachmittag', ar: 'بعد الظهر' },
+                { de: 'am Abend', ar: 'في المساء' },
+              ],
+            },
+            {
+              titleAr: 'im',
+              subAr: 'الشهور',
+              formula: 'im = in dem',
+              tone: 'highlight',
+              items: [
+                { de: 'im Mai', ar: 'في مايو' },
+                { de: 'im Dezember', ar: 'في ديسمبر' },
+              ],
+            },
+            {
+              titleAr: 'استثناء مهم',
+              subAr: 'الليل',
+              formula: 'in der Nacht',
+              tone: 'error',
+              items: [{ de: 'in der Nacht', ar: 'في الليل (وليس am Nacht)' }],
+            },
+          ],
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'Die Monate',
+      tone: 'plum',
       titleAr: 'الشهور الاثنا عشر (die Monate)',
       bodyAr:
-        'Januar، Februar، März، April، Mai، Juni، Juli، August، September، Oktober، November، Dezember. كلها مذكّرة: der Januar. تُنطق أسماء كثير منها قريبة من العربية أو الإنجليزية، لكن انتبه للكتابة: März فيها حرف ä. وفي النمسا يُقال غالباً Jänner بدل Januar.',
+        'كلها مذكّرة: [[der Januar]]. كثير منها قريب من العربية أو الإنجليزية، لكن انتبه للكتابة: [[März]] فيها حرف [[ä]]. وفي النمسا يُقال غالباً [[Jänner]] بدل [[Januar]].',
+      blocks: [
+        {
+          kind: 'tileGrid',
+          columns: 4,
+          tone: 'plum',
+          items: [
+            { mark: '1', de: 'Januar', ar: 'يناير' },
+            { mark: '2', de: 'Februar', ar: 'فبراير' },
+            { mark: '3', de: 'März', ar: 'مارس' },
+            { mark: '4', de: 'April', ar: 'أبريل' },
+            { mark: '5', de: 'Mai', ar: 'مايو' },
+            { mark: '6', de: 'Juni', ar: 'يونيو' },
+            { mark: '7', de: 'Juli', ar: 'يوليو' },
+            { mark: '8', de: 'August', ar: 'أغسطس' },
+            { mark: '9', de: 'September', ar: 'سبتمبر' },
+            { mark: '10', de: 'Oktober', ar: 'أكتوبر' },
+            { mark: '11', de: 'November', ar: 'نوفمبر' },
+            { mark: '12', de: 'Dezember', ar: 'ديسمبر' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'sparkles',
+      kickerDe: 'Großschreibung',
+      tone: 'error',
       titleAr: 'الحرف الكبير في أسماء الأيام والشهور',
       bodyAr:
-        'في الألمانية تُكتب كل الأسماء بحرف كبير في أولها، وأسماء الأيام والشهور أسماء. فنكتب Montag وMai، وليس montag أو mai. العربية لا تعرف الحروف الكبيرة، فيحتاج هذا الأمر إلى انتباه خاص.',
+        'في الألمانية تُكتب كل الأسماء بحرف كبير في أولها، وأسماء الأيام والشهور أسماء. العربية لا تعرف الحروف الكبيرة، فيحتاج هذا الأمر إلى انتباه خاص.',
+      blocks: [
+        {
+          kind: 'mistakes',
+          items: [
+            {
+              wrong: 'am montag, im mai',
+              correct: 'am Montag, im Mai',
+              explanationAr: 'نكتب [[Montag]] و[[Mai]] بحرف كبير، وليس [[montag]] أو [[mai]].',
+            },
+          ],
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'montags, dienstags …',
+      tone: 'highlight',
       titleAr: 'montags وdienstags: كل يوم اثنين وكل يوم ثلاثاء',
       bodyAr:
-        'للتكرار الأسبوعي نضيف **-s** إلى اسم اليوم ونكتبه **بحرف صغير** لأنه ظرف: **montags، dienstags، mittwochs، donnerstags، freitags، samstags، sonntags**. معناها «كل يوم اثنين» وهكذا، وهي تساوي jeden Montag: **Der Deutschkurs ist montags und mittwochs.** (الدورة كل اثنين وكل أربعاء). أمّا **am Montag** فتعني يوماً واحداً محدداً: **Am Montag habe ich einen Termin.**',
+        'للتكرار الأسبوعي نضيف **-s** إلى اسم اليوم ونكتبه **بحرف صغير** لأنه ظرف، ومعناه «كل يوم اثنين» وهكذا، وهو يساوي [[jeden Montag]]. أمّا [[am Montag]] فتعني يوماً واحداً محدداً.',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: تكرار أم يوم واحد؟',
+          modes: [
+            {
+              labelAr: 'montags',
+              captionAr: 'كل يوم اثنين: تكرار أسبوعي، ويُكتب بحرف صغير.',
+              parts: [
+                { text: 'Der Deutschkurs ist' },
+                { text: 'montags', tone: 'accent' },
+              ],
+            },
+            {
+              labelAr: 'am Montag',
+              captionAr: 'يوم اثنين واحد محدد، ويُكتب بحرف كبير.',
+              parts: [
+                { text: 'Der Deutschkurs ist' },
+                { text: 'am Montag', tone: 'primary' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'tileGrid',
+          columns: 4,
+          tone: 'highlight',
+          items: [
+            { mark: 'Mo', de: 'montags', ar: 'كل اثنين' },
+            { mark: 'Di', de: 'dienstags', ar: 'كل ثلاثاء' },
+            { mark: 'Mi', de: 'mittwochs', ar: 'كل أربعاء' },
+            { mark: 'Do', de: 'donnerstags', ar: 'كل خميس' },
+            { mark: 'Fr', de: 'freitags', ar: 'كل جمعة' },
+            { mark: 'Sa', de: 'samstags', ar: 'كل سبت' },
+            { mark: 'So', de: 'sonntags', ar: 'كل أحد' },
+          ],
+        },
+      ],
     },
   ],
   examples: [

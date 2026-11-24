@@ -13,37 +13,213 @@ export const lessonDatum: Lesson = {
   title: 'Datum und Ordnungszahlen',
   titleAr: 'التاريخ والأعداد الترتيبية',
   estimatedMinutes: 18,
+  taglineAr:
+    'كيف تقول تاريخاً كاملاً: الأعداد الترتيبية، والسؤال عن التاريخ، وكتابته وقراءته.',
+  heroExample: { de: 'Heute ist der dritte Mai.', ar: 'اليوم هو الثالث من مايو.' },
   objectivesAr: [
     'تكوين الأعداد الترتيبية من 1 إلى 31 (der erste، der zweite، der dritte …)',
-    'السؤال عن التاريخ والإجابة: Der Wievielte ist heute؟ — Heute ist der dritte Mai.',
+    'السؤال عن التاريخ والإجابة: Der Wievielte ist heute? — Heute ist der dritte Mai.',
     'قول موعد حدث بالتاريخ بعد am: am dritten Mai',
     'كتابة التاريخ الألماني (اليوم قبل الشهر) وقراءته',
   ],
   explanation: [
     {
+      icon: 'calendar',
+      kickerDe: 'Die Ordinalzahlen',
+      tone: 'accent',
       titleAr: 'الأعداد الترتيبية (die Ordinalzahlen)',
       bodyAr:
-        'نستخدم الترتيبي للتاريخ: "الثالث من مايو". القاعدة بسيطة: من 1 إلى 19 نضيف **-te** إلى العدد، ومن 20 فما فوق نضيف **-ste**: vierte، fünfte، zwölfte، neunzehnte، zwanzigste، einunddreißigste. أربعة أعداد تخرج عن القاعدة فقط: **erste** (1)، **dritte** (3)، **siebte** (7، نحذف -en من sieben)، **achte** (8، t واحدة). في الكتابة نضع نقطة بعد الرقم: 3. تُقرأ dritte.',
+        'نستخدم الترتيبي للتاريخ: «الثالث من مايو». من 1 إلى 19 نضيف **-te** إلى العدد، ومن 20 فما فوق نضيف **-ste**. وأربعة أعداد تخرج عن القاعدة فقط. وفي الكتابة نضع نقطة بعد الرقم: 3. تُقرأ [[dritte]].',
+      blocks: [
+        {
+          kind: 'patternCards',
+          cards: [
+            {
+              titleAr: 'من 1 إلى 19',
+              subAr: 'العدد + te',
+              formula: 'vier + te',
+              tone: 'accent',
+              items: [
+                { de: 'vierte', ar: 'الرابع' },
+                { de: 'zwölfte', ar: 'الثاني عشر' },
+                { de: 'neunzehnte', ar: 'التاسع عشر' },
+              ],
+            },
+            {
+              titleAr: 'من 20 فما فوق',
+              subAr: 'العدد + ste',
+              formula: 'zwanzig + ste',
+              tone: 'highlight',
+              items: [
+                { de: 'zwanzigste', ar: 'العشرون' },
+                { de: 'einunddreißigste', ar: 'الحادي والثلاثون' },
+              ],
+            },
+            {
+              titleAr: 'أربعة استثناءات',
+              subAr: 'تُحفظ كما هي',
+              tone: 'error',
+              items: [
+                { de: 'erste', ar: 'الأول' },
+                { de: 'dritte', ar: 'الثالث' },
+                { de: 'siebte', ar: 'السابع (نحذف en من sieben)' },
+                { de: 'achte', ar: 'الثامن (t واحدة)' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'tileGrid',
+          columns: 4,
+          items: [
+            { mark: '1.', de: 'erste', ar: 'الأول', tone: 'plum' },
+            { mark: '2.', de: 'zweite', ar: 'الثاني' },
+            { mark: '3.', de: 'dritte', ar: 'الثالث', tone: 'plum' },
+            { mark: '4.', de: 'vierte', ar: 'الرابع' },
+            { mark: '5.', de: 'fünfte', ar: 'الخامس' },
+            { mark: '6.', de: 'sechste', ar: 'السادس' },
+            { mark: '7.', de: 'siebte', ar: 'السابع', tone: 'plum' },
+            { mark: '8.', de: 'achte', ar: 'الثامن', tone: 'plum' },
+            { mark: '9.', de: 'neunte', ar: 'التاسع' },
+            { mark: '10.', de: 'zehnte', ar: 'العاشر' },
+            { mark: '11.', de: 'elfte', ar: 'الحادي عشر' },
+            { mark: '12.', de: 'zwölfte', ar: 'الثاني عشر' },
+            { mark: '20.', de: 'zwanzigste', ar: 'العشرون', tone: 'highlight' },
+            { mark: '21.', de: 'einundzwanzigste', ar: 'الحادي والعشرون', tone: 'highlight' },
+            { mark: '30.', de: 'dreißigste', ar: 'الثلاثون', tone: 'highlight' },
+            { mark: '31.', de: 'einunddreißigste', ar: 'الحادي والثلاثون', tone: 'highlight' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'Das Datum',
+      tone: 'primary',
       titleAr: 'السؤال عن التاريخ',
       bodyAr:
-        'نسأل: "Der Wievielte ist heute?" (ما تاريخ اليوم؟ السؤال يطلب الرقم الترتيبي لليوم: اليوم هو الـ «كم»؟) أو "Welches Datum haben wir heute؟"، ونجيب: "Heute ist der dritte Mai." لاحظ الترتيب: der + الترتيبي مع -e في آخره + اسم الشهر بحرف كبير: der erste Mai، der zweite Mai، der zwanzigste Mai.',
+        'نسأل [[Der Wievielte ist heute?]] (السؤال يطلب الرقم الترتيبي لليوم) أو [[Welches Datum haben wir heute?]] ونجيب بالترتيب نفسه دائماً: [[der]] + الترتيبي + اسم الشهر بحرف كبير.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: 'Heute ist', tone: 'primary' },
+            { text: 'der', tone: 'accent', noteAr: 'ثابتة' },
+            { text: 'dritte', tone: 'plum', noteAr: 'الترتيبي' },
+            { text: 'Mai', tone: 'highlight', noteAr: 'الشهر' },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Der Wievielte ist heute?', ar: 'ما تاريخ اليوم؟', badge: 'سؤال' },
+            { de: 'Heute ist der dritte Mai.', ar: 'اليوم هو الثالث من مايو.', badge: 'جواب' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'am + -n',
+      tone: 'accent',
       titleAr: 'am للموعد: am + الترتيبي + n',
       bodyAr:
-        'تعرّفت على am مع الأيام (am Montag). مع التاريخ نستخدم am أيضاً، لكن يُضاف **-n** إلى الترتيبي: Wann hast du Geburtstag؟ — **Am dritten** Mai. / **Am ersten** Januar. / **Am zwanzigsten** Juni. تذكّر أن الشهر وحده يأخذ im: im Mai، أما اليوم والشهر معاً فيأخذان am: am dritten Mai.',
+        'مع التاريخ نستخدم [[am]] أيضاً، لكن يُضاف **-n** إلى الترتيبي. تذكّر: الشهر وحده يأخذ [[im]]، أما اليوم والشهر معاً فيأخذان [[am]].',
+      blocks: [
+        {
+          kind: 'compare',
+          titleAr: 'جرّب بنفسك: التاريخ أم الموعد؟',
+          modes: [
+            {
+              labelAr: 'التاريخ',
+              captionAr: 'نذكر التاريخ نفسه: der dritte Mai.',
+              parts: [
+                { text: 'der', tone: 'accent' },
+                { text: 'dritte', tone: 'primary' },
+                { text: 'Mai' },
+              ],
+            },
+            {
+              labelAr: 'الموعد',
+              captionAr: 'نذكر متى يحدث الشيء: am dritten Mai، ويُضاف n.',
+              parts: [
+                { text: 'am', tone: 'accent' },
+                { text: 'dritten', tone: 'primary' },
+                { text: 'Mai' },
+              ],
+            },
+            {
+              labelAr: 'الشهر وحده',
+              captionAr: 'الشهر وحده يأخذ im: im Mai.',
+              parts: [
+                { text: 'im', tone: 'highlight' },
+                { text: 'Mai' },
+              ],
+            },
+          ],
+        },
+        {
+          kind: 'examples',
+          columns: 2,
+          items: [
+            { de: 'Wann hast du Geburtstag?', ar: 'متى عيد ميلادك؟', badge: 'سؤال' },
+            { de: 'Am dritten Mai.', ar: 'في الثالث من مايو.', badge: 'جواب' },
+            { de: 'Am ersten Januar.', ar: 'في الأول من يناير.' },
+            { de: 'Am zwanzigsten Juni.', ar: 'في العشرين من يونيو.' },
+          ],
+        },
+      ],
     },
     {
+      icon: 'calendar',
+      kickerDe: 'Schreibweise',
+      tone: 'plum',
       titleAr: 'كتابة التاريخ: اليوم أولاً',
       bodyAr:
-        'في ألمانيا يُكتب اليوم ثم الشهر ثم السنة، وتفصل بينها نقاط: 12.03.1998 أي 12 مارس 1998 (وليس 3 ديسمبر). ونكتب بالحروف: der 12. März 1998. وتُقرأ: der zwölfte März. وبعد الرقم نقطة دائماً حين يكون ترتيبياً.',
+        'في ألمانيا يُكتب اليوم ثم الشهر ثم السنة، وتفصل بينها نقاط. ونكتب بالحروف أيضاً، وبعد الرقم نقطة دائماً حين يكون ترتيبياً.',
+      blocks: [
+        {
+          kind: 'formula',
+          tags: [
+            { text: '12.', tone: 'primary', noteAr: 'اليوم' },
+            { text: '03.', tone: 'accent', noteAr: 'الشهر' },
+            { text: '1998', tone: 'highlight', noteAr: 'السنة' },
+          ],
+        },
+        {
+          kind: 'ruleBox',
+          tone: 'error',
+          icon: 'alert',
+          titleAr: '12.03.1998 هو 12 مارس',
+          bodyAr:
+            'التاريخ [[12.03.1998]] هو 12 مارس 1998، وليس 3 ديسمبر كما في الأسلوب الأمريكي. ونكتبه بالحروف [[der 12. März 1998]] ويُقرأ [[der zwölfte März]].',
+        },
+      ],
     },
     {
+      icon: 'hash',
+      kickerDe: 'Jahreszahlen',
+      tone: 'highlight',
       titleAr: 'قراءة السنة',
       bodyAr:
-        'تُقرأ السنوات من 1100 إلى 1999 كأنها مئات: 1998 = neunzehnhundertachtundneunzig. أما من عام 2000 فتُقرأ ألفين: 2026 = zweitausendsechsundzwanzig. وعند ذكر التاريخ كاملاً نقرأ اليوم ثم الشهر ثم السنة.',
+        'تُقرأ السنوات من 1100 إلى 1999 كأنها مئات، أما من عام 2000 فتُقرأ ألفين. وعند ذكر التاريخ كاملاً نقرأ اليوم ثم الشهر ثم السنة.',
+      blocks: [
+        {
+          kind: 'table',
+          wrap: true,
+          captionAr: 'كيف تُقرأ السنة',
+          columns: [
+            { header: 'السنة', lang: 'ar' },
+            { header: 'Deutsch', lang: 'de', tone: 'highlight' },
+          ],
+          rows: [
+            ['1998', 'neunzehnhundertachtundneunzig'],
+            ['2000', 'zweitausend'],
+            ['2026', 'zweitausendsechsundzwanzig'],
+          ],
+        },
+      ],
     },
   ],
   examples: [

@@ -4,7 +4,6 @@ import {
   BookOpen,
   Check,
   CheckCircle2,
-  Clock,
   Dumbbell,
   Globe,
   Languages,
@@ -14,9 +13,9 @@ import {
   Sparkles,
   Volume2,
 } from 'lucide-react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
-import { Badge, Button, Card, InlineMarkup } from '@/components/ui'
+import { Button, Card, InlineMarkup } from '@/components/ui'
 import { ExerciseRunner } from '@/features/exercises/ExerciseRunner'
 import { ComparisonLadder } from '@/features/grammar/ComparisonLadder'
 import { CanDoList } from '@/features/lessons/CanDoList'
@@ -24,9 +23,10 @@ import { CommonMistakesList } from '@/features/lessons/CommonMistakesList'
 import { DialogueDisplay } from '@/features/lessons/DialogueDisplay'
 import { ExampleSentence } from '@/features/lessons/ExampleSentence'
 import { InteractiveDiagram } from '@/features/lessons/InteractiveDiagram'
+import { LessonExplanation } from '@/features/lessons/LessonExplanation'
+import { LessonHero } from '@/features/lessons/LessonHero'
 import { LessonSectionNav } from '@/features/lessons/LessonSectionNav'
 import type { LessonSectionLink } from '@/features/lessons/LessonSectionNav'
-import { LevelMark } from '@/features/levels/LevelMark'
 import { PronunciationTips } from '@/features/lessons/PronunciationTips'
 import { ArabicSpeakerNotes } from '@/features/lessons/ArabicSpeakerNotes'
 import { SectionHeading } from '@/features/lessons/SectionHeading'
@@ -127,45 +127,7 @@ export default function LessonPage() {
 
   return (
     <div className="pb-6">
-      {/* Lesson header */}
-      <header dir="rtl" className="space-y-4 pb-6">
-        <nav aria-label="مسار الصفحة" className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-muted">
-          <Link to="/levels" className="inline-flex items-center gap-2 hover:text-ink">
-            <LevelMark level={lesson.level} size="sm" />
-            <span className="font-semibold">الخطة الشاملة</span>
-          </Link>
-          {module ? (
-            <>
-              <span aria-hidden="true">/</span>
-              <span>{module.titleAr}</span>
-            </>
-          ) : null}
-        </nav>
-
-        <div className="space-y-1.5">
-          <h1
-            dir="ltr"
-            lang="de"
-            className="display-de text-end text-4xl text-ink [overflow-wrap:anywhere] sm:text-5xl"
-          >
-            {lesson.title}
-          </h1>
-          <p className="text-xl font-semibold text-ink-muted sm:text-2xl">{lesson.titleAr}</p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-muted">
-          <span className="flex items-center gap-1.5">
-            <Clock size={15} aria-hidden="true" />
-            <span className="tnum">{lesson.estimatedMinutes}</span> دقيقة تقريباً
-          </span>
-          {showCompleted ? (
-            <Badge tone="success">
-              <CheckCircle2 size={13} aria-hidden="true" />
-              مكتمل
-            </Badge>
-          ) : null}
-        </div>
-      </header>
+      <LessonHero lesson={lesson} moduleTitleAr={module?.titleAr} completed={showCompleted} />
 
       <LessonSectionNav sections={sections} variant="bar" />
 
@@ -190,18 +152,7 @@ export default function LessonPage() {
           {/* Explanation: Arabic prose that explains the German concept */}
           <section aria-labelledby="lesson-explanation" className="space-y-4">
             <SectionHeading id="lesson-explanation" icon={BookOpen} titleAr="الشرح" />
-            <div dir="rtl" className="space-y-8">
-              {lesson.explanation.map((section, index) => (
-                <div key={index} className="space-y-2">
-                  <h3 className="font-sans text-lg font-bold text-ink">
-                    <InlineMarkup text={section.titleAr} />
-                  </h3>
-                  <p className="prose-ar text-ink">
-                    <InlineMarkup text={section.bodyAr} />
-                  </p>
-                </div>
-              ))}
-            </div>
+            <LessonExplanation sections={lesson.explanation} />
           </section>
 
           {/* Visual grammar */}
